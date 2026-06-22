@@ -942,139 +942,121 @@
 
         
             
-         <script>
-                 document.addEventListener("DOMContentLoaded", () => {
-
-const timerDisplay = document.getElementById("timer-counter");
-const statusPill   = document.getElementById("status-pill");
-const btnClockIn   = document.getElementById("btn-clock-in");
-const btnClockOut  = document.getElementById("btn-clock-out");
-
-let timerInterval = null;
-let seconds = 0;
-
-// Fetch live Unix tracking metadata arrays out of Laravel backend context
-const clockInTimestamp = @json($today && $today->clock_in ? \Carbon\Carbon::parse($today->clock_in)->timestamp : null);
-const clockOutTimestamp = @json($today && $today->clock_out ? \Carbon\Carbon::parse($today->clock_out)->timestamp : null);
-
-let isClockedIn = clockInTimestamp !== null && clockOutTimestamp === null;
-
-const csrf = document.querySelector('meta[name="csrf-token"]') 
-    ? document.querySelector('meta[name="csrf-token"]').getAttribute('content') 
-    : "{{ csrf_token() }}";
-function formatTime(s) {
-    let h = Math.floor(s / 3600);
-    let m = Math.floor((s % 3600) / 60);
-    let sec = s % 60;
-    return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`;
-}
-
-function updateProgressMetrics(totalSeconds) {
-        const progressValueText = document.getElementById("logged-hours-value");
-        const progressBarFill = document.getElementById("progress-bar-fill");
-
-        if (!progressValueText || !progressBarFill) return;
-
-        const hoursDecimal = (totalSeconds / 3600).toFixed(1);
-        const targetHoursCap = 8.0;
-        const progressPercentage = Math.min((hoursDecimal / targetHoursCap) * 100, 100);
-
-        progressValueText.textContent = `${hoursDecimal} / ${targetHoursCap} hrs`;
-        progressBarFill.style.width = `${progressPercentage}%`;
-    }
-
-if (clockInTimestamp) {
-    if (clockOutTimestamp) {
-       
-        seconds = clockOutTimestamp - clockInTimestamp;
-        timerDisplay.textContent = formatTime(seconds);
-        btnClockIn.disabled = true;
-        btnClockIn.className = "btn-action disable-in";
-        btnClockOut.disabled = true;
-        btnClockOut.className = "btn-action disable-out";
-        statusPill.innerHTML = `<span class="dot"></span> SHIFT COMPLETE`;
-        statusPill.className = "status-pill status-out";
-    } else {
-        
-        seconds = Math.floor(Date.now() / 1000) - clockInTimestamp;
-        timerDisplay.textContent = formatTime(seconds);
-        
-        timerInterval = setInterval(() => {
-            seconds++;
-            timerDisplay.textContent = formatTime(seconds);
-        }, 1000);
-    }
-}
-
-
-btnClockIn.addEventListener("click", () => {
-    if (isClockedIn) return;
-
-    fetch('{{ route("clock.in") }}', {
-        method: 'POST',
-        headers: { 
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': csrf 
-        }
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.status) {
-            isClockedIn = true;
-            btnClockIn.disabled = true;
-            btnClockIn.className = "btn-action disable-in";
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
             
-            btnClockOut.disabled = false;
-            btnClockOut.className = "btn-action active-out";
+                const timerDisplay = document.getElementById("timer-counter");
+                const statusPill   = document.getElementById("status-pill");
+                const btnClockIn   = document.getElementById("btn-clock-in");
+                const btnClockOut  = document.getElementById("btn-clock-out");
             
-            statusPill.innerHTML = `<span class="dot"></span> CURRENTLY CLOCKED IN`;
-            statusPill.className = "status-pill status-in";
-
+                let timerInterval = null;
+                let seconds = 0;
+            
+                
+                const clockInTimestamp = @json($today && $today->clock_in ? \Carbon\Carbon::parse($today->clock_in)->timestamp : null);
+                const clockOutTimestamp = @json($today && $today->clock_out ? \Carbon\Carbon::parse($today->clock_out)->timestamp : null);
+            
+                let isClockedIn = clockInTimestamp !== null && clockOutTimestamp === null;
+            
+                const csrf = document.querySelector('meta[name="csrf-token"]') 
+                    ? document.querySelector('meta[name="csrf-token"]').getAttribute('content') 
+                    : "{{ csrf_token() }}";
+            
+                function formatTime(s) {
+                    let h = Math.floor(s / 3600);
+                    let m = Math.floor((s % 3600) / 60);
+                    let sec = s % 60;
+                    return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`;
+                }
+            
+                function updateProgressMetrics(totalSeconds) {
+                    const progressValueText = document.getElementById("logged-hours-value");
+                    const progressBarFill = document.getElementById("progress-bar-fill");
+            
+                    if (!progressValueText || !progressBarFill) return;
+            
+                    const hoursDecimal = (totalSeconds / 3600).toFixed(1);
+                    const targetHoursCap = 8.0;
+                    const progressPercentage = Math.min((hoursDecimal / targetHoursCap) * 100, 100);
+            
+                    progressValueText.textContent = `${hoursDecimal} / ${targetHoursCap} hrs`;
+                    progressBarFill.style.width = `${progressPercentage}%`;
+                }
+            
+                
+                if (clockInTimestamp) {
+                    if (clockOutTimestamp) {
+                     
+                        seconds = clockOutTimestamp - clockInTimestamp;
+                        timerDisplay.textContent = formatTime(seconds);
+                        updateProgressMetrics(seconds);
+                        
+                        btnClockIn.disabled = true;
+                        btnClockIn.className = "btn-action disable-in";
+                        btnClockOut.disabled = true;
+                        btnClockOut.className = "btn-action disable-out";
+                        statusPill.innerHTML = `<span class="dot"></span> SHIFT COMPLETE`;
+                        statusPill.className = "status-pill status-out";
+                    } else {
+                        
+                        const calculateElapsed = () => {
+                            seconds = Math.floor(Date.now() / 1000) - clockInTimestamp;
+                            timerDisplay.textContent = formatTime(seconds);
+                            updateProgressMetrics(seconds);
+                        };
+            
+                        calculateElapsed();
+                        timerInterval = setInterval(calculateElapsed, 1000);
+                    }
+                }
+            
            
-            location.reload();
-        } else {
-            alert(data.message);
-        }
-    })
-    .catch(() => alert("Error connecting to server"));
-});
-
-
-btnClockOut.addEventListener("click", () => {
-    if (!isClockedIn) return;
-
-    fetch('{{ route("clock.out") }}', {
-        method: 'POST',
-        headers: { 
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': csrf 
-        }
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.status) {
-            clearInterval(timerInterval);
-            isClockedIn = false;
+                btnClockIn.addEventListener("click", () => {
+                    if (isClockedIn) return;
             
-            btnClockOut.disabled = true;
-            btnClockOut.className = "btn-action disable-out";
+                    fetch('{{ route("clock.in") }}', {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrf 
+                        }
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.status) {
+                            location.reload(); 
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(() => alert("Error connecting to server"));
+                });
             
-            btnClockIn.disabled = true;
-            btnClockIn.className = "btn-action disable-in";
+                
+                btnClockOut.addEventListener("click", () => {
+                    if (!isClockedIn) return;
             
-            statusPill.innerHTML = `<span class="dot"></span> CURRENTLY CLOCKED OUT`;
-            statusPill.className = "status-pill status-out";
-            
-            
-            location.reload();
-        } else {
-            alert(data.message);
-        }
-    })
-    .catch(() => alert("Error connecting to server"));
-});
-});
-</script>
+                    fetch('{{ route("clock.out") }}', {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrf 
+                        }
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.status) {
+                            clearInterval(timerInterval);
+                            location.reload();
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(() => alert("Error connecting to server"));
+                });
+            });
+            </script>
        
 
 

@@ -50,33 +50,41 @@ class StaffDashboardController extends Controller
     public function clockIn(Request $request)
     {
         $user = Auth::user();
+    $todayDate = today()->format('Y-m-d');
 
-       
-        $record = HtgModel::firstOrCreate([
-            'user_id' => $user->id,
-            'date' => today(),
-        ], [
-            'clock_in' => now(),      
+    
+    $record = HtgModel::where('user_id', $user->id)
+        ->where('date', $todayDate)
+        ->first();
+
+    
+    if ($record && $record->clock_in) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Already clocked in today',
+        ]);
+    }
+
+    
+    if (!$record) {
+        $record = HtgModel::create([
+            'user_id'   => $user->id,
+            'date'      => $todayDate,
+            'clock_in'  => now(),
             'clock_out' => null,
         ]);
-
-        //prevents double clockin
-        if ($record->clock_in) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Already clocked in today',
-            ]);
-        }
-
+    } else {
+      
         $record->update([
             'clock_in' => now(),
         ]);
+    }
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Clocked in successfully',
-            'clock_in_time' => $record->clock_in->format('H:i'),
-        ]);
+    return response()->json([
+        'status' => true,
+        'message' => 'Clocked in successfully',
+        'clock_in_time' => $record->clock_in->format('H:i'),
+    ]);
     }
 
     public function clockOut(Request $request)

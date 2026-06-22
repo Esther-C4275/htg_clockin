@@ -1,6 +1,6 @@
 <form method="POST" action="{{ route('logout') }}">
     @csrf
-    <button type="submit" class="logout">
+    <button type="submit" class="logout" onclick="localStorage.clear();">
         <img src="/images/logout.png">Logout</button>
 </form>
 
