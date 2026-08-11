@@ -8,8 +8,6 @@ class SlashController extends Controller
 {
    public function index()
    {
-
-      return 'lol';
       return view('pages.slash');
    }
 }
