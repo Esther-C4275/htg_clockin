@@ -854,7 +854,7 @@
         <main class="main-viewport">
             <header class="top-bar">
                 <div class="mobile-brand">
-                    <img src="{{ asset('images/LOGO.svg') }}" class="mobile-logo" alt="HTG">
+                    <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
 
                     <button class="hamburger-btn" id="openSidebar">
                         <img src="{{ asset('images/breadcrumb.svg') }}">

@@ -934,7 +934,7 @@
         <main class="main-viewport">
             <header class="top-bar">
                 <div class="mobile-brand">
-                    <img src="{{ asset('images/LOGO.svg') }}" class="mobile-logo" alt="HTG">
+                    <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
 
                     <button class="hamburger-btn" id="openSidebar">
                         <img src="{{ asset('images/breadcrumb.svg') }}">
@@ -1046,7 +1046,7 @@
                                     <div class="trazo-contact-link">
 
                                         <div class="trazo-contact-item">
-                                            <span class="icon-circle"><img src="./images/Frame 114 (1).svg') }}"
+                                            <span class="icon-circle"><img src="{{ asset('images/Frame 114 (1).svg') }}"
                                                     alt="Phone"></span>
                                             <span class="contact-text">+234 (916) 063 9876</span>
                                         </div>
@@ -1064,7 +1064,7 @@
                                     <div class="trazo-lost-found">
                                         <h4>2nd floor, Contemporary Building, Interbua Roundabout, Summit Road, Asaba.
                                         </h4>
-                                        <img class="line-decoration" src="./images/Line 52.svg') }}" alt="">
+                                        <img class="line-decoration" src="{{ asset('images/Line 52.svg') }}" alt="">
                                         <h5 style="font-weight: 500">If found, should be returned to the above address,
                                             phone umber or nearest
                                             police

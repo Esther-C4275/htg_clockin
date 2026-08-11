@@ -496,7 +496,7 @@
 
                 <!-- Content -->
                 <div class="content-wrapper">
-                    <form action="{{ route('avatar-update', $user->id) }}" method="POST" enctype="multipart/form-data"
+                    <form action="{{ route('avatar-update', $user->uuid) }}" method="POST" enctype="multipart/form-data"
                         id="avatarUploadForm">
                         @csrf
                         @method('PUT')
@@ -577,7 +577,7 @@
                         <!-- Gender -->
 
 
-                        <form method="POST" action="{{ route('staff-edit.update', $user->id) }}">
+                        <form method="POST" action="{{ route('staff-edit.update', $user->uuid) }}">
                             @method('PUT')
                             @csrf
 

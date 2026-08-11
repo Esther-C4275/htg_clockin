@@ -300,7 +300,21 @@
             background: #fff;
             border: 1px solid #e8e8e8;
             border-radius: 10px;
-            padding: 20px;
+            padding: 35px;
+            height: 400px;
+        }
+
+        .card-address-card{
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 10px;
+            padding: 35px;
+            height: 250px;
+        }
+
+        .card-address-card h3{
+            margin-top: -10px;
+            font-weight: 600;
         }
 
         .card-header {
@@ -317,7 +331,7 @@
         .card-header h3 {
             font-weight: 600;
             font-style: Semi Bold;
-            font-size: 16px;
+            font-size: 18px;
             line-height: 100%;
             letter-spacing: 0px;
 
@@ -542,7 +556,7 @@
                             <div class="card-header">
                                 <h3>Personal Details</h3>
 
-                                <a href="{{ route('staff-edit.edit', $user->id) }}" class="edit-btn"
+                                <a href="{{ route('staff-edit.edit', $user->uuid) }}" class="edit-btn"
                                     style="text-decoration: none; font-size: 13px; color: black;">
                                     <i><img src="{{ asset('images/editicon.png') }}" alt=""></i>
                                     Edit
@@ -590,7 +604,7 @@
                         </div>
 
                         <!-- Address -->
-                        <div class="card address-card">
+                        <div class="card-address-card">
                             <h3>Address</h3>
 
                             <div class="address-grid">

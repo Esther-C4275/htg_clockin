@@ -1004,7 +1004,7 @@
 
       <header class="top-bar">
         <div class="mobile-brand">
-          <img src="{{ asset('images/LOGO.svg') }}" class="mobile-logo" alt="HTG">
+          <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
 
           <button class="hamburger-btn" id="openSidebar">
             <img src="{{ asset('images/breadcrumb.svg') }}">
@@ -1067,25 +1067,16 @@
                 <div class="badge-card-front">
 
                   <div class="badge-avatar-container" style="overflow: hidden; 
-                    width: 160px; 
-                    height: 160px; 
-                    color: #06414F; 
-                    border-radius: 50%; 
-                    display: flex; 
-                    align-items: center; 
-                    justify-content: center; 
-                    font-weight: 700; 
-                    font-size: 13px;
-                    flex-shrink: 0;
-                    padding: 0;
-                    width: 159.9999910698275px;
-                    height: 159.9999910698275px;
-                    border-radius: 100px;
-                    angle: -0.95 deg;
-                    opacity: 1;
-                    top: 123.72px;
-                    left: 84.05px;
-                    border-left: 5px  solid #3DDE93;">
+                   overflow: hidden; 
+                  width: 160px; 
+                  height: 160px; 
+                  border-radius: 50%; 
+                  display: flex; 
+                  align-items: center; 
+                  justify-content: center; 
+                  flex-shrink: 0;
+                  padding: 0;
+                  border-left: 5px solid #3DDE93;">
 
                     @if($user->avatar)
 
@@ -1128,7 +1119,7 @@
                 <div class="badge-card">
 
                   <div class="hizo-logo">
-                    <img src="./images/HIZO LOGO.png') }}" alt="">
+                    <img src="{{ asset('images/HIZO LOGO.png') }}" alt="">
                     <p>
                       This card is a recognized property of
                       <span>Hizo Technologies</span>.

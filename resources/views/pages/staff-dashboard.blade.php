@@ -41,6 +41,7 @@
             flex-shrink: 0;
         }
 
+
         .brand-section {
             padding: 0 24px 48px 24px;
         }
@@ -812,18 +813,18 @@
 
         @media (max-width:390px){
 
-.grid-column-right{
-    display:grid;
-    grid-template-columns:repeat(2, 1fr)!important;
-    gap:20px;
-    width:100%;
-}
+        .grid-column-right{
+            display:grid;
+            grid-template-columns:repeat(2, 1fr)!important;
+            gap:20px;
+            width:100%;
+        }
 
-.progress-widget-card,
-.attendance-analytics-card{
-    width:100%;
-}
-}
+        .progress-widget-card,
+        .attendance-analytics-card{
+            width:100%;
+        }
+        }
        
         @media (max-width: 768px) {
 

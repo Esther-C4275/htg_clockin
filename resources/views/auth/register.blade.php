@@ -155,8 +155,12 @@
             padding: 0;
         }
 
+        main{
+            width: 100%;
+        }
+
         body {
-            background-color: #f5f7fb;
+            background-color: #ffffff;;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             min-height: 100vh;
         }
@@ -167,17 +171,18 @@
             align-items: center;
             width: 100%;
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 0;
         }
 
         /* Container Layout */
         .container {
             display: flex;
-            width: 100%;
-            max-width: 1200px;
+            width: 100vw; 
+            min-height: 100vh; 
+            max-width: 100%; 
             background: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-radius: 0; 
+            box-shadow: none; 
             overflow: hidden;
         }
 
@@ -286,7 +291,7 @@
 
         .image-section {
             flex: 1;
-            background: #fafafa;
+            
             display: flex;
             justify-content: center;
             align-items: center;
