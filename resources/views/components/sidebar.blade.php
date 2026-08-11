@@ -4,26 +4,26 @@
         <div class="logo">
             <!-- <h1>HTG</h1>
     <span>TIME PORTAL</span> -->
-            <img class="HGT" src="/images/htg.png" alt="">
+            <img class="HGT" src="{{ asset('images/htg.png') }}" alt="">
         </div>
 
         <nav>
             <ul>
                 <li>
                     <a href="{{ route('admin-dashboard.index') }}">
-                        <img src="/images/dash.png">
+                        <img src="{{ asset('images/dash.png') }}">
                         Dashboard
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin-employee.index') }}">
-                        <img src="/images/attendance.png">
+                        <img src="{{ asset('images/attendance.png') }}">
                         Employees
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin-attendance.index') }}">
-                        <img src="/images/employee.png" alt="">
+                        <img src="{{ asset('images/employee.png') }}" alt="">
                         Attendance
                     </a>
                 </li>
@@ -34,7 +34,7 @@
         <div class="bottom">
             <div class="both">
                 <a href="{{ route('admin-setting.index') }}">
-                    <img class="bots" src="/images/setting.png">
+                    <img class="bots" src="{{ asset('images/setting.png') }}">
                     Settings
                 </a>
             </div>

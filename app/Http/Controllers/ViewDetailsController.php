@@ -7,69 +7,14 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ViewDetailsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-
-       
-        $adminUser = User::query()->where('is_admin', true)->latest()->get()->get(0);
-
-       
-        $employeeId = request()->query('employee_id');
-        
-        if ($employeeId) {
-            $user = User::query()->where('is_admin', false)->findOrFail($employeeId);
-        } else {
-            $user = User::query()->where('is_admin', false)->latest()->get()->get(0);
-        }
-
-       
-        $attendanceRecords = HtgModel::query()->where('user_id', $user->id)->orderBy('date', 'desc')->get();
-
-        
-        $presentDaysCount = $attendanceRecords->count();
-        $absentDaysCount = 0; 
-        
-       
-        $totalMinutes = 0;
-        $validClocksCount = 0;
-
-        foreach ($attendanceRecords as $record) {
-            if ($record->clock_in) {
-                $clockTime = Carbon::parse($record->clock_in);
-                
-                $totalMinutes += ($clockTime->hour * 60) + $clockTime->minute;
-                $validClocksCount++;
-            }
-        }
-
-        if ($validClocksCount > 0) {
-            $avgAbsoluteMinutes = round($totalMinutes / $validClocksCount);
-            $avgHoursStr = str_pad(floor($avgAbsoluteMinutes / 60), 2, '0', STR_PAD_LEFT);
-            $avgMinutesStr = str_pad(($avgAbsoluteMinutes % 60), 2, '0', STR_PAD_LEFT);
-            $averageOnTime = "{$avgHoursStr}:{$avgMinutesStr}:00";
-        } else {
-            $averageOnTime = "—";
-        }
-
-        
-        $currentMonthName = today()->format('F');
-
-        return view('pages.view-details', compact(
-            'adminUser',
-            'user',
-            'attendanceRecords',
-            'presentDaysCount',
-            'absentDaysCount',
-            'averageOnTime',
-            'currentMonthName'
-        ));
-    }
+    public function index(Request $request) {}
 
     /**
      * Show the form for creating a new resource.
@@ -84,13 +29,13 @@ class ViewDetailsController extends Controller
      */
     public function store(Request $request, User $user)
     {
-        $validatedData = $request->validate([
-            'clock_in_at' => 'required|string'
-        ]);
+        // $validatedData = $request->validate([
+        //     'clock_in_at' => 'required|string'
+        // ]);
 
-        $user->htg()->create([
-            'clock_in_at' => now()->toTimeString(),
-        ]);
+        // $user->htg()->create([
+        //     'clock_in_at' => now()->toTimeString(),
+        // ]);
     }
 
     /**
@@ -98,7 +43,78 @@ class ViewDetailsController extends Controller
      */
     public function show(string $id)
     {
-        //
+       
+        $adminUser = Auth::user();
+
+        $user = User::query() ->where('is_admin', false)->where('uuid', $id)->firstOrFail();
+
+        // $employeeId = $request->query('employee_id');
+        // if ($employeeId) {
+        //     $user = User::query()->where('is_admin', false)->findOrFail($employeeId);
+        // } else {
+        //     $user = User::query()->where('is_admin', false)->latest()->first();
+        // }
+
+
+        $selectedMonth = (int) request()->query('month', Carbon::today()->month);
+    $selectedYear = (int) request()->query('year', Carbon::today()->year);
+
+        $attendanceRecords = HtgModel::query()
+            ->where('user_id', $user->id)
+            ->whereYear('clock_in', $selectedYear)
+            ->whereMonth('clock_in', $selectedMonth)
+            ->orderBy('clock_in', 'desc')
+            ->get();
+
+
+            $presentDaysCount = $attendanceRecords
+            ->whereNotNull('clock_in')
+            ->pluck('clock_in')
+            ->map(fn($clockIn) => Carbon::parse($clockIn)->format('Y-m-d'))
+            ->unique()
+            ->count();
+
+       $totalWorkingDaysInMonth = 26;
+    $absentDaysCount = max(0, $totalWorkingDaysInMonth - $presentDaysCount);
+
+        $totalMinutes = 0;
+        $validClocksCount = 0;
+
+        foreach ($attendanceRecords as $record) {
+            if ($record->clock_in) {
+                $clockTime = Carbon::parse($record->clock_in);
+                $totalMinutes += ($clockTime->hour * 60) + $clockTime->minute;
+                $validClocksCount++;
+            }
+        }
+
+        if ($validClocksCount > 0) {
+        $avgAbsoluteMinutes = round($totalMinutes / $validClocksCount);
+        $avgHours = floor($avgAbsoluteMinutes / 60);
+        $avgMinutesStr = str_pad(($avgAbsoluteMinutes % 60), 2, '0', STR_PAD_LEFT);
+        
+        $period = $avgHours >= 12 ? 'PM' : 'AM';
+        $displayHour = $avgHours % 12 ?: 12; 
+        $avgHoursStr = str_pad($displayHour, 2, '0', STR_PAD_LEFT);
+
+        $averageOnTime = "{$avgHoursStr}:{$avgMinutesStr} {$period}";
+    } else {
+        $averageOnTime = "—";
+    }
+
+        $currentMonthName = Carbon::create()->month((int)$selectedMonth)->format('F');
+
+        return view('pages.view-details', compact(
+            'adminUser',
+            'user',
+            'attendanceRecords',
+            'presentDaysCount',
+            'absentDaysCount',
+            'averageOnTime',
+            'currentMonthName',
+            'selectedMonth',
+            'selectedYear'
+        ));
     }
 
     /**
@@ -112,15 +128,15 @@ class ViewDetailsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user): RedirectResponse
+    public function update(Request $request, User $user)
     {
-        $clockInRecord = $user->htg()->whereToday()->latest();
+        // $clockInRecord = $user->htg()->whereToday()->latest();
 
-        $clockInRecord->update([
-            'clock_out_at' => now()->toTimeString(),
-        ]);
+        // $clockInRecord->update([
+        //     'clock_out_at' => now()->toTimeString(),
+        // ]);
 
-        return redirect()->intended(route(''))->with('success', 'You are now logged in');
+        // return redirect()->intended(route(''))->with('success', 'You are now logged in');
     }
 
     /**

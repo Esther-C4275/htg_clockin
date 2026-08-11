@@ -24,7 +24,7 @@ class AdminLoginController extends Controller
 
         if (Auth::attempt($credentials)) {
 
-            $user = User::query()->where('is_admin', true)->first();
+            $user = Auth::user();
 
             if (!$user->is_admin) {
                 Auth::logout();

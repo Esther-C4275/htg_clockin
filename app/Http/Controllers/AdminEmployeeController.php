@@ -9,6 +9,7 @@ use App\Notifications\EmployeeLoginDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
 
 class AdminEmployeeController extends Controller
@@ -19,7 +20,7 @@ class AdminEmployeeController extends Controller
     public function index(Request $request)
     {
 
-        $adminUser = User::where('is_admin', true)->first();
+        $adminUser = Auth::user();
         
         $first_name = $request->input('first_name');
         $last_name = $request->input('last_name');
@@ -58,7 +59,7 @@ class AdminEmployeeController extends Controller
      */
     public function create()
     {
-        $adminUser = User::query()->where('is_admin', true)->first();
+        $adminUser = Auth::user();
         return view('pages.new-employee', compact('adminUser'));
     }
 
@@ -86,6 +87,12 @@ class AdminEmployeeController extends Controller
             'password' => Hash::make($password),
             'is_admin' => false
         ]);
+
+        // $setupUrl = URL::temporarySignedRoute(
+        //     'password.setup', 
+        //     now()->addHours(24), 
+        //     ['id' => $user->id]
+        // );
         $user->notify(new EmployeeLoginDetails($user, $password));
 
         return redirect()->route('admin-employee.index')->with('success', 'New employee created');

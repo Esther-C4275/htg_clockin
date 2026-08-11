@@ -4,18 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class SecurityController extends Controller
 {
     public function index(){
-        $user = User::query()->where('is_admin', true)->first();
+        $user = Auth::user();
         return view('pages.security-options', compact('user'));
     }
 
     public function updatePassword(Request $request)
 {
-    $user = User::query()->where('is_admin', true)->first();
+    $user = Auth::user();
     
     $request->validate([
         'current_password' => ['required', 'string'],

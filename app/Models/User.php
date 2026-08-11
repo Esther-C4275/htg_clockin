@@ -12,8 +12,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
-#[Fillable(['first_name', 'last_name', 'email', 'password', 'phone', 'position', 'gender', 'date_of_birth', 'country', 'state', 'address','department','company', 'is_admin','avatar'])]
+#[Fillable(['first_name', 'last_name', 'email', 'password', 'phone', 'position', 'gender', 'date_of_birth', 'country', 'state', 'address','department','company', 'is_admin','avatar', 'uuid'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -45,12 +46,26 @@ class User extends Authenticatable
         return $this->hasMany(HtgModel::class);
     }
 
-    public function getEmployeeCardIdAttribute(): string
-{
-    $dateSource = $this->created_at ? \Carbon\Carbon::parse($this->created_at) : now();
-    $year = $dateSource->format('Y');
-    $paddedId = str_pad($this->id, 3, '0', STR_PAD_LEFT);
+//     public function getEmployeeCardIdAttribute(): string
+// {
+//     $dateSource = $this->created_at ? \Carbon\Carbon::parse($this->created_at) : now();
+//     $year = $dateSource->format('Y');
+//     $paddedId = str_pad($this->id, 3, '0', STR_PAD_LEFT);
 
-    return "HTG-{$year}-{$paddedId}";
+//     return "HTG-{$year}-{$paddedId}";
+// }
+
+protected static function booted(): void
+{
+    static::creating(function ($user) {
+        if (empty($user->uuid)) {
+            $user->uuid = (string) Str::uuid();
+        }
+    });
+}
+
+public function getRouteKeyName(): string
+{
+    return 'uuid';
 }
 }

@@ -141,7 +141,7 @@
 
         /* Profile Card */
         .profile-card {
-            width: 280px;
+            width: 250px;
             border: 1px solid #EBEBEB;
             border-radius: 8px;
             padding: 25px 20px;
@@ -267,6 +267,7 @@
             background-color: #76ABB8;
             color: #F6F8FA;
         }
+
         .profile-card .btn i.fa-lock {
             margin-right: 10px;
             font-size: 14px;
@@ -331,8 +332,8 @@
         }
 
         .edit-btn:hover {
-            background-color:  #76ABB8 ;
-            color:  #ffffff !important;
+            background-color: #76ABB8;
+            color: #ffffff !important;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
@@ -405,7 +406,7 @@
             <aside class="sidebar">
                 <div class="brand-section">
                     <div class="logo">
-                        <img src="/images/htg.png" alt="">
+                        <img src="{{ asset('images/htg.svg') }}" alt="">
                     </div>
                 </div>
 
@@ -413,17 +414,17 @@
                     <ul class="nav-list">
                         <li>
                             <a href="{{ route('index.staff') }}" class="nav-link">
-                                <i><img src="/images/dash.png" alt=""></i> Dashboard
+                                <i><img src="{{ asset('images/dash.svg') }}" alt=""></i> Dashboard
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('index.frontId') }}" class="nav-link">
-                                <i><img src="/images/employee.png" alt=""></i> ID Card
+                                <i><img src="{{ asset('images/employee.svg') }}" alt=""></i> ID Card
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('index.registry') }}" class="nav-link">
-                                <i><img src="/images/attendance.png" alt=""></i> Registry
+                                <i><img src="{{ asset('images/attendance.svg') }}" alt=""></i> Registry
                             </a>
                         </li>
                     </ul>
@@ -431,7 +432,7 @@
                     <ul class="nav-list footer-nav">
                         <li>
                             <a href="{{ route('staff-edit.index') }}" class="nav-link">
-                                <i><img src="/images/setting.png" alt=""></i> Settings
+                                <i><img src="{{ asset('images/setting.svg') }}" alt=""></i> Settings
                             </a>
                         </li>
                         <li>
@@ -448,7 +449,7 @@
                     <h2>Dashboard</h2>
 
                     <div class="profile-top">
-                        <i><img src="/images/bell.png" alt=""></i>
+                        {{-- <i><img src="{{ asset('images/bell.png') }}" alt=""></i> --}}
                         <span>{{ $user->email }}</span>
                         <span class="user-initials" style="overflow: hidden; 
                         width: 35px; 
@@ -465,14 +466,14 @@
                         padding: 0;">
 
                             @if($user->avatar)
-                               
+
                                 <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
                                     style="width: 100%; height: 100%; object-fit: cover; display: block;">
                             @else
-                            @php
-                                $firstInitial = substr($user->first_name, 0, 1);
-                            @endphp
-                            <div class="user-initials">{{ $firstInitial }}</div>
+                                @php
+                                    $firstInitial = substr($user->first_name, 0, 1);
+                                @endphp
+                                <div class="user-initials">{{ $firstInitial }}</div>
                             @endif
 
                         </span>
@@ -504,26 +505,29 @@
                                 letter-spacing: 1px;
                                 overflow: hidden">
                                 @if(Auth::user()->avatar)
-                                <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
-                            @else
-                                {{ strtoupper(substr(Auth::user()->first_name, 0, 1) . substr(Auth::user()->last_name, 0, 1)) }}
-                            @endif
-                            
-                                
+                                    <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Profile"
+                                        style="width: 100%; height: 100%; object-fit: cover;">
+                                @else
+                                    {{ strtoupper(substr(Auth::user()->first_name, 0, 1) . substr(Auth::user()->last_name, 0, 1)) }}
+                                @endif
+
+
                             </div>
 
-                            
+
                         </div>
 
                         <h4>{{ $user->first_name }} {{ $user->last_name }}</h4>
                         <p>{{ $user->position }}</p>
 
-                        <a href="{{ route('staff-edit.index') }}" class="btn" style="text-decoration: none;color: #06414F">
+                        <a href="{{ route('staff-edit.index') }}" class="btn"
+                            style="text-decoration: none;color: #06414F">
                             <i class="fa-solid fa-user"></i>
                             <span>Personal Information</span>
                         </a>
 
-                        <a href="{{ route('staff-setting.index') }}" class="btn" style="text-decoration: none;color: #06414F">
+                        <a href="{{ route('staff-setting.index') }}" class="btn"
+                            style="text-decoration: none;color: #06414F">
                             <i class="fa-solid fa-lock"></i>
                             <span>Login & Password</span>
                         </a>
@@ -540,7 +544,7 @@
 
                                 <a href="{{ route('staff-edit.edit', $user->id) }}" class="edit-btn"
                                     style="text-decoration: none; font-size: 13px; color: black;">
-                                    <i><img src="/images/editicon.png" alt=""></i>
+                                    <i><img src="{{ asset('images/editicon.png') }}" alt=""></i>
                                     Edit
                                 </a>
                             </div>

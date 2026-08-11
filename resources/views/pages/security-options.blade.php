@@ -5,17 +5,19 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
+
         }
 
         main {
             background: #ffffff;
             display: flex;
+
         }
 
         /* SIDEBAR */
 
         .sidebar {
-            width: 230px;
+            width: 260px;
             height: 100vh;
             background: #06414F;
             position: fixed;
@@ -36,18 +38,18 @@
 
 
         .menu {
-            margin-top: 60px;
+            margin-top: 27px;
         }
 
         .menu a,
         .bottom-menu a {
             text-decoration: none;
             color: #B7B7B7;
-            padding: 12px;
+            padding: 14px;
             border-radius: 8px;
             display: flex;
             align-items: center;
-            font-size: 15px;
+            font-size: 18px;
             transition: 0.3s;
             gap: 12px;
         }
@@ -65,7 +67,7 @@
         .main {
             width: 100%;
             margin-left: 230px;
-            padding: 12px;
+            padding: 30px;
         }
 
         /* TOPBAR */
@@ -78,7 +80,14 @@
         }
 
         .topbar h2 {
-            font-size: 32px;
+            font-weight: 600;
+            font-style: Semi Bold;
+            font-size: 24px;
+            line-height: 100%;
+            letter-spacing: 0px;
+            text-align: center;
+            margin-left: 30px;
+
         }
 
         .top-profile {
@@ -132,12 +141,16 @@
         .settings-panel {
             border: 1px solid #e6e6e6;
             border-radius: 8px;
-            padding: 22px;
+            padding: 20px;
+            margin-left: 24px;
+            margin-top: 15px;
+            width: 265px;
         }
 
         .settings-panel h3 {
             font-size: 18px;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            font-weight: 600;
         }
 
         .settings-panel span {
@@ -146,7 +159,7 @@
         }
 
         .settings-links {
-            margin-top: 45px;
+            margin-top: 39px;
             display: flex;
             flex-direction: column;
             gap: 22px;
@@ -158,11 +171,13 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 16px;
-            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+            font-weight: 600
         }
 
-        
+
+
         /* RIGHT CONTENT */
 
         .right-content {
@@ -170,6 +185,8 @@
             border: 1px solid #e6e6e6;
             border-radius: 12px;
             padding: 25px;
+            margin-left: 40px;
+            margin-top: 15px;
         }
 
         /* HEADER */
@@ -268,9 +285,14 @@
             border: 1px solid #939191;
             background: #ffffff;
             color: #434343;
-            padding: 10px;
+            padding-top: 10px;
+            padding-right: 16px;
+            padding-bottom: 10px;
+            padding-left: 16px;
             border-radius: 6px;
             cursor: pointer;
+            font-size: 14px;
+            height: 38px;
         }
 
         .save-btn {
@@ -439,23 +461,23 @@
             <div>
 
                 <div class="logo">
-                    <img src="/images/htg.png" alt="">
+                    <img src="{{ asset('images/htg.svg') }}" alt="">
                 </div>
 
                 <div class="menu">
 
                     <a href="{{ route('admin-dashboard.index') }}">
-                        <i> <img src="/images/dash.png" alt=""></i>
+                        <i> <img src="{{ asset('images/dash.svg') }}" alt=""></i>
                         Dashboard
                     </a>
 
                     <a href="{{ route('admin-employee.index') }}">
-                        <i> <img src="/images/employee.png" alt=""></i>
+                        <i> <img src="{{ asset('images/employee.svg') }}" alt=""></i>
                         Employees
                     </a>
 
                     <a href="{{ route('admin-attendance.index') }}">
-                        <i> <img src="/images/attendance.png" alt=""></i>
+                        <i> <img src="{{ asset('images/attendance.svg') }}" alt=""></i>
                         Attendance
                     </a>
 
@@ -466,7 +488,7 @@
             <div class="bottom-menu">
 
                 <a href="{{ route('admin-setting.index') }}">
-                    <i> <img src="/images/setting.png" alt=""></i>
+                    <i> <img src="{{ asset('images/setting.svg') }}" alt=""></i>
                     Settings
                 </a>
 
@@ -487,9 +509,9 @@
 
                 <div class="top-profile">
 
-                    <div class="notification">
-                        <i><img src="/images/bell.png" alt=""></i>
-                    </div>
+                    {{-- <div class="notification">
+                        <i><img src="{{ asset('images/bell.png') }}" alt=""></i>
+                    </div> --}}
 
                     <div class="profile">
                         @php
@@ -534,9 +556,17 @@
                             My Profile
                         </a>
 
-                        <a href="{{ route('security.index') }}" style="text-decoration: none; font-weight: 600; color: {{ request()->is('security-options*') ? '#03343b' : '#BCBCBC' }}">
+                        <a href="{{ route('security.index') }}"
+                            style="text-decoration: none; font-weight: 600; color: {{ request()->is('security-options*') ? '#03343b' : '#BCBCBC' }}">
                             <i class="fa-solid fa-lock"></i>
                             Security Options
+                        </a>
+
+
+                        <a href="{{route('index.add') }}"
+                            style="font-weight: 600; color: {{ request()->is('add-admin*') ? '#03343b' : '#BCBCBC' }}">
+                            <i class="fa-solid fa-file-circle-plus"></i>
+                            Add Admin
                         </a>
 
                     </div>

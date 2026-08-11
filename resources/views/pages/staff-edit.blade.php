@@ -138,7 +138,7 @@
         /* Profile Card */
 
         .profile-card {
-            width: 280px;
+            width: 250px;
             border: 1px solid #EBEBEB;
             border-radius: 8px;
             padding: 25px 20px;
@@ -417,7 +417,7 @@
             <aside class="sidebar">
                 <div class="brand-section">
                     <div class="logo">
-                        <img src="/images/htg.png" alt="">
+                        <img src="{{ asset('images/htg.svg') }}" alt="">
                     </div>
                 </div>
 
@@ -425,17 +425,17 @@
                     <ul class="nav-list">
                         <li>
                             <a href="{{ route('index.staff') }}" class="nav-link">
-                                <i><img src="/images/dash.png" alt=""></i> Dashboard
+                                <i><img src="{{ asset('images/dash.svg') }}" alt=""></i> Dashboard
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('index.frontId') }}" class="nav-link">
-                                <i><img src="/images/employee.png" alt=""></i> ID Card
+                                <i><img src="{{ asset('images/employee.svg') }}" alt=""></i> ID Card
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('index.registry') }}" class="nav-link">
-                                <i><img src="/images/attendance.png" alt=""></i> Registry
+                                <i><img src="{{ asset('images/attendance.svg') }}" alt=""></i> Registry
                             </a>
                         </li>
                     </ul>
@@ -443,7 +443,7 @@
                     <ul class="nav-list footer-nav">
                         <li>
                             <a href="{{ route('staff-edit.index') }}" class="nav-link">
-                                <i><img src="/images/setting.png" alt=""></i> Settings
+                                <i><img src="{{ asset('images/setting.svg') }}" alt=""></i> Settings
                             </a>
                         </li>
                         <li>
@@ -461,7 +461,7 @@
                     <h2>Dashboard</h2>
 
                     <div class="profile-top">
-                        <i><img src="/images/bell.png" alt=""></i>
+                        {{-- <i><img src="{{ asset('images/bell.png') }}" alt=""></i> --}}
                         <span>{{ $user->email }}</span>
                         <span class="user-initials" style="overflow: hidden; 
                         width: 35px; 
@@ -478,7 +478,7 @@
                         padding: 0;">
 
                             @if($user->avatar)
-                               
+
                                 <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
                                     style="width: 100%; height: 100%; object-fit: cover; display: block;">
                             @else
@@ -534,7 +534,7 @@
 
                                 <label for="avatar_hidden_input" style="cursor: pointer; margin: 0; padding: 0;">
 
-                                    <i><img class="edit-icon" src="/images/moon.png" alt=""></i>
+                                    <i><img class="edit-icon" src="{{ asset('images/moon.png') }}" alt=""></i>
                                     <input type="file" id="avatar_hidden_input" name="avatar" accept="image/*"
                                         onchange="document.getElementById('avatarUploadForm').submit();"
                                         style="display: none;">

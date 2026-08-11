@@ -5,7 +5,7 @@
             <div class="forgot-card">
 
                 <div class="icon-circle">
-                    <img src="/images/mail.png" alt="">
+                    <img src="{{ asset('images/mail.png') }}" alt="">
                 </div>
 
                 <h2>Check your email</h2>
@@ -14,13 +14,15 @@
 
                 <form method="POST" action="{{ route('password.email') }}">
 
-                    <button type="submit">Open Email App <img class="butt-img" src="/images/link.png" alt=""></button>
+                    <button type="submit">Open Email App <img class="butt-img" src="{{ asset('images/link.png') }}"
+                            alt=""></button>
 
                     <p class="form-p">Didn't receive the email?<span> <a href="">Click to
                                 resend</a></a></span></p>
                 </form>
 
-                <a href="{{ route('login') }}" class="back-link"> <img src="/images/back.png" alt=""> Back to
+                <a href="{{ route('login') }}" class="back-link"> <img src="{{ asset('images/back.png') }}" alt=""> Back
+                    to
                     Login</a>
 
             </div>
@@ -29,7 +31,7 @@
 
         <!-- Pro Tip -->
         <div class="tip-box">
-            <div class="tip-icon"><img src="/images/tip.png" alt=""></div>
+            <div class="tip-icon"><img src="{{ asset('images/tip.png') }}" alt=""></div>
             <div class="tip-content">
                 <strong>PRO TIP</strong>
                 <p>

@@ -3,7 +3,7 @@
 
         <!-- Left Side (Image) -->
         <div class="left">
-            <img src="/images/test.png" alt="team work">
+            <img src="{{ asset('images/test.png') }}" alt="team work">
         </div>
 
         <!-- Right Side (Form) -->
@@ -23,12 +23,12 @@
                     @enderror
 
                     <label>Password</label>
-                    <input type="password" name="password" placeholder="**************">
+                    <input id="password-field" type="password" name="password" placeholder="**************">
 
                     <div class="options">
                         <div class="check">
-                            <input type="checkbox">
-                            <label> Remember me</label>
+                            <input type="checkbox" id="show-password">
+                            <label>Show password</label>
                         </div>
 
                         <a href="{{ route('password.request') }}">Forgot Password</a>
@@ -37,7 +37,7 @@
                     <button type="submit" class="btn">Sign in</button>
 
                     <!--<button class="google-btn">
-                        <img src="/images/google.jpeg" />
+                        <img src="{{ asset('images/google.jpeg') }}" />
                         Sign in with Google
                     </button>
 
@@ -49,6 +49,30 @@
         </div>
 
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const showPasswordCheckbox = document.getElementById('show-password');
+
+            if (showPasswordCheckbox) {
+                showPasswordCheckbox.addEventListener('change', function () {
+
+                    const passwordField = document.querySelector('input[name="password"]')
+                        || document.querySelector('input[type="password"]')
+                        || document.querySelector('.form-group input');
+
+                    if (passwordField) {
+
+                        passwordField.type = this.checked ? 'text' : 'password';
+                    } else {
+                        console.error("Could not find the password input element on the page.");
+                    }
+                });
+            } else {
+                console.error("Could not find the checkbox element with id='show-password'.");
+            }
+        });
+    </script>
 
 
     <style>
@@ -246,6 +270,51 @@
             line-height: 100%;
             letter-spacing: 0px;
 
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                margin-bottom: 724px;
+
+
+            }
+
+            .left img {
+                display: none;
+            }
+
+            .right {
+                width: 80%;
+            }
+
+            .form-box h2 {
+                font-size: 18px;
+            }
+
+            .form-box p {
+                font-size: 14px;
+            }
+
+            form label {
+                font-size: 14px;
+            }
+
+            .option a {
+                font-size: 12px;
+            }
+
+            .check>label {
+                font-size: 12px;
+            }
+
+            .btn {
+                font-size: 14px;
+            }
+
+            .signup {
+                font-size: 14px;
+            }
         }
     </style>
 </x-layout>

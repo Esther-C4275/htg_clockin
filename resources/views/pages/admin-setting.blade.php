@@ -9,23 +9,23 @@
             <div>
 
                 <div class="logo">
-                    <img src="/images/htg.png" alt="">
+                    <img src="{{ asset('images/htg.svg') }}" alt="">
                 </div>
 
                 <div class="menu">
 
                     <a href="{{ route('admin-dashboard.index') }}">
-                        <i><img src="/images/dash.png" alt=""></i>
+                        <i><img src="{{ asset('images/dash.svg') }}" alt=""></i>
                         Dashboard
                     </a>
 
                     <a href="{{ route('admin-employee.index') }}">
-                        <i><img src="/images/employee.png" alt=""></i>
+                        <i><img src="{{ asset('images/employee.svg') }}" alt=""></i>
                         Employees
                     </a>
 
                     <a href="{{ route('admin-attendance.index') }}">
-                        <i><img src="/images/attendance.png" alt=""></i>
+                        <i><img src="{{ asset('images/attendance.svg') }}" alt=""></i>
                         Attendance
                     </a>
 
@@ -36,7 +36,7 @@
             <div class="bottom-menu">
 
                 <a href="{{ route('admin-setting.index') }}" class="active">
-                    <i><img src="/images/setting.png" alt=""></i>
+                    <i><img src="{{ asset('images/setting.svg') }}" alt=""></i>
                     Settings
                 </a>
 
@@ -58,9 +58,9 @@
 
                 <div class="profile-top">
 
-                    <div class="notification">
-                        <i><img src="/images/bell.png" alt=""></i>
-                    </div>
+                    {{-- <div class="notification">
+                        <i><img src="{{ asset('images/bell.png') }}" alt=""></i>
+                    </div> --}}
 
                     <div class="profile">
                         @php
@@ -100,14 +100,22 @@
 
                     <div class="settings-links">
 
-                        <a href="{{ route('admin-setting.index') }}" style="font-weight: 600; color: {{ request()->is('admin-setting*') ? '#03343b' : '#BCBCBC' }}">
+                        <a href="{{ route('admin-setting.index') }}"
+                            style="font-weight: 600; color: {{ request()->is('admin-setting*') ? '#03343b' : '#BCBCBC' }}">
                             <i class="fa-solid fa-user"></i>
                             My Profile
                         </a>
 
-                        <a href="{{route('security.index') }}" style="font-weight: 600; color: {{ request()->is('security-options*') ? '#03343b' : '#BCBCBC' }}">
+                        <a href="{{route('security.index') }}"
+                            style="font-weight: 600; color: {{ request()->is('security-options*') ? '#03343b' : '#BCBCBC' }}">
                             <i class="fa-solid fa-lock"></i>
                             Security Options
+                        </a>
+
+                        <a href="{{route('index.add') }}"
+                            style="font-weight: 600; color: {{ request()->is('add-admin*') ? '#03343b' : '#BCBCBC' }}">
+                            <i class="fa-solid fa-file-circle-plus"></i>
+                            Add Admin
                         </a>
 
                     </div>
@@ -251,9 +259,11 @@
                 font-family: 'Inter', sans-serif;
             }
 
-            body {
+            main {
                 background: white;
                 display: flex;
+                width: 100%;
+
             }
 
             /* SIDEBAR */
@@ -376,7 +386,7 @@
                 font-size: 14px;
                 line-height: 100%;
                 letter-spacing: 0px;
-
+                margin-bottom: 4px;
             }
 
             .profile p {
@@ -393,8 +403,9 @@
 
             .content {
                 display: grid;
-                grid-template-columns: 260px 1fr;
+                grid-template-columns: 260px minmax(0, 1fr);
                 gap: 25px;
+                width: 100%;
             }
 
             /* LEFT SETTINGS */
@@ -450,6 +461,7 @@
                 border: 1px solid #EDEDED;
                 border-radius: 8px;
                 padding: 25px;
+                width: 100%;
             }
 
             .card-header {

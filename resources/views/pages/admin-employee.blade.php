@@ -3,46 +3,39 @@
 
         <!-- Sidebar -->
         <aside class="sidebar">
-            <img class="HGT" src="/images/htg.png" alt="">
+            <img class="HGT" src="{{ asset('images/htg.svg') }}" alt="">
             <!-- <h2 class="logo">HTG<br><span>TIME PORTAL</span></h2> -->
 
-            <nav>
+            <nav style="margin-top: 40px">
                 <ul>
                     <li>
-                        <a href="{{ route('admin-dashboard.index') }}">
-                            <img src="/images/dash.png">
+                        <a href="{{ route('admin-dashboard.index') }}" class="sidebar-link">
+                            <img src="{{ asset('images/dash.svg') }}">
                             Dashboard
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin-employee.index') }}">
-                            <img src="/images/attendance.png">
+                        <a href="{{ route('admin-employee.index') }}" class="sidebar-link">
+                            <img src="{{ asset('images/attendance.svg') }}">
                             Employees
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin-attendance.index') }}">
-                            <img src="/images/employee.png" alt="">
+                        <a href="{{ route('admin-attendance.index') }}" class="sidebar-link">
+                            <img src="{{ asset('images/employee.svg') }}" alt="">
                             Attendance
                         </a>
                     </li>
                 </ul>
-
             </nav>
 
             <div class="bottom">
-                <div class="both">
-
-                    <img class="bots" src="/images/setting.png">
-                    <a href="{{ route('admin-setting.index') }}">
-                        <p> Settings</p>
-                    </a>
-                </div>
-
+                <a href="{{ route('admin-setting.index') }}" class="sidebar-link">
+                    <img src="{{ asset('images/setting.svg') }}" alt="Settings">
+                    Settings
+                </a>
 
                 <x-adminlogout />
-
-
             </div>
 
         </aside>
@@ -64,7 +57,7 @@
 
                     </form>
 
-                    <img src="/images/bell.png" alt="">
+                    {{-- <img src="{{ asset('images/bell.png') }}" alt=""> --}}
                     <a href="{{ route('admin-setting.index') }}" style="text-decoration: none;">
                         @php
                             $firstInitial = substr($adminUser->first_name, 0, 1);
@@ -109,403 +102,398 @@
                     </thead>
 
                     <tbody>
-                        @foreach ($employees as $user)
+                        @foreach ($employees as $employee)
                             <tr>
                                 <td>
                                     <div class="both-td">
-                                        <input type="checkbox" class="employee-checkbox">
-                                        @php
-                                            $firstInitial = substr($user->first_name, 0, 1);
-                                            $lastInitial = substr($user->last_name, 0, 1);
 
+                                        @php
+                                            $firstInitial = substr($employee->first_name, 0, 1);
+                                            $lastInitial = substr($employee->last_name, 0, 1);
                                             $initials = strtoupper($firstInitial . $lastInitial);
                                         @endphp
 
                                         <div class="initials" style="overflow: hidden; 
-                                            width: 35px; 
-                                            height: 35px; 
-                                            background-color: #E2EEF9; 
-                                            color: #06414F; 
-                                            border-radius: 50%; 
-                                            display: flex; 
-                                            align-items: center; 
-                                            justify-content: center; 
-                                            font-weight: 700; 
-                                            font-size: 13px;
-                                            flex-shrink: 0;
-                                            padding: 0;">
+                                                                width: 35px; 
+                                                                height: 35px; 
+                                                                background-color: #E2EEF9; 
+                                                                color: #06414F; 
+                                                                border-radius: 50%; 
+                                                                display: flex; 
+                                                                align-items: center; 
+                                                                justify-content: center; 
+                                                                font-weight: 700; 
+                                                                font-size: 13px;
+                                                                flex-shrink: 0;
+                                                                padding: 0;">
 
-                                            @if ($user->avatar)
-                                                <img src="{{ asset('storage/' . $user->avatar) }}" alt="Avatar"
+                                            @if ($employee->avatar)
+                                                <img src="{{ asset('storage/' . $employee->avatar) }}" alt="Avatar"
                                                     style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
                                             @else
                                                 {{ $initials }}
                                             @endif
                                         </div>
-                                        <h1 class="names">{{ $user->first_name }} {{ $user->last_name }}</h1>
+                                        <h1 class="names">{{ $employee->first_name }} {{ $employee->last_name }}</h1>
                                     </div>
-
-
                                 </td>
-                                <td>{{ $user->company }}</td>
-                                <td>{{ $user->position }}</td>
-                                <td>{{ $user->department }}</td>
-                                <td>{{ $user->email }}</td>
+                                <td>{{ $employee->company }}</td>
+                                <td>{{ $employee->position }}</td>
+                                <td>{{ $employee->department }}</td>
+                                <td>{{ $employee->email }}</td>
+
                                 <td>
-                                    @if($user->row_status === 'Active')
+                                    @if($employee->row_status === 'Active')
                                         <span class="status active">Active</span>
                                     @else
                                         <span class="status active" style="background-color:red">Absent</span>
                                     @endif
-
-                                    <div class="menu-container">
-                                        <button class="menu-btn">⋮</button>
-                                        <div class="menu-dropdown">
-
-                                            <a href="{{ route('view-employee.index', ['employee_id' => $user->id]) }}">View
-                                                Details</a>
-
-                                        </div>
-                                    </div>
-
                                 </td>
 
-
-
+                                <td style="position: relative; overflow: visible;">
+                                    <div class="menu-container">
+                                        <button class="menu-btn"
+                                            style="cursor: pointer; background: none; border: none; font-size: 16px;">⋮</button>
+                                        <div class="menu-dropdown">
+                                            <a href="{{ route('view-employee.show', $employee->uuid) }}">View Details</a>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
-
-                        {{-- <tr>
-                            <td>
-                                <div class="both-td">
-                                    <input type="checkbox" class="employee-checkbox">
-                                    <img class="box-img" src="/images/frame.png" alt="">
-                                    <h1 class="names">Ilumetozer Onome</h1>
-                                </div>
-                            </td>
-                            <td>Trazo</td>
-                            <td>Accountant</td>
-                            <td>Accounting</td>
-                            <td>mark@gmail.com</td>
-                            <td><span class="status active">Active</span></td>
-                            <td>
-                                <div class="menu-container">
-                                    <button class="menu-btn">⋮</button>
-                                    <div class="menu-dropdown">
-
-                                        <a href="#">View Details</a>
-
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="both-td">
-                                    <input type="checkbox" class="employee-checkbox">
-                                    <img class="box-img" src="/images/frame.png" alt="">
-                                    <h1 class="names">Ilumetozer Onome</h1>
-                                </div>
-                            </td>
-
-                            <td>Glyde</td>
-                            <td>Backend Dev</td>
-                            <td>Engineering</td>
-                            <td>david@gmail.com</td>
-                            <td><span class="status absent">Absent</span></td>
-                            <td>
-                                <div class="menu-container">
-                                    <button class="menu-btn">⋮</button>
-                                    <div class="menu-dropdown">
-
-                                        <a href="#">View Details</a>
-
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="both-td">
-                                    <input type="checkbox" class="employee-checkbox">
-                                    <img class="box-img" src="/images/frame.png" alt="">
-                                    <h1 class="names">Ilumetozer Onome</h1>
-                                </div>
-                            </td>
-
-                            <td>Glyde</td>
-                            <td>Frontend Dev</td>
-                            <td>Engineering</td>
-                            <td>favour@gmail.com</td>
-                            <td><span class="status idle">Active</span></td>
-                            <td>
-                                <div class="menu-container">
-                                    <button class="menu-btn">⋮</button>
-                                    <div class="menu-dropdown">
-
-                                        <a href="#">View Details</a>
-
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="both-td">
-                                    <input type="checkbox" class="employee-checkbox">
-                                    <img class="box-img" src="/images/frame.png" alt="">
-                                    <h1 class="names">Ilumetozer Onome</h1>
-                                </div>
-                            </td>
-
-                            <td>Glyde</td>
-                            <td>Frontend Dev</td>
-                            <td>Engineering</td>
-                            <td>favour@gmail.com</td>
-                            <td><span class="status idle">Active</span></td>
-                            <td>
-                                <div class="menu-container">
-                                    <button class="menu-btn">⋮</button>
-                                    <div class="menu-dropdown">
-
-                                        <a href="#">View Details</a>
-
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="both-td">
-                                    <input type="checkbox" class="employee-checkbox">
-                                    <img class="box-img" src="/images/frame.png" alt="">
-                                    <h1 class="names">Ilumetozer Onome</h1>
-                                </div>
-                            </td>
-
-                            <td>Glyde</td>
-                            <td>Frontend Dev</td>
-                            <td>Engineering</td>
-                            <td>favour@gmail.com</td>
-                            <td><span class="status idle">Absent</span></td>
-                            <td>
-                                <div class="menu-container">
-                                    <button class="menu-btn">⋮</button>
-                                    <div class="menu-dropdown">
-
-                                        <a href="#">View Details</a>
-
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="both-td">
-                                    <input type="checkbox" class="employee-checkbox">
-                                    <img class="box-img" src="/images/frame.png" alt="">
-                                    <h1 class="names">Ilumetozer Onome</h1>
-                                </div>
-                            </td>
-                            <td>Glyde</td>
-                            <td>Frontend Dev</td>
-                            <td>Engineering</td>
-                            <td>favour@gmail.com</td>
-                            <td><span class="status idle">Absent</span></td>
-                            <td>
-                                <div class="menu-container">
-                                    <button class="menu-btn">⋮</button>
-                                    <div class="menu-dropdown">
-
-                                        <a href="#">View Details</a>
-
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="both-td">
-                                    <input type="checkbox" class="employee-checkbox">
-                                    <img class="box-img" src="/images/frame.png" alt="">
-                                    <h1 class="names">Ilumetozer Onome</h1>
-                                </div>
-                            </td>
-                            <td>Glyde</td>
-                            <td>Frontend Dev</td>
-                            <td>Engineering</td>
-                            <td>favour@gmail.com</td>
-                            <td><span class="status idle">Active</span></td>
-                            <td>
-                                <div class="menu-container">
-                                    <button class="menu-btn">⋮</button>
-                                    <div class="menu-dropdown">
-
-                                        <a href="#">View Details</a>
-
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="both-td">
-                                    <input type="checkbox" class="employee-checkbox">
-                                    <img class="box-img" src="/images/frame.png" alt="">
-                                    <h1 class="names">Ilumetozer Onome</h1>
-                                </div>
-                            </td>
-                            <td>Glyde</td>
-                            <td>Frontend Dev</td>
-                            <td>Engineering</td>
-                            <td>favour@gmail.com</td>
-                            <td><span class="status idle">active</span></td>
-                            <td>
-                                <div class="menu-container">
-                                    <button class="menu-btn">⋮</button>
-                                    <div class="menu-dropdown">
-
-                                        <a href="#">View Details</a>
-
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="both-td">
-                                    <input type="checkbox" class="employee-checkbox">
-                                    <img class="box-img" src="/images/frame.png" alt="">
-                                    <h1 class="names">Ilumetozer Onome</h1>
-                                </div>
-                            </td>
-                            <td>Glyde</td>
-                            <td>Frontend Dev</td>
-                            <td>Engineering</td>
-                            <td>favour@gmail.com</td>
-                            <td><span class="status idle">active</span></td>
-                            <td>
-                                <div class="menu-container">
-                                    <button class="menu-btn">⋮</button>
-                                    <div class="menu-dropdown">
-
-                                        <a href="#">View Details</a>
-
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="both-td">
-                                    <input type="checkbox" class="employee-checkbox">
-                                    <img class="box-img" src="/images/frame.png" alt="">
-                                    <h1 class="names">Ilumetozer Onome</h1>
-                                </div>
-                            </td>
-                            <td>Glyde</td>
-                            <td>Frontend Dev</td>
-                            <td>Engineering</td>
-                            <td>favour@gmail.com</td>
-                            <td><span class="status idle">active</span></td>
-                            <td>
-                                <div class="menu-container">
-                                    <button class="menu-btn">⋮</button>
-                                    <div class="menu-dropdown">
-
-                                        <a href="#">View Details</a>
-
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="both-td">
-                                    <input type="checkbox" class="employee-checkbox">
-                                    <img class="box-img" src="/images/frame.png" alt="">
-                                    <h1 class="names">Ilumetozer Onome</h1>
-                                </div>
-                            </td>
-                            <td>Glyde</td>
-                            <td>Frontend Dev</td>
-                            <td>Engineering</td>
-                            <td>favour@gmail.com</td>
-                            <td><span class="status idle">active</span></td>
-                            <td>
-                                <div class="menu-container">
-                                    <button class="menu-btn">⋮</button>
-                                    <div class="menu-dropdown">
-
-                                        <a href="#">View Details</a>
-
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="both-td">
-                                    <input type="checkbox" class="employee-checkbox">
-                                    <img class="box-img" src="/images/frame.png" alt="">
-                                    <h1 class="names">Ilumetozer Onome</h1>
-                                </div>
-                            </td>
-                            <td>Glyde</td>
-                            <td>Frontend Dev</td>
-                            <td>Engineering</td>
-                            <td>favour@gmail.com</td>
-                            <td><span class="status idle">active</span></td>
-                            <td>
-                                <div class="menu-container">
-                                    <button class="menu-btn">⋮</button>
-                                    <div class="menu-dropdown">
-
-                                        <a href="#">View Details</a>
-
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="both-td">
-                                    <input type="checkbox" class="employee-checkbox">
-                                    <img class="box-img" src="/images/frame.png" alt="">
-                                    <h1 class="names">Ilumetozer Onome</h1>
-                                </div>
-                            </td>
-                            <td>Glyde</td>
-                            <td>Frontend Dev</td>
-                            <td>Engineering</td>
-                            <td>favour@gmail.com</td>
-                            <td><span class="status idle">active</span></td>
-                            <td>
-                                <div class="menu-container">
-                                    <button class="menu-btn">⋮</button>
-                                    <div class="menu-dropdown">
-
-                                        <a href="#">View Details</a>
-
-                                    </div>
-                                </div>
-                            </td>
-                        </tr> --}}
-
                     </tbody>
-                </table>
+                    {{-- <tr>
+                        <td>
+                            <div class="both-td">
+                                <input type="checkbox" class="employee-checkbox">
+                                <img class="box-img" src="{{ asset('images/frame.png') }}" alt="">
+                                <h1 class="names">Ilumetozer Onome</h1>
+                            </div>
+                        </td>
+                        <td>Trazo</td>
+                        <td>Accountant</td>
+                        <td>Accounting</td>
+                        <td>mark@gmail.com</td>
+                        <td><span class="status active">Active</span></td>
+                        <td>
+                            <div class="menu-container">
+                                <button class="menu-btn">⋮</button>
+                                <div class="menu-dropdown">
+
+                                    <a href="#">View Details</a>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="both-td">
+                                <input type="checkbox" class="employee-checkbox">
+                                <img class="box-img" src="{{ asset('images/frame.png') }}" alt="">
+                                <h1 class="names">Ilumetozer Onome</h1>
+                            </div>
+                        </td>
+
+                        <td>Glyde</td>
+                        <td>Backend Dev</td>
+                        <td>Engineering</td>
+                        <td>david@gmail.com</td>
+                        <td><span class="status absent">Absent</span></td>
+                        <td>
+                            <div class="menu-container">
+                                <button class="menu-btn">⋮</button>
+                                <div class="menu-dropdown">
+
+                                    <a href="#">View Details</a>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="both-td">
+                                <input type="checkbox" class="employee-checkbox">
+                                <img class="box-img" src="{{ asset('images/frame.png') }}" alt="">
+                                <h1 class="names">Ilumetozer Onome</h1>
+                            </div>
+                        </td>
+
+                        <td>Glyde</td>
+                        <td>Frontend Dev</td>
+                        <td>Engineering</td>
+                        <td>favour@gmail.com</td>
+                        <td><span class="status idle">Active</span></td>
+                        <td>
+                            <div class="menu-container">
+                                <button class="menu-btn">⋮</button>
+                                <div class="menu-dropdown">
+
+                                    <a href="#">View Details</a>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="both-td">
+                                <input type="checkbox" class="employee-checkbox">
+                                <img class="box-img" src="{{ asset('images/frame.png') }}" alt="">
+                                <h1 class="names">Ilumetozer Onome</h1>
+                            </div>
+                        </td>
+
+                        <td>Glyde</td>
+                        <td>Frontend Dev</td>
+                        <td>Engineering</td>
+                        <td>favour@gmail.com</td>
+                        <td><span class="status idle">Active</span></td>
+                        <td>
+                            <div class="menu-container">
+                                <button class="menu-btn">⋮</button>
+                                <div class="menu-dropdown">
+
+                                    <a href="#">View Details</a>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="both-td">
+                                <input type="checkbox" class="employee-checkbox">
+                                <img class="box-img" src="{{ asset('images/frame.png') }}" alt="">
+                                <h1 class="names">Ilumetozer Onome</h1>
+                            </div>
+                        </td>
+
+                        <td>Glyde</td>
+                        <td>Frontend Dev</td>
+                        <td>Engineering</td>
+                        <td>favour@gmail.com</td>
+                        <td><span class="status idle">Absent</span></td>
+                        <td>
+                            <div class="menu-container">
+                                <button class="menu-btn">⋮</button>
+                                <div class="menu-dropdown">
+
+                                    <a href="#">View Details</a>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="both-td">
+                                <input type="checkbox" class="employee-checkbox">
+                                <img class="box-img" src="{{ asset('images/frame.png') }}" alt="">
+                                <h1 class="names">Ilumetozer Onome</h1>
+                            </div>
+                        </td>
+                        <td>Glyde</td>
+                        <td>Frontend Dev</td>
+                        <td>Engineering</td>
+                        <td>favour@gmail.com</td>
+                        <td><span class="status idle">Absent</span></td>
+                        <td>
+                            <div class="menu-container">
+                                <button class="menu-btn">⋮</button>
+                                <div class="menu-dropdown">
+
+                                    <a href="#">View Details</a>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="both-td">
+                                <input type="checkbox" class="employee-checkbox">
+                                <img class="box-img" src="{{ asset('images/frame.png') }}" alt="">
+                                <h1 class="names">Ilumetozer Onome</h1>
+                            </div>
+                        </td>
+                        <td>Glyde</td>
+                        <td>Frontend Dev</td>
+                        <td>Engineering</td>
+                        <td>favour@gmail.com</td>
+                        <td><span class="status idle">Active</span></td>
+                        <td>
+                            <div class="menu-container">
+                                <button class="menu-btn">⋮</button>
+                                <div class="menu-dropdown">
+
+                                    <a href="#">View Details</a>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="both-td">
+                                <input type="checkbox" class="employee-checkbox">
+                                <img class="box-img" src="{{ asset('images/frame.png') }}" alt="">
+                                <h1 class="names">Ilumetozer Onome</h1>
+                            </div>
+                        </td>
+                        <td>Glyde</td>
+                        <td>Frontend Dev</td>
+                        <td>Engineering</td>
+                        <td>favour@gmail.com</td>
+                        <td><span class="status idle">active</span></td>
+                        <td>
+                            <div class="menu-container">
+                                <button class="menu-btn">⋮</button>
+                                <div class="menu-dropdown">
+
+                                    <a href="#">View Details</a>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="both-td">
+                                <input type="checkbox" class="employee-checkbox">
+                                <img class="box-img" src="{{ asset('images/frame.png') }}" alt="">
+                                <h1 class="names">Ilumetozer Onome</h1>
+                            </div>
+                        </td>
+                        <td>Glyde</td>
+                        <td>Frontend Dev</td>
+                        <td>Engineering</td>
+                        <td>favour@gmail.com</td>
+                        <td><span class="status idle">active</span></td>
+                        <td>
+                            <div class="menu-container">
+                                <button class="menu-btn">⋮</button>
+                                <div class="menu-dropdown">
+
+                                    <a href="#">View Details</a>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="both-td">
+                                <input type="checkbox" class="employee-checkbox">
+                                <img class="box-img" src="{{ asset('images/frame.png') }}" alt="">
+                                <h1 class="names">Ilumetozer Onome</h1>
+                            </div>
+                        </td>
+                        <td>Glyde</td>
+                        <td>Frontend Dev</td>
+                        <td>Engineering</td>
+                        <td>favour@gmail.com</td>
+                        <td><span class="status idle">active</span></td>
+                        <td>
+                            <div class="menu-container">
+                                <button class="menu-btn">⋮</button>
+                                <div class="menu-dropdown">
+
+                                    <a href="#">View Details</a>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="both-td">
+                                <input type="checkbox" class="employee-checkbox">
+                                <img class="box-img" src="{{ asset('images/frame.png') }}" alt="">
+                                <h1 class="names">Ilumetozer Onome</h1>
+                            </div>
+                        </td>
+                        <td>Glyde</td>
+                        <td>Frontend Dev</td>
+                        <td>Engineering</td>
+                        <td>favour@gmail.com</td>
+                        <td><span class="status idle">active</span></td>
+                        <td>
+                            <div class="menu-container">
+                                <button class="menu-btn">⋮</button>
+                                <div class="menu-dropdown">
+
+                                    <a href="#">View Details</a>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="both-td">
+                                <input type="checkbox" class="employee-checkbox">
+                                <img class="box-img" src="{{ asset('images/frame.png') }}" alt="">
+                                <h1 class="names">Ilumetozer Onome</h1>
+                            </div>
+                        </td>
+                        <td>Glyde</td>
+                        <td>Frontend Dev</td>
+                        <td>Engineering</td>
+                        <td>favour@gmail.com</td>
+                        <td><span class="status idle">active</span></td>
+                        <td>
+                            <div class="menu-container">
+                                <button class="menu-btn">⋮</button>
+                                <div class="menu-dropdown">
+
+                                    <a href="#">View Details</a>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="both-td">
+                                <input type="checkbox" class="employee-checkbox">
+                                <img class="box-img" src="{{ asset('images/frame.png') }}" alt="">
+                                <h1 class="names">Ilumetozer Onome</h1>
+                            </div>
+                        </td>
+                        <td>Glyde</td>
+                        <td>Frontend Dev</td>
+                        <td>Engineering</td>
+                        <td>favour@gmail.com</td>
+                        <td><span class="status idle">active</span></td>
+                        <td>
+                            <div class="menu-container">
+                                <button class="menu-btn">⋮</button>
+                                <div class="menu-dropdown">
+
+                                    <a href="#">View Details</a>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr> --}}
+
+                    {{-- </tbody> --}}
+                    {{--
+                </table> --}}
 
             </div>
 
@@ -692,8 +680,86 @@
             height: 100vh;
         }
 
-        /* Sidebar */
+
         .sidebar {
+            width: 220px;
+            height: 100vh;
+            background: #06414F;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            left: 0;
+            top: 0;
+
+        }
+
+        .logo {
+            font-size: 20px;
+            margin-bottom: 24px;
+        }
+
+        .logo span {
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+
+        .sidebar ul li {
+            margin-bottom: 8px;
+            display: block;
+        }
+
+
+        .sidebar-link {
+            text-decoration: none;
+            color: #B7B7B7;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 16px;
+            padding-bottom: 18px;
+            border-radius: 6px;
+            font-size: 16px;
+            line-height: 100%;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+
+        .sidebar-link:hover {
+            background: #FFFFFF;
+            color: #06414F;
+        }
+
+        /* Scale icon layouts uniformly */
+        .sidebar-link img {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Bottom Actions Panel */
+        .bottom {
+            margin-top: auto;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+        }
+
+        /* Sidebar */
+        /* .sidebar {
             width: 207px;
             height: 100vh;
             opacity: 1;
@@ -704,7 +770,7 @@
             display: flex;
             flex-direction: column;
             position: fixed;
-        }
+        } 
 
         .logo {
             font-size: 20px;
@@ -784,7 +850,7 @@
             font-size: 18px;
             line-height: 100%;
             letter-spacing: 0px;
-            /* padding-left: 2px; */
+            /* padding-left: 2px; 
             margin-bottom: 30px;
 
         }
@@ -823,12 +889,12 @@
         .bots {
             width: 24px;
             height: 24px;
-            /* opacity: 1; */
+            /* opacity: 1; 
             align-items: center;
             text-align: center;
             margin-right: 15px;
 
-        }
+        /* } */
 
 
 
@@ -979,6 +1045,7 @@
             letter-spacing: 0px;
             width: 152px;
             height: 43px;
+            margin-left: 10px;
             /* transition: all 0.3s ease; */
         }
 
@@ -1011,6 +1078,12 @@
 
 
         /* Table */
+
+        .table-wrapper {
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -1121,18 +1194,16 @@
 
         .menu-dropdown {
             position: absolute;
-            top: 100%;
             right: 0;
-            background: #fff;
-            height: 30px;
-            border: 1px solid #ddd;
+            top: 100%;
+            z-index: 9999;
+            background-color: #ffffff;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+            border: 1px solid #e2e8f0;
             border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-            min-width: 80px;
+            padding: 6px 0;
+            min-width: 130px;
             display: none;
-            z-index: 1000;
-            margin-top: 5px;
-            padding: 5px 0;
         }
 
         .menu-dropdown.active {
@@ -1141,6 +1212,10 @@
 
         .menu-dropdown a {
             display: block;
+            padding: 8px 14px;
+            color: #334155;
+            text-decoration: none;
+            font-size: 13px;
 
 
             text-decoration: none;

@@ -1,7 +1,7 @@
 <form method="POST" action="{{ route('admin.logout') }}">
     @csrf
     <button type="submit" class="logout">
-        <img src="/images/logout.png">Logout</button>
+        <img src="{{ asset('images/logout.svg') }}">Logout</button>
 </form>
 
 <style>

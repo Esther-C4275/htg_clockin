@@ -4,7 +4,7 @@
         <div class="forgot-card">
 
             <div class="icon-circle">
-                <img src="/images/forgot.png" alt="">
+                <img src="{{ asset('images/forgot.png') }}" alt="">
             </div>
 
             <h2>Forgot Password?</h2>
@@ -18,14 +18,16 @@
                 @csrf
                 <label>EMAIL ADDRESS</label>
                 <div class="input-box">
-                    <i> <img src="/images/mailer.png" alt=""></i>
+                    <i> <img src="{{ asset('images/mailer.png') }}" alt=""></i>
                     <input type="email" name="email" placeholder="Name@gmail.com" required>
                 </div>
 
-                <button type="submit">Send Reset Link <img class="butt-img" src="/images/link.png" alt=""></button>
+                <button type="submit">Send Reset Link <img class="butt-img" src="{{ asset('images/link.png') }}"
+                        alt=""></button>
             </form>
 
-            <a href="{{ route('login') }}" class="back-link"> <img src="/images/back.png" alt=""> Back to Login</a>
+            <a href="{{ route('login') }}" class="back-link"> <img src="{{ asset('images/back.png') }}" alt=""> Back to
+                Login</a>
 
         </div>
     </div>

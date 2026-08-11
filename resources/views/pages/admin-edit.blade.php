@@ -1,22 +1,22 @@
 <x-layout>
     <aside class="sidebar">
         <div class="logo">
-            <img src="/images/htg.png" alt="">
+            <img src="{{ asset('images/htg.svg') }}" alt="">
         </div>
 
         <ul class="menu">
             <li>
                 <a href="{{ route('admin-dashboard.index') }}">
-                    <img src="/images/dash.png" alt=""> Dashboard</a>
+                    <img src="{{ asset('images/dash.svg') }}" alt=""> Dashboard</a>
             </li>
 
             <li>
                 <a href="{{ route('admin-employee.index') }}">
-                    <img src="/images/employee.png"> Employees</a>
+                    <img src="{{ asset('images/employee.svg') }}"> Employees</a>
             </li>
             <li>
                 <a href="{{ route('admin-employee.index') }}">
-                    <img src="/images/attendance.png" alt=""> Attendance </a>
+                    <img src="{{ asset('images/attendance.svg') }}" alt=""> Attendance </a>
             </li>
         </ul>
 
@@ -24,12 +24,12 @@
             <p class="btn-settings active">
                 <a href="{{ route('admin-setting.index') }}">
 
-                    <img class="bots" src="/images/setting.png" alt=""> Settings
+                    <img class="bots" src="{{ asset('images/setting.svg') }}" alt=""> Settings
             </p>
             </a>
-           <x-adminlogout />
+            <x-adminlogout />
         </div>
-        
+
     </aside>
 
     <!-- MAIN -->
@@ -42,18 +42,18 @@
             <div class="top-right">
 
 
-                <img src="/images/bell.png" alt="" class="notification">
+                {{-- <img src="{{ asset('images/bell.png') }}" alt="" class="notification"> --}}
 
                 <div class="user">
                     @php
-                    $firstInitial = substr($user->first_name, 0, 1);
-                    $lastInitial = substr($user->last_name, 0, 1);
+                        $firstInitial = substr($user->first_name, 0, 1);
+                        $lastInitial = substr($user->last_name, 0, 1);
 
-                    $initials = strtoupper($firstInitial . $lastInitial);
-                @endphp
-                <div class="initials">
-                    {{ $initials }}
-                </div>
+                        $initials = strtoupper($firstInitial . $lastInitial);
+                    @endphp
+                    <div class="initials">
+                        {{ $initials }}
+                    </div>
                     <div>
                         <h5>{{ $user->first_name }} {{$user->last_name }}</h5>
                         <span>Admin</span>
@@ -68,20 +68,28 @@
             <!-- SETTINGS PANEL -->
             <div class="settings">
                 <h3>Settings</h3>
-                <br>
+
                 <p>You can find all settings here</p>
 
                 <ul class="profile-links">
                     <li>
-                        <a href="{{ route('admin-setting.index') }}" style="text-decoration: none; color:#BCBCBC; font-weight-600">
-                        <i class="fa-solid fa-user"></i> My Profile</li>
+                        <a href="{{ route('admin-setting.index') }}"
+                            style="text-decoration: none; color:#BCBCBC; font-weight-600">
+                            <i class="fa-solid fa-user"></i> My Profile
+                    </li>
                     </a>
                     <li>
                         <a href="{{ route('security.index') }}" style="text-decoration: none; color:#BCBCBC">
-                        <i class="fa-solid fa-lock"></i> Security
-                        Options</li>
+                            <i class="fa-solid fa-lock"></i> Security
+                            Options
+                    </li>
+                    </a>
+                    <li>
+                        <a href="{{route('index.add') }}" style="font-weight: 600; text-decoration: none;color:#BCBCBC">
+                            <i class="fa-solid fa-file-circle-plus"></i>
+                            Add Admin
                         </a>
-
+                    </li>
                 </ul>
             </div>
 
@@ -92,14 +100,14 @@
 
                     <div class="profile">
                         @php
-                    $firstInitial = substr($user->first_name, 0, 1);
-                    $lastInitial = substr($user->last_name, 0, 1);
+                            $firstInitial = substr($user->first_name, 0, 1);
+                            $lastInitial = substr($user->last_name, 0, 1);
 
-                    $initials = strtoupper($firstInitial . $lastInitial);
-                @endphp
-                <div class="initials">
-                    {{ $initials }}
-                </div>
+                            $initials = strtoupper($firstInitial . $lastInitial);
+                        @endphp
+                        <div class="initials">
+                            {{ $initials }}
+                        </div>
                         <div>
                             <h3>{{ $user->first_name }} {{$user->last_name }}</h3>
                             <span>Admin</span>
@@ -454,7 +462,7 @@
 
         /* SIDEBAR */
         .sidebar {
-            width: 230px;
+            width: 260px;
             background: #06414F;
             color: #fff;
             height: 100vh;
@@ -490,6 +498,7 @@
             display: flex;
             gap: 10px;
             align-items: center;
+            font-size: 18px;
         }
 
         .menu li a {
@@ -551,9 +560,9 @@
             color: #B7B7B7;
             display: flex;
             align-items: center;
-         font-weight: 400;
+            font-weight: 400;
             width: 100%;
-            
+
         }
 
         .bottom a:hover {
@@ -700,11 +709,13 @@
 
         /* SETTINGS PANEL */
         .settings {
-            width: 250px;
+            width: 265px;
             background: #fff;
             padding: 20px;
             border-radius: 10px;
             border: solid 1px #EBEBEB;
+            margin-top: 27px;
+
         }
 
         .settings h3 {
@@ -726,6 +737,7 @@
             letter-spacing: 0px;
             color: #616060;
             margin-bottom: 30px;
+            margin-top: 12px;
         }
 
         .settings ul {
@@ -733,32 +745,34 @@
         }
 
         .settings li {
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            display: flex;
-            gap: 10px;
+            text-decoration: none;
             color: #BCBCBC;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            transition: 0.3s;
+            padding: 10px;
+            font-weight: 600;
         }
 
-       
+
 
         .settings li.active {
             color: #06414F;
         }
 
         .settings-links a {
-                text-decoration: none;
-                color: #BCBCBC;
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                font-size: 14px;
-                transition: 0.3s;
-            }
+            text-decoration: none;
+            color: #BCBCBC;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            transition: 0.3s;
+        }
 
-          
+
 
 
         .set-p {
@@ -800,6 +814,7 @@
             padding: 20px;
             border: solid 1px #EBEBEB;
             border-radius: 10px;
+            margin-top: 27px;
         }
 
         .card-header {
@@ -907,6 +922,7 @@
             background: #06414F;
             color: white;
         }
+
         .initials {
             width: 50px;
             height: 50px;
@@ -922,7 +938,6 @@
             border: 1px solid #C5DCF2;
 
         }
-
     </style>
 
 </x-layout>

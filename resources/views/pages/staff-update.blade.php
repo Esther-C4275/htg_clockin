@@ -15,13 +15,13 @@
         /* SIDEBAR */
 
         .sidebar {
-            width: 230px;
+            width: 255px;
             height: 100vh;
             background: #06414F;
             position: fixed;
             top: 0;
             left: 0;
-            padding: 35px 18px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -43,7 +43,7 @@
         .bottom-menu a {
             text-decoration: none;
             color: #B7B7B7;
-            padding: 12px;
+            padding: 17px;
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -78,7 +78,8 @@
         }
 
         .topbar h2 {
-            font-size: 32px;
+            font-size: 30px;
+            margin-left: 40px
         }
 
         .top-profile {
@@ -127,11 +128,12 @@
         /* Profile Card */
 
         .profile-card {
-            width: 280px;
+            width: 250px;
             border: 1px solid #EBEBEB;
             border-radius: 8px;
             padding: 25px 20px;
             text-align: center;
+            margin-left: 40px;
         }
 
         .profile-image {
@@ -259,7 +261,7 @@
             text-align: center;
             color: #06414F !important;
         }
-        
+
 
         /* RIGHT CONTENT */
 
@@ -268,6 +270,7 @@
             border: 1px solid #e6e6e6;
             border-radius: 12px;
             padding: 25px;
+            margin-left: 50px;
         }
 
         /* HEADER */
@@ -521,23 +524,23 @@
             <div>
 
                 <div class="logo">
-                    <img src="/images/htg.png" alt="">
+                    <img src="{{ asset('images/htg.svg') }}" alt="">
                 </div>
 
                 <div class="menu">
 
                     <a href="{{ route('index.staff') }}">
-                        <i> <img src="/images/dash.png" alt=""></i>
+                        <i> <img src="{{ asset('images/dash.svg') }}" alt=""></i>
                         Dashboard
                     </a>
 
                     <a href="{{ route('index.frontId') }}">
-                        <i> <img src="/images/employee.png" alt=""></i>
+                        <i> <img src="{{ asset('images/employee.svg') }}" alt=""></i>
                         ID Card
                     </a>
 
                     <a href="{{ route('index.registry') }}">
-                        <i> <img src="/images/attendance.png" alt=""></i>
+                        <i> <img src="{{ asset('images/attendance.svg') }}" alt=""></i>
                         Registry
                     </a>
 
@@ -548,7 +551,7 @@
             <div class="bottom-menu">
 
                 <a href="{{ route('staff-edit.index') }}">
-                    <i> <img src="/images/setting.png" alt=""></i>
+                    <i> <img src="{{ asset('images/setting.svg') }}" alt=""></i>
                     Settings
                 </a>
 
@@ -572,7 +575,7 @@
 
 
                     <div class="profile-top">
-                        <i><img src="/images/bell.png" alt=""></i>
+                        {{-- <i><img src="{{ asset('images/bell.png') }}" alt=""></i> --}}
                         <span>{{ $user->email }}</span>
                         <span class="user-initials" style="overflow: hidden; 
                         width: 35px; 
@@ -589,14 +592,14 @@
                         padding: 0;">
 
                             @if($user->avatar)
-                               
+
                                 <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
                                     style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                            @else>
-                            @php
-                                $firstInitial = substr($user->first_name, 0, 1);
-                            @endphp
-                            {{ $firstInitial }}
+                            @else
+                                @php
+                                    $firstInitial = substr($user->first_name, 0, 1);
+                                @endphp
+                                {{ $firstInitial }}
                             @endif
                         </span>
                     </div>
@@ -629,16 +632,17 @@
                             font-weight: 700; 
                             letter-spacing: 1px;
                             overflow: hidden">
-                               @if(Auth::user()->avatar)
-                              <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
-                                @else
-                              {{ strtoupper(substr(Auth::user()->first_name, 0, 1) . substr(Auth::user()->last_name, 0, 1)) }}
-                                @endif
-                            
-                           </div>
+                            @if(Auth::user()->avatar)
+                                <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Profile"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            @else
+                                {{ strtoupper(substr(Auth::user()->first_name, 0, 1) . substr(Auth::user()->last_name, 0, 1)) }}
+                            @endif
+
+                        </div>
 
 
-                        
+
                     </div>
 
                     <h4>{{ $user->last_name }} {{ $user->first_name }}</h4>

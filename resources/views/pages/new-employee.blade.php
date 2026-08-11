@@ -266,21 +266,21 @@
 
                 <div>
 
-                    <div class="logo"> <img src="/images/htg.png" alt=""> </div>
+                    <div class="logo"> <img src="{{ asset('images/htg.svg') }}" alt=""> </div>
 
                     <div class="menu">
                         <a href="{{ route('admin-dashboard.index') }}">
-                            <i><img src="/images/dash.png" alt=""></i>
+                            <i><img src="{{ asset('images/dash.svg') }}" alt=""></i>
                             Dashboard
                         </a>
 
                         <a href="{{ route('admin-employee.index') }}" class="active">
-                            <i><img src="/images/employee.png" alt=""></i>
+                            <i><img src="{{ asset('images/employee.svg') }}" alt=""></i>
                             Employees
                         </a>
 
                         <a href="{{ route('admin-attendance.index') }}">
-                            <i><img src="/images/attendance.png" alt=""></i>
+                            <i><img src="{{ asset('images/attendance.svg') }}" alt=""></i>
                             Attendance
                         </a>
                     </div>
@@ -289,7 +289,7 @@
 
                 <div class="bottom-menu">
                     <a href="{{ route('admin-setting.index') }}">
-                        <i><img src="/images/setting.png" alt=""></i>
+                        <i><img src="{{ asset('images/setting.png') }}" alt=""></i>
                         Settings
                     </a>
 
@@ -309,7 +309,7 @@
                     <div class="profile">
 
                         <div class="notification">
-                            <i><img src="/images/bell.png" alt=""></i>
+                            <i><img src="{{ asset('images/bell.png') }}" alt=""></i>
 
                         </div>
 
@@ -321,9 +321,10 @@
                                 $initials = strtoupper($firstInitial . $lastInitial);
                                @endphp
                             <div class="initials">
-                                <a href="{{ route('admin-setting.index') }}" style="text-decoration: none; color:#06414F ;">
-                                {{ $initials }}
-                            </a>
+                                <a href="{{ route('admin-setting.index') }}"
+                                    style="text-decoration: none; color:#06414F ;">
+                                    {{ $initials }}
+                                </a>
                             </div>
                             <div class="user-text">
                                 <h4>{{ $adminUser->first_name }} {{ $adminUser->last_name }}</h4>

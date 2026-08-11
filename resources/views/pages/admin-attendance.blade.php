@@ -21,7 +21,7 @@
     /* SIDEBAR */
 
     .sidebar {
-      width: 230px;
+      width: 260px;
       height: 100vh;
       background: #06414F;
       padding: 30px 20px;
@@ -64,7 +64,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      font-size: 15px;
+      font-size: 16px;
       transition: 0.3s;
     }
 
@@ -120,6 +120,7 @@
       line-height: 100%;
       letter-spacing: 0px;
       text-align: center;
+      margin-left: 10px;
 
     }
 
@@ -182,6 +183,7 @@
       font-size: 14px;
       line-height: 100%;
       letter-spacing: 0px;
+      margin-left: 10px;
 
     }
 
@@ -193,6 +195,7 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 18px;
       margin-bottom: 20px;
+      margin-left: 10px;
     }
 
     .card {
@@ -369,23 +372,26 @@
     <div>
 
       <div class="logo">
-        <img src="/images/htg.png" alt="">
+        <img src="{{ asset('images/htg.svg') }}" alt="">
       </div>
 
       <div class="menu">
-        <a href="{{ route('admin-dashboard.index') }}"><i><img src="/images/dash.png" alt=""></i> Dashboard</a>
+        <a href="{{ route('admin-dashboard.index') }}"><i><img src="{{ asset('images/dash.svg') }}" alt=""></i>
+          Dashboard</a>
 
-        <a href="{{ route('admin-employee.index') }}"><i><img src="/images/employee.png" alt=""></i> Employees</a>
+        <a href="{{ route('admin-employee.index') }}"><i><img src="{{ asset('images/employee.svg') }}" alt=""></i>
+          Employees</a>
 
         <a href="{{ route('admin-attendance.index') }}">
-          <i><img src="/images/attendance.png" alt=""></i> Attendance </a>
+          <i><img src="{{ asset('images/attendance.svg') }}" alt=""></i> Attendance </a>
       </div>
 
     </div>
 
     <div class="bottom-menu">
 
-      <a href="{{ route('admin-setting.index') }}"><i><img src="/images/setting.png" alt=""></i>Settings</a>
+      <a href="{{ route('admin-setting.index') }}"><i><img src="{{ asset('images/setting.svg') }}"
+            alt=""></i>Settings</a>
 
       <x-adminlogout />
 
@@ -423,12 +429,12 @@
     <div class="dots">
 
       <div>
-        <img src="/images/red.png" alt="">
+        <img src="{{ asset('images/red.png') }}" alt="">
         Late Clock-In
       </div>
 
       <div>
-        <img src="/images/yellow.png" alt="">
+        <img src="{{ asset('images/yellow.png') }}" alt="">
         Early Clock-Out
       </div>
 
@@ -441,7 +447,7 @@
       <div class="card">
         <div class="card-top">
           <div class="icon blue">
-            <i><img src="/images/Frame 70.png " alt=""></i>
+            <i><img src="{{ asset('images/Frame 70.png') }}" alt=""></i>
           </div>
           <p>Total staff</p>
         </div>
@@ -451,7 +457,7 @@
       <div class="card">
         <div class="card-top">
           <div class="icon green">
-            <i><img src="/images/Frame 70 (1).png" alt=""></i>
+            <i><img src="{{ asset('images/Frame 70 (1).png') }}" alt=""></i>
           </div>
           <p>Active Today</p>
         </div>
@@ -461,7 +467,7 @@
       <div class="card">
         <div class="card-top">
           <div class="icon danger">
-            <i><img src="/images/Frame 70 (2).png" alt=""></i>
+            <i><img src="{{ asset('images/Frame 70 (2).png') }}" alt=""></i>
           </div>
           <p>Absent</p>
         </div>
@@ -471,7 +477,7 @@
       <div class="card">
         <div class="card-top">
           <div class="icon orange">
-            <i><img src="/images/Frame 70 (3).png" alt=""></i>
+            <i><img src="{{ asset('images/Frame 70 (3).png') }}" alt=""></i>
           </div>
           <p>Late</p>
         </div>
@@ -514,18 +520,18 @@
                     @endphp
 
                     <div class="avatar-initials" style="overflow: hidden; 
-                  width: 35px; 
-                  height: 35px; 
-                  background-color: #E2EEF9; 
-                  color: #06414F; 
-                  border-radius: 50%; 
-                  display: flex; 
-                  align-items: center; 
-                  justify-content: center; 
-                  font-weight: 700; 
-                  font-size: 13px;
-                  flex-shrink: 0;
-                  padding: 0;">
+                      width: 35px; 
+                      height: 35px; 
+                      background-color: #E2EEF9; 
+                      color: #06414F; 
+                      border-radius: 50%; 
+                      display: flex; 
+                      align-items: center; 
+                      justify-content: center; 
+                      font-weight: 700; 
+                      font-size: 13px;
+                      flex-shrink: 0;
+                      padding: 0;">
 
                       @if ($employee->avatar)
                         <img src="{{ asset('storage/' . $employee->avatar) }}" alt="Avatar"
@@ -559,7 +565,7 @@
                 <td>
                   <div class="user">
                     <input type="checkbox">
-                    <div><img class="pro-pic" src="./images/Frame 208.png" alt="Mark.J Lopez"></div>
+                    <div><img class="pro-pic" src="./images/Frame 208.png') }}" alt="Mark.J Lopez"></div>
                     Mark.J Lopez
                   </div>
                 </td>
@@ -575,7 +581,7 @@
                 <td>
                   <div class="user">
                     <input type="checkbox">
-                    <div><img class="pro-pic" src="./images/Frame 208.png" alt="Daniel Smith"></div>
+                    <div><img class="pro-pic" src="./images/Frame 208.png') }}" alt="Daniel Smith"></div>
                     Daniel Smith
                   </div>
                 </td>
@@ -591,7 +597,7 @@
                 <td>
                   <div class="user">
                     <input type="checkbox">
-                    <div><img class="pro-pic" src="./images/Frame 208.png" alt="Obi Lucy"></div>
+                    <div><img class="pro-pic" src="./images/Frame 208.png') }}" alt="Obi Lucy"></div>
                     Obi Lucy
                   </div>
                 </td>
@@ -607,7 +613,7 @@
                 <td>
                   <div class="user">
                     <input type="checkbox">
-                    <div><img class="pro-pic" src="./images/Frame 208.png" alt="Victoria Tory"></div>
+                    <div><img class="pro-pic" src="./images/Frame 208.png') }}" alt="Victoria Tory"></div>
                     Victoria Tory
                   </div>
                 </td>
@@ -624,7 +630,7 @@
                 <td>
                   <div class="user">
                     <input type="checkbox">
-                    <div><img class="pro-pic" src="./images/Frame 208.png" alt="Daniel Smith"></div>
+                    <div><img class="pro-pic" src="./images/Frame 208.png') }}" alt="Daniel Smith"></div>
                     Daniel Smith
                   </div>
                 </td>
@@ -641,7 +647,7 @@
                 <td>
                   <div class="user">
                     <input type="checkbox">
-                    <div><img class="pro-pic" src="./images/Frame 208.png" alt="Mark.J Lopez"></div>
+                    <div><img class="pro-pic" src="./images/Frame 208.png') }}" alt="Mark.J Lopez"></div>
                     Mark.J Lopez
                   </div>
                 </td>
@@ -658,7 +664,7 @@
                 <td>
                   <div class="user">
                     <input type="checkbox">
-                    <div><img class="pro-pic" src="./images/Frame 208.png" alt="Mark.J Lopez"></div>
+                    <div><img class="pro-pic" src="./images/Frame 208.png') }}" alt="Mark.J Lopez"></div>
                     Mark.J Lopez
                   </div>
                 </td>
@@ -675,7 +681,7 @@
                 <td>
                   <div class="user">
                     <input type="checkbox">
-                    <div><img class="pro-pic" src="./images/Frame 208.png" alt="Mark.J Lopez"></div>
+                    <div><img class="pro-pic" src="./images/Frame 208.png') }}" alt="Mark.J Lopez"></div>
                     Mark.J Lopez
                   </div>
                 </td>

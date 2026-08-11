@@ -15,7 +15,7 @@ class AdminSettingController extends Controller
     public function index()
     {
 
-        $user = User::where('is_admin', true)->first();
+        $user = Auth::user();
         return view('pages.admin-setting', compact('user'));
     }
 
@@ -48,8 +48,7 @@ class AdminSettingController extends Controller
      */
     public function edit()
     {
-        $user = User::where('is_admin', true)->first();
-
+        $user = Auth::user();
         //dd($user);
         return view('pages.admin-edit', compact('user'));
     }

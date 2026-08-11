@@ -3,21 +3,21 @@
 
         <div>
 
-            <div class="logo"> <img src="/images/htg.png" alt=""> </div>
+            <div class="logo"> <img src="{{ asset('images/htg.svg') }}" alt=""> </div>
 
             <div class="menu">
                 <a href="{{ route('admin-dashboard.index') }}">
-                    <i><img src="/images/dash.png" alt=""></i>
+                    <i><img src="{{ asset('images/dash.svg') }}" alt=""></i>
                     Dashboard
                 </a>
 
                 <a href="{{ route('admin-employee.index') }}" class="active">
-                    <i><img src="/images/employee.png" alt=""></i>
+                    <i><img src="{{ asset('images/employee.svg') }}" alt=""></i>
                     Employees
                 </a>
 
                 <a href="{{ route('admin-attendance.index') }}">
-                    <i><img src="/images/attendance.png" alt=""></i>
+                    <i><img src="{{ asset('images/attendance.svg') }}" alt=""></i>
                     Attendance
                 </a>
             </div>
@@ -26,7 +26,7 @@
 
         <div class="bottom-menu">
             <a href="{{ route('admin-setting.index') }}">
-                <i><img src="/images/setting.png" alt=""></i>
+                <i><img src="{{ asset('images/setting.svg') }}" alt=""></i>
                 Settings
             </a>
             <x-adminlogout />
@@ -43,7 +43,7 @@
             <div class="user">
 
 
-                <img src="/images/bell.png" alt="Notifications" />
+                {{-- <img src="{{ asset('images/bell.png') }}" alt="Notifications" /> --}}
                 @php
                     $firstInitial = substr($adminUser->first_name, 0, 1);
                     $lastInitial = substr($adminUser->last_name, 0, 1);
@@ -69,7 +69,7 @@
                     <h3>{{ $totalEmployees }}</h3>
                     <p>Total staff</p>
                 </div>
-                <div class="card-icon"><img src="/images/Frame 62.png" alt="" /></div>
+                <div class="card-icon"><img src="{{ asset('images/Frame 62.png') }}" alt="" /></div>
 
             </div>
 
@@ -78,21 +78,21 @@
                     <h3>{{ $hizoStaff }}</h3>
                     <p>Hizo staff</p>
                 </div>
-                <div class="card-icon"><img src="/images/Frame 62.png" alt="" /></div>
+                <div class="card-icon"><img src="{{ asset('images/Frame 62.png') }}" alt="" /></div>
             </div>
             <div class="card">
                 <div class="card-info">
                     <h3>{{ $glydeStaff }}</h3>
                     <p>Glyde staff</p>
                 </div>
-                <div class="card-icon"><img src="/images/Frame 62.png" alt="" /></div>
+                <div class="card-icon"><img src="{{ asset('images/Frame 62.png') }}" alt="" /></div>
             </div>
             <div class="card">
                 <div class="card-info">
                     <h3>{{ $trazoStaff }}</h3>
                     <p>Trazo staff</p>
                 </div>
-                <div class="card-icon"><img src="/images/Frame 62.png" alt="" /></div>
+                <div class="card-icon"><img src="{{ asset('images/Frame 62.png') }}" alt="" /></div>
             </div>
         </div>
 
@@ -145,11 +145,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($employees as $user) <!-- named employees in controller not user-->
+                    @foreach ($employees as $user)
                         <tr>
                             <td>
                                 <div class="both-td">
-                                    <input type="checkbox" class="employee-checkbox" />
+
                                     @php
                                         $firstInitial = substr($user->first_name, 0, 1);
                                         $lastInitial = substr($user->last_name, 0, 1);
@@ -158,18 +158,18 @@
                                     @endphp
 
                                     <div class="initials" style="overflow: hidden; 
-                                    width: 35px; 
-                                    height: 35px; 
-                                    background-color: #E2EEF9; 
-                                    color: #06414F; 
-                                    border-radius: 50%; 
-                                    display: flex; 
-                                    align-items: center; 
-                                    justify-content: center; 
-                                    font-weight: 700; 
-                                    font-size: 13px;
-                                    flex-shrink: 0;
-                                    padding: 0;">
+                                            width: 35px; 
+                                            height: 35px; 
+                                            background-color: #E2EEF9; 
+                                            color: #06414F; 
+                                            border-radius: 50%; 
+                                            display: flex; 
+                                            align-items: center; 
+                                            justify-content: center; 
+                                            font-weight: 700; 
+                                            font-size: 13px;
+                                            flex-shrink: 0;
+                                            padding: 0;">
                                         @if ($user->avatar)
                                             <img src="{{ asset('storage/' . $user->avatar) }}" alt="Avatar"
                                                 style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
@@ -214,7 +214,7 @@
                                 <div class="menu-container">
                                     <button class="menu-btn">⋮</button>
                                     <div class="menu-dropdown">
-                                        <a href="{{ route('view-details.index') }}">View Details</a>
+                                        <a href="{{ route('view-employee.show', $user->uuid) }}">View Details</a>
                                     </div>
                                 </div>
                             </td>
@@ -233,7 +233,7 @@
                         <td>
                             <div class="both-td">
                                 <input type="checkbox" class="employee-checkbox" />
-                                <img class="box-img" src="./images/Frame 208.png" alt="" />
+                                <img class="box-img" src="./images/Frame 208.png') }}" alt="" />
                                 <h1 class="names"> Favour Obi</h1>
                             </div>
                         </td>
@@ -260,7 +260,7 @@
                         <td>
                             <div class="both-td">
                                 <input type="checkbox" class="employee-checkbox" />
-                                <img class="box-img" src="./images/Frame 208.png" alt="" />
+                                <img class="box-img" src="./images/Frame 208.png') }}" alt="" />
                                 <h1 class="names"> John Doe</h1>
                             </div>
                         </td>
@@ -290,7 +290,7 @@
                         <td>
                             <div class="both-td">
                                 <input type="checkbox" class="employee-checkbox" />
-                                <img class="box-img" src="./images/Frame 208.png" alt="" />
+                                <img class="box-img" src="./images/Frame 208.png') }}" alt="" />
                                 <h1 class="names">Mark.J.Lopez</h1>
                             </div>
                         </td>

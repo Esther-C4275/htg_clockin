@@ -16,10 +16,12 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <title>{{ config('app.name', 'Laravel') }}</title>
+    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 
 </head>
 

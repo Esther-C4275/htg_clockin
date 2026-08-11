@@ -148,7 +148,7 @@
         <span></span>
         <!-- RIGHT SIDE (IMAGE) -->
         <div class="image-section">
-            <img src="/images/pic.jpeg" alt="test">
+            <img src="{{ asset('images/pic.jpeg') }}" alt="test">
         </div>
 
     </div>

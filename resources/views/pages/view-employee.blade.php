@@ -1,5 +1,9 @@
 <x-layout>
     <style>
+        main {
+            width: 90%;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -18,7 +22,7 @@
 
         /* --- SIDEBAR --- */
         .sidebar {
-            width: 230px;
+            width: 240px;
             background-color: #06414F;
             color: #ffffff;
             display: flex;
@@ -55,7 +59,7 @@
             font-weight: 500;
             border-radius: 6px;
             transition: all 0.2s ease;
-            font-size: 15px;
+            font-size: 16px;
         }
 
         .nav-item a:hover {
@@ -334,19 +338,20 @@
 
         }
 
-        .back a{
-                color: #B7B7B7;
-                text-decoration: none;
-                background-color:#06414F;
-                border: 5px;
-                margin-bottom: 25px;
-                padding: 6px;
-                font-size: 14px;
-                border-radius: 8px;
+        .back a {
+            color: #B7B7B7;
+            text-decoration: none;
+            background-color: #06414F;
+            border: 5px;
+            margin-bottom: 25px;
+            padding: 6px;
+            font-size: 14px;
+            border-radius: 8px;
 
 
         }
-        .back{
+
+        .back {
             border-radius: 3px;
         }
 
@@ -628,26 +633,30 @@
         <nav class="sidebar" id="sidebar">
             <div class="logo-container">
                 <div class="logo">
-                    <img src="/images/htg.png" alt="">
+                    <img src="{{ asset('images/htg.svg') }}" alt="">
                 </div>
             </div>
             <ul class="nav-links">
                 <li class="nav-item">
-                    <a href="{{ route('admin-dashboard.index') }}"><i><img src="/images/dash.png" alt=""></i>
+                    <a href="{{ route('admin-dashboard.index') }}"><i><img src="{{ asset('images/dash.svg') }}"
+                                alt=""></i>
                         Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin-employee.index') }}"><i><img src="/images/employee.png" alt=""></i>
+                    <a href="{{ route('admin-employee.index') }}"><i><img src="{{ asset('images/employee.svg') }}"
+                                alt=""></i>
                         Employees</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin-attendance.index') }}"><i><img src="/images/attendance.png" alt=""></i>
+                    <a href="{{ route('admin-attendance.index') }}"><i><img src="{{ asset('images/attendance.svg') }}"
+                                alt=""></i>
                         Attendance</a>
                 </li>
             </ul>
             <div class="sidebar-footer">
                 <div class="nav-item">
-                    <a href="{{ route('admin-setting.index') }}"><i><img src="/images/setting.png" alt=""></i>
+                    <a href="{{ route('admin-setting.index') }}"><i><img src="{{ asset('images/setting.svg') }}"
+                                alt=""></i>
                         Settings</a>
                 </div>
                 <x-adminlogout />
@@ -664,10 +673,10 @@
                     Employee Overview
                 </div>
                 <div class="user-profile-top">
-                    <button class="notification-btn" aria-label="Notifications">
-                        <i><img src="/images/bell.png" alt=""></i>
+                    {{-- <button class="notification-btn" aria-label="Notifications">
+                        <i><img src="{{ asset('images/bell.png') }}" alt=""></i>
                         <div class="notification-dot"></div>
-                    </button>
+                    </button> --}}
                     <div class="admin-info">
                         @php
                             $firstInitial = substr($adminUser->first_name, 0, 1);
@@ -690,9 +699,9 @@
             </header>
 
             <div class="tabs-container">
-                <a href="{{ route('view-employee.index', ['employee_id' => $user->id]) }}">
+                <a href="{{ route('view-employee.show', $user->uuid) }}">
                     Employee Profile</a>
-                <a href="{{ route('view-details.index', ['employee_id' => $user->id]) }}">
+                <a href="{{ route('view-details.show', $user->uuid) }}">
                     Attendance Details</a>
             </div>
 
@@ -799,7 +808,7 @@
                             <div class="progress-bar-bg">
                                 <div class="progress-bar-fill"
                                     title="Logged {{ number_format($hoursLogged, 1) }} of 8.00 hours ({{ $progressPercent }}% complete)"
-                                    style="width: {{ $progressPercent }}% !important; height: 100%; background-color: #319795; border-radius: 4px; transition: width 0.4s ease;"
+                                    style="width: {{ $progressPercent }}% !important; height: 100%; background-color: green; border-radius: 4px; transition: width 0.4s ease;"
                                     aria-label="Logged {{ number_format($hoursLogged, 1) }} of 8.00 hours, {{ $progressPercent }}% complete">
                                 </div>
                             </div>

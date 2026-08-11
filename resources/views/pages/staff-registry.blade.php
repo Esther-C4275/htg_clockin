@@ -41,6 +41,7 @@
             flex-direction: column;
             justify-content: space-between;
             height: 100%;
+
         }
 
         .nav-list {
@@ -48,7 +49,7 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            padding: 2px 13px;
+
         }
 
         .nav-link {
@@ -444,7 +445,7 @@
             <aside class="sidebar">
                 <div class="brand-section">
                     <div class="logo">
-                        <img src="/images/htg.png" alt="">
+                        <img src="{{ asset('images/htg.svg') }}" alt="">
                     </div>
                 </div>
 
@@ -452,17 +453,17 @@
                     <ul class="nav-list">
                         <li>
                             <a href="{{ route('index.staff') }}" class="nav-link">
-                                <i><img src="/images/dash.png" alt=""></i> Dashboard
+                                <i><img src="{{ asset('images/dash.svg') }}" alt=""></i> Dashboard
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('index.frontId') }}" class="nav-link">
-                                <i><img src="/images/employee.png" alt=""></i> ID Card
+                                <i><img src="{{ asset('images/employee.svg') }}" alt=""></i> ID Card
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('index.registry') }}" class="nav-link">
-                                <i><img src="/images/attendance.png" alt=""></i> Registry
+                                <i><img src="{{ asset('images/attendance.svg') }}" alt=""></i> Registry
                             </a>
                         </li>
                     </ul>
@@ -470,7 +471,7 @@
                     <ul class="nav-list footer-nav">
                         <li>
                             <a href="{{ route('staff-edit.index') }}" class="nav-link">
-                                <i><img src="/images/setting.png" alt=""></i> Settings
+                                <i><img src="{{ asset('images/setting.svg') }}" alt=""></i> Settings
                             </a>
                         </li>
                         <li>
@@ -489,7 +490,7 @@
                     <h2>Personal Attendance Registry</h2>
 
                     <div class="user-actions">
-                        <i><img src="/images/bell.png" alt=""></i>
+                        {{-- <i><img src="{{ asset('images/bell.png') }}" alt=""></i> --}}
                         <span>{{ $user->email }}</span>
                         <div class="user-initials" style="overflow: hidden; width: 35px; 
                                   height: 35px; 
@@ -552,25 +553,25 @@
                 <div class="stats">
 
                     <div class="card">
-                        <div class="icon"><img src="/images/Group 91.png" alt=""></div>
+                        <div class="icon"><img src="{{ asset('images/Group 91.png') }}" alt=""></div>
                         <div>
                             <h4>Days Present</h4>
-                            <h3>{{ $daysPresent }}<span>/{{ $totalWorkingDaysInMonth }}</span></h3>
+                            <h3>{{ $daysPresent }}<span>/{{ $expectedWorkingDays }}</span></h3>
                             <p>This month</p>
                         </div>
                     </div>
 
                     <div class="card">
-                        <div class="icon"><img src="/images/Frame 88.png" alt=""></div>
+                        <div class="icon"><img src="{{ asset('images/Frame 88.png') }}" alt=""></div>
                         <div>
                             <h4>Days Absent</h4>
-                            <h3>{{ $daysAbsent }}<span>/{{ $totalWorkingDaysInMonth }}</span></h3>
+                            <h3>{{ $daysAbsent }}<span>/{{ $expectedWorkingDays }}</span></h3>
                             <p>This month</p>
                         </div>
                     </div>
 
                     <div class="card">
-                        <div class="icon"><img src="/images/Frame 90.png" alt=""></div>
+                        <div class="icon"><img src="{{ asset('images/Frame 90.png') }}" alt=""></div>
                         <div>
                             <h4>Total Hours</h4>
                             <h3>{{ $totalHoursFormatted }}</h3>
@@ -579,7 +580,7 @@
                     </div>
 
                     <div class="card">
-                        <div class="icon"><img src="/images/Frame 94.png" alt=""></div>
+                        <div class="icon"><img src="{{ asset('images/Frame 94.png') }}" alt=""></div>
                         <div>
                             <h4>Attendance Rate</h4>
                             <h3>{{ $attendanceRate }}%</h3>

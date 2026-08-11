@@ -1,15 +1,19 @@
 <?php
 
+use App\Http\Controllers\AddAdminController;
 use App\Http\Controllers\AdminAttendanceController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminEmployeeController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\AdminSettingController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminSetupPasswordController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SecurityController;
+use App\Http\Controllers\SetupPasswordController;
+use App\Http\Controllers\SlashController;
 use App\Http\Controllers\StaffDashboardController;
 use App\Http\Controllers\StaffEditController;
 use App\Http\Controllers\StaffIdController;
@@ -19,10 +23,11 @@ use App\Http\Controllers\ViewDetailsController;
 use App\Http\Controllers\ViewEmployeeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [SlashController::class, 'index'])->name('home');
 
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
 
 Route::get('/user-login', [LoginController::class, 'login'])->name('user-login');
 Route::post('/user-login', [LoginController::class, 'authenticate'])->name('login.authenticate');
@@ -38,22 +43,23 @@ Route::post('reset-password', [PasswordController::class, 'updatePassword'])->na
 
 Route::get('/check-email', [PasswordController::class, 'email'])->name('password.check');
 
-Route::resource('admin-employee', AdminEmployeeController::class);
-
-
-
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/admin-logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 
-Route::resource('view-details', ViewDetailsController::class);
 
-Route::resource('view-employee', ViewEmployeeController::class)->middleware('auth');
 
-Route::resource('admin-dashboard', AdminDashboardController::class);
-
-Route::resource('admin-attendance', AdminAttendanceController::class)->middleware('auth');
-
-Route::resource('admin-setting', AdminSettingController::class)->middleware('auth');
+Route::middleware(['auth', 'can:admin-only'])->group(function () {
+    
+    Route::resource('admin-employee', AdminEmployeeController::class);
+    Route::resource('view-details', ViewDetailsController::class);
+    Route::resource('view-employee', ViewEmployeeController::class);
+    Route::resource('admin-dashboard', AdminDashboardController::class);
+    Route::resource('admin-attendance', AdminAttendanceController::class);
+    Route::resource('admin-setting', AdminSettingController::class);
+    Route::get('/add-admin', [AddAdminController::class, 'index'])->name('index.add');
+    Route::post('/add-admin', [AddAdminController::class, 'store'])->name('admin.store');
+    
+});
 //Route::put('/admin-setting/password', [AdminSettingController::class, 'updatePassword'])->name('admin-setting.update-password')->middleware('auth');
 //Route::get('/admin-setting/security', [AdminSettingController::class, 'security'])->name('admin-setting-security')->middleware('auth');
 
@@ -66,7 +72,8 @@ Route::put('/security-options/password', [SecurityController::class, 'updatePass
 
 
 Route::get('/staff-id', [StaffIdController::class,'front'])->name('index.frontId')->middleware('auth');
-Route::get('/staff-id/back', [StaffIdController::class,'back'])->name('index.backId')->middleware('auth');
+Route::get('/staff-id/{user}', [StaffIdController::class, 'show'])->name('staff.id')->middleware('auth');
+//Route::get('/staff-id/back', [StaffIdController::class,'back'])->name('index.backId')->middleware('auth');
 
 //Route::get('/staff-info', [StaffInfoController::class,'index'])->name('staff-info')->middleware('auth');
 
@@ -77,6 +84,16 @@ Route::resource('staff-setting', StaffSettingController::class)->middleware('aut
 
 Route::get('/staff-registry', [StaffRegistryController::class, 'index'])->name('index.registry')->middleware('auth');
 
+Route::get('/setup-password/{id}', [SetupPasswordController::class, 'showSetupForm'])->name('password.setup')->middleware('signed'); 
+Route::post('/setup-password/{id}', [SetupPasswordController::class, 'updatePassword'])->name('password.update-setup');
+
+Route::get('/admin/setup-password/{id}', [AdminSetupPasswordController::class, 'showSetupForm'])->name('admin.password.setup')->middleware('signed');
+Route::post('/admin/setup-password/{id}', [AdminSetupPasswordController::class, 'updatePassword'])->name('admin.password.update-setup');
+
+
+
+Route::get('/staff/download-qr', [QrCodeController::class, 'downloadPrintableQr'])->name('qr.download')->middleware('auth');
+Route::get('/attendance/verify', [QrCodeController::class, 'verifyScannedCode'])->name('qr.verify-scan')->middleware('auth');
 //Route::get('/staff-dashboard', [ClockInController::class, 'index'])->name('staff-dashboard.index');
 
 // 2. Route to handle the button form submissions

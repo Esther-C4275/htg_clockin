@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HtgModel;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,30 +25,43 @@ class StaffRegistryController extends Controller
         ->orderBy('date', 'asc')
         ->get();
 
-    $totalWorkingDaysInMonth = 26;
     
+    $startOfMonth = $date->copy()->startOfMonth();
+    $endOfMonth = $date->copy()->endOfMonth();
+    
+    
+    $isCurrentMonth = $date->isCurrentMonth();
+    $endDate = $isCurrentMonth ? Carbon::now()->endOfDay() : $endOfMonth;
+
+    
+    $expectedWorkingDays = 0;
+    $period = CarbonPeriod::create($startOfMonth, $endDate);
+
+    foreach ($period as $day) {
+        if (!$day->isWeekend()) { 
+            $expectedWorkingDays++;
+        }
+    }
+
     $daysPresent = 0;
-    $daysAbsent = 0;
     $totalMinutesWorked = 0;
 
     foreach ($attendanceRecords as $record) {
         if ($record->clock_in) {
             $daysPresent++;
-
-            
+    
             if ($record->clock_out) {
                 $in = Carbon::parse($record->clock_in);
                 $out = Carbon::parse($record->clock_out);
                 
-                
                 $totalMinutesWorked += $in->diffInMinutes($out, true);
             }
-        } else {
-            $daysAbsent++;
         }
     }
 
    
+    $daysAbsent = max(0, $expectedWorkingDays - $daysPresent);
+
     if ($totalMinutesWorked < 0) {
         $totalMinutesWorked = 0;
     }
@@ -56,9 +70,8 @@ class StaffRegistryController extends Controller
     $minutes = $totalMinutesWorked % 60;
     $totalHoursFormatted = "{$hours}h {$minutes}m";
 
-    
-    $attendanceRate = $totalWorkingDaysInMonth > 0 
-        ? round(($daysPresent / $totalWorkingDaysInMonth) * 100) 
+    $attendanceRate = $expectedWorkingDays > 0 
+        ? round(($daysPresent / $expectedWorkingDays) * 100) 
         : 0;
 
     return view('pages.staff-registry', compact(
@@ -69,7 +82,7 @@ class StaffRegistryController extends Controller
         'totalHoursFormatted',
         'attendanceRate', 
         'selectedMonthRaw',
-        'totalWorkingDaysInMonth'
+        'expectedWorkingDays' 
     ));
 }
 }

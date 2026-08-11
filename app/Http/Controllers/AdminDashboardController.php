@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\HtgModel;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminDashboardController extends Controller
 {
@@ -13,7 +14,7 @@ class AdminDashboardController extends Controller
      */
     public function index()
     {
-        $adminUser = User::query()->where('is_admin', true)->first();
+        $adminUser = Auth::user();
         //$users = User::query()-> where('is_admin', false)->latest()->get();
 
         $totalEmployees = User::query()->where('is_admin', false)->count();

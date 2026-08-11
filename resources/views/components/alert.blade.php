@@ -44,4 +44,8 @@
     .error {
         background-color: #ef4444;
     }
+
+    .info {
+        background-color: #3b82f6;
+    }
 </style>

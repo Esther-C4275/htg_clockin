@@ -71,8 +71,15 @@ class StaffEditController extends Controller
        ]);
        $user = Auth::user();
 
+       $user->fill($validatedData);
+
        
-       $user->update($validatedData);
+        if (!$user->isDirty()) {
+            return redirect()->back()->with('error', 'No changes were made to your profile.');
+        }
+
+        
+        $user->save();
 
        return redirect()->route('staff-edit.index')->with('success', 'Profile edited sucessfully');
 

@@ -12,25 +12,24 @@ class StaffIdController extends Controller
 {
     public function front()
     {
-        $employeeId = request()->query('employee_id');
+        $employeeUuid = request()->query('employee_id');
 
-        if ($employeeId) {
-            $user = User::query()->where('is_admin', false)->findOrFail('employee_id');
+        if ($employeeUuid) {
+            $user = User::query()
+                ->where('is_admin', false)
+                ->where('uuid', $employeeUuid)
+                ->firstOrFail();
         } else {
             $user = Auth::user();
         }
+
         return view('pages.staff-frontId', compact('user'));
     }
 
-    public function back()
+    public function show(User $user)
     {
-        $employeeId = request()->query('employee_id');
-
-        if ($employeeId) {
-            $user = User::query()->where('is_admin', false)->findOrFail('employee_id');
-        } else {
-            $user = Auth::user();
-        }
-        return view('pages.staff-backId', compact('user'));
+       
+        return view('pages.staff-frontId', compact('user'));
     }
+
 }

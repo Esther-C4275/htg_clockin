@@ -3,7 +3,7 @@
 
         <!-- Left Side (Image) -->
         <div class="left">
-            <img src="/images/test.png" alt="team work">
+            <img src="{{ asset('images/test.png') }}" alt="team work">
         </div>
 
         <!-- Right Side (Form) -->
@@ -43,7 +43,7 @@
                     <button type="submit" class="btn">Sign in</button>
 
                     <button class="google-btn">
-                        <img src="/images/google.jpeg" />
+                        <img src="{{ asset('images/google.jpeg') }}" />
                         Sign in with Google
                     </button>
 
