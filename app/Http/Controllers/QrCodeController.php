@@ -40,10 +40,19 @@ return response()->download($filePath, $fileName);
     public function verifyScannedCode(Request $request)
     {
 
-        $officeIpAddress = '192.168.0.139';
-        $clientIp = $request->ip();
+        $officeLocalIp  = '192.168.0.139'; 
 
-        $allowedIps = [$officeIpAddress, '127.0.0.1', '::1'];
+        
+        $officePublicIp = '129.222.206.207'; 
+        
+        $clientIp = $request->ip();
+        
+        $allowedIps = [
+            $officeLocalIp,
+            $officePublicIp,
+            '127.0.0.1',
+            '::1'
+        ];
 
         if (!in_array($clientIp, $allowedIps)) {
             return response()->json([

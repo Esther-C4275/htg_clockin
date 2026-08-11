@@ -266,7 +266,7 @@
 
                 <div>
 
-                    <div class="logo"> <img src="{{ asset('images/htg.svg') }}" alt=""> </div>
+                    <div class="logo"> <img src="{{ asset('images/Artboard 1 2.svg') }}" alt=""> </div>
 
                     <div class="menu">
                         <a href="{{ route('admin-dashboard.index') }}">

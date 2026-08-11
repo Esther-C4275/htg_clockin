@@ -3,7 +3,7 @@
 
         <div>
 
-            <div class="logo"> <img src="{{ asset('images/htg.svg') }}" alt=""> </div>
+            <div class="logo"> <img src="{{ asset('images/Artboard 1 2.svg') }}" alt=""> </div>
 
             <div class="menu">
                 <a href="{{ route('admin-dashboard.index') }}">
@@ -158,18 +158,18 @@
                                     @endphp
 
                                     <div class="initials" style="overflow: hidden; 
-                                            width: 35px; 
-                                            height: 35px; 
-                                            background-color: #E2EEF9; 
-                                            color: #06414F; 
-                                            border-radius: 50%; 
-                                            display: flex; 
-                                            align-items: center; 
-                                            justify-content: center; 
-                                            font-weight: 700; 
-                                            font-size: 13px;
-                                            flex-shrink: 0;
-                                            padding: 0;">
+                                                width: 35px; 
+                                                height: 35px; 
+                                                background-color: #E2EEF9; 
+                                                color: #06414F; 
+                                                border-radius: 50%; 
+                                                display: flex; 
+                                                align-items: center; 
+                                                justify-content: center; 
+                                                font-weight: 700; 
+                                                font-size: 13px;
+                                                flex-shrink: 0;
+                                                padding: 0;">
                                         @if ($user->avatar)
                                             <img src="{{ asset('storage/' . $user->avatar) }}" alt="Avatar"
                                                 style="width:100%;height:100%;object-fit:cover;border-radius:50%;">

@@ -620,7 +620,7 @@
       <aside class="sidebar">
         <div class="brand-section">
           <div class="logo">
-            <img src="{{ asset('images/htg.png') }}" alt="">
+            <img src="{{ asset('images/Artboard 1 2.png') }}" alt="">
           </div>
         </div>
 

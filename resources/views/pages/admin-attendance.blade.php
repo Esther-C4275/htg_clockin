@@ -372,7 +372,7 @@
     <div>
 
       <div class="logo">
-        <img src="{{ asset('images/htg.svg') }}" alt="">
+        <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="">
       </div>
 
       <div class="menu">
@@ -520,18 +520,18 @@
                     @endphp
 
                     <div class="avatar-initials" style="overflow: hidden; 
-                      width: 35px; 
-                      height: 35px; 
-                      background-color: #E2EEF9; 
-                      color: #06414F; 
-                      border-radius: 50%; 
-                      display: flex; 
-                      align-items: center; 
-                      justify-content: center; 
-                      font-weight: 700; 
-                      font-size: 13px;
-                      flex-shrink: 0;
-                      padding: 0;">
+                        width: 35px; 
+                        height: 35px; 
+                        background-color: #E2EEF9; 
+                        color: #06414F; 
+                        border-radius: 50%; 
+                        display: flex; 
+                        align-items: center; 
+                        justify-content: center; 
+                        font-weight: 700; 
+                        font-size: 13px;
+                        flex-shrink: 0;
+                        padding: 0;">
 
                       @if ($employee->avatar)
                         <img src="{{ asset('storage/' . $employee->avatar) }}" alt="Avatar"

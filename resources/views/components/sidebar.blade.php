@@ -4,7 +4,7 @@
         <div class="logo">
             <!-- <h1>HTG</h1>
     <span>TIME PORTAL</span> -->
-            <img class="HGT" src="{{ asset('images/htg.png') }}" alt="">
+            <img class="HGT" src="{{ asset('images/Artboard 1 2.png') }}" alt="">
         </div>
 
         <nav>

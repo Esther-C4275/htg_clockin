@@ -815,7 +815,7 @@
         <aside class="sidebar">
             <div class="brand-section">
                 <div class="logo">
-                    <img src="{{ asset('images/htg.svg') }}" alt="HTG Logo" />
+                    <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="HTG Logo" />
                 </div>
             </div>
 

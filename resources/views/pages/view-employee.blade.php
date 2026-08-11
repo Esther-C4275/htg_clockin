@@ -633,7 +633,7 @@
         <nav class="sidebar" id="sidebar">
             <div class="logo-container">
                 <div class="logo">
-                    <img src="{{ asset('images/htg.svg') }}" alt="">
+                    <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="">
                 </div>
             </div>
             <ul class="nav-links">

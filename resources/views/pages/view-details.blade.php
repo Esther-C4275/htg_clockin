@@ -6,7 +6,7 @@
             <div class="logo">
                 <!-- <h1>HTG</h1>
               <span>TIME PORTAL</span> -->
-                <img class="HGT" src="{{ asset('images/htg.svg') }}" alt="">
+                <img class="HGT" src="{{ asset('images/Artboard 1 2.svg') }}" alt="">
             </div>
 
             <nav>
