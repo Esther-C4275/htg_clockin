@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 
 class SlashController extends Controller
 {
-   public function index(){
-    return view('pages.slash');
+   public function index()
+   {
+
+      return 'lol';
+      return view('pages.slash');
    }
 }
