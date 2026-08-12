@@ -492,13 +492,13 @@
         }
 
         .menu li {
-            padding: 12px;
+            padding: 16px;
             margin-bottom: 10px;
             cursor: pointer;
             display: flex;
             gap: 10px;
             align-items: center;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .menu li a {
@@ -562,6 +562,8 @@
             align-items: center;
             font-weight: 400;
             width: 100%;
+            font-size: 16px;
+            margin-left: -5px;
 
         }
 

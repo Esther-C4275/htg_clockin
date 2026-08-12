@@ -3,7 +3,7 @@
 
         <!-- Sidebar -->
         <aside class="sidebar">
-            <img class="HGT" src="{{ asset('images/Artboard 1 2.svg') }}" alt="">
+            <img class="logo" src="{{ asset('images/Artboard 1 2.svg') }}" alt="">
             <!-- <h2 class="logo">HTG<br><span>TIME PORTAL</span></h2> -->
 
             <nav style="margin-top: 40px">
@@ -698,6 +698,9 @@
         .logo {
             font-size: 20px;
             margin-bottom: 24px;
+            width: 80px;
+            height: 37px;
+            margin-top: 5px
         }
 
         .logo span {
@@ -724,7 +727,7 @@
             color: #B7B7B7;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             width: 100%;
             padding: 16px;
             padding-bottom: 18px;
@@ -734,6 +737,8 @@
             transition: all 0.2s ease;
             box-sizing: border-box;
             cursor: pointer;
+            margin-left: -4px;
+            margin-top: 1px;
         }
 
 

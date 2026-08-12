@@ -283,7 +283,7 @@
             }
 
             .logo img {
-                width: 150px;
+                width: 80px;
             }
 
             .menu {
@@ -298,15 +298,14 @@
             .bottom-menu a {
                 text-decoration: none;
                 color: #B7B7B7;
-                padding: 12px 16px;
-
+                padding: 14px 16px;
                 width: 100%;
                 border-radius: 8px;
                 display: flex;
                 align-items: center;
                 gap: 12px;
                 transition: 0.3s;
-                font-size: 18px;
+                font-size: 16px;
             }
 
             .menu a:hover,

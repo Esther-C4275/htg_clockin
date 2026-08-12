@@ -153,12 +153,12 @@
         .menu a {
             text-decoration: none;
             color: #B7B7B7;
-            padding: 8px;
+            padding: 10px;
             border-radius: 6px;
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 18px;
+            font-size: 16px;
             transition: 0.3s;
             width: 177.5px;
             /* height: 40px; */
@@ -186,7 +186,7 @@
             border-radius: 6px;
             transition: 0.3s;
             width: 177.5px;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .bottom-menu a:hover {

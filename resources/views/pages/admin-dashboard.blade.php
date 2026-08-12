@@ -447,6 +447,8 @@
 
         .logo {
             margin-bottom: 50px;
+            margin-top: 8px;
+            margin-left: 5px;
         }
 
         .menu {

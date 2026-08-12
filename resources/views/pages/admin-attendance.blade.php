@@ -36,6 +36,8 @@
 
     .logo {
       margin-bottom: 40px;
+      margin-top: -3px;
+      margin-left: 2px;
     }
 
     .logo h1 {
@@ -87,7 +89,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      font-size: 15px;
+      font-size: 16px;
       transition: 0.3s;
     }
 
@@ -336,9 +338,7 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .sidebar {
-        display: none;
-      }
+     
     }
 
     @media(max-width:700px) {

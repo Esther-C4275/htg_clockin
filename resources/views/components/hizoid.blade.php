@@ -779,179 +779,133 @@
   }
 
   @media (max-width: 768px) {
-    .dashboard-container {
-      flex-direction: column;
-    }
-
-    /* ===== Sidebar ===== */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: -100%;
-      width: 78%;
-      max-width: 300px;
-      height: 100vh;
-      background: #06414F;
-      padding: 24px 20px;
-      z-index: 1000;
-      transition: left .3s ease;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-
-    .sidebar.active {
-      left: 0;
-    }
-
-    .brand-section {
-      padding: 0 0 28px 0;
-    }
-
-    .menu-links {
-      height: calc(100% - 90px);
-    }
-
-    .nav-list {
-      padding: 3px;
-      gap: 10px;
-      margin-left: -18px;
-    }
-
-    .nav-link {
-      padding: 14px 16px;
-      font-size: 18px;
-      border-radius: 12px;
-    }
-
-    .nav-link.active {
-      background: #ffffff;
-      color: #06414F;
-    }
-
-    .footer-nav {
-      display: block;
-      margin-top: auto;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255, 255, 255, .14);
-    }
-
-    .main-viewport {
-      padding: 24px;
-    }
-
-    .top-bar {
-      display: block;
-      margin-bottom: 20px;
-    }
-
-    .hamburger-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      padding: 0;
-      border: none;
-      background: none;
-    }
-
-    .hamburger-btn i {
-      font-size: 22px;
-      color: #111827;
-    }
-
-    .mobile-brand {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-
-    .mobile-brand img {
-      width: 68px;
-      height: auto;
-    }
-
-    .mobile-brand img {
-      width: 60px;
-      height: auto;
-      display: block;
-    }
-
-    /* hide desktop profile */
-    .user-profile-widget {
-      display: none;
-    }
-
-    .parent-route {
-      display: none;
-    }
-
-    .page-title {
-      margin-top: 15px;
-    }
-
-    .badge-card-front {
-      margin-left: -7px;
-
-    }
-
-    .id-card-back {
-      margin-left: 77px;
-    }
-
-    .info-panel {
-      width: 393px;
-      height: 289px;
-      opacity: 1;
-      border-radius: 12px;
-      border-width: 1px;
-
-    }
-
-    .protocol-banner {
-      width: 393px;
-      height: 80px;
-      gap: 12px;
-      opacity: 1;
-      border-radius: 12px;
-      padding-top: 10px;
-      padding-right: 16px;
-      padding-bottom: 10px;
-      padding-left: 16px;
-      border-left-width: 4px;
-      margin-top: 12px;
-
-
-    }
-
-    .banner-text h3 {
-      font-weight: 600;
-      font-style: Semi Bold;
-      font-size: 12px;
-      line-height: 20px;
-      letter-spacing: 0px;
-      vertical-align: middle;
-
-    }
-
-    .banner-text p {
-      font-weight: 400;
-      font-style: Regular;
-      font-size: 11px;
-      line-height: 100%;
-      letter-spacing: 0px;
-      vertical-align: middle;
-
-    }
-
-    .btn-print {
-
-      padding: 16px;
-
-    }
-
+  body {
+    overflow-x: hidden;
   }
+
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  /* Sidebar Drawer Reset */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 78%;
+    max-width: 300px;
+    height: 100vh;
+    background: #06414F;
+    padding: 24px 20px;
+    z-index: 1000;
+    transition: left .3s ease;
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
+  .main-viewport {
+    padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .top-bar {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .hamburger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: none;
+    background: none;
+  }
+
+  .mobile-brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .user-profile-widget,
+  .parent-route {
+    display: none;
+  }
+
+  .page-title {
+    margin-top: 15px;
+  }
+
+  /* Badge Preview Centering Fix */
+  .badge-preview-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+  }
+
+  .id-card-container {
+    margin: 0 auto;
+  }
+
+  /* Reset hardcoded card shifts */
+  .badge-card-front,
+  .badge-card,
+  .id-card-back {
+    margin-left: 0 !important;
+  }
+
+  /* Fluid Column Details Fix */
+  .badge-details-column {
+    width: 100%;
+    align-items: center;
+  }
+
+  .info-panel {
+    width: 100%;
+    max-width: 393px;
+    height: auto;
+  }
+
+  .panel-header {
+    width: 100%;
+  }
+
+  .protocol-banner {
+    width: 100%;
+    max-width: 393px;
+    height: auto;
+    margin-top: 12px;
+  }
+
+  .banner-text h3 {
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  .banner-text p {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .actions-wrapper {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-print {
+    margin-right: 0;
+  }
+}
+  
 </style>
 
 <link rel="stylesheet" href="style.css">

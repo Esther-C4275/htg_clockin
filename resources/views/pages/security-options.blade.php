@@ -45,11 +45,11 @@
         .bottom-menu a {
             text-decoration: none;
             color: #B7B7B7;
-            padding: 14px;
+            padding: 16px;
             border-radius: 8px;
             display: flex;
             align-items: center;
-            font-size: 18px;
+            font-size: 16px;
             transition: 0.3s;
             gap: 12px;
         }

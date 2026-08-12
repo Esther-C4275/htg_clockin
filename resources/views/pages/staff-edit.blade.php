@@ -33,6 +33,10 @@
             z-index: 1000;
         }
 
+        .logo{
+            margin-left: -20px;
+        }
+
         .brand-section {
             padding: 0 24px 48px 24px;
         }
@@ -42,6 +46,7 @@
             flex-direction: column;
             justify-content: space-between;
             height: 100%;
+            margin-left: -20px;
         }
 
         .nav-list {

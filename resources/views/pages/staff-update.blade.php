@@ -10,6 +10,7 @@
         body {
             background: #ffffff;
             display: flex;
+            overflow-x: hidden;
         }
 
         /* SIDEBAR */
@@ -27,10 +28,15 @@
             justify-content: space-between;
         }
 
+        .logo{
+            margin-left: 1px;
+        }
+
         .menu,
         .bottom-menu {
             display: flex;
             flex-direction: column;
+            margin-left: -18px;
 
         }
 
@@ -121,8 +127,10 @@
 
         .content {
             display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 20px;
+    grid-template-columns: 250px 1fr; /* Fixed profile card, flexible right column */
+    gap: 20px;
+    width: 100%;
+
         }
 
         /* Profile Card */
@@ -133,7 +141,7 @@
             border-radius: 8px;
             padding: 25px 20px;
             text-align: center;
-            margin-left: 40px;
+            margin-left: 20px;
         }
 
         .profile-image {
@@ -270,7 +278,8 @@
             border: 1px solid #e6e6e6;
             border-radius: 12px;
             padding: 25px;
-            margin-left: 50px;
+            margin-left: 9px;
+            width: 99%;
         }
 
         /* HEADER */
