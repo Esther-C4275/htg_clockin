@@ -925,7 +925,7 @@
                                 <div class="Glyde-card back-bg">
                                     <div class="glyde-back-content">
 
-                                        <img class="Location-image" src="./images/Frame 114.svg') }}" alt="">
+                                        <img class="Location-image" src="{{ asset('images/Frame 114.svg') }}" alt="">
 
                                         <h6 class="glyde-address-block">
                                             2nd floor, Contemporary Building, Interbua Roundabout, Summit Road, Asaba.
