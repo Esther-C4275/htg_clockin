@@ -843,7 +843,7 @@
     margin-top: 15px;
   }
 
-  /* Badge Preview Centering Fix */
+ 
   .badge-preview-column {
     display: flex;
     justify-content: center;
@@ -853,17 +853,36 @@
   }
 
   .id-card-container {
-    margin: 0 auto;
-  }
+    perspective: 1000px;
+}
 
-  /* Reset hardcoded card shifts */
+.id-card-front,
+.id-card-back {
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important; /* Forces iOS WebKit to hide backface */
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+
+/* Hard-toggle visibility on Mobile Safari when flipped */
+.id-card.flip .id-card-front {
+    visibility: hidden !important;
+    pointer-events: none;
+}
+
+.id-card:not(.flip) .id-card-back {
+    visibility: hidden !important;
+    pointer-events: none;
+}
+
+  
   .badge-card-front,
   .badge-card,
   .id-card-back {
     margin-left: 0 !important;
   }
 
-  /* Fluid Column Details Fix */
+  
   .badge-details-column {
     width: 100%;
     align-items: center;
@@ -904,6 +923,32 @@
   .btn-print {
     margin-right: 0;
   }
+  
+.brand-section {
+    padding: 0 12px 32px 12px; 
+}
+
+
+.nav-list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 8px; 
+}
+
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px 12px; 
+    color: #B7B7B7;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 8px;
+}
 }
   
 </style>

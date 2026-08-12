@@ -729,162 +729,69 @@
     }
 
     @media (max-width: 768px) {
-        .dashboard-container {
-            flex-direction: column;
-        }
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 78%;
-            max-width: 300px;
-            height: 100vh;
-            background: #06414F;
-            padding: 24px 20px;
-            z-index: 1000;
-            transition: left .3s ease;
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-
-        .sidebar.active {
-            left: 0;
-        }
-
-        .brand-section {
-            padding-bottom: 16px;
-        }
-
-        .menu-links {
-            height: calc(100% - 90px);
-        }
-
-        .nav-list {
-            padding: 3px;
-            gap: 10px;
-            margin-left: -18px;
-        }
-
-        .nav-link {
-            padding: 14px 16px;
-            font-size: 18px;
-            border-radius: 12px;
-        }
-
-        .nav-link.active {
-            background: #ffffff;
-            color: #06414F;
-        }
-
-        .footer-nav {
-            display: block;
-            margin-top: auto;
-            padding-top: 18px;
-            border-top: 1px solid rgba(255, 255, 255, .14);
-        }
-
-        .main-viewport {
-            padding: 24px;
-        }
-
-        .top-bar {
-            display: block;
-            margin-bottom: 20px;
-        }
-
-        .hamburger-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            padding: 0;
-            border: none;
-            background: none;
-        }
-
-        .hamburger-btn i {
-            font-size: 22px;
-            color: #111827;
-        }
-
-        .mobile-brand {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .mobile-brand img {
-            width: 68px;
-            height: auto;
-        }
-
-        .mobile-brand img {
-            width: 60px;
-            height: auto;
-            display: block;
-        }
-
-        /* hide desktop profile */
-        .user-profile-widget {
-            display: none;
-        }
-
-
-        .id-card-front {
-            margin-left: -100px;
-        }
-
-        .id-card-back {
-            margin-left: 97px;
-        }
-
-        .parent-route {
-            display: none;
-        }
-
-        .info-panel {
-            width: 393px;
-            height: 289px;
-            opacity: 1;
-            border-radius: 12px;
-            border-width: 1px;
-            margin-left: -42px;
-        }
-
-        .protocol-banner {
-            margin-top: -5px;
-            margin-right: 2px;
-            margin-left: -40px;
-        }
-
-        .banner-text p {
-            font-weight: 400;
-            font-size: 10px;
-            line-height: 109%;
-            letter-spacing: 0px;
-            vertical-align: middle;
-            margin-top: -2px
-        }
-
-        .banner-text h3 {
-            font-weight: 600;
-            font-style: Semi Bold;
-            font-size: 12px;
-            line-height: 20px;
-            letter-spacing: 0px;
-            vertical-align: middle;
-
-        }
-
-        .btn-print {
-            margin-right: 145px;
-            padding: 16px;
-        }
-
+    /* Prevent page horizontal shifting */
+    body, .dashboard-container, .main-viewport {
+        max-width: 100vw;
+        overflow-x: hidden;
     }
+
+    .main-viewport {
+        padding: 16px;
+        width: 100%;
+    }
+
+    /* Center and constrain card container */
+    .badge-preview-column {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .id-card-container {
+        margin: 0 auto !important;
+        max-width: 100%;
+    }
+
+    /* Reset fixed margins on mobile card faces */
+    .trazo-card,
+    .trazo-cardback,
+    .id-card-front,
+    .id-card-back {
+        margin-left: 0 !important;
+    }
+
+    /* Make details panel & banner fully fluid */
+    .badge-details-column {
+        width: 100%;
+        margin-left: 0 !important;
+        align-items: center;
+    }
+
+    .info-panel,
+    .protocol-banner {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box;
+    }
+
+    .panel-header {
+        width: 100% !important;
+    }
+
+    .actions-wrapper {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .btn-print {
+        margin-right: 0 !important;
+    }
+}
+
+    
 </style>
 
 
@@ -1064,7 +971,7 @@
                                     <div class="trazo-lost-found">
                                         <h4>2nd floor, Contemporary Building, Interbua Roundabout, Summit Road, Asaba.
                                         </h4>
-                                        <img class="line-decoration" src="{{ asset('images/Line 52.svg') }}" alt="">
+                                        <img class="line-decoration" src="{{ asset('images/Line 52.svg') }} " alt="">
                                         <h5 style="font-weight: 500">If found, should be returned to the above address,
                                             phone umber or nearest
                                             police
