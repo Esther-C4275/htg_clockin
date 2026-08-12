@@ -793,10 +793,10 @@
     top: 0;
     left: -100%;
     width: 78%;
-    max-width: 300px;
+    max-width: 280px;
     height: 100vh;
     background: #06414F;
-    padding: 24px 20px;
+    padding: 20px 0;
     z-index: 1000;
     transition: left .3s ease;
   }
