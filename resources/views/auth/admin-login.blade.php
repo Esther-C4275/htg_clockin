@@ -273,48 +273,113 @@
         }
 
         @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                margin-bottom: 724px;
+   
+    html, body {
+        height: 100% !important;
+        width: 100% !important;
+        display: block !important;
+        overflow-x: hidden !important;
+    }
 
+    .container {
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 100vh !important;
+        margin: 0 !important;
+    }
 
-            }
+    .left {
+        display: none !important;
+    }
 
-            .left img {
-                display: none;
-            }
+    .right {
+        width: 100% !important;
+        min-height: 100vh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 24px !important;
+        box-sizing: border-box !important;
+    }
 
-            .right {
-                width: 80%;
-            }
+    .form-box {
+        width: 100% !important;
+        max-width: 320px !important;
+        margin: 0 auto !important;
+    }
 
-            .form-box h2 {
-                font-size: 18px;
-            }
+    .form-box h2 {
+        font-size: 28px !important;
+        font-weight: 700 !important;
+        margin-bottom: 24px !important;
+    }
 
-            .form-box p {
-                font-size: 14px;
-            }
+    form label {
+        font-size: 14px !important;
+        margin-bottom: 6px !important;
+    }
 
-            form label {
-                font-size: 14px;
-            }
+    form input[type="email"],
+    form input[type="password"],
+    form input[type="text"],
+    form input {
+        width: 100% !important;
+        height: 44px !important;
+        padding: 10px 12px !important;
+        font-size: 14px !important;
+        border-radius: 6px !important;
+        border: 1px solid #d1d5db !important;
+        box-sizing: border-box !important;
+        margin-bottom: 12px !important;
+    }
 
-            .option a {
-                font-size: 12px;
-            }
+    .options {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+        margin-top: 4px !important;
+        margin-bottom: 24px !important;
+    }
 
-            .check>label {
-                font-size: 12px;
-            }
+    .check {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+    }
 
-            .btn {
-                font-size: 14px;
-            }
+    .check input[type="checkbox"] {
+        width: 16px !important;
+        height: 16px !important;
+        margin: 0 !important;
+        accent-color: #06414F !important;
+    }
 
-            .signup {
-                font-size: 14px;
-            }
-        }
-    </style>
+    .check>label {
+        font-size: 12px !important;
+        margin: 0 !important;
+        white-space: nowrap !important;
+        color: #000000 !important;
+    }
+
+    .options a {
+        font-size: 12px !important;
+        white-space: nowrap !important;
+        color: #000000 !important;
+        font-weight: 700 !important;
+    }
+
+    .btn {
+        width: 100% !important;
+        height: 44px !important;
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        border-radius: 6px !important;
+        background-color: #06414F !important;
+        color: #ffffff !important;
+        margin-top: 0 !important;
+    }
+}    </style>
 </x-layout>

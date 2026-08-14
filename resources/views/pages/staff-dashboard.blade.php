@@ -53,6 +53,10 @@
             height: 100%;
         }
 
+         .sidebar-close{
+            display: none;
+         }
+
         .nav-list {
             list-style-type: none;
             display: flex;
@@ -75,6 +79,25 @@
             border-radius: 8px;
         }
 
+        .nav-links{
+            display: flex;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            padding: 14px;
+            color: #B7B7B7;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 8px;
+        }
+        .nav-links:hover {
+            background-color: #ffffff;
+            color: #06414F;
+            /* font-weight: 700; */
+        }
+
         .nav-link .icon {
             margin-right: 12px;
         }
@@ -83,6 +106,29 @@
             background-color: #ffffff;
             color: #06414F;
             /* font-weight: 700; */
+        }
+
+        .setting-links{
+            display: flex;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            padding: 14px;
+            color: #B7B7B7;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 8px;
+        }
+
+        .setting-links:hover{
+            background-color: #ffffff;
+            color: #06414F;
+        }
+
+        .setting-link{
+            display: none;
         }
 
         .footer-nav {
@@ -797,6 +843,10 @@
             display: none;
         }
 
+        .user-email{
+            display: none;
+        }
+
 
         /* .action-links-list a:hover {
       text-decoration: underline;
@@ -849,15 +899,49 @@
             height: 100vh;
             background: #06414F;
             padding: 24px 20px;
-            z-index: 1000;
+            z-index: 2000;
             transition: left .3s ease;
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
         }
 
         .sidebar.active{
             left: 0;
         }
+
+        .sidebar-close {
+        display: flex;
+        position: absolute;
+        top: 25px;
+        right: 14px;
+        width: 24px;
+        height: 24px;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+       
+    }
+
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background:#06414F80;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(3px);
+        z-index: 1500;
+    }
+
+
+    .sidebar-overlay.active {
+        display: block;
+    }
+
 
         .brand-section{
             padding: 0 0 28px 0;
@@ -884,11 +968,85 @@
             color: #06414F;
         }
 
+        .setting-links{
+            display: none;
+        }
+        .setting-link{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+        padding: 12px;
+        gap: 5px;
+        margin-right: 0;
+        width: 100%;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        color: #b7b7b7;
+        border-radius: 8px;
+    }
+
+    .setting-link i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 20px;
+        flex-shrink: 0;
+        margin: 0;
+    }
+
+    .setting-link i img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .setting-link span {
+        line-height: 1 ;
+    }
+        .nav-links{
+            display: none;
+        }
+    
+
+    .user-email {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 12px;
+        margin-bottom: 8px;
+        width: 100%;
+    }
+
+    .user-email .profile-pic {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        color: #06414F;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 13px;
+        flex-shrink: 0;
+        overflow: hidden;
+    }
+
+    .user-profile-item .profile-pic img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
         .footer-nav{
             display: block;
             margin-top: auto;
             padding-top: 18px;
-            border-top: 1px solid rgba(255,255,255,.14);
+           
         }
 
         /* ===== Main ===== */
@@ -1121,9 +1279,7 @@
         /* ===== Activity ===== */
         .activity-log-card{
             display: none;
-            /* width: 100% !important;
-            padding: 16px;
-            border-radius: 16px; */
+           
         }
 
         .activity-log-card-mobile{
@@ -1170,22 +1326,9 @@
             font-size: 13px;
         }
 
-        /* ===== Overlay ===== */
-        .sidebar-overlay{
-            position: fixed;
-            inset: 0;
-            background: rgba(2, 6, 23, 0.45);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .25s ease;
-            z-index: 900;
-        }
 
-        .sidebar-overlay.active{
-            opacity: 1;
-            pointer-events: auto;
-        }
-        }
+        
+}
     </style>
 
     </head>
@@ -1218,19 +1361,60 @@
                                 <i><img src="{{ asset('images/attendance.svg') }}" alt=""></i> Registry
                             </a>
                         </li>
-                    </ul>
 
-                    <ul class="nav-list footer-nav">
                         <li>
-                            <a href="{{ route('staff-edit.index') }}" class="nav-link">
-                                <i><img src="{{ asset('images/setting.svg') }}" alt=""></i> Settings
+                            <a href="{{ route('staff-edit.index') }}" class="setting-link">
+                                <i><img src="{{ asset('images/setting.svg') }}" alt="Settings"></i>
+                                <span>Settings</span>
                             </a>
                         </li>
-                        <li>
-                            <x-logout />
-                        </li>
                     </ul>
+
+
+
+                    <ul class="nav-list footer-nav">
+
+    <li>
+        <div class="user-email" style="color: #B7B7B7">
+            @php
+                $firstInitial = strtoupper(substr($user->first_name, 0, 1));
+            @endphp
+
+            <div class="profile-pic">
+                @if($user->avatar)
+                    <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
+                @else
+                    <span>{{ $firstInitial }}</span>
+                @endif
+            </div>
+
+            <span class="user-email-text">
+                {{ $user->email }}
+            </span>
+        </div>
+    </li>
+
+    <li>
+        <a href="{{ route('staff-edit.index') }}" class="setting-links">
+            <i><img src="{{ asset('images/setting.svg') }}" alt="Settings"></i>
+            <span>Settings</span>
+        </a>
+    </li>
+    <li>
+        <x-logout />
+    </li>
+
+</ul>
+
+
                 </nav>
+
+                <button class="sidebar-close" id="sidebarClose">
+                    ×
+                </button>
+
+
             </aside>
             <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
@@ -1238,7 +1422,7 @@
 
                 <header class="top-bar">
                     <div class="mobile-brand">
-                        <img src="{{ asset('images/LOGO.svg') }}" class="mobile-logo" alt="HTG">
+                        <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
                 
                         <button class="hamburger-btn" id="openSidebar">
                             <img src="{{ asset('images/breadcrumb.svg') }}">
@@ -1634,11 +1818,12 @@
 const sidebar = document.querySelector('.sidebar');
 const overlay = document.getElementById('sidebarOverlay');
 const openBtn = document.getElementById('openSidebar');
+const closeBtn = document.getElementById("sidebarClose");
 
 
 openBtn?.addEventListener('click', () => {
-    sidebar?.classList.toggle('active');
-    overlay?.classList.toggle('active');
+    sidebar?.classList.add('active');
+    overlay?.classList.add('active');
 });
 
 
@@ -1646,5 +1831,14 @@ overlay?.addEventListener('click', () => {
     sidebar?.classList.remove('active');
     overlay?.classList.remove('active');
 });
+
+
+closeBtn?.addEventListener('click', () => {
+    sidebar?.classList.remove('active');
+    overlay?.classList.remove('active');
+});
+
+
+
                         </script>
 </x-layout>

@@ -61,6 +61,10 @@
         height: 100%;
     }
 
+    .sidebar-close {
+        display: none;
+    }
+
     .nav-list {
         list-style-type: none;
         display: flex;
@@ -85,6 +89,29 @@
     .nav-link :hover {
         background-color: #ffffff;
         color: #06414f;
+    }
+
+    .setting-links {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        text-decoration: none;
+        padding: 14px;
+        color: #B7B7B7;
+        gap: 8px;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        border-radius: 8px;
+    }
+
+    .setting-links:hover {
+        background-color: #ffffff;
+        color: #06414F;
+    }
+
+    .setting-link {
+        display: none;
     }
 
     .footer-nav {
@@ -173,51 +200,52 @@
     /* ==========================================================================
      5. Flip Card Engine Wrapper Container
      ========================================================================== */
-     .id-card-container {
-    width: 312px;
-    height: 504px;
-    perspective: 1200px;
-    margin: 0 auto; /* Centered layout instead of fixed margin-left */
-}
+    .id-card-container {
+        width: 312px;
+        height: 504px;
+        perspective: 1200px;
+        margin: 0 auto;
+        /* Centered layout instead of fixed margin-left */
+    }
 
-.id-card {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
-    transition: transform .8s ease;
-}
+    .id-card {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+        transition: transform .8s ease;
+    }
 
-.id-card.flip {
-    transform: rotateY(180deg);
-}
+    .id-card.flip {
+        transform: rotateY(180deg);
+    }
 
-.id-card-front,
-.id-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
-}
+    .id-card-front,
+    .id-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden !important;
+        -webkit-backface-visibility: hidden !important;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+    }
 
-.id-card-back {
-    transform: rotateY(180deg);
-}
+    .id-card-back {
+        transform: rotateY(180deg);
+    }
 
-/* Hard toggle to prevent Mobile Safari avatar bleed when flipped */
-.id-card.flip .id-card-front {
-    visibility: hidden !important;
-    pointer-events: none;
-}
+    /* Hard toggle to prevent Mobile Safari avatar bleed when flipped */
+    .id-card.flip .id-card-front {
+        visibility: hidden !important;
+        pointer-events: none;
+    }
 
-.id-card:not(.flip) .id-card-back {
-    visibility: hidden !important;
-    pointer-events: none;
-}
+    .id-card:not(.flip) .id-card-back {
+        visibility: hidden !important;
+        pointer-events: none;
+    }
 
     /* GLYDE CARD IMPLEMENTATION (Mockup Perfect Fit) */
     .Glyde-card {
@@ -642,140 +670,255 @@
     /* ==========================================================================
      7. Responsive Adaptability Configuration
      ========================================================================== */
-     @media (max-width: 1024px) {
-    .content-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
+    @media (max-width: 1024px) {
+        .content-grid {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        .badge-preview-column {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .badge-details-column {
+            align-items: center;
+            width: 100%;
+        }
     }
 
-    .badge-preview-column {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
+    @media (max-width: 768px) {
 
-    .badge-details-column {
-        align-items: center;
-        width: 100%;
-    }
-}
+        html,
+        body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
 
-@media (max-width: 768px) {
-    /* Prevent page-level horizontal overflow */
-    html, body {
-        overflow-x: hidden;
-        max-width: 100vw;
-    }
+        .dashboard-container {
+            flex-direction: column;
+        }
 
-    .dashboard-container {
-        flex-direction: column;
-    }
 
-    /* Sidebar Drawer */
-    .sidebar {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 78%;
-        max-width: 300px;
-        height: 100vh;
-        background: #06414F;
-        padding: 24px 20px;
-        z-index: 1000;
-        transition: left .3s ease;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-    }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 78%;
+            max-width: 300px;
+            height: 100vh;
+            background: #06414F;
+            padding: 24px 20px;
+            z-index: 2000;
+            transition: left .3s ease;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+        }
 
-    .sidebar.active {
-        left: 0;
-    }
+        .sidebar.active {
+            left: 0;
+        }
 
-    .main-viewport {
-        padding: 16px;
-        width: 100%;
-        box-sizing: border-box;
-    }
+        .sidebar-close {
+            display: flex;
+            position: absolute;
+            top: 25px;
+            right: 14px;
+            width: 24px;
+            height: 24px;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            border: none;
+            background: transparent;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
 
-    .top-bar {
-        display: block;
-        margin-bottom: 20px;
-    }
+        }
 
-    .hamburger-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 36px;
-        height: 36px;
-        padding: 0;
-        border: none;
-        background: none;
-    }
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #06414F80;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(3px);
+            z-index: 1500;
+        }
 
-    .mobile-brand {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 8px;
-    }
 
-    .user-profile-widget,
-    .parent-route {
-        display: none;
-    }
+        .sidebar-overlay.active {
+            display: block;
+        }
 
-    /* Reset all card margins that push content off screen */
-    .id-card-container,
-    .id-card-front,
-    .id-card-back {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
+        .logo {
+            margin-left: -20px;
+        }
 
-    .badge-preview-column {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        padding: 0;
-    }
+        .setting-links {
+            display: none;
+        }
 
-    /* Fluid responsive details panel */
-    .badge-details-column {
-        width: 100%;
-        margin-left: 0 !important;
-        align-items: center;
-    }
+        .setting-link {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+            padding: 12px;
+            gap: 5px;
+            margin-left: -3px;
+            width: 100%;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            color: #b7b7b7;
+            border-radius: 8px;
+        }
 
-    .info-panel {
-        width: 100% !important;
-        max-width: 393px;
-        height: auto;
-        margin-left: 0 !important;
-    }
+        .setting-link i {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 20px;
+            flex-shrink: 0;
+            margin: 0;
+        }
 
-    .protocol-banner {
-        width: 100% !important;
-        max-width: 393px;
-        margin-left: 0 !important;
-        margin-top: 12px;
-        box-sizing: border-box;
-    }
+        .setting-link i img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
 
-    .banner-text h3,
-    .banner-text p {
-        margin-left: 0 !important;
-    }
+        .setting-link span {
+            line-height: 1;
+        }
 
-    .actions-wrapper {
-        width: 100%;
-        justify-content: center;
-    }
+        .user-email {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            margin-bottom: -6px;
+            width: 100%;
+        }
 
-    .btn-print {
-        margin-left: 0 !important; /* Centers print button on mobile */
+        .user-email .profile-pic {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            color: #06414F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .user-profile-item .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .menu-links {
+            margin-left: -24px;
+        }
+
+
+        .main-viewport {
+            padding: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .top-bar {
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .hamburger-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            border: none;
+            background: none;
+        }
+
+        .mobile-brand {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .user-profile-widget,
+        .parent-route {
+            display: none;
+        }
+
+        /* Reset all card margins that push content off screen */
+        .id-card-container,
+        .id-card-front,
+        .id-card-back {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+
+        .badge-preview-column {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 0;
+        }
+
+        /* Fluid responsive details panel */
+        .badge-details-column {
+            width: 100%;
+            margin-left: 0 !important;
+            align-items: center;
+        }
+
+        .info-panel {
+            width: 100% !important;
+            max-width: 393px;
+            height: auto;
+            margin-left: 0 !important;
+        }
+
+        .protocol-banner {
+            width: 100% !important;
+            max-width: 393px;
+            margin-left: 0 !important;
+            margin-top: 12px;
+            box-sizing: border-box;
+        }
+
+        .banner-text h3,
+        .banner-text p {
+            margin-left: 0 !important;
+        }
+
+        .actions-wrapper {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-print {
+            margin-left: 0 !important;
+            /* Centers print button on mobile */
+        }
     }
-}
 </style>
 </head>
 
@@ -806,12 +949,40 @@
                             <i><img src="{{ asset('images/attendance.svg') }}" alt="" /></i> Registry
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('staff-edit.index') }}" class="setting-link">
+                            <i><img src="{{ asset('images/setting.svg') }}" alt="Settings"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
                 </ul>
 
                 <ul class="nav-list footer-nav">
                     <li>
-                        <a href="{{ route('staff-edit.index') }}" class="nav-link">
-                            <i><img src="{{ asset('images/setting.svg') }}" alt="" /></i> Settings
+                        <div class="user-email" style="color: #B7B7B7">
+                            @php
+                                $firstInitial = strtoupper(substr($user->first_name, 0, 1));
+                            @endphp
+
+                            <div class="profile-pic">
+                                @if($user->avatar)
+                                    <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
+                                        style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
+                                @else
+                                    <span>{{ $firstInitial }}</span>
+                                @endif
+                            </div>
+
+                            <span class="user-email-text">
+                                {{ $user->email }}
+                            </span>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('staff-edit.index') }}" class="setting-links">
+                            <i><img src="{{ asset('images/setting.svg') }}" alt="Settings"></i>
+                            <span>Settings</span>
                         </a>
                     </li>
                     <li>
@@ -819,7 +990,13 @@
                     </li>
                 </ul>
             </nav>
+
+            <button class="sidebar-close" id="sidebarClose">
+                ×
+            </button>
+
         </aside>
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
         <main class="main-viewport">
             <header class="top-bar">
@@ -1025,15 +1202,22 @@
         const sidebar = document.querySelector('.sidebar');
         const overlay = document.getElementById('sidebarOverlay');
         const openBtn = document.getElementById('openSidebar');
+        const closeBtn = document.getElementById("sidebarClose");
 
 
         openBtn?.addEventListener('click', () => {
-            sidebar?.classList.toggle('active');
-            overlay?.classList.toggle('active');
+            sidebar?.classList.add('active');
+            overlay?.classList.add('active');
         });
 
 
         overlay?.addEventListener('click', () => {
+            sidebar?.classList.remove('active');
+            overlay?.classList.remove('active');
+        });
+
+
+        closeBtn?.addEventListener('click', () => {
             sidebar?.classList.remove('active');
             overlay?.classList.remove('active');
         });

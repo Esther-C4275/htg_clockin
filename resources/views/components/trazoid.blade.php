@@ -60,6 +60,10 @@
         height: 100%;
     }
 
+    .sidebar-close {
+        display: none;
+    }
+
     .nav-list {
         list-style-type: none;
         display: flex;
@@ -82,9 +86,36 @@
     }
 
     .nav-link:hover,
-    .nav-link.active {
+     {
         background-color: #ffffff;
         color: #06414f;
+    }
+
+    .setting-links {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        text-decoration: none;
+        padding: 14px;
+        color: #B7B7B7;
+        gap: 8px;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        border-radius: 8px;
+    }
+
+    .setting-links:hover {
+        background-color: #ffffff;
+        color: #06414F;
+    }
+
+    .setting-link {
+        display: none;
+    }
+
+    .user-email{
+        display:none;
     }
 
     .footer-nav {
@@ -481,7 +512,9 @@
     }
 
     @media (max-width: 768px) {
-        html, body {
+
+        html,
+        body {
             max-width: 100vw;
             overflow-x: hidden;
         }
@@ -494,22 +527,135 @@
 
         /* Sidebar Off-Screen Drawer */
         .sidebar {
-            position: fixed !important;
+            position: fixed;
             top: 0;
             left: -100%;
             width: 78%;
-            max-width: 280px;
+            max-width: 300px;
             height: 100vh;
             background: #06414F;
-            padding: 20px 0;
-            z-index: 1000;
-            transition: left 0.3s ease;
+            padding: 24px 20px;
+            z-index: 2000;
+            transition: left .3s ease;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
         }
 
         .sidebar.active {
-            left: 0 !important;
+            left: 0;
         }
 
+        .sidebar-close {
+            display: flex;
+            position: absolute;
+            top: 25px;
+            right: 14px;
+            width: 24px;
+            height: 24px;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            border: none;
+            background: transparent;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #06414F80;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(3px);
+            z-index: 1500;
+        }
+
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        .setting-links {
+            display: none;
+        }
+
+        .setting-link {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+            padding: 12px;
+            gap: 5px;
+            margin-right: 0;
+            width: 100%;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            color: #b7b7b7;
+            border-radius: 8px;
+        }
+
+        .setting-link i {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 20px;
+            flex-shrink: 0;
+            margin: 0;
+        }
+
+        .setting-link i img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .setting-link span {
+            line-height: 1;
+        }
+
+        .user-email {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            width: 100%;
+        }
+
+        .user-email .profile-pic {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            color: #06414F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .user-profile-item .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .menu-links{
+            margin-left:-24px;
+        }
+
+        .logo{
+            margin-left:-14px;
+        }
         .main-viewport {
             width: 100% !important;
             padding: 16px !important;
@@ -583,7 +729,13 @@
      8. Print Styling Overrides
      ========================================================================== */
     @media print {
-        .sidebar, .top-bar, .info-panel, .protocol-banner, .actions-wrapper, nav {
+
+        .sidebar,
+        .top-bar,
+        .info-panel,
+        .protocol-banner,
+        .actions-wrapper,
+        nav {
             display: none !important;
         }
 
@@ -591,7 +743,10 @@
             background: #ffffff !important;
         }
 
-        .dashboard-container, .main-viewport, .content-grid, .badge-preview-column {
+        .dashboard-container,
+        .main-viewport,
+        .content-grid,
+        .badge-preview-column {
             display: block !important;
             width: 100% !important;
             margin: 0 !important;
@@ -630,12 +785,40 @@
                             <i><img src="{{ asset('images/attendance.svg') }}" alt="" /></i> Registry
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('staff-edit.index') }}" class="setting-link">
+                            <i><img src="{{ asset('images/setting.svg') }}" alt="Settings"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
                 </ul>
 
                 <ul class="nav-list footer-nav">
                     <li>
-                        <a href="{{ route('staff-edit.index') }}" class="nav-link">
-                            <i><img src="{{ asset('images/setting.svg') }}" alt="" /></i> Settings
+                        <div class="user-email" style="color: #B7B7B7">
+                            @php
+                                $firstInitial = strtoupper(substr($user->first_name, 0, 1));
+                            @endphp
+
+                            <div class="profile-pic">
+                                @if($user->avatar)
+                                    <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
+                                        style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
+                                @else
+                                    <span>{{ $firstInitial }}</span>
+                                @endif
+                            </div>
+
+                            <span class="user-email-text">
+                                {{ $user->email }}
+                            </span>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('staff-edit.index') }}" class="setting-links">
+                            <i><img src="{{ asset('images/setting.svg') }}" alt="Settings"></i>
+                            <span>Settings</span>
                         </a>
                     </li>
                     <li>
@@ -643,7 +826,13 @@
                     </li>
                 </ul>
             </nav>
+
+            <button class="sidebar-close" id="sidebarClose">
+                ×
+            </button>
         </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
         <main class="main-viewport">
             <header class="top-bar">
@@ -663,7 +852,8 @@
                         <span class="profile-email">{{ $user->email }}</span>
                         <div class="profile-avatar-fallback">
                             @if($user->avatar)
-                                <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                                <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
+                                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
                             @else
                                 {{ strtoupper(substr($user->first_name, 0, 1)) }}
                             @endif
@@ -680,9 +870,11 @@
                             <div class="id-card-front">
                                 <div class="trazo-card">
                                     <div class="trazo-avatar-container">
-                                        <div class="avatar" style="display: flex; align-items: center; justify-content: center; background-color: #14532D; color: #ffffff; font-weight: 700; font-size: 64px; overflow: hidden;">
+                                        <div class="avatar"
+                                            style="display: flex; align-items: center; justify-content: center; background-color: #14532D; color: #ffffff; font-weight: 700; font-size: 64px; overflow: hidden;">
                                             @if($user->avatar)
-                                                <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+                                                <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
+                                                    style="width: 100%; height: 100%; object-fit: cover;">
                                             @else
                                                 {{ strtoupper(substr($user->first_name, 0, 1) . substr($user->last_name, 0, 1)) }}
                                             @endif
@@ -705,7 +897,8 @@
                             <div class="id-card-back">
                                 <div class="trazo-cardback">
                                     <div class="qr-code-container">
-                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ urlencode(route('staff.id', $user->uuid)) }}" alt="Employee Profile QR Code">
+                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ urlencode(route('staff.id', $user->uuid)) }}"
+                                            alt="Employee Profile QR Code">
                                     </div>
 
                                     <div class="trazo-contact-link">
@@ -722,9 +915,11 @@
                                     <img class="Location-img" src="{{ asset('images/Group 113.svg') }}" alt="Location">
 
                                     <div class="trazo-lost-found">
-                                        <h4>2nd floor, Contemporary Building, Interbua Roundabout, Summit Road, Asaba.</h4>
+                                        <h4>2nd floor, Contemporary Building, Interbua Roundabout, Summit Road, Asaba.
+                                        </h4>
                                         <img class="line-decoration" src="{{ asset('images/Line 52.svg') }}" alt="">
-                                        <h5>If found, should be returned to the above address, phone number or nearest police station.</h5>
+                                        <h5>If found, should be returned to the above address, phone number or nearest
+                                            police station.</h5>
                                     </div>
 
                                     <div class="badge-footer2" onclick="flipCard()" style="cursor: pointer;">
@@ -765,7 +960,8 @@
                         </div>
                         <div class="banner-text">
                             <h3>Security Protocol</h3>
-                            <p>This ID card is the property of HTG Time Portal. The QR code contains encrypted employee credentials. Do not share the digital image of this card on public social media.</p>
+                            <p>This ID card is the property of HTG Time Portal. The QR code contains encrypted employee
+                                credentials. Do not share the digital image of this card on public social media.</p>
                         </div>
                     </div>
 
@@ -785,10 +981,26 @@
         }
 
         const sidebar = document.querySelector('.sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
         const openBtn = document.getElementById('openSidebar');
+        const closeBtn = document.getElementById("sidebarClose");
+
 
         openBtn?.addEventListener('click', () => {
-            sidebar?.classList.toggle('active');
+            sidebar?.classList.add('active');
+            overlay?.classList.add('active');
+        });
+
+
+        overlay?.addEventListener('click', () => {
+            sidebar?.classList.remove('active');
+            overlay?.classList.remove('active');
+        });
+
+
+        closeBtn?.addEventListener('click', () => {
+            sidebar?.classList.remove('active');
+            overlay?.classList.remove('active');
         });
     </script>
 </body>

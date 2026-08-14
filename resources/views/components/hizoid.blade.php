@@ -49,6 +49,11 @@
     flex-shrink: 0;
   }
 
+  .sidebar-close {
+    display: none;
+  }
+
+
   .brand-section {
     padding: 0 24px 48px 24px;
   }
@@ -90,6 +95,33 @@
     background-color: #ffffff;
     color: #06414F;
     /* font-weight: 700; */
+  }
+
+  .setting-links {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    padding: 14px;
+    color: #B7B7B7;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 8px;
+  }
+
+  .setting-links:hover {
+    background-color: #ffffff;
+    color: #06414F;
+  }
+
+  .setting-link {
+    display: none;
+  }
+
+  .user-email {
+    display: none;
   }
 
   .footer-nav {
@@ -779,178 +811,304 @@
   }
 
   @media (max-width: 768px) {
-  body {
-    overflow-x: hidden;
+    body {
+      overflow-x: hidden;
+    }
+
+    .dashboard-container {
+      flex-direction: column;
+    }
+
+    /* Sidebar Drawer Reset */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 78%;
+      max-width: 300px;
+      height: 100vh;
+      background: #06414F;
+      padding: 24px 20px;
+      z-index: 2000;
+      transition: left .3s ease;
+      border-top-right-radius: 40px;
+      border-bottom-right-radius: 40px;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar-close {
+      display: flex;
+      position: absolute;
+      top: 25px;
+      right: 14px;
+      width: 24px;
+      height: 24px;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #06414F80;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(3px);
+      z-index: 1500;
+    }
+
+
+    .sidebar-overlay.active {
+      display: block;
+    }
+
+    .logo {
+      margin-left: -13px;
+    }
+
+    .setting-links {
+      display: none;
+    }
+
+    .setting-link {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: left;
+      padding: 12px;
+      gap: 5px;
+      margin-left: -5px;
+      width: 100%;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 500;
+      color: #b7b7b7;
+      border-radius: 8px;
+    }
+
+    .setting-link i {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 20px;
+      flex-shrink: 0;
+      margin: 0;
+    }
+
+    .setting-link i img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .setting-link span {
+      line-height: 1;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+
+    .user-email {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      margin-bottom: -12px;
+      width: 100%;
+    }
+
+    .user-email .profile-pic {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #ffffff;
+      color: #06414F;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .user-profile-item .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+
+
+    .main-viewport {
+      padding: 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .top-bar {
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .hamburger-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border: none;
+      background: none;
+    }
+
+    .mobile-brand {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .user-profile-widget,
+    .parent-route {
+      display: none;
+    }
+
+    .page-title {
+      margin-top: 15px;
+    }
+
+
+    .badge-preview-column {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 0;
+    }
+
+    .id-card-container {
+      perspective: 1000px;
+    }
+
+    .id-card-front,
+    .id-card-back {
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+    }
+
+
+    .id-card.flip .id-card-front {
+      visibility: hidden !important;
+      pointer-events: none;
+    }
+
+    .id-card:not(.flip) .id-card-back {
+      visibility: hidden !important;
+      pointer-events: none;
+    }
+
+
+    .badge-card-front,
+    .badge-card,
+    .id-card-back {
+      margin-left: 0 !important;
+    }
+
+
+    .badge-details-column {
+      width: 100%;
+      align-items: center;
+    }
+
+    .info-panel {
+      width: 100%;
+      max-width: 393px;
+      height: auto;
+    }
+
+    .panel-header {
+      width: 100%;
+    }
+
+    .protocol-banner {
+      width: 100%;
+      max-width: 393px;
+      height: auto;
+      margin-top: 12px;
+    }
+
+    .banner-text h3 {
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    .banner-text p {
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .actions-wrapper {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn-print {
+      margin-right: 0;
+    }
+
+    .brand-section {
+      padding: 0 12px 32px 12px;
+    }
+
+
+    .nav-list {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 0 8px;
+      margin-left: -28px
+    }
+
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      padding: 10px 12px;
+      color: #B7B7B7;
+      gap: 8px;
+      font-size: 18px;
+      font-weight: 500;
+      border-radius: 8px;
+    }
+
+    .hamburger-btn img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      display: block;
+      pointer-events: none;
+      /* Ensures clicks pass through to the button element */
+    }
   }
-
-  .dashboard-container {
-    flex-direction: column;
-  }
-
-  /* Sidebar Drawer Reset */
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 78%;
-    max-width: 280px;
-    height: 100vh;
-    background: #06414F;
-    padding: 20px 0;
-    z-index: 1000;
-    transition: left .3s ease;
-  }
-
-  .sidebar.active {
-    left: 0;
-  }
-
-  .main-viewport {
-    padding: 16px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .top-bar {
-    display: block;
-    margin-bottom: 20px;
-  }
-
-  .hamburger-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    padding: 0;
-    border: none;
-    background: none;
-  }
-
-  .mobile-brand {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-
-  .user-profile-widget,
-  .parent-route {
-    display: none;
-  }
-
-  .page-title {
-    margin-top: 15px;
-  }
-
- 
-  .badge-preview-column {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 0;
-  }
-
-  .id-card-container {
-    perspective: 1000px;
-}
-
-.id-card-front,
-.id-card-back {
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important; /* Forces iOS WebKit to hide backface */
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
-}
-
-/* Hard-toggle visibility on Mobile Safari when flipped */
-.id-card.flip .id-card-front {
-    visibility: hidden !important;
-    pointer-events: none;
-}
-
-.id-card:not(.flip) .id-card-back {
-    visibility: hidden !important;
-    pointer-events: none;
-}
-
-  
-  .badge-card-front,
-  .badge-card,
-  .id-card-back {
-    margin-left: 0 !important;
-  }
-
-  
-  .badge-details-column {
-    width: 100%;
-    align-items: center;
-  }
-
-  .info-panel {
-    width: 100%;
-    max-width: 393px;
-    height: auto;
-  }
-
-  .panel-header {
-    width: 100%;
-  }
-
-  .protocol-banner {
-    width: 100%;
-    max-width: 393px;
-    height: auto;
-    margin-top: 12px;
-  }
-
-  .banner-text h3 {
-    font-weight: 600;
-    font-size: 12px;
-  }
-
-  .banner-text p {
-    font-size: 11px;
-    line-height: 1.4;
-  }
-
-  .actions-wrapper {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .btn-print {
-    margin-right: 0;
-  }
-  
-.brand-section {
-    padding: 0 12px 32px 12px; 
-}
-
-
-.nav-list {
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 0 8px; 
-}
-
-
-.nav-link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    padding: 10px 12px; 
-    color: #B7B7B7;
-    gap: 8px;
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 8px;
-}
-}
-  
 </style>
 
 <link rel="stylesheet" href="style.css">
@@ -984,12 +1142,40 @@
               <i><img src="{{ asset('images/attendance.svg') }}" alt=""></i> Registry
             </a>
           </li>
+          <li>
+            <a href="{{ route('staff-edit.index') }}" class="setting-link">
+              <i><img src="{{ asset('images/setting.svg') }}" alt="Settings"></i>
+              <span>Settings</span>
+            </a>
+          </li>
         </ul>
 
         <ul class="nav-list footer-nav">
           <li>
-            <a href="{{ route('staff-edit.index') }}" class="nav-link">
-              <i><img src="{{ asset('images/setting.svg') }}" alt=""></i> Settings
+            <div class="user-email" style="color: #B7B7B7">
+              @php
+                $firstInitial = strtoupper(substr($user->first_name, 0, 1));
+              @endphp
+
+              <div class="profile-pic">
+                @if($user->avatar)
+                  <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
+                @else
+                  <span>{{ $firstInitial }}</span>
+                @endif
+              </div>
+
+              <span class="user-email-text">
+                {{ $user->email }}
+              </span>
+            </div>
+          </li>
+
+          <li>
+            <a href="{{ route('staff-edit.index') }}" class="setting-links">
+              <i><img src="{{ asset('images/setting.svg') }}" alt="Settings"></i>
+              <span>Settings</span>
             </a>
           </li>
           <li>
@@ -997,7 +1183,14 @@
           </li>
         </ul>
       </nav>
+
+      <button class="sidebar-close" id="sidebarClose">
+        ×
+      </button>
+
     </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <main class="main-viewport">
 
@@ -1217,15 +1410,22 @@
     const sidebar = document.querySelector('.sidebar');
     const overlay = document.getElementById('sidebarOverlay');
     const openBtn = document.getElementById('openSidebar');
+    const closeBtn = document.getElementById("sidebarClose");
 
 
     openBtn?.addEventListener('click', () => {
-      sidebar?.classList.toggle('active');
-      overlay?.classList.toggle('active');
+      sidebar?.classList.add('active');
+      overlay?.classList.add('active');
     });
 
 
     overlay?.addEventListener('click', () => {
+      sidebar?.classList.remove('active');
+      overlay?.classList.remove('active');
+    });
+
+
+    closeBtn?.addEventListener('click', () => {
       sidebar?.classList.remove('active');
       overlay?.classList.remove('active');
     });
