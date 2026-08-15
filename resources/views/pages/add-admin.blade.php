@@ -104,6 +104,7 @@
 
         </div>
     </div> --}}
+    
 
     <style>
         main {
@@ -464,6 +465,77 @@
             text-transform: uppercase;
             border: 1px solid #C5DCF2;
         }
+
+        @media (max-width: 768px) {
+
+            html,
+            body {
+                width: 100%;
+                height: 100vh;
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden;
+            }
+
+            body {
+                background: #fff;
+            }
+
+            .sidebar{
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 78%;
+            max-width: 300px;
+            height: 100vh;
+            background: #06414F;
+            padding: 24px 20px;
+            z-index: 2000;
+            transition: left .3s ease;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+        }
+
+        .sidebar.active{
+            left: 0;
+        }
+
+        .sidebar-close {
+        display: flex;
+        position: absolute;
+        top: 25px;
+        right: 14px;
+        width: 24px;
+        height: 24px;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+       
+    }
+
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background:#06414F80;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(3px);
+        z-index: 1500;
+    }
+
+
+    .sidebar-overlay.active {
+        display: block;
+    }
+
+
+        }
+    
     </style>
 
     <body>
@@ -692,7 +764,30 @@
 
         </main>
 
+<script>
+    const sidebar = document.querySelector('.sidebar');
+const overlay = document.getElementById('sidebarOverlay');
+const openBtn = document.getElementById('openSidebar');
+const closeBtn = document.getElementById("sidebarClose");
 
+
+openBtn?.addEventListener('click', () => {
+    sidebar?.classList.add('active');
+    overlay?.classList.add('active');
+});
+
+
+overlay?.addEventListener('click', () => {
+    sidebar?.classList.remove('active');
+    overlay?.classList.remove('active');
+});
+
+
+closeBtn?.addEventListener('click', () => {
+    sidebar?.classList.remove('active');
+    overlay?.classList.remove('active');
+});
+</script>
 
     </body>
 
