@@ -708,9 +708,20 @@
         .scanner-modal-subtitle {
             color: #64748b;
             font-size: 0.85rem;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
         }
 
+        /* NEW: GPS & Verification Status Banner */
+        #scanner-status-msg {
+            display: none;
+            margin-bottom: 16px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.2s ease-in-out;
+        }
 
         .scanner-viewport-wrapper {
             position: relative;
@@ -721,7 +732,6 @@
             overflow: hidden;
             background: #000000;
         }
-
 
         #qr-reader {
             border: none !important;
@@ -734,13 +744,11 @@
             object-fit: cover !important;
         }
 
-
         #qr-reader__dashboard, 
         #qr-reader__status_span,
         #qr-reader div[style*="padding: 20px"] {
             display: none !important;
         }
-
 
         .scanner-hud-overlay {
             position: absolute;
@@ -751,7 +759,6 @@
             pointer-events: none; 
             box-sizing: border-box;
         }
-
 
         .scanner-laser-line {
             position: absolute;
@@ -767,7 +774,6 @@
             50% { top: 100%; }
             100% { top: 0%; }
         }
-
 
         .scanner-corner {
             position: absolute;
@@ -796,7 +802,6 @@
             border-bottom-right-radius: 8px;
         }
 
-
         .scanner-modal-cancel-btn {
             margin-top: 24px;
             width: 100%;
@@ -815,7 +820,6 @@
             color: #0f172a;
         }
 
-
         #qr-reader button {
             position: absolute;
             top: 50%;
@@ -832,6 +836,7 @@
             box-shadow: 0 4px 6px -1px rgba(0, 166, 74, 0.3);
             z-index: 10;
         }
+        
         .hamburger-btn {
             display: none;
             background: transparent;
@@ -1484,6 +1489,9 @@
                                         <h3 id="scanner-title" class="scanner-modal-title">Scanning to Clock In</h3>
                                         <p class="scanner-modal-subtitle">Align the printed QR code inside the frame to scan automatically.</p>
                                         
+                                        <!-- Status indicator for GPS acquisition & verification errors -->
+                                        <div id="scanner-status-msg" style="display: none; margin: 10px 0; padding: 8px 12px; border-radius: 6px; font-size: 13px; font-weight: 500; text-align: center;"></div>
+                                
                                         <div class="scanner-viewport-wrapper">
                                             <div id="camera-preview-container" style="width: 100%; height: 100%; overflow: hidden; border-radius: 12px;">
                                                 <div id="qr-reader" style="width: 100%; height: 100%; border: none;"></div>
@@ -1503,7 +1511,6 @@
                                         </button>
                                     </div>
                                 </div>
-                            
                                 <div class="action-buttons-group">
                                     <button id="btn-clock-in" 
                                             data-action="clock-in"
@@ -1661,184 +1668,244 @@
                     
                     <script>
                         document.addEventListener("DOMContentLoaded", () => {
-                            const timerDisplay = document.getElementById("timer-counter");
-                            const statusPill   = document.getElementById("status-pill");
-                            const btnClockIn   = document.getElementById("btn-clock-in");
-                            const btnClockOut  = document.getElementById("btn-clock-out");
-                            const scannerWrapper = document.getElementById("qr-scanner-wrapper");
-                            const scannerTitle = document.getElementById("scanner-title");
-                            const btnCancelScan = document.getElementById("btn-cancel-scan");
-                        
-                            let timerInterval = null;
-                            let seconds = 0;
-                            let html5QrcodeScanner = null;
-                            let activeAction = ""; 
-                        
-                            const clockInTimestamp = @json($today && $today->clock_in ? strtotime($today->clock_in) : null);
-                            const clockOutTimestamp = @json($today && $today->clock_out ? strtotime($today->clock_out) : null);
-                        
-                            console.log("--- LIVE DIAGNOSTICS ---");
-                            console.log("Parsed Clock In:", clockInTimestamp);
-                        
-                            function formatTime(s) {
-                                let h = Math.floor(s / 3600);
-                                let m = Math.floor((s % 3600) / 60);
-                                let sec = s % 60;
-                                return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`;
-                            }
-                        
-                            function updateProgressMetrics(totalSeconds) {
-                                const progressValueText = document.getElementById("logged-hours-value");
-                                const progressBarFill = document.getElementById("progress-bar-fill");
-                        
-                                if (!progressValueText || !progressBarFill) return;
-                        
-                                const hoursDecimal = (totalSeconds / 3600).toFixed(1);
-                                const targetHoursCap = 8.0;
-                                const progressPercentage = Math.min((hoursDecimal / targetHoursCap) * 100, 100);
-                        
-                                progressValueText.textContent = `${hoursDecimal} / ${targetHoursCap} hrs`;
-                                progressBarFill.style.width = `${progressPercentage}%`;
-                            }
-                        
-                            if (clockInTimestamp) {
-                                if (clockOutTimestamp) {
-                                    seconds = clockOutTimestamp - clockInTimestamp;
-                                    timerDisplay.textContent = formatTime(seconds);
-                                    updateProgressMetrics(seconds);
-                                    
-                                    setDisabledStyles(btnClockIn, "Shift Completed");
-                                    setDisabledStyles(btnClockOut, "Clocked Out");
-                                    
-                                    statusPill.innerHTML = `<span class="dot"></span> SHIFT COMPLETE`;
-                                    statusPill.className = "status-pill status-out";
-                                } else {
-                                    setDisabledStyles(btnClockIn, "✓ Already Clocked In");
-                        
-                                    const calculateElapsed = () => {
-                                        seconds = Math.floor(Date.now() / 1000) - clockInTimestamp;
-                                        timerDisplay.textContent = formatTime(seconds);
-                                        updateProgressMetrics(seconds);
-                                    };
-                                    calculateElapsed();
-                                    timerInterval = setInterval(calculateElapsed, 1000);
-                                }
-                            }
-                        
-                            function setDisabledStyles(button, text) {
-                                if (!button) return;
-                                button.disabled = true;
-                                button.style.setProperty('background-color', '#cbd5e1', 'important');
-                                button.style.setProperty('background', '#cbd5e1', 'important');
-                                button.style.setProperty('color', '#64748b', 'important');
-                                button.style.setProperty('border-color', '#cbd5e1', 'important');
-                                button.style.cursor = "not-allowed";
-                                button.innerHTML = text;
-                            }
-                        
-                            [btnClockIn, btnClockOut].forEach(btn => {
-                                if (!btn) return;
-                                btn.addEventListener("click", function(e) {
-                                    if (this.disabled) return;
-                                    e.preventDefault();
-                                    
-                                    activeAction = this.getAttribute("data-action");
-                                    scannerTitle.innerText = `Scanning to ${activeAction === 'clock-in' ? 'Clock In' : 'Clock Out'}`;
-                                    scannerWrapper.style.display = "flex";
-                        
-                                    if (!html5QrcodeScanner) {
-                                        html5QrcodeScanner = new Html5Qrcode("qr-reader");
-                                    }
-                        
-                                    html5QrcodeScanner.start(
-                                        { facingMode: "environment" }, 
-                                        {
-                                            fps: 15,
-                                            qrbox: (width, height) => { return { width: 200, height: 200 }; }
-                                        },
-                                        onScanSuccess,
-                                        onScanFailure
-                                    )
-                                    .catch(err => {
-                                        console.error("Camera access error:", err);
-                                    });
-                                });
-                            });
-                        
-                            btnCancelScan.addEventListener("click", (e) => {
-                                e.preventDefault();
-                                if (html5QrcodeScanner) {
-                                    html5QrcodeScanner.stop().then(() => {
-                                        scannerWrapper.style.display = "none";
-                                    }).catch(() => {
-                                        scannerWrapper.style.display = "none";
-                                    });
-                                } else {
-                                    scannerWrapper.style.display = "none";
-                                }
-                            });
-                        
-                            function onScanSuccess(decodedText, decodedResult) {
-                     if (html5QrcodeScanner) {
-                        html5QrcodeScanner.stop().then(() => {
-                        scannerWrapper.style.display = "none";
+            const timerDisplay   = document.getElementById("timer-counter");
+            const statusPill     = document.getElementById("status-pill");
+            const btnClockIn     = document.getElementById("btn-clock-in");
+            const btnClockOut    = document.getElementById("btn-clock-out");
+            const scannerWrapper = document.getElementById("qr-scanner-wrapper");
+            const scannerTitle   = document.getElementById("scanner-title");
+            const btnCancelScan  = document.getElementById("btn-cancel-scan");
+            const statusMsg      = document.getElementById("scanner-status-msg");
 
-          
-                       let verificationUrl = new URL(decodedText);
-            
-            
-                       verificationUrl.searchParams.append('action', activeAction);
+            let timerInterval = null;
+            let seconds = 0;
+            let html5QrcodeScanner = null;
+            let activeAction = ""; 
 
-                      fetch(verificationUrl.toString(), {
-                      method: 'GET',
-                      headers: {
-                     'X-Requested-With': 'XMLHttpRequest',
-                     'Accept': 'application/json'
-                }
-                })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success || data.status) {
-                    alert("🎉 " + data.message);
-                    location.reload(); 
+            const clockInTimestamp  = @json($today && $today->clock_in ? strtotime($today->clock_in) : null);
+            const clockOutTimestamp = @json($today && $today->clock_out ? strtotime($today->clock_out) : null);
+
+            function formatTime(s) {
+                let h = Math.floor(s / 3600);
+                let m = Math.floor((s % 3600) / 60);
+                let sec = s % 60;
+                return String(h).padStart(2,'0') + ":" + String(m).padStart(2,'0') + ":" + String(sec).padStart(2,'0');
+            }
+
+            function updateProgressMetrics(totalSeconds) {
+                const progressValueText = document.getElementById("logged-hours-value");
+                const progressBarFill   = document.getElementById("progress-bar-fill");
+
+                if (!progressValueText || !progressBarFill) return;
+
+                const hoursDecimal = (totalSeconds / 3600).toFixed(1);
+                const targetHoursCap = 8.0;
+                const progressPercentage = Math.min((hoursDecimal / targetHoursCap) * 100, 100);
+
+                progressValueText.textContent = hoursDecimal + " / " + targetHoursCap + " hrs";
+                progressBarFill.style.width = progressPercentage + "%";
+            }
+
+            if (clockInTimestamp) {
+                if (clockOutTimestamp) {
+                    seconds = clockOutTimestamp - clockInTimestamp;
+                    if (timerDisplay) timerDisplay.textContent = formatTime(seconds);
+                    updateProgressMetrics(seconds);
+                    
+                    setDisabledStyles(btnClockIn, "Shift Completed");
+                    setDisabledStyles(btnClockOut, "Clocked Out");
+                    
+                    if (statusPill) {
+                        statusPill.innerHTML = '<span class="dot"></span> SHIFT COMPLETE';
+                        statusPill.className = "status-pill status-out";
+                    }
                 } else {
-                    alert("❌ Error: " + data.message);
+                    setDisabledStyles(btnClockIn, "✓ Already Clocked In");
+
+                    const calculateElapsed = () => {
+                        seconds = Math.floor(Date.now() / 1000) - clockInTimestamp;
+                        if (timerDisplay) timerDisplay.textContent = formatTime(seconds);
+                        updateProgressMetrics(seconds);
+                    };
+                    calculateElapsed();
+                    timerInterval = setInterval(calculateElapsed, 1000);
                 }
-            })
-            .catch(() => alert("Network communication error executing verification request."));
-        }).catch(err => {
-            console.error("Scanner tracking error:", err);
-        });
-    }
-}
-                        
-                            function onScanFailure(error) {}
+            }
+
+            function setDisabledStyles(button, text) {
+                if (!button) return;
+                button.disabled = true;
+                button.style.setProperty('background-color', '#cbd5e1', 'important');
+                button.style.setProperty('background', '#cbd5e1', 'important');
+                button.style.setProperty('color', '#64748b', 'important');
+                button.style.setProperty('border-color', '#cbd5e1', 'important');
+                button.style.cursor = "not-allowed";
+                button.innerHTML = text;
+            }
+
+            function stopCameraAndCloseModal() {
+                if (statusMsg) statusMsg.style.display = "none";
+                
+                if (html5QrcodeScanner && html5QrcodeScanner.isScanning) {
+                    html5QrcodeScanner.stop().then(() => {
+                        html5QrcodeScanner.clear();
+                        if (scannerWrapper) scannerWrapper.style.display = "none";
+                    }).catch(() => {
+                        if (scannerWrapper) scannerWrapper.style.display = "none";
+                    });
+                } else {
+                    if (scannerWrapper) scannerWrapper.style.display = "none";
+                }
+            }
+
+            btnCancelScan?.addEventListener("click", (e) => {
+                e.preventDefault();
+                stopCameraAndCloseModal();
+            });
+
+            [btnClockIn, btnClockOut].forEach(btn => {
+                if (!btn) return;
+
+                btn.addEventListener("click", function(e) {
+                    e.preventDefault();
+
+                    const targetBtn = e.target.closest('button') || this;
+                    if (targetBtn.disabled) return;
+
+                    activeAction = targetBtn.getAttribute("data-action") || "clock-in";
+                    
+                    if (scannerTitle) {
+                        scannerTitle.innerText = "Scanning to " + (activeAction === 'clock-in' ? 'Clock In' : 'Clock Out');
+                    }
+                    if (statusMsg) statusMsg.style.display = "none";
+                    if (scannerWrapper) scannerWrapper.style.display = "flex";
+
+                    if (html5QrcodeScanner) {
+                        html5QrcodeScanner.clear();
+                    }
+                    html5QrcodeScanner = new Html5Qrcode("qr-reader");
+
+                    const qrConfig = {
+                        fps: 15,
+                        qrbox: (w, h) => { return { width: 200, height: 200 }; }
+                    };
+
+                    Html5Qrcode.getCameras().then(devices => {
+                        if (devices && devices.length) {
+                            const selectedCameraId = devices.length > 1 ? devices[devices.length - 1].id : devices[0].id;
+                            
+                            return html5QrcodeScanner.start(
+                                selectedCameraId,
+                                qrConfig,
+                                onScanSuccess,
+                                onScanFailure
+                            );
+                        } else {
+                            return html5QrcodeScanner.start(
+                                { facingMode: "user" },
+                                qrConfig,
+                                onScanSuccess,
+                                onScanFailure
+                            );
+                        }
+                    }).catch(err => {
+                        console.error("Camera access error:", err);
+                        alert("❌ Camera access error: Could not start video feed.");
+                        stopCameraAndCloseModal();
+                    });
+                });
+            });
+
+            function onScanSuccess(decodedText, decodedResult) {
+                if (!html5QrcodeScanner) return;
+
+                if (statusMsg) {
+                    statusMsg.style.display = "block";
+                    statusMsg.style.backgroundColor = "#e0f2fe";
+                    statusMsg.style.color = "#0369a1";
+                    statusMsg.innerText = "📍 Verifying building coordinates...";
+                }
+
+                if (!navigator.geolocation) {
+                    alert("❌ Geolocation is not supported by your browser.");
+                    stopCameraAndCloseModal();
+                    return;
+                }
+
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const accuracy = position.coords.accuracy;
+
+                        if (accuracy > 25) {
+                            alert("❌ GPS signal is too weak (" + Math.round(accuracy) + "m accuracy). Please go closer to the office.");
+                            stopCameraAndCloseModal();
+                            return;
+                        }
+
+                        html5QrcodeScanner.stop().then(() => {
+                            html5QrcodeScanner.clear();
+                            if (scannerWrapper) scannerWrapper.style.display = "none";
+
+                            let verificationUrl = new URL(decodedText);
+                            verificationUrl.searchParams.append('action', activeAction);
+                            verificationUrl.searchParams.append('latitude', position.coords.latitude);
+                            verificationUrl.searchParams.append('longitude', position.coords.longitude);
+
+                            fetch(verificationUrl.toString(), {
+                                method: 'GET',
+                                headers: {
+                                    'X-Requested-With': 'XMLHttpRequest',
+                                    'Accept': 'application/json'
+                                }
+                            })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.success || data.status) {
+                                    alert("🎉 " + data.message);
+                                    location.reload(); 
+                                } else {
+                                    alert("❌ Error: " + data.message);
+                                }
+                            })
+                            .catch(() => alert("Network communication error executing verification request."));
+                        }).catch(err => {
+                            console.error("Scanner tracking error:", err);
                         });
+                    },
+                    (error) => {
+                        stopCameraAndCloseModal();
+                        alert("❌ Location access denied or timed out. Please allow high-accuracy location permissions.");
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 8000,
+                        maximumAge: 0
+                    }
+                );
+            }
 
-const sidebar = document.querySelector('.sidebar');
-const overlay = document.getElementById('sidebarOverlay');
-const openBtn = document.getElementById('openSidebar');
-const closeBtn = document.getElementById("sidebarClose");
+            function onScanFailure(error) {}
+        });
 
+        const sidebar  = document.querySelector('.sidebar');
+        const overlay  = document.getElementById('sidebarOverlay');
+        const openBtn  = document.getElementById('openSidebar');
+        const closeBtn = document.getElementById("sidebarClose");
 
-openBtn?.addEventListener('click', () => {
-    sidebar?.classList.add('active');
-    overlay?.classList.add('active');
-});
+        openBtn?.addEventListener('click', () => {
+            sidebar?.classList.add('active');
+            overlay?.classList.add('active');
+        });
 
+        overlay?.addEventListener('click', () => {
+            sidebar?.classList.remove('active');
+            overlay?.classList.remove('active');
+        });
 
-overlay?.addEventListener('click', () => {
-    sidebar?.classList.remove('active');
-    overlay?.classList.remove('active');
-});
+        closeBtn?.addEventListener('click', () => {
+            sidebar?.classList.remove('active');
+            overlay?.classList.remove('active');
+        });
+</script>
 
-
-closeBtn?.addEventListener('click', () => {
-    sidebar?.classList.remove('active');
-    overlay?.classList.remove('active');
-});
-
-
-
-                        </script>
 </x-layout>
