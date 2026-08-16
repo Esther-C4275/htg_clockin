@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,10 +22,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
+        if (config('app.env') === 'production') {
+            URL::forceScheme('https');
+        }
+
         Gate::define('admin-only', function (User $user) {
             
             
-            return (int) $user->is_admin === 1;
+            return (int) $user->is_admin === 1;  //for handling authorization, to check if a particular user is allowed to do something
             
         });
     }
