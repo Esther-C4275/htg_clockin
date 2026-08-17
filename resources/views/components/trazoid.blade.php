@@ -568,7 +568,7 @@
             position: fixed;
             inset: 0;
             background: #06414F80;
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(3px);
             z-index: 1500;
         }

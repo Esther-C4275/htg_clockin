@@ -28,6 +28,11 @@
             justify-content: space-between;
         }
 
+        .sidebar-close{
+            display: none;
+         }
+
+
         .logo{
             margin-left: 1px;
         }
@@ -58,10 +63,29 @@
             gap: 12px;
         }
 
+        .setting-link {
+            display: none !important;
+        }
+
         .menu a:hover,
         .bottom-menu a:hover {
             background: #ffffff;
             color: #06414F;
+        }
+
+        .hamburger-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .mobile-brand {
+            display: none;
+        }
+
+        .user-email{
+            display: none;
         }
 
 
@@ -252,6 +276,10 @@
             font-family: 'Inter', sans-serif;
             transition: all 0.2s ease-in-out;
             color: #06414F;
+        }
+
+        .both-btns{
+            display: none;
         }
 
         .profile-card .btn i.fa-lock {
@@ -494,33 +522,576 @@
             }
         }
 
-        @media(max-width:768px) {
+    @media(max-width:768px) {
 
-            .sidebar {
-                display: none;
-            }
-
-            .main {
-                margin-left: 0;
-            }
-
-            .topbar {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 18px;
-            }
-
-            .section-header {
-                flex-direction: column;
-                gap: 18px;
-            }
-
-            .security-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
+            body{
+            background: #ffffff;
+            display: block;
         }
+
+        .dashboard-container{
+            display: block;
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        /* ===== Sidebar ===== */
+        .sidebar{
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 78%;
+            max-width: 300px;
+            height: 100vh;
+            background: #06414F;
+            padding: 24px 20px;
+            z-index: 2000;
+            transition: left .3s ease;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+        }
+
+        .sidebar.active{
+            left: 0;
+        }
+
+        .sidebar-close {
+        display: flex;
+        position: absolute;
+        top: 25px;
+        right: 14px;
+        width: 24px;
+        height: 24px;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+       
+    }
+
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background:#06414F80;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(3px);
+        z-index: 1500;
+    }
+
+
+    .sidebar-overlay.active {
+        display: block;
+    }
+
+    .user-email {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 12px;
+        margin-bottom: 8px;
+        width: 100%;
+    }
+
+    .user-email .profile-pic {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        color: #06414F;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 13px;
+        flex-shrink: 0;
+        overflow: hidden;
+    }
+
+    .user-profile-item .profile-pic img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .menu a.setting-link {
+        display: flex !important;
+        margin-left: -1px;
+    }
+    /* .setting-link i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 20px;
+        flex-shrink: 0;
+        margin: 0;
+    }
+
+    .setting-link i img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .setting-link span {
+        line-height: 1 ;
+    }
+
+    .setting-links{
+        display:none;
+    } */
+
+    .mobile-brand{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:8px;
+        }
+
+        .mobile-brand img{
+            width: 68px;
+            height: auto;
+        }
+ 
+        .mobile-brand img{
+            width:60px;
+            height:auto;
+            display:block;
+        }
+
+        .hamburger-btn{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            width:36px;
+            height:36px;
+            padding:0;
+            border:none;
+            background:none;
+        }
+
+        .hamburger-btn i{
+            font-size: 22px;
+            color: #111827;
+        }
+
+            /* =========================
+       MAIN
+       ========================= */
+
+    .main {
+        width: 100%;
+        margin-left: 0;
+        
+    }
+
+
+    .topbar{
+            display:block;
+            margin-bottom:20px;
+        }
+
+    .topbar h2,
+    .top-profile {
+        display: none;
+    }
+
+
+    /* =========================
+       CONTENT
+       ========================= */
+
+       .content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        margin: 0;
+    }
+
+
+    /* =========================
+       PROFILE CARD
+       ========================= */
+
+    .profile-card {
+        width: 100%;
+        border: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        background: #ffffff;
+    }
+
+    .profile-image {
+        width: 62px;
+        height: 62px;
+        margin: 0 auto 10px;
+    }
+
+    .profile-image-img {
+        width: 62px;
+        height: 62px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .edit-icon {
+        width: 20px;
+        height: 20px;
+        padding: 0;
+        right: -2px;
+        bottom: 0;
+        font-size: 9px;
+    }
+
+    .profile-card h4 {
+        margin: 0 0 5px;
+        font-size: 12px;
+        line-height: 1.2;
+    }
+
+    .profile-card p {
+        margin: 0 0 22px;
+        font-size: 10px;
+        line-height: 1.2;
+        color: #616161;
+    }
+
+
+    /* =========================
+       PERSONAL INFO / LOGIN TABS
+       ========================= */
+
+    .profile-card .btn {
+        width: 100%;
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        margin: 0;
+        padding: 0 10px;
+
+        border: 1px solid #D8D8D8;
+        border-radius: 6px;
+
+        background: #ffffff;
+        color: #06414F;
+
+        font-size: 11px;
+        text-decoration: none;
+    }
+
+    .profile-card .btn + .btn {
+        margin-left: -5px;
+    }
+
+    .profile-card .btn i {
+        display: none;
+    }
+
+    .profile-card .btn:hover {
+        background: #ffffff;
+        color: #06414F;
+    }
+
+
+    /*
+       The current page = Login & Password
+
+       Only this page gets the teal active state.
+    */
+
+    .profile-card .btn[href*="staff-setting"] {
+        background: #06414F;
+        color: #ffffff;
+        border-color: #06414F;
+    }
+
+    .profile-card .btn[href*="staff-edit"] {
+        background: #ffffff;
+        color: #B7B7B7;
+        border-color: #D8D8D8;
+    }
+
+    .profile-card .btn[href*="staff-setting"] i,
+    .profile-card .btn[href*="staff-edit"] i {
+        color: inherit !important;
+    }
+
+
+    /* =========================
+       RIGHT CONTENT
+       ========================= */
+
+    .right-content {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        background: #ffffff;
+    }
+
+
+    /* =========================
+       HEADER
+       ========================= */
+
+    .section-header {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin: 0 0 22px;
+    }
+
+    .section-header h3 {
+        margin: 0 0 5px;
+        font-size: 12px;
+        line-height: 1.2;
+    }
+
+    .section-header p {
+        max-width: 220px;
+        margin: 0;
+        color: #53555B;
+        font-size: 9px;
+        line-height: 1.35;
+    }
+
+    .edit-btn {
+        flex-shrink: 0;
+        width: 48px;
+        height: 28px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+
+        padding: 0;
+        border: 1px solid #EDEDED;
+        border-radius: 5px;
+
+        background: #ffffff;
+        color: #494848;
+
+        font-size: 9px;
+        text-decoration: none;
+    }
+
+
+    /* =========================
+       FORM
+       ========================= */
+
+    .form-group {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 7px;
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+    .required {
+        color: #DC2626;
+    }
+
+    .input-box {
+        width: 100%;
+        position: relative;
+    }
+
+    .input-box input {
+        width: 100%;
+        height: 34px;
+
+        padding: 8px 12px;
+
+        border: 1px solid #D3D3D4;
+        border-radius: 5px;
+
+        background: #ffffff;
+
+        font-family: 'Inter', sans-serif;
+        font-size: 10px;
+        color: #222222;
+    }
+
+    .input-box input::placeholder {
+        color: #999999;
+    }
+
+    .input-box i {
+        right: 11px;
+        font-size: 11px;
+    }
+
+
+    /* =========================
+       BUTTONS
+       ========================= */
+
+    .buttons {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        gap: 7px;
+
+        margin-top: 5px;
+        margin-bottom: 40px;
+    }
+
+    .profile-card .btn{
+        display: none;
+    }
+
+    .bottom-menu a {
+        display: none;
+    }
+
+    .cancel-btn,
+    .save-btn {
+        height: 34px;
+        border-radius: 5px;
+        font-family: 'Inter', sans-serif;
+        font-size: 10px;
+        cursor: pointer;
+    }
+
+    .cancel-btn {
+        min-width: 72px;
+        padding: 0 12px;
+        border: 1px solid #939191;
+        background: #ffffff;
+        color: #434343;
+    }
+
+    .save-btn {
+        width: 100px;
+        padding: 0 10px;
+        border: 1px solid #06414F;
+        background: #06414F;
+        color: #ffffff;
+    }
+
+    .cancel-btn:hover {
+        background: #ffffff;
+        color: #434343;
+    }
+
+    .save-btn:hover {
+        background: #06414F;
+        color: #ffffff;
+    }
+
+
+    /* =========================
+       SECURITY OPTIONS
+       ========================= */
+
+    .security-options {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .security-item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+    .security-text {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .security-text h4 {
+        margin: 0 0 5px;
+        font-size: 11px;
+        line-height: 1.2;
+    }
+
+    .security-text p {
+        max-width: 250px;
+        margin: 0;
+        font-size: 9px;
+        line-height: 1.35;
+        color: #454444;
+    }
+
+
+    /* =========================
+       TOGGLE
+       ========================= */
+
+    .switch {
+        flex-shrink: 0;
+        width: 32px;
+        height: 18px;
+    }
+
+    .slider {
+        border-radius: 20px;
+    }
+
+    .slider::before {
+        width: 12px;
+        height: 12px;
+        top: 3px;
+        left: 3px;
+    }
+
+    .switch input:checked + .slider::before {
+        transform: translateX(14px);
+    }
+
+    .both-btns {
+                display: flex;
+                width: 100%;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                overflow: hidden;
+                margin-bottom: 20px;
+            }
+
+            .both-btns a {
+                flex: 1;
+                padding: 12px 10px;
+                text-align: center;
+                text-decoration: none;
+                background: #fff;
+                color: #c4c4c4;
+            }
+
+            .both-btns a.active {
+                background: #064d59;
+                color: #fff;
+            }
+
+            .both-btns a span {
+                color: inherit;
+            }
+
+
+}
     </style>
     </head>
 
@@ -552,6 +1123,10 @@
                         <i> <img src="{{ asset('images/attendance.svg') }}" alt=""></i>
                         Registry
                     </a>
+                    <a href="{{ route('staff-edit.index') }}" class="setting-link">
+                        <i><img src="{{ asset('images/setting.svg') }}" alt="Settings"></i>
+                        <span>Settings</span>
+                    </a>
 
                 </div>
 
@@ -559,16 +1134,41 @@
 
             <div class="bottom-menu">
 
-                <a href="{{ route('staff-edit.index') }}">
-                    <i> <img src="{{ asset('images/setting.svg') }}" alt=""></i>
-                    Settings
+                <div class="user-email" style="color: #B7B7B7">
+                    @php
+                        $firstInitial = strtoupper(substr($user->first_name, 0, 1));
+                    @endphp
+        
+                    <div class="profile-pic">
+                        @if($user->avatar)
+                            <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
+                            style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
+                        @else
+                            <span>{{ $firstInitial }}</span>
+                        @endif
+                    </div>
+        
+                    <span class="user-email-text">
+                        {{ $user->email }}
+                    </span>
+                </div>
+
+                <a href="{{ route('staff-edit.index') }}" class="setting-links">
+                    <i><img src="{{ asset('images/setting.svg') }}" alt="Settings"></i>
+                    <span>Settings</span>
                 </a>
 
                 <x-logout />
 
             </div>
-
+            <button class="sidebar-close" id="sidebarClose">
+                ×
+            </button>
+    
         </div>
+       
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 
         <!-- MAIN -->
 
@@ -577,6 +1177,14 @@
             <!-- TOPBAR -->
 
             <div class="topbar">
+                <div class="mobile-brand">
+                    <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+            
+                    <button class="hamburger-btn" id="openSidebar">
+                        <img src="{{ asset('images/breadcrumb.svg') }}">
+                        {{-- <i class="fa-solid fa-align-right"></i> --}}
+                    </button>
+                </div>
 
                 <h2>Dashboard</h2>
 
@@ -666,6 +1274,16 @@
                         <i class="fa-solid fa-lock"></i>
                         <span>Login & Password</span>
                     </a>
+
+                    <div class="both-btns">
+                        <a href="{{ route('staff-edit.index') }}" >
+                            <span>Personal Information</span>
+                        </a>
+                    
+                        <a href="{{ route('staff-setting.index') }}" class="active">
+                            <span>Login & Password</span>
+                        </a>
+                    </div>
 
 
                 </div>
@@ -829,5 +1447,27 @@
             </div>
 
         </div>
+
+        <script>
+            const sidebar  = document.querySelector('.sidebar');
+                        const overlay  = document.getElementById('sidebarOverlay');
+                        const openBtn  = document.getElementById('openSidebar');
+                        const closeBtn = document.getElementById("sidebarClose");
+                        
+                        openBtn?.addEventListener('click', () => {
+                            sidebar?.classList.add('active');
+                            overlay?.classList.add('active');
+                        });
+                        
+                        overlay?.addEventListener('click', () => {
+                            sidebar?.classList.remove('active');
+                            overlay?.classList.remove('active');
+                        });
+                        
+                        closeBtn?.addEventListener('click', () => {
+                            sidebar?.classList.remove('active');
+                            overlay?.classList.remove('active');
+                        });
+        </script>
 
 </x-layout>
