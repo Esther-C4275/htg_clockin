@@ -1047,7 +1047,7 @@
         border-radius: 50%;
     }
 
-        .footer-nav{
+     .footer-nav{
             display: block;
             margin-top: auto;
             padding-top: 18px;
@@ -1668,244 +1668,248 @@
                     
                     <script>
                         document.addEventListener("DOMContentLoaded", () => {
-            const timerDisplay   = document.getElementById("timer-counter");
-            const statusPill     = document.getElementById("status-pill");
-            const btnClockIn     = document.getElementById("btn-clock-in");
-            const btnClockOut    = document.getElementById("btn-clock-out");
-            const scannerWrapper = document.getElementById("qr-scanner-wrapper");
-            const scannerTitle   = document.getElementById("scanner-title");
-            const btnCancelScan  = document.getElementById("btn-cancel-scan");
-            const statusMsg      = document.getElementById("scanner-status-msg");
-
-            let timerInterval = null;
-            let seconds = 0;
-            let html5QrcodeScanner = null;
-            let activeAction = ""; 
-
-            const clockInTimestamp  = @json($today && $today->clock_in ? strtotime($today->clock_in) : null);
-            const clockOutTimestamp = @json($today && $today->clock_out ? strtotime($today->clock_out) : null);
-
-            function formatTime(s) {
-                let h = Math.floor(s / 3600);
-                let m = Math.floor((s % 3600) / 60);
-                let sec = s % 60;
-                return String(h).padStart(2,'0') + ":" + String(m).padStart(2,'0') + ":" + String(sec).padStart(2,'0');
-            }
-
-            function updateProgressMetrics(totalSeconds) {
-                const progressValueText = document.getElementById("logged-hours-value");
-                const progressBarFill   = document.getElementById("progress-bar-fill");
-
-                if (!progressValueText || !progressBarFill) return;
-
-                const hoursDecimal = (totalSeconds / 3600).toFixed(1);
-                const targetHoursCap = 8.0;
-                const progressPercentage = Math.min((hoursDecimal / targetHoursCap) * 100, 100);
-
-                progressValueText.textContent = hoursDecimal + " / " + targetHoursCap + " hrs";
-                progressBarFill.style.width = progressPercentage + "%";
-            }
-
-            if (clockInTimestamp) {
-                if (clockOutTimestamp) {
-                    seconds = clockOutTimestamp - clockInTimestamp;
-                    if (timerDisplay) timerDisplay.textContent = formatTime(seconds);
-                    updateProgressMetrics(seconds);
-                    
-                    setDisabledStyles(btnClockIn, "Shift Completed");
-                    setDisabledStyles(btnClockOut, "Clocked Out");
-                    
-                    if (statusPill) {
-                        statusPill.innerHTML = '<span class="dot"></span> SHIFT COMPLETE';
-                        statusPill.className = "status-pill status-out";
-                    }
-                } else {
-                    setDisabledStyles(btnClockIn, "✓ Already Clocked In");
-
-                    const calculateElapsed = () => {
-                        seconds = Math.floor(Date.now() / 1000) - clockInTimestamp;
-                        if (timerDisplay) timerDisplay.textContent = formatTime(seconds);
-                        updateProgressMetrics(seconds);
-                    };
-                    calculateElapsed();
-                    timerInterval = setInterval(calculateElapsed, 1000);
-                }
-            }
-
-            function setDisabledStyles(button, text) {
-                if (!button) return;
-                button.disabled = true;
-                button.style.setProperty('background-color', '#cbd5e1', 'important');
-                button.style.setProperty('background', '#cbd5e1', 'important');
-                button.style.setProperty('color', '#64748b', 'important');
-                button.style.setProperty('border-color', '#cbd5e1', 'important');
-                button.style.cursor = "not-allowed";
-                button.innerHTML = text;
-            }
-
-            function stopCameraAndCloseModal() {
-                if (statusMsg) statusMsg.style.display = "none";
-                
-                if (html5QrcodeScanner && html5QrcodeScanner.isScanning) {
-                    html5QrcodeScanner.stop().then(() => {
-                        html5QrcodeScanner.clear();
-                        if (scannerWrapper) scannerWrapper.style.display = "none";
-                    }).catch(() => {
-                        if (scannerWrapper) scannerWrapper.style.display = "none";
-                    });
-                } else {
-                    if (scannerWrapper) scannerWrapper.style.display = "none";
-                }
-            }
-
-            btnCancelScan?.addEventListener("click", (e) => {
-                e.preventDefault();
-                stopCameraAndCloseModal();
-            });
-
-            [btnClockIn, btnClockOut].forEach(btn => {
-                if (!btn) return;
-
-                btn.addEventListener("click", function(e) {
-                    e.preventDefault();
-
-                    const targetBtn = e.target.closest('button') || this;
-                    if (targetBtn.disabled) return;
-
-                    activeAction = targetBtn.getAttribute("data-action") || "clock-in";
-                    
-                    if (scannerTitle) {
-                        scannerTitle.innerText = "Scanning to " + (activeAction === 'clock-in' ? 'Clock In' : 'Clock Out');
-                    }
-                    if (statusMsg) statusMsg.style.display = "none";
-                    if (scannerWrapper) scannerWrapper.style.display = "flex";
-
-                    if (html5QrcodeScanner) {
-                        html5QrcodeScanner.clear();
-                    }
-                    html5QrcodeScanner = new Html5Qrcode("qr-reader");
-
-                    const qrConfig = {
-                        fps: 15,
-                        qrbox: (w, h) => { return { width: 200, height: 200 }; }
-                    };
-
-                    Html5Qrcode.getCameras().then(devices => {
-                        if (devices && devices.length) {
-                            const selectedCameraId = devices.length > 1 ? devices[devices.length - 1].id : devices[0].id;
-                            
-                            return html5QrcodeScanner.start(
-                                selectedCameraId,
-                                qrConfig,
-                                onScanSuccess,
-                                onScanFailure
-                            );
-                        } else {
-                            return html5QrcodeScanner.start(
-                                { facingMode: "user" },
-                                qrConfig,
-                                onScanSuccess,
-                                onScanFailure
-                            );
-                        }
-                    }).catch(err => {
-                        console.error("Camera access error:", err);
-                        alert("❌ Camera access error: Could not start video feed.");
-                        stopCameraAndCloseModal();
-                    });
-                });
-            });
-
-            function onScanSuccess(decodedText, decodedResult) {
-                if (!html5QrcodeScanner) return;
-
-                if (statusMsg) {
-                    statusMsg.style.display = "block";
-                    statusMsg.style.backgroundColor = "#e0f2fe";
-                    statusMsg.style.color = "#0369a1";
-                    statusMsg.innerText = "📍 Verifying building coordinates...";
-                }
-
-                if (!navigator.geolocation) {
-                    alert("❌ Geolocation is not supported by your browser.");
-                    stopCameraAndCloseModal();
-                    return;
-                }
-
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        const accuracy = position.coords.accuracy;
-
-                        if (accuracy > 25) {
-                            alert("❌ GPS signal is too weak (" + Math.round(accuracy) + "m accuracy). Please go closer to the office.");
-                            stopCameraAndCloseModal();
-                            return;
-                        }
-
-                        html5QrcodeScanner.stop().then(() => {
-                            html5QrcodeScanner.clear();
-                            if (scannerWrapper) scannerWrapper.style.display = "none";
-
-                            let verificationUrl = new URL(decodedText);
-                            verificationUrl.searchParams.append('action', activeAction);
-                            verificationUrl.searchParams.append('latitude', position.coords.latitude);
-                            verificationUrl.searchParams.append('longitude', position.coords.longitude);
-
-                            fetch(verificationUrl.toString(), {
-                                method: 'GET',
-                                headers: {
-                                    'X-Requested-With': 'XMLHttpRequest',
-                                    'Accept': 'application/json'
-                                }
-                            })
-                            .then(res => res.json())
-                            .then(data => {
-                                if (data.success || data.status) {
-                                    alert("🎉 " + data.message);
-                                    location.reload(); 
+                            const timerDisplay   = document.getElementById("timer-counter");
+                            const statusPill     = document.getElementById("status-pill");
+                            const btnClockIn     = document.getElementById("btn-clock-in");
+                            const btnClockOut    = document.getElementById("btn-clock-out");
+                            const scannerWrapper = document.getElementById("qr-scanner-wrapper");
+                            const scannerTitle   = document.getElementById("scanner-title");
+                            const btnCancelScan  = document.getElementById("btn-cancel-scan");
+                            const statusMsg      = document.getElementById("scanner-status-msg");
+                        
+                            let timerInterval = null;
+                            let seconds = 0;
+                            let html5QrcodeScanner = null;
+                            let activeAction = ""; 
+                        
+                            const clockInTimestamp  = @json($today && $today->clock_in ? strtotime($today->clock_in) : null);
+                            const clockOutTimestamp = @json($today && $today->clock_out ? strtotime($today->clock_out) : null);
+                        
+                            function formatTime(s) {
+                                let h = Math.floor(s / 3600);
+                                let m = Math.floor((s % 3600) / 60);
+                                let sec = s % 60;
+                                return String(h).padStart(2,'0') + ":" + String(m).padStart(2,'0') + ":" + String(sec).padStart(2,'0');
+                            }
+                        
+                            function updateProgressMetrics(totalSeconds) {
+                                const progressValueText = document.getElementById("logged-hours-value");
+                                const progressBarFill   = document.getElementById("progress-bar-fill");
+                        
+                                if (!progressValueText || !progressBarFill) return;
+                        
+                                const hoursDecimal = (totalSeconds / 3600).toFixed(1);
+                                const targetHoursCap = 8.0;
+                                const progressPercentage = Math.min((hoursDecimal / targetHoursCap) * 100, 100);
+                        
+                                progressValueText.textContent = hoursDecimal + " / " + targetHoursCap + " hrs";
+                                progressBarFill.style.width = progressPercentage + "%";
+                            }
+                        
+                            if (clockInTimestamp) {
+                                if (clockOutTimestamp) {
+                                    seconds = clockOutTimestamp - clockInTimestamp;
+                                    if (timerDisplay) timerDisplay.textContent = formatTime(seconds);
+                                    updateProgressMetrics(seconds);
+                                    
+                                    setDisabledStyles(btnClockIn, "Shift Completed");
+                                    setDisabledStyles(btnClockOut, "Clocked Out");
+                                    
+                                    if (statusPill) {
+                                        statusPill.innerHTML = '<span class="dot"></span> SHIFT COMPLETE';
+                                        statusPill.className = "status-pill status-out";
+                                    }
                                 } else {
-                                    alert("❌ Error: " + data.message);
+                                    setDisabledStyles(btnClockIn, "✓ Already Clocked In");
+                        
+                                    const calculateElapsed = () => {
+                                        seconds = Math.floor(Date.now() / 1000) - clockInTimestamp;
+                                        if (timerDisplay) timerDisplay.textContent = formatTime(seconds);
+                                        updateProgressMetrics(seconds);
+                                    };
+                                    calculateElapsed();
+                                    timerInterval = setInterval(calculateElapsed, 1000);
                                 }
-                            })
-                            .catch(() => alert("Network communication error executing verification request."));
-                        }).catch(err => {
-                            console.error("Scanner tracking error:", err);
+                            }
+                        
+                            function setDisabledStyles(button, text) {
+                                if (!button) return;
+                                button.disabled = true;
+                                button.style.setProperty('background-color', '#cbd5e1', 'important');
+                                button.style.setProperty('background', '#cbd5e1', 'important');
+                                button.style.setProperty('color', '#64748b', 'important');
+                                button.style.setProperty('border-color', '#cbd5e1', 'important');
+                                button.style.cursor = "not-allowed";
+                                button.innerHTML = text;
+                            }
+                        
+                            function stopCameraAndCloseModal() {
+                                if (statusMsg) statusMsg.style.display = "none";
+                                
+                                if (html5QrcodeScanner && html5QrcodeScanner.isScanning) {
+                                    html5QrcodeScanner.stop().then(() => {
+                                        html5QrcodeScanner.clear();
+                                        if (scannerWrapper) scannerWrapper.style.display = "none";
+                                    }).catch(() => {
+                                        if (scannerWrapper) scannerWrapper.style.display = "none";
+                                    });
+                                } else {
+                                    if (scannerWrapper) scannerWrapper.style.display = "none";
+                                }
+                            }
+                        
+                            btnCancelScan?.addEventListener("click", (e) => {
+                                e.preventDefault();
+                                stopCameraAndCloseModal();
+                            });
+                        
+                            [btnClockIn, btnClockOut].forEach(btn => {
+                                if (!btn) return;
+                        
+                                btn.addEventListener("click", function(e) {
+                                    e.preventDefault();
+                        
+                                    const targetBtn = e.target.closest('button') || this;
+                                    if (targetBtn.disabled) return;
+                        
+                                    activeAction = targetBtn.getAttribute("data-action") || "clock-in";
+                                    
+                                    if (scannerTitle) {
+                                        scannerTitle.innerText = "Scanning to " + (activeAction === 'clock-in' ? 'Clock In' : 'Clock Out');
+                                    }
+                                    if (statusMsg) statusMsg.style.display = "none";
+                                    if (scannerWrapper) scannerWrapper.style.display = "flex";
+                        
+                                    if (html5QrcodeScanner) {
+                                        html5QrcodeScanner.clear();
+                                    }
+                                    html5QrcodeScanner = new Html5Qrcode("qr-reader");
+                        
+                                    const qrConfig = {
+                                        fps: 15,
+                                        qrbox: (w, h) => { return { width: 200, height: 200 }; }
+                                    };
+                        
+                                    Html5Qrcode.getCameras().then(devices => {
+                                        if (devices && devices.length) {
+                                            const selectedCameraId = devices.length > 1 ? devices[devices.length - 1].id : devices[0].id;
+                                            
+                                            return html5QrcodeScanner.start(
+                                                selectedCameraId,
+                                                qrConfig,
+                                                onScanSuccess,
+                                                onScanFailure
+                                            );
+                                        } else {
+                                            return html5QrcodeScanner.start(
+                                                { facingMode: "user" },
+                                                qrConfig,
+                                                onScanSuccess,
+                                                onScanFailure
+                                            );
+                                        }
+                                    }).catch(err => {
+                                        console.error("Camera access error:", err);
+                                        alert("❌ Camera access error: Could not start video feed.");
+                                        stopCameraAndCloseModal();
+                                    });
+                                });
+                            });
+                        
+                            function onScanSuccess(decodedText, decodedResult) {
+                                if (!html5QrcodeScanner) return;
+                        
+                                if (statusMsg) {
+                                    statusMsg.style.display = "block";
+                                    statusMsg.style.backgroundColor = "#e0f2fe";
+                                    statusMsg.style.color = "#0369a1";
+                                    statusMsg.innerText = "📍 Verifying building coordinates...";
+                                }
+                        
+                                if (!navigator.geolocation) {
+                                    alert("❌ Geolocation is not supported by your browser.");
+                                    stopCameraAndCloseModal();
+                                    return;
+                                }
+                        
+                                navigator.geolocation.getCurrentPosition(
+                                    (position) => {
+                                        const accuracy = position.coords.accuracy;
+                        
+                                        // 1. Relaxed GPS Accuracy filter from 25m to 60m
+                                        if (accuracy > 60) {
+                                            alert("❌ GPS signal is too weak (" + Math.round(accuracy) + "m accuracy). Please go closer to the office.");
+                                            stopCameraAndCloseModal();
+                                            return;
+                                        }
+                        
+                                        html5QrcodeScanner.stop().then(() => {
+                                            html5QrcodeScanner.clear();
+                                            if (scannerWrapper) scannerWrapper.style.display = "none";
+                        
+                                            // 2. Extracted path relative to current domain to fix CORS on local environment
+                                            let parsedScannedUrl = new URL(decodedText, window.location.origin);
+                                            let verificationUrl = new URL(parsedScannedUrl.pathname, window.location.origin);
+                        
+                                            verificationUrl.searchParams.append('action', activeAction);
+                                            verificationUrl.searchParams.append('latitude', position.coords.latitude);
+                                            verificationUrl.searchParams.append('longitude', position.coords.longitude);
+                        
+                                            fetch(verificationUrl.toString(), {
+                                                method: 'GET',
+                                                headers: {
+                                                    'X-Requested-With': 'XMLHttpRequest',
+                                                    'Accept': 'application/json'
+                                                }
+                                            })
+                                            .then(res => res.json())
+                                            .then(data => {
+                                                if (data.success || data.status) {
+                                                    alert("🎉 " + data.message);
+                                                    location.reload(); 
+                                                } else {
+                                                    alert("❌ Error: " + data.message);
+                                                }
+                                            })
+                                            .catch(() => alert("Network communication error executing verification request."));
+                                        }).catch(err => {
+                                            console.error("Scanner tracking error:", err);
+                                        });
+                                    },
+                                    (error) => {
+                                        stopCameraAndCloseModal();
+                                        alert("❌ Location access denied or timed out. Please allow high-accuracy location permissions.");
+                                    },
+                                    {
+                                        enableHighAccuracy: true,
+                                        timeout: 8000,
+                                        maximumAge: 0
+                                    }
+                                );
+                            }
+                        
+                            function onScanFailure(error) {}
                         });
-                    },
-                    (error) => {
-                        stopCameraAndCloseModal();
-                        alert("❌ Location access denied or timed out. Please allow high-accuracy location permissions.");
-                    },
-                    {
-                        enableHighAccuracy: true,
-                        timeout: 8000,
-                        maximumAge: 0
-                    }
-                );
-            }
-
-            function onScanFailure(error) {}
-        });
-
-        const sidebar  = document.querySelector('.sidebar');
-        const overlay  = document.getElementById('sidebarOverlay');
-        const openBtn  = document.getElementById('openSidebar');
-        const closeBtn = document.getElementById("sidebarClose");
-
-        openBtn?.addEventListener('click', () => {
-            sidebar?.classList.add('active');
-            overlay?.classList.add('active');
-        });
-
-        overlay?.addEventListener('click', () => {
-            sidebar?.classList.remove('active');
-            overlay?.classList.remove('active');
-        });
-
-        closeBtn?.addEventListener('click', () => {
-            sidebar?.classList.remove('active');
-            overlay?.classList.remove('active');
-        });
-</script>
+                        
+                        const sidebar  = document.querySelector('.sidebar');
+                        const overlay  = document.getElementById('sidebarOverlay');
+                        const openBtn  = document.getElementById('openSidebar');
+                        const closeBtn = document.getElementById("sidebarClose");
+                        
+                        openBtn?.addEventListener('click', () => {
+                            sidebar?.classList.add('active');
+                            overlay?.classList.add('active');
+                        });
+                        
+                        overlay?.addEventListener('click', () => {
+                            sidebar?.classList.remove('active');
+                            overlay?.classList.remove('active');
+                        });
+                        
+                        closeBtn?.addEventListener('click', () => {
+                            sidebar?.classList.remove('active');
+                            overlay?.classList.remove('active');
+                        });
+                        </script>
 
 </x-layout>

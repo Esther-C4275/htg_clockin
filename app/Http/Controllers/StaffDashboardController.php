@@ -10,9 +10,9 @@ use App\Models\HtgModel;
 class StaffDashboardController extends Controller
 {
    
-    private $officeLat = 6.213735;   // office Latitude
-    private $officeLng = 6.702071;   // office Longitude
-    private $maxDistanceMeters = 20; // 20-meter geofence threshold
+    private $officeLat = 6.2135273;   
+    private $officeLng = 6.7022536;  
+    private $maxDistanceMeters = 50; 
 
     public function index()
     {
