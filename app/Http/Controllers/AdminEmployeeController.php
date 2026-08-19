@@ -21,37 +21,35 @@ class AdminEmployeeController extends Controller
     {
 
         $adminUser = Auth::user();
-        
+    
         $first_name = $request->input('first_name');
         $last_name = $request->input('last_name');
-
-        $users = User::query()->where('is_admin', false);
-
-
+    
+        $employeesQuery = User::query()->where('is_admin', false);
+    
         if ($first_name) {
-            $users->where('first_name', 'LIKE', "%$first_name%");   //the double string is just to avoid typing '%' . '$query'
+            $employeesQuery->where('first_name', 'LIKE', "%{$first_name}%");
         }
-
+    
         if ($last_name) {
-            $users->where('last_name', 'LIKE', "%$last_name%");   
+            $employeesQuery->where('last_name', 'LIKE', "%{$last_name}%");   
         }
         
-        $users = $users->latest()->get();
-        $employees = User::query()->where('is_admin', false)->latest()->get();
-        $todaysRecords = HtgModel::query()->where('date', today()->format('Y-m-d'))->get();
-
-        foreach($employees as $employee){
+      
+        $employees = $employeesQuery->latest()->get();
+    
+       
+        $todaysRecords = HtgModel::query()
+            ->where('date', today()->format('Y-m-d'))
+            ->get();
+    
+        
+        foreach ($employees as $employee) {
             $attendanceToday = $todaysRecords->where('user_id', $employee->id)->first();
-            if($attendanceToday){
-                $employee->row_status = 'Active';
-             }else{
-                $employee->row_status = 'Absent';
-             }
+            $employee->row_status = $attendanceToday ? 'Active' : 'Absent';
         }
-
-
-
-        return view('pages.admin-employee', compact('users', 'adminUser','employees'));
+    
+        return view('pages.admin-employee', compact('employees', 'adminUser'));
     }
 
     /**

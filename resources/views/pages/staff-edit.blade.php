@@ -682,14 +682,10 @@
                 margin-bottom: 8px;
             }
 
-            .mobile-brand img {
-                width: 68px;
-                height: auto;
-            }
 
             .mobile-brand img {
                 width: 60px;
-                height: auto;
+                height: 26px;
                 display: block;
             }
 
@@ -1026,8 +1022,7 @@
 
             .form-group input {
                 width: 100%;
-
-                height: 31px;
+                height: 33px;
 
                 padding: 0 7px;
 
@@ -1037,7 +1032,7 @@
 
                 font-family: "Inter", sans-serif;
 
-                font-size: 8px;
+                font-size: 12px;
 
                 font-weight: 400;
 

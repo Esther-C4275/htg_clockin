@@ -973,9 +973,10 @@
             color: #06414F;
         }
 
-        .setting-links{
+       .setting-links{
             display: none;
         }
+        
         .setting-link{
         display: flex;
         align-items: center;
@@ -1074,14 +1075,11 @@
             margin-bottom:8px;
         }
 
-        .mobile-brand img{
-            width: 68px;
-            height: auto;
-        }
+       
  
         .mobile-brand img{
             width:60px;
-            height:auto;
+            height:26px;
             display:block;
         }
 

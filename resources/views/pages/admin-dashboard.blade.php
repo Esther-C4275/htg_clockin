@@ -20,30 +20,63 @@
                     <i><img src="{{ asset('images/attendance.svg') }}" alt=""></i>
                     Attendance
                 </a>
+                <a href="{{ route('admin-setting.index') }}" class="setting-link">
+                    <i><img src="{{ asset('images/setting.svg') }}" alt="Settings"></i>
+                    <span>Settings</span>
+                </a>
             </div>
 
         </div>
 
         <div class="bottom-menu">
-            <a href="{{ route('admin-setting.index') }}">
-                <i><img src="{{ asset('images/setting.svg') }}" alt=""></i>
-                Settings
+            <div class="user-email" style="color: #B7B7B7">
+                @php
+                    $firstInitial = strtoupper(substr($adminUser->first_name, 0, 1));
+                @endphp
+    
+                <div class="profile-pic">
+                    @if($adminUser->avatar)
+                        <img src="{{ asset('storage/' . $adminUser->avatar) }}" alt="Profile"
+                        style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
+                    @else
+                        <span>{{ $firstInitial }}</span>
+                    @endif
+                </div>
+    
+                <span class="user-email-text">
+                    {{ $adminUser->email }}
+                </span>
+            </div>
+            <a href="{{ route('admin-setting.index') }}" class="setting-links">
+                <i><img src="{{ asset('images/setting.svg') }}" alt="Settings"></i>
+                <span>Settings</span>
             </a>
+            <div style="margin-left: -15px;">
             <x-adminlogout />
         </div>
+        </div>
+
+        <button class="sidebar-close" id="sidebarClose">
+            ×
+        </button>
 
     </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
 
     <!-- main content -->
     <main class="main">
         <div class="topbar">
-            <h2>Dashboard</h2>
+            <div class="mobile-brand">
+                <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+        
+                <button class="hamburger-btn" id="openSidebar">
+                    <img src="{{ asset('images/breadcrumb.svg') }}">
+                </button>
+            </div>
 
             <div class="user">
-
-
-                {{-- <img src="{{ asset('images/bell.png') }}" alt="Notifications" /> --}}
                 @php
                     $firstInitial = substr($adminUser->first_name, 0, 1);
                     $lastInitial = substr($adminUser->last_name, 0, 1);
@@ -53,7 +86,11 @@
 
                 <div class="avatar-initials">
                     <a href="{{ route('admin-setting.index') }}" style="text-decoration:none; color: #06414F">
-                        {{ $initials }}
+                        @if($adminUser->avatar)
+                            <img src="{{ asset('storage/' . $adminUser->avatar) }}" alt="Profile" style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
+                        @else
+                            {{ $initials }}
+                        @endif
                     </a>
                 </div>
                 <div>
@@ -61,6 +98,8 @@
                     <small>Admin</small>
                 </div>
             </div>
+
+            <h2>Dashboard</h2>
         </div>
 
         <div class="stat-cards">
@@ -70,7 +109,6 @@
                     <p>Total staff</p>
                 </div>
                 <div class="card-icon"><img src="{{ asset('images/Frame 62.png') }}" alt="" /></div>
-
             </div>
 
             <div class="card">
@@ -96,23 +134,7 @@
             </div>
         </div>
 
-        <div class="charts-container">
-            <div class="chart-card large">
-                <div class="chart-header">
-                    <div>
-                        <h3>Attendance</h3>
-                        <div class="chart-legend-custom">
-                            <span class="legend-dot absent"></span> Total Absent
-                            <span class="legend-dot present"></span> Total Present
-                        </div>
-                    </div>
-
-                </div>
-                <div class="chart-wrapper">
-                    <canvas id="attendanceBarChart"></canvas>
-                </div>
-            </div>
-
+        {{-- <div class="charts-container">
             <div class="chart-card small">
                 <div class="chart-header">
                     <h3>Total Employees</h3>
@@ -128,6 +150,57 @@
                     <div><span class="legend-dot hizo"></span> Hizo staff</div>
                     <div><span class="legend-dot trazo"></span> Trazo staff</div>
                     <div><span class="legend-dot glyde"></span> Glyde staff</div>
+                </div>
+            </div>
+
+            <div class="chart-card large">
+                <div class="chart-header">
+                    <div>
+                        <h3>Attendance</h3>
+                        <div class="chart-legend-custom">
+                            <span class="legend-dot absent"></span> Total Absent
+                            <span class="legend-dot present"></span> Total Present
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="attendanceBarChart"></canvas>
+                </div>
+            </div>
+        </div> --}}
+
+
+        <div class="charts-container">
+            <div class="chart-card small">
+                <div class="chart-header">
+                    <h3>Total Employees</h3>
+                    <button type="submit" class="view-members-btn">All member</button>
+                </div>
+                <div class="chart-wrapper doughnut-box">
+                    <canvas id="employeesDoughnutChart"></canvas>
+                    <div class="doughnut-center-text">
+                        <h2>{{ $totalEmployees }}</h2>
+                    </div>
+                </div>
+                <div class="doughnut-footer-legend">
+                    <div><span class="legend-dot hizo"></span> Hizo staff</div>
+                    <div><span class="legend-dot trazo"></span> Trazo staff</div>
+                    <div><span class="legend-dot glyde"></span> Glyde staff</div>
+                </div>
+            </div>
+
+            <div class="chart-card large">
+                <div class="chart-header">
+                    <div>
+                        <h3>Attendance</h3>
+                        <div class="chart-legend-custom">
+                            <span class="legend-dot absent"></span> Total Absent
+                            <span class="legend-dot present"></span> Total Present
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="attendanceBarChart"></canvas>
                 </div>
             </div>
         </div>
@@ -220,106 +293,10 @@
                             </td>
                         </tr>
                     @endforeach
-
-
-
-
-
-
-
-
-
-                    <!--<tr>
-                        <td>
-                            <div class="both-td">
-                                <input type="checkbox" class="employee-checkbox" />
-                                <img class="box-img" src="./images/Frame 208.png') }}" alt="" />
-                                <h1 class="names"> Favour Obi</h1>
-                            </div>
-                        </td>
-
-                        <td>Frontend Dev.</td>
-                        <td>Glyde</td>
-                        <td class="time-in">09:03 AM</td>
-                        <td id="time-outs">05:40 PM</td>
-                        <td>
-                            <div class="menu-container">
-                                <button class="menu-btn">⋮</button>
-                                <div class="menu-dropdown">
-                                    <a href="#">View Details</a>
-                                   
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-
-
-
-
-                    <tr>
-                        <td>
-                            <div class="both-td">
-                                <input type="checkbox" class="employee-checkbox" />
-                                <img class="box-img" src="./images/Frame 208.png') }}" alt="" />
-                                <h1 class="names"> John Doe</h1>
-                            </div>
-                        </td>
-                        <td>Backend Developer</td>
-                        <td>Trazo</td>
-                        <td id="time-ins">10:03 AM</td>
-                        <td class="time-out">07:00 PM</td>
-                        <td>
-                            <div class="menu-container">
-                                <button class="menu-btn">⋮</button>
-                                <div class="menu-dropdown">
-                                    <a href="#">View Details</a>
-                                   
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-
-
-
-
-
-
-
-
-                    <tr>
-                        <td>
-                            <div class="both-td">
-                                <input type="checkbox" class="employee-checkbox" />
-                                <img class="box-img" src="./images/Frame 208.png') }}" alt="" />
-                                <h1 class="names">Mark.J.Lopez</h1>
-                            </div>
-                        </td>
-
-                        <td>Full Stack Developer</td>
-                        <td>DevHub</td>
-                        <td class="time-in">09:03 AM</td>
-                        <td class="time-out">07:00 PM</td>
-                        <td>
-                            <div class="menu-container">
-                                <button class="menu-btn">⋮</button>
-                                <div class="menu-dropdown">
-                                    <a href="#">View Details</a>
-                                   
-                                </div>
-                            </div>
-                        </td>
-                    </tr> -->
-
-
-
-                </tbody>
+                    </tbody>
             </table>
         </div>
     </main>
-    </div>
-    </body>
-
-    </html>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -338,14 +315,14 @@
                             data: @json($absentData),
                             backgroundColor: "#CBB1E2",
                             borderRadius: 4,
-                            barThickness: 12,
+                            barThickness: 10,
                         },
                         {
                             label: "Total Present",
                             data: @json($presentData),
                             backgroundColor: "#A2D9E1",
                             borderRadius: 4,
-                            barThickness: 12,
+                            barThickness: 10,
                         },
                     ],
                 },
@@ -359,7 +336,6 @@
                             border: { dash: [5, 5] },
                             grid: { color: "#EDEDED" },
                             min: 0,
-
                             max: {{ $totalEmployees }},
                             ticks: {
                                 stepSize: Math.ceil({{ $totalEmployees }} / 4)
@@ -380,9 +356,9 @@
                     datasets: [
                         {
                             data: [{{ $hizoStaff }}, {{ $glydeStaff }}, {{ $trazoStaff }}],
-                            backgroundColor: ["#06414F", "#A3E7D8", "#2ED4A1"],
+                            backgroundColor: ["#06414F", "#C8E6F1", "#2ED4A1"],
                             borderWidth: 0,
-                            cutout: "75%",
+                            cutout: "80%",
                         },
                     ],
                 },
@@ -412,6 +388,26 @@
                         .forEach((menu) => menu.classList.remove("active"));
                 }
             });
+        });
+
+        const sidebar  = document.querySelector('.sidebar');
+        const overlay  = document.getElementById('sidebarOverlay');
+        const openBtn  = document.getElementById('openSidebar');
+        const closeBtn = document.getElementById("sidebarClose");
+        
+        openBtn?.addEventListener('click', () => {
+            sidebar?.classList.add('active');
+            overlay?.classList.add('active');
+        });
+        
+        overlay?.addEventListener('click', () => {
+            sidebar?.classList.remove('active');
+            overlay?.classList.remove('active');
+        });
+        
+        closeBtn?.addEventListener('click', () => {
+            sidebar?.classList.remove('active');
+            overlay?.classList.remove('active');
         });
     </script>
 
@@ -445,6 +441,10 @@
             z-index: 1000;
         }
 
+        .sidebar-close{
+            display: none;
+        }
+
         .logo {
             margin-bottom: 50px;
             margin-top: 8px;
@@ -455,6 +455,7 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
+            margin-left: -13px;
         }
 
         .menu a {
@@ -468,12 +469,34 @@
             font-size: 16px;
             transition: 0.3s;
             width: 177.5px;
-            /* height: 40px; */
         }
 
         .menu a:hover {
             background: white;
             color: #06414F;
+        }
+
+        .setting-links{
+            display: flex;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            padding: 14px;
+            color: #B7B7B7;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 8px;
+        }
+
+        .setting-links:hover{
+            background-color: #ffffff;
+            color: #06414F;
+        }
+
+        .menu a.setting-link{
+            display: none;
         }
 
         .bottom-menu {
@@ -489,6 +512,8 @@
             padding: 12px;
             display: flex;
             align-items: center;
+            margin-left: -13px;
+            font-size: 16px;
             gap: 12px;
             border-radius: 6px;
             transition: 0.3s;
@@ -500,7 +525,22 @@
             color: #06414F;
         }
 
-        /* LIQUID RESPONSIVE FLUID VIEW CONTAINER MAIN PANEL */
+        .hamburger-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .mobile-brand {
+            display: none;
+        }
+
+        .user-email{
+            display: none;
+        }
+
+        /* MAIN PANEL */
         .main {
             flex: 1;
             padding: 30px;
@@ -523,12 +563,13 @@
 
         }
 
-        /* HEADER COMPONENTS PROFILE CONTROL */
+        /* HEADER COMPONENTS */
         .topbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 25px;
+            flex-direction: row-reverse;
         }
 
         .topbar h2 {
@@ -536,25 +577,6 @@
             font-weight: 700;
             color: #000000;
             margin: 0;
-        }
-
-        .topbar input {
-            width: 260px;
-            padding: 10px;
-            border-radius: 20px;
-            border: 1px solid #e2e2e2;
-            font-size: 14px;
-        }
-
-        .search {
-            background-color: #06414f;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            padding: 10px 20px;
-            margin-left: 8px;
-            cursor: pointer;
-            font-size: 14px;
         }
 
         .user {
@@ -568,7 +590,6 @@
             height: 50px;
             opacity: 1;
             border-radius: 100px;
-
         }
 
         .user p {
@@ -582,7 +603,7 @@
             font-size: 12px;
         }
 
-        /* METRIC STAT CARDS ROW LAYOUT CONFIGURATION */
+        /* METRIC STAT CARDS */
         .stat-cards {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -600,13 +621,10 @@
             align-items: center;
         }
 
-        .card:hover {
+        .card:hover, .card.active-card {
             background-color: #06414F;
             color: white;
-            color: #DFDEDE;
-
         }
-
 
         .card h3 {
             font-size: 28px;
@@ -620,7 +638,9 @@
             color: #7a7a7a;
         }
 
-
+        .card:hover p, .card.active-card p {
+            color: #DFDEDE;
+        }
 
         .card-icon img {
             width: 24px;
@@ -630,21 +650,27 @@
             gap: 10px;
             padding: 10px;
             border-radius: 100px;
-            border-right-width: 1px;
-            border-bottom-width: 1px;
-            border-width: 0px 1px 1px 0px;
-            border-style: solid;
-            border-color: #06414F;
-
-
+            border: 1px solid #06414F;
         }
 
-        /* CHARTS CONTAINER GRID MATRIX */
+        /* CHARTS CONTAINER */
         .charts-container {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
+            display: flex;
+            flex-direction: row-reverse; 
             gap: 20px;
+            align-items: stretch;
             margin-bottom: 25px;
+        }
+
+        
+        .chart-card.large {
+            flex: 1.6;
+            min-width: 0; 
+        }
+
+        .chart-card.small {
+            flex: 1;
+            min-width: 0;
         }
 
         .chart-header {
@@ -665,7 +691,6 @@
             font-size: 18px;
             font-weight: 600;
             margin: 0 0 6px 0;
-
         }
 
         .chart-legend-custom {
@@ -703,7 +728,6 @@
             background-color: #3CDF90;
         }
 
-        .chart-dropdown,
         .view-members-btn {
             border: 1px solid #858484;
             background: #fff;
@@ -711,12 +735,6 @@
             border-radius: 6px;
             font-size: 12px;
             cursor: pointer;
-        }
-
-        .chart-dropdown {
-            border: none;
-            background: #FAFAFA;
-
         }
 
         .chart-wrapper {
@@ -750,12 +768,22 @@
             font-size: 13px;
         }
 
-        /* DATA LOG TABLE UI ARCHITECTURE */
+        .attendance-card {
+    order: 1; /* Moves Attendance bar chart to the left */
+    flex: 1.5; /* Gives the bar chart slightly more space if needed */
+}
+
+.donut-card {
+    order: 2; /* Moves Total Employees donut chart to the right */
+    flex: 1;
+}
+
+        /* DATA TABLE */
         .table-wrapper {
             background: #ffffff;
             border: 1px solid #E9EDF0;
             border-radius: 12px;
-            overflow: hidden;
+            overflow-x: auto;
         }
 
         table {
@@ -766,7 +794,6 @@
         }
 
         th {
-            /* background: #f9fafb; */
             padding: 16px;
             font-weight: 600;
             color: #4b5563;
@@ -782,34 +809,17 @@
         .both-td {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
         }
 
-        .box-img {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-        }
+        th {
+        position: static; /* Header stays in place relative to table content */
+    }
 
         .names {
             font-size: 14px;
             font-weight: 500;
             margin: 0;
-        }
-
-        #time-ins {
-            color: #ef4444;
-            font-weight: 500;
-        }
-
-        .time-out {
-            color: #C87B33;
-            font-weight: 500;
-        }
-
-        #time-outs {
-            color: #ef4444;
-            font-weight: 500;
         }
 
         .menu-container {
@@ -845,11 +855,7 @@
             color: #333;
         }
 
-        .menu-dropdown a:hover {
-            background: #f9fafb;
-        }
-
-        /* FLUID TABLET VIEW COMPRESSION BREAKPOINT */
+        /* FLUID TABLET & MOBILE BREAKPOINTS (MATCHING FIGMA SPEC) */
         @media (max-width: 1024px) {
             .charts-container {
                 grid-template-columns: 1fr;
@@ -859,6 +865,260 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-    </style>
 
+        @media (max-width: 768px) {
+            body {
+                background: #FFFFFF;
+            }
+
+            .main {
+                margin-left: 0 !important;
+                padding: 16px !important;
+            }
+
+            .table-wrapper {
+                max-height: 380px; 
+                overflow-y: auto;  
+                overflow-x: auto;  
+            }
+
+            table {
+                border-collapse: separate;
+                border-spacing: 0;
+                min-width: 580px; 
+            }
+
+            th {
+              top: 0;
+            }
+
+            
+            .table-wrapper::-webkit-scrollbar {
+                width: 5px;
+                height: 5px;
+            }
+
+            .table-wrapper::-webkit-scrollbar-thumb {
+                background: #CBD5E1;
+                border-radius: 6px;
+            }
+
+            /* TOP HEADER ALIGNMENT */
+            .topbar {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 20px;
+                gap: 12px;
+            }
+
+            .mobile-brand {
+                display: flex !important;
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .mobile-brand .mobile-logo {
+                width: 60px;
+                height: auto;
+            }
+
+            .hamburger-btn {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                background: none;
+                border: none;
+                padding: 0;
+                cursor: pointer;
+            }
+
+            .hamburger-btn img {
+                width: 20px;
+                height: 20px;
+            }
+
+            .user {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                order: 2;
+                margin-top: 4px;
+            }
+
+            .user .avatar-initials {
+                width: 50px;
+                height: 50px;
+                font-size: 13px;
+            }
+
+            .topbar h2 {
+                font-size: 20px;
+                font-weight: 700;
+                order: 3;
+                margin-top: 6px;
+            }
+
+            /* STAT CARDS HORIZONTAL SCROLL */
+            .stat-cards {
+                display: flex !important;
+                overflow-x: auto;
+                gap: 12px;
+                margin-bottom: 20px;
+                padding-bottom: 6px;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .stat-cards::-webkit-scrollbar {
+                display: none;
+            }
+
+            .card {
+                flex: 0 0 calc(50% - 6px);
+                min-width: 135px;
+                padding: 14px 16px;
+                border-radius: 12px;
+                scroll-snap-align: start;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .card h3 {
+                font-size: 22px;
+            }
+
+            .card p {
+                font-size: 12px;
+                white-space: nowrap;
+            }
+
+            .card-icon img {
+                width: 18px;
+                height: 18px;
+                padding: 6px;
+            }
+
+            /* CHARTS REORDER (DOUGHNUT FIRST, BAR SECOND) */
+            .charts-container {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                margin-bottom: 20px;
+            }
+
+            .chart-card {
+                padding: 16px;
+                border-radius: 12px;
+            }
+
+            .chart-card.small {
+                order: 1;
+            }
+
+            .chart-card.large {
+                order: 2;
+            }
+
+            .chart-wrapper {
+                height: 200px;
+            }
+
+            /* SIDEBAR OVERLAY FIXES */
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 78%;
+                max-width: 300px;
+                height: 100vh;
+                background: #06414F;
+                padding: 24px 20px;
+                z-index: 2000;
+                transition: left .3s ease;
+                border-top-right-radius: 24px;
+                border-bottom-right-radius: 24px;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .sidebar-close {
+                display: flex !important;
+                position: absolute;
+                top: 20px;
+                right: 16px;
+                width: 24px;
+                height: 24px;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                background: transparent;
+                color: #fff;
+                font-size: 22px;
+                cursor: pointer;
+            }
+
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(6, 65, 79, 0.5);
+                backdrop-filter: blur(4px);
+                z-index: 1500;
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            .bottom-menu .setting-links {
+                display: none !important;
+            }
+
+            .setting-link {
+                display: flex !important;
+                align-items: center;
+                gap: 12px;
+                padding: 12px;
+                color: #B7B7B7;
+                text-decoration: none;
+                font-size: 16px;
+            }
+
+            .user-email {
+                display: flex !important;
+                align-items: center;
+                gap: 10px;
+                padding: 10px 0;
+            }
+
+            .user-email .profile-pic {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background-color: #ffffff;
+                color: #06414F;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                font-size: 18px;
+                flex-shrink: 0;
+                overflow: hidden;
+            }
+
+            .menu{
+                margin-left: -15px;
+               
+            }
+
+            .menu a{
+                font-size: 18px;
+            }
+        }
+    </style>
 </x-layout>

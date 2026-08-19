@@ -74,6 +74,15 @@ class StaffRegistryController extends Controller
         ? round(($daysPresent / $expectedWorkingDays) * 100) 
         : 0;
 
+        $availableMonths = collect();
+        for ($i = 0; $i < 12; $i++) {
+            $m = Carbon::now()->subMonths($i)->startOfMonth();
+            $availableMonths->push([
+                'value' => $m->format('Y-m'),   
+                'label' => $m->format('F Y'),   
+            ]);
+        }
+
     return view('pages.staff-registry', compact(
         'user',
         'attendanceRecords',
@@ -82,7 +91,8 @@ class StaffRegistryController extends Controller
         'totalHoursFormatted',
         'attendanceRate', 
         'selectedMonthRaw',
-        'expectedWorkingDays' 
+        'expectedWorkingDays',
+        'availableMonths'
     ));
 }
 }

@@ -655,14 +655,11 @@
             margin-bottom:8px;
         }
 
-        .mobile-brand img{
-            width: 68px;
-            height: auto;
-        }
+    
  
         .mobile-brand img{
             width:60px;
-            height:auto;
+            height:26px;
             display:block;
         }
 

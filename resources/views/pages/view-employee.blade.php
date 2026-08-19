@@ -36,9 +36,37 @@
             transition: transform 0.3s ease;
         }
 
+        .sidebar-close{
+            display: none;
+         }
+
         .logo-container {
             padding: 0 24px 40px 24px;
         }
+
+        .setting-links{
+            display: flex;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            padding: 14px;
+            color: #B7B7B7;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 8px;
+        }
+
+        .setting-links:hover{
+            background-color: #ffffff;
+            color: #06414F;
+        }
+
+        .setting-link{
+            display: none;
+        }
+
 
         .nav-links {
             list-style: none;
@@ -73,6 +101,21 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
+        }
+
+        .hamburger-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .mobile-brand {
+            display: none;
+        }
+
+        .user-email{
+            display: none;
         }
 
         /* --- MAIN CONTENT AREA --- */
@@ -568,63 +611,492 @@
         }
 
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-                margin-right: 16px;
-            }
-
-            .sidebar {
-                transform: translateX(-100%);
-            }
-
-            .sidebar.active {
-                transform: translateX(0);
-            }
-
-            .main-wrapper {
-                margin-left: 0;
-                padding: 20px;
-                width: 100%;
-            }
-
-            .header {
-                justify-content: flex-start;
-            }
-
-            .user-profile-top {
-                margin-left: auto;
-            }
-
-            .profile-card {
-                grid-template-columns: 1fr;
-                padding: 20px;
-                gap: 24px;
-            }
-
-            .profile-left {
-                border-bottom: 1px solid var(--border-color);
-                padding-bottom: 24px;
-            }
+            body{
+            background: #ffffff;
         }
 
-        @media (max-width: 480px) {
-            .details-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .breadcrumb {
-                font-size: 16px;
-            }
-
-            .admin-name,
-            .admin-role {
-                display: none;
-            }
-
-            .attendance-analytics {
-                gap: 16px;
-            }
+        .main-wrapper {
+            margin-left: 0;
+            padding: 16px;
         }
+
+        .header{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-brand{
+            gap: 222px;
+        } 
+
+        .mobile-brand img{
+            margin-left: 60px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            /* flex-direction: column; */
+        }
+        .dashboard-container{
+            display: block;
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        /* ===== Sidebar ===== */
+        .sidebar{
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 78%;
+            max-width: 300px;
+            height: 100vh;
+            background: #06414F;
+            padding: 24px 20px;
+            z-index: 2000;
+            transition: left .3s ease;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+        }
+
+        .sidebar.active{
+            left: 0;
+        }
+
+        .sidebar-close {
+        display: flex;
+        position: absolute;
+        top: 25px;
+        right: 14px;
+        width: 24px;
+        height: 24px;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+       
+    }
+
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background:#06414F80;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(3px);
+        z-index: 1500;
+    }
+
+
+    .sidebar-overlay.active {
+        display: block;
+    }
+
+    .sidebar-footer a.setting-links {
+    display: none !important;
+}
+        
+        .setting-link{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+        padding: 12px;
+        gap: 5px;
+        margin-right: 0;
+        width: 100%;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        color: #b7b7b7;
+        border-radius: 8px;
+    }
+
+    .setting-link i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 20px;
+        flex-shrink: 0;
+        margin: 0;
+    }
+
+    .setting-link i img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .setting-link span {
+        line-height: 1 ;
+    }
+
+    .user-email {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 12px;
+        margin-bottom: 8px;
+        width: 100%;
+        margin-left: -30px;
+    }
+
+    .user-email .profile-pic {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        color: #06414F;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 13px;
+        flex-shrink: 0;
+        overflow: hidden;
+    }
+
+    .user-profile-item .profile-pic img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .mobile-brand{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:8px;
+            gap: 342px;
+
+        }
+
+        .mobile-brand img{
+            width: 68px;
+            height: 40px;
+            margin-left: 128px;
+            display:block;
+        }
+
+        .admin-info {
+            display: none;
+        }
+ 
+        /* .mobile-brand img{
+            width:60px;
+            height:auto;
+            display:block;
+        } */
+
+        .hamburger-btn{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            width:36px;
+            height:36px;
+            padding:0;
+            border:none;
+            background:none;
+        }
+
+        .hamburger-btn i{
+            font-size: 22px;
+            color: #111827;
+        }
+
+        .nav-links{
+            margin-left: -30px;
+        }
+
+        .nav-item a {
+            font-size: 18px;
+        }
+
+        .metrics-column{
+            display: flex;
+            flex-direction: row;
+        }
+
+        .breadcrumb{
+            font-weight: 600;
+            font-size: 16px;
+            margin-right: 159px;
+        }
+
+     body {
+        background: #ffffff;
+    }
+
+    .main-wrapper {
+        margin-left: 0;
+        padding: 16px;
+    }
+
+    /* --- Header & Navigation Bar --- */
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        margin-bottom: 16px;
+    }
+
+    .mobile-brand {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-left: 50px;
+        margin-bottom: 12px;
+    }
+
+   
+    .mobile-brand img {
+        width: 68px;
+        height: 30px;
+        margin-left: -51px;
+        display: block;
+    }
+
+    .hamburger-btn {
+        display: flex;
+        align-items: center;
+        /* justify-content: center; */
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        border: none;
+        background: none;
+    }
+
+    .breadcrumb {
+        font-weight: 700;
+        font-size: 18px;
+        margin-right: 0;
+        margin-left: 0;
+        width: 100%;
+        text-align: left;
+    }
+
+
+    .admin-info {
+        display: none;
+    }
+
+  
+    .tabs-container {
+        display: flex;
+        width: 400px;
+        background-color: #ffffff;
+        border: 1px solid #06414F;
+        border-radius: 8px;
+        padding: 0px;
+        margin-left: -1px;
+        margin-bottom: 24px;
+        box-sizing: border-box;
+    }
+
+    .tabs-container a {
+        flex: 1;
+        text-align: center;
+        padding: 10px 0;
+        font-size: 13px;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        margin-left: 0;
+        color: #06414F;
+        text-decoration: none;
+        display: block;
+        width: 50%;
+    } 
+
+   
+    .tabs-container a.active,
+    .tabs-container a:hover {
+        background-color: #06414F;
+        color: #ffffff;
+    }
+
+    /* --- Profile Details Card --- */
+    .profile-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        border: none;
+        margin-left: 29px;
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .profile-left {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 24px;
+    }
+
+    .emp-name {
+        font-size: 18px;
+        font-weight: 700;
+        margin-top: 0;
+    }
+
+    .emp-role {
+        font-size: 13px;
+        color: #6B7280;
+    }
+
+    .profile-right {
+        width: 100%;
+    }
+
+    .gender-selector {
+        display: none;
+    }
+
+    .info-section-titles {
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 16px;
+    }
+
+    .details-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 19px 56px;
+        margin-bottom: 24px;
+    }
+
+    .detail-group label {
+        font-size: 11px;
+        color: #6B7280;
+        margin-bottom: 4px;
+    }
+    .mobile-details{
+        margin-left: 30px;
+    }
+
+    .detail-group p {
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .address-section {
+        padding-top: 16px;
+        border-top: none;
+    }
+
+    
+    .dashboard-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .metrics-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        width: 100%;
+        margin-left: 28px;
+    }
+
+    .metric-card, 
+    .metric-card.white-bg {
+        background-color: #F8FAFC;
+        border: 1px solid #E2E8F0;
+        border-radius: 10px;
+        padding: 12px;
+        box-shadow: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .metric-title {
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .progress-header {
+        font-size: 10px;
+        margin-bottom: 4px;
+    }
+
+    .progress-bar-bg {
+        height: 6px;
+        margin-bottom: 12px;
+    }
+
+    .target-box {
+        padding: 6px 10px;
+        border-radius: 6px;
+    }
+
+    .target-label {
+        font-size: 9px;
+    }
+
+    .target-val {
+        font-size: 15px;
+    }
+
+    .attendance-analytics {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .chart-container {
+        width: 54px;
+        max-width: 54px;
+    }
+
+    .chart-center-text {
+        font-size: 11px;
+    }
+
+    .attendance-stats {
+        gap: 8px;
+    }
+
+    .stat-group label {
+        font-size: 8px;
+    }
+
+    .stat-group p {
+        font-size: 13px;
+        line-height: 1.1;
+    }
+
+    /* --- Back Button --- */
+    .back {
+        display: none;
+    }
+
+    .profile-pic{
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 16px !important;
+    }
+
+}
+
+        
+
+        
     </style>
     </head>
 
@@ -652,23 +1124,64 @@
                                 alt=""></i>
                         Attendance</a>
                 </li>
+                <li>
+                    <a href="{{ route('admin-setting.index') }}" class="setting-link">
+                        <i><img src="{{ asset('images/setting.svg') }}" alt="Settings"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
             </ul>
             <div class="sidebar-footer">
                 <div class="nav-item">
-                    <a href="{{ route('admin-setting.index') }}"><i><img src="{{ asset('images/setting.svg') }}"
-                                alt=""></i>
-                        Settings</a>
+
+                    <div class="user-email" style="color: #B7B7B7">
+                        @php
+                            $firstInitial = strtoupper(substr($user->first_name, 0, 1));
+                        @endphp
+            
+                        <div class="profile-pic">
+                            @if($user->avatar)
+                                <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
+                                style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
+                            @else
+                                <span>{{ $firstInitial }}</span>
+                            @endif
+                        </div>
+            
+                        <span class="user-email-text">
+                            {{ $user->email }}
+                        </span>
+                    </div>
+                    <a href="{{ route('admin-setting.index') }}" class="setting-links">
+                        <i><img src="{{ asset('images/setting.svg') }}" alt="Settings"></i>
+                        <span>Settings</span>
+                    </a>
                 </div>
+                <div style="margin-left: -30px;">
                 <x-adminlogout />
+                </div>
             </div>
+            <button class="sidebar-close" id="sidebarClose">
+                ×
+            </button>
+    
         </nav>
+
+        
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
         <main class="main-wrapper">
 
             <header class="header">
-                <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
-                    <i data-lucide="menu"></i>
-                </button>
+                <div class="mobile-brand">
+                    <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+            
+                    <button class="hamburger-btn" id="openSidebar">
+                        <img src="{{ asset('images/breadcrumb.svg') }}">
+                        {{-- <i class="fa-solid fa-align-right"></i> --}}
+                    </button>
+                </div>
+                
                 <div class="breadcrumb">
                     Employee Overview
                 </div>
@@ -699,7 +1212,7 @@
             </header>
 
             <div class="tabs-container">
-                <a href="{{ route('view-employee.show', $user->uuid) }}">
+                <a href="{{ route('view-employee.show', $user->uuid) }}" class="active">
                     Employee Profile</a>
                 <a href="{{ route('view-details.show', $user->uuid) }}">
                     Attendance Details</a>
@@ -784,8 +1297,8 @@
                                     <p>{{ $user->country }}</p>
                                 </div>
                                 <div class="detail-group">
-                                    <label>City/State</label>
-                                    <p>{{ $user->state }}</p>
+                                    <label class="mobile-details">City/State</label>
+                                    <p class="mobile-details">{{ $user->state }}</p>
                                 </div>
                             </div>
                             <div class="detail-group" style="margin-top: 4px;">
@@ -860,23 +1373,26 @@
         </main>
 
         <script>
-            // Initialize Lucide SVG icons
-            lucide.createIcons();
-
-            // Responsive Hamburger Navigation Trigger Toggle
-            const menuToggle = document.getElementById('menuToggle');
-            const sidebar = document.getElementById('sidebar');
-
-            menuToggle.addEventListener('click', (e) => {
-                sidebar.classList.toggle('active');
-                e.stopPropagation();
-            });
-
-            document.addEventListener('click', (e) => {
-                if (sidebar.classList.contains('active') && !sidebar.contains(e.target) && e.target !== menuToggle) {
-                    sidebar.classList.remove('active');
-                }
-            });
+            
+            const sidebar  = document.querySelector('.sidebar');
+                        const overlay  = document.getElementById('sidebarOverlay');
+                        const openBtn  = document.getElementById('openSidebar');
+                        const closeBtn = document.getElementById("sidebarClose");
+                        
+                        openBtn?.addEventListener('click', () => {
+                            sidebar?.classList.add('active');
+                            overlay?.classList.add('active');
+                        });
+                        
+                        overlay?.addEventListener('click', () => {
+                            sidebar?.classList.remove('active');
+                            overlay?.classList.remove('active');
+                        });
+                        
+                        closeBtn?.addEventListener('click', () => {
+                            sidebar?.classList.remove('active');
+                            overlay?.classList.remove('active');
+                        });
         </script>
     </body>
 

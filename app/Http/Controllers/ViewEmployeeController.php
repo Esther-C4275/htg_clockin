@@ -40,7 +40,7 @@ class ViewEmployeeController extends Controller
      */
 
     public function show(string $id) {
-        $adminUser = User::query()->where('is_admin', true)->latest()->get()->get(0);
+        $adminUser = Auth::user();
 
 
         $user = User::query() ->where('is_admin', false)->where('uuid', $id)->firstOrFail();

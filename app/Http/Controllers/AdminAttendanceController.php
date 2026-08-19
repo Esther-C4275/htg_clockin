@@ -15,6 +15,8 @@ class AdminAttendanceController extends Controller
      */
     public function index(Request $request)
 { 
+
+    $user = Auth::user();
     $totalEmployees = User::query()->where('is_admin', false)->count();
 
   //for the dropdown
@@ -100,7 +102,8 @@ class AdminAttendanceController extends Controller
         'absentCount',
         'lateCount',
         'onTimeCount',
-        'filter'
+        'filter',
+        'user'
     ));
 }
     /**
