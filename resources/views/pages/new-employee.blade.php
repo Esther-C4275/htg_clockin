@@ -974,7 +974,7 @@
                     font-size: 12px;
                     line-height: 100%;
                     letter-spacing: 0px;
-                    width: 391px;
+                    width: 360px;
                     height: 40px;
                     opacity: 1;
                     gap: 10px;
@@ -1042,7 +1042,7 @@
                     font-weight: 600;
                     cursor: pointer;
 
-                    width: 391px;
+                    width: 360px;
                     height: 49px;
                     opacity: 1;
                     gap: 10px;
@@ -1316,28 +1316,6 @@
                 .form-group input,
                 .form-group select {
                     height: 30px;
-                }
-
-                .sidebar {
-                    width: 210px;
-                }
-            }
-
-
-            /* =========================================================
-   VERY SMALL PHONES
-   ========================================================= */
-
-            @media (max-width: 340px) {
-
-                .main {
-                    padding-left: 9px;
-                    padding-right: 9px;
-                }
-
-                .form-group input,
-                .form-group select {
-                    height: 25px;
                 }
 
                 .sidebar {
