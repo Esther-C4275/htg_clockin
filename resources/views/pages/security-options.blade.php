@@ -711,17 +711,17 @@
 
             .profile-links {
                 display: flex;
-                gap: 15px;
+                gap: 9px;
                 /* overflow-x: auto; */
                 padding: 9px;
                 margin-bottom: 21px;
                 padding-top: 11px;
                 padding-bottom: 14px;
-                background-color: #F9F9FB;
+               
                 border-radius: 22px;
-                width: 380px;
+                width: 322px;
                 list-style-type: none;
-                margin-left: 9px;
+                margin-left: 1px;
             }
 
             .profile-links li {
@@ -732,7 +732,7 @@
             .profile-links a {
                 padding: 10px 16px;
                 border-radius: 999px;
-                background: #FFFFFF;
+                background-color: #F9F9FB;
                 color: black !important;
                 font-size: 10px;
                 font-weight: 500;

@@ -474,18 +474,6 @@
             margin-bottom: 8px;
         }
 
-        .profile-links a {
-            text-decoration: none;
-            color: #BCBCBC;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 10px;
-            border-radius: 8px;
-            transition: 0.2s;
-        }
 
         .profile-links a:hover,
         .profile-links a.active {
@@ -828,13 +816,12 @@
             /* Horizontal pills – My Profile active */
             .profile-links {
                 display: flex;
-                gap: 17px;
+                gap: 9px;
                 /* overflow-x: auto; */
                 padding: 6px;
                 margin-bottom: 20px;
-                background-color: #F9F9FB;
                 border-radius: 22px;
-                width: 385px;
+                width: 113px;
             }
 
             .profile-links li {
@@ -845,12 +832,13 @@
             .profile-links a {
                 padding: 10px 16px;
                 border-radius: 999px;
-                background: #FFFFFF;
+                background:#F9F9FB;
                 color: black !important;
                 font-size: 10px;
                 font-weight: 500;
                 gap: 6px;
                 white-space: nowrap;
+                text-decoration: none;
             }
 
             .profile-links a.active {

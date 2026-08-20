@@ -739,16 +739,26 @@
 
         @media (max-width: 768px) {
 
-        body{
-            background: #ffffff;
-        }
+            html, body {
+                width: 100%;
+                max-width: 100vw;
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden; /* Prevents side-scrolling */
+            }
 
-        .dashboard-container{
-            display: block;
-            width: 100%;
-            height: auto;
-            position: relative;
-        }
+            body {
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+/* 
+            .main-content{
+                width: 100% !important;
+                max-width: 100% !important;
+                flex: 1;
+                box-sizing: border-box;
+            } */
 
         /* ===== Sidebar ===== */
         .sidebar{
@@ -884,8 +894,9 @@
  
         .mobile-brand img{
             width:60px;
-            height:26px;
+            height:27px;
             display:block;
+            margin-left: -11px;
         }
 
         .hamburger-btn{
@@ -1084,12 +1095,12 @@
 
         .tabs{
             display: flex;
-        width: 100%;
+        width: 352px;
         background-color: #ffffff;
         border: 1px solid #06414F;
         border-radius: 8px;
         padding: 0px;
-        
+        margin-left: 9px;
         margin-bottom: 24px;
         box-sizing: border-box;
         }

@@ -531,7 +531,7 @@
                 display: none;
             }
 
-            .menu a.setting-link {
+            .menu a #setting-link {
                 display: none;
             }
 
@@ -796,7 +796,7 @@
                     width: 100%;
                     min-height: 100vh;
                     margin-left: 0;
-                    padding: 38px 10px 25px;
+                    padding: 1px 10px 25px;
                     box-sizing: border-box;
                     position: relative;
                 }
@@ -833,8 +833,8 @@
 
                 .main .mobile-logo img {
                     display: block;
-                    width: 50px;
-                    height: 23.6px;
+                    width: 53px;
+                    height: 30.6px;
                 }
 
 
@@ -858,8 +858,9 @@
                     font-size: 18px;
                     line-height: 1;
                     cursor: pointer;
-                    margin-top: 25px;
+                    margin-top: -9px;
                     z-index: 100;
+                    margin-right: 10px;
                 }
 
 
@@ -919,6 +920,7 @@
                     font-weight: 600;
                     line-height: 1.2;
                     margin: 18px 0 0 0;
+                    margin-bottom: 10px;
                 }
 
 
@@ -972,7 +974,7 @@
                     font-size: 12px;
                     line-height: 100%;
                     letter-spacing: 0px;
-                    width: 415px;
+                    width: 391px;
                     height: 40px;
                     opacity: 1;
                     gap: 10px;
@@ -1040,7 +1042,7 @@
                     font-weight: 600;
                     cursor: pointer;
 
-                    width: 414px;
+                    width: 391px;
                     height: 49px;
                     opacity: 1;
                     gap: 10px;
@@ -1101,7 +1103,7 @@
                 .menu {
                     display: flex;
                     flex-direction: column;
-                    gap: 12px;
+                    gap: 18px;
                     margin-left: -10px;
                 }
 
@@ -1190,13 +1192,13 @@
                     display: none !important;
                 }
 
-                .setting-link {
+                #setting-link {
                     display: flex;
                     align-items: center;
                     justify-content: flex-start;
                     text-align: left;
                     padding: 12px;
-                    gap: 5px;
+                    gap: 9px;
                     margin-right: 0;
                     width: 100%;
                     text-decoration: none;
@@ -1204,9 +1206,10 @@
                     font-weight: 400;
                     color: #b7b7b7;
                     border-radius: 8px;
+                    margin-left: -4px;
                 }
 
-                .setting-link i {
+                #setting-link i {
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -1216,13 +1219,13 @@
                     margin: 0;
                 }
 
-                .setting-link i img {
+                #setting-link i img {
                     width: 100%;
                     height: 100%;
                     object-fit: contain;
                 }
 
-                .setting-link span {
+                #setting-link span {
                     line-height: 1;
                 }
 
@@ -1380,7 +1383,7 @@
                                 <i><img src="{{ asset('images/attendance.svg') }}" alt=""></i>
                                 Attendance
                             </a>
-                            <a href="{{ route('admin-setting.index') }}" class="setting-link">
+                            <a href="{{ route('admin-setting.index') }}" id="setting-link">
                                 <i><img src="{{ asset('images/setting.svg') }}" alt="Settings"></i>
                                 <span>Settings</span>
                             </a>

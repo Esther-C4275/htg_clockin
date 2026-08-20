@@ -783,27 +783,27 @@
                 
                 .settings-links {
                     flex-direction: row;
-                    gap: 14px;
+                    gap: 9px;
                     /* overflow-x: auto; */
                     padding: 7px;
                     margin-bottom: 8px;
-                    background-color: #F9F9FB;
+                    /* background-color: #F9F9FB; */
                     border-radius: 22px;
-                    width: 385px;
+                    width: 322px;
                     
                 }
 
                 .settings-links a {
                     flex-shrink: 0;
-                    padding: 10px 16px;
+                    padding: 10px;
                     border-radius: 999px;
-                    background: #FFFFFF;
+                    background: #F9F9FB;
                     color: black !important;
                     font-size: 10px;
                     font-weight: 500;
                     gap: 6px;
                     white-space: nowrap;
-                    width: 114px;
+                    width: 113px;
                 }
 
                 .settings-links a.active {

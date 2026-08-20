@@ -616,9 +616,30 @@
         }
 
         @media (max-width: 768px) {
-            body{
-            background: #ffffff;
-        }
+            html, body {
+        width: 100%;
+        max-width: 100vw;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Prevents side-scrolling */
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    /* Force your layout wrappers to take the full width */
+    main,
+    .main-content,
+    .dashboard,
+    .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 1;
+        box-sizing: border-box;
+    }
 
         .main-wrapper {
             margin-left: 0;
@@ -630,13 +651,9 @@
             flex-direction: column;
         }
 
-        .mobile-brand{
+        /* .mobile-brand{
             gap: 222px;
-        } 
-
-        .mobile-brand img{
-            margin-left: 60px;
-        }
+        }  */
 
         .breadcrumb {
             display: flex;
@@ -653,10 +670,11 @@
         .sidebar{
             position: fixed;
             top: 0;
+            bottom: 0;
             left: -100%;
             width: 78%;
             max-width: 300px;
-            height: 100vh;
+            height: 100dvh;
             background: #06414F;
             padding: 24px 20px;
             z-index: 2000;
@@ -753,9 +771,14 @@
         margin-left: -34px;
     }
 
+    .user-email-text{
+        margin-bottom: 8px;
+
+    }
+
     .user-email .profile-pic {
-        width: 32px;
-        height: 32px;
+        width: 32px !important;
+        height: 32px !important;
         border-radius: 50%;
         background-color: #ffffff;
         color: #06414F;
@@ -775,7 +798,7 @@
         border-radius: 50%;
     }
 
-       .mobile-brand{
+       /* .mobile-brand{
             display:flex;
             justify-content:space-between;
             align-items:center;
@@ -789,7 +812,7 @@
             height: 40px;
             margin-left: 128px;
             display:block;
-        }
+        } */
 
         .admin-info {
             display: none;
@@ -810,6 +833,7 @@
             padding:0;
             border:none;
             background:none;
+            margin-right: 29px;
         }
 
         .hamburger-btn i{
@@ -866,19 +890,8 @@
     .mobile-brand img {
         width: 68px;
         height: 30px;
-        margin-left: -51px;
+        margin-left: -58px;
         display: block;
-    }
-
-    .hamburger-btn {
-        display: flex;
-        align-items: center;
-        /* justify-content: center; */
-        width: 36px;
-        height: 36px;
-        padding: 0;
-        border: none;
-        background: none;
     }
 
     .breadcrumb {
@@ -898,12 +911,12 @@
   
     .tabs-container {
         display: flex;
-        width: 400px;
+        width: 352px;
         background-color: #ffffff;
         border: 1px solid #06414F;
         border-radius: 8px;
         padding: 0px;
-        margin-left: -1px;
+        margin-left: 9px;
         margin-bottom: 24px;
         box-sizing: border-box;
     }
@@ -937,7 +950,7 @@
         align-items: center;
         padding: 0;
         border: none;
-        margin-left: 29px;
+        margin-left: 15px;
         border-radius: 0;
         width: 100%;
     }
@@ -986,7 +999,7 @@
     .detail-group label {
         font-size: 11px;
         color: #6B7280;
-        margin-bottom: 4px;
+        
     }
     .mobile-details{
         margin-left: 30px;
@@ -1014,7 +1027,7 @@
         grid-template-columns: 1fr 1fr;
         gap: 12px;
         width: 100%;
-        margin-left: 28px;
+        margin-left: 4px;
     }
 
     .metric-card, 
@@ -1096,6 +1109,7 @@
         width: 50px !important;
         height: 50px !important;
         font-size: 16px !important;
+        margin-bottom: 9px;
     }
 
 }

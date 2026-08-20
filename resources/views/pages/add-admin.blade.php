@@ -596,10 +596,10 @@
                 /* overflow-x: auto; */
                 padding-bottom: 4px;
                 width: 100%;
-                background-color: #F9F9FB;
+                
                 width: 355px;
                 /* height: 38px; */
-                gap: 11px;
+                gap: 4px;
                 opacity: 1;
                 border-radius: 100px;
                 border-width: 1px;
@@ -615,7 +615,7 @@
                 font-weight: 500;
                 text-decoration: none;
                 color: black;
-                background: #FFFFFF;
+                background-color: #F9F9FB;
                 white-space: nowrap;
                 margin-left: 8px;
                 margin-bottom: 5px;
