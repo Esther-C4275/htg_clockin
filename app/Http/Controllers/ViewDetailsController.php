@@ -64,7 +64,8 @@ class ViewDetailsController extends Controller
             ->whereYear('clock_in', $selectedYear)
             ->whereMonth('clock_in', $selectedMonth)
             ->orderBy('clock_in', 'desc')
-            ->get();
+            ->paginate(10)
+            ->appends(request()->query());
 
 
             $presentDaysCount = $attendanceRecords

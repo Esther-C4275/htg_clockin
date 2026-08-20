@@ -74,7 +74,11 @@
             flex-direction: column;
             gap: 8px;
             padding: 0 12px;
-            margin-top: 31px;
+            margin-top: 14px;
+        }
+
+        .logo{
+            margin-left: -27px;
         }
 
         .nav-item a {
@@ -88,6 +92,7 @@
             border-radius: 6px;
             transition: all 0.2s ease;
             font-size: 16px;
+            margin-left: -35px;
         }
 
         .nav-item a:hover {
@@ -707,7 +712,7 @@
         justify-content: flex-start;
         text-align: left;
         padding: 12px;
-        gap: 5px;
+        gap: 10px;
         margin-right: 0;
         width: 100%;
         text-decoration: none;
@@ -715,6 +720,7 @@
         font-weight: 500;
         color: #b7b7b7;
         border-radius: 8px;
+        margin-left: -34px;
     }
 
     .setting-link i {
@@ -744,7 +750,7 @@
         padding: 10px 12px;
         margin-bottom: 8px;
         width: 100%;
-        margin-left: -30px;
+        margin-left: -34px;
     }
 
     .user-email .profile-pic {
@@ -769,7 +775,7 @@
         border-radius: 50%;
     }
 
-    .mobile-brand{
+       .mobile-brand{
             display:flex;
             justify-content:space-between;
             align-items:center;
@@ -812,7 +818,7 @@
         }
 
         .nav-links{
-            margin-left: -30px;
+            margin-left:1px;
         }
 
         .nav-item a {

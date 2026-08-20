@@ -36,12 +36,10 @@ class AdminEmployeeController extends Controller
         }
         
       
-        $employees = $employeesQuery->latest()->get();
+        $employees = $employeesQuery->latest()->paginate(10)->appends($request->query());
     
        
-        $todaysRecords = HtgModel::query()
-            ->where('date', today()->format('Y-m-d'))
-            ->get();
+        $todaysRecords = HtgModel::query()->where('date', today()->format('Y-m-d'))->whereIn('user_id', $employees->pluck('id'))->get();
     
         
         foreach ($employees as $employee) {

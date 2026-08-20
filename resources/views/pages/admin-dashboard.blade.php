@@ -769,14 +769,14 @@
         }
 
         .attendance-card {
-    order: 1; /* Moves Attendance bar chart to the left */
-    flex: 1.5; /* Gives the bar chart slightly more space if needed */
-}
+            order: 1; 
+            flex: 1.5; 
+        }
 
-.donut-card {
-    order: 2; /* Moves Total Employees donut chart to the right */
-    flex: 1;
-}
+        .donut-card {
+            order: 2; 
+            flex: 1;
+        }
 
         /* DATA TABLE */
         .table-wrapper {
@@ -855,7 +855,6 @@
             color: #333;
         }
 
-        /* FLUID TABLET & MOBILE BREAKPOINTS (MATCHING FIGMA SPEC) */
         @media (max-width: 1024px) {
             .charts-container {
                 grid-template-columns: 1fr;
@@ -903,7 +902,7 @@
                 border-radius: 6px;
             }
 
-            /* TOP HEADER ALIGNMENT */
+            
             .topbar {
                 display: flex;
                 flex-direction: column;
@@ -960,7 +959,7 @@
                 margin-top: 6px;
             }
 
-            /* STAT CARDS HORIZONTAL SCROLL */
+            
             .stat-cards {
                 display: flex !important;
                 overflow-x: auto;
@@ -1001,7 +1000,7 @@
                 padding: 6px;
             }
 
-            /* CHARTS REORDER (DOUGHNUT FIRST, BAR SECOND) */
+           
             .charts-container {
                 display: flex;
                 flex-direction: column;
@@ -1026,20 +1025,20 @@
                 height: 200px;
             }
 
-            /* SIDEBAR OVERLAY FIXES */
+           
             .sidebar {
                 position: fixed;
                 top: 0;
                 left: -100%;
                 width: 78%;
-                max-width: 300px;
+                max-width: 260px;
                 height: 100vh;
                 background: #06414F;
                 padding: 24px 20px;
                 z-index: 2000;
                 transition: left .3s ease;
-                border-top-right-radius: 24px;
-                border-bottom-right-radius: 24px;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
             }
 
             .sidebar.active {
@@ -1049,8 +1048,8 @@
             .sidebar-close {
                 display: flex !important;
                 position: absolute;
-                top: 20px;
-                right: 16px;
+                top: 25px;
+                right: 14px;
                 width: 24px;
                 height: 24px;
                 align-items: center;
@@ -1058,7 +1057,7 @@
                 border: none;
                 background: transparent;
                 color: #fff;
-                font-size: 22px;
+                font-size: 18px;
                 cursor: pointer;
             }
 
@@ -1119,6 +1118,11 @@
             .menu a{
                 font-size: 18px;
             }
+
+            .view-members-btn{
+                display: none;
+            }
+
         }
     </style>
 </x-layout>

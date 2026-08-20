@@ -40,7 +40,8 @@ class AdminAttendanceController extends Controller
             $query->whereBetween('date', [$startDate, $endDate]);
         })
         ->latest()
-        ->get();
+        ->paginate(10)
+        ->appends($request->query());
 
    
     $filteredRecords = HtgModel::query()
@@ -82,12 +83,9 @@ class AdminAttendanceController extends Controller
                 $start = Carbon::parse($attendance->clock_in);
                 $end = Carbon::parse($attendance->clock_out);
                 
-              
                 $fractionalHours = $start->diffInMinutes($end) / 60;
-                
-              
                 $employee->total_hours = round($fractionalHours, 1) . " hrs";
-            }else {
+            } else {
                 $employee->time_string = $filter === 'today' ? $clockInStr . " - Present" : $clockInStr . " - Done";
                 $employee->row_status = 'Active';
                 $employee->total_hours = $filter === 'today' ? "Counting..." : "—";

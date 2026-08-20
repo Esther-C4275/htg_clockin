@@ -828,13 +828,13 @@
             /* Horizontal pills – My Profile active */
             .profile-links {
                 display: flex;
-                gap: 2px;
+                gap: 17px;
                 /* overflow-x: auto; */
                 padding: 6px;
                 margin-bottom: 20px;
                 background-color: #F9F9FB;
                 border-radius: 22px;
-                width: 409px;
+                width: 385px;
             }
 
             .profile-links li {
@@ -847,7 +847,7 @@
                 border-radius: 999px;
                 background: #FFFFFF;
                 color: black !important;
-                font-size: 13px;
+                font-size: 10px;
                 font-weight: 500;
                 gap: 6px;
                 white-space: nowrap;

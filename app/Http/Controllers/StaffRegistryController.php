@@ -23,7 +23,8 @@ class StaffRegistryController extends Controller
         ->whereYear('date', $year)
         ->whereMonth('date', $month)
         ->orderBy('date', 'asc')
-        ->get();
+        ->paginate(10)
+        ->appends($request->query());
 
     
     $startOfMonth = $date->copy()->startOfMonth();

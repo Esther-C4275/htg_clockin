@@ -631,11 +631,10 @@
                     justify-content: flex-start;
                     text-align: left;
                     padding: 12px;
-                    gap: 5px;
+                    gap: 10px;
                     width: 100%;
                     text-decoration: none;
                     font-size: 18px;
-                    font-weight: 500;
                     color: #b7b7b7;
                     border-radius: 8px;
                 }
@@ -686,7 +685,7 @@
                     width: 100%;
                 }
 
-                /* Topbar – only logo + hamburger */
+               
                 .topbar {
                     margin-bottom: 20px;
                     padding: 0;
@@ -784,13 +783,13 @@
                 
                 .settings-links {
                     flex-direction: row;
-                    gap: 2px;
+                    gap: 14px;
                     /* overflow-x: auto; */
-                    padding: 6px;
+                    padding: 7px;
                     margin-bottom: 8px;
                     background-color: #F9F9FB;
                     border-radius: 22px;
-                    width: 409px;
+                    width: 385px;
                     
                 }
 
@@ -800,10 +799,11 @@
                     border-radius: 999px;
                     background: #FFFFFF;
                     color: black !important;
-                    font-size: 13px;
+                    font-size: 10px;
                     font-weight: 500;
                     gap: 6px;
                     white-space: nowrap;
+                    width: 114px;
                 }
 
                 .settings-links a.active {

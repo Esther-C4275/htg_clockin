@@ -14,11 +14,17 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         // Redirect unauthenticated users based on the URL path they tried to access
         $middleware->redirectGuestsTo(function (Request $request) {
-            if ($request->is('admin') || $request->is('admin/*')) {
+            if (
+                $request->is('admin-*') ||
+                $request->is('add-admin') ||
+                $request->is('view-details*') ||
+                $request->is('view-employee*') ||
+                $request->is('security-options*')
+            ) {
                 return route('login');
             }
 
-            return route('user-login'); // Staff login route
+            return route('user-login'); 
         });
     })
     ->withExceptions(function (Exceptions $exceptions): void {

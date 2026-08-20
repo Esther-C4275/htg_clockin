@@ -58,6 +58,11 @@ Route::middleware(['auth', 'can:admin-only'])->group(function () {
     Route::resource('admin-setting', AdminSettingController::class);
     Route::get('/add-admin', [AddAdminController::class, 'index'])->name('index.add');
     Route::post('/add-admin', [AddAdminController::class, 'store'])->name('admin.store');
+    Route::get('/security-options', [SecurityController::class, 'index'])->name('security.index');
+    Route::put('/security-options/password', [SecurityController::class, 'updatePassword'])->name('security.update');
+
+
+
     
 });
 //Route::put('/admin-setting/password', [AdminSettingController::class, 'updatePassword'])->name('admin-setting.update-password')->middleware('auth');
@@ -67,8 +72,6 @@ Route::get('/staff-dashboard', [StaffDashboardController::class,'index'])->name(
 Route::post('/staff-dashboard/clock-in', [StaffDashboardController::class, 'clockIn'])->name('clock.in')->middleware('auth');
 Route::post('/staff-dashboard/clock-out', [StaffDashboardController::class, 'clockOut'])->name('clock.out')->middleware('auth');
 
-Route::get('/security-options', [SecurityController::class, 'index'])->name('security.index');
-Route::put('/security-options/password', [SecurityController::class, 'updatePassword'])->name('security.update');
 
 
 Route::get('/staff-id', [StaffIdController::class,'front'])->name('index.frontId')->middleware('auth');
@@ -89,6 +92,7 @@ Route::post('/setup-password/{id}', [SetupPasswordController::class, 'updatePass
 
 Route::get('/admin/setup-password/{id}', [AdminSetupPasswordController::class, 'showSetupForm'])->name('admin.password.setup')->middleware('signed');
 Route::post('/admin/setup-password/{id}', [AdminSetupPasswordController::class, 'updatePassword'])->name('admin.password.update-setup');
+
 
 
 

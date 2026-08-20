@@ -4,6 +4,7 @@
             background: white;
             width: auto;
         }
+
         body {
             height: 100vh;
             padding: 0;
@@ -11,10 +12,12 @@
             font-family: "Inter", sans-serif;
             background-color: #fafafa;
         }
+
         .container {
             display: flex;
             height: 100vh;
         }
+
         .sidebar {
             width: 230px;
             background: #06414F;
@@ -30,18 +33,22 @@
             overflow: hidden;
             z-index: 1000;
         }
+
         .logo {
             margin-bottom: 50px;
         }
+
         .sidebar-close {
             display: none;
         }
+
         .menu {
             display: flex;
             flex-direction: column;
             gap: 12px;
             margin-left: -13px;
         }
+
         .menu a {
             text-decoration: none;
             color: #B7B7B7;
@@ -54,16 +61,19 @@
             transition: 0.3s;
             width: 177.5px;
         }
+
         .menu a:hover {
             background: white;
             color: #06414F;
         }
+
         .bottom-menu {
             display: flex;
             flex-direction: column;
             gap: 8px;
             margin-bottom: 50px;
         }
+
         .bottom-menu a {
             text-decoration: none;
             color: #B7B7B7;
@@ -77,10 +87,12 @@
             font-size: 16px;
             margin-left: -10px;
         }
+
         .bottom-menu a:hover {
             background: white;
             color: #06414F;
         }
+
         .setting-links {
             display: flex;
             align-items: center;
@@ -93,13 +105,16 @@
             font-weight: 500;
             border-radius: 8px;
         }
+
         .setting-links:hover {
             background-color: #ffffff;
             color: #06414F;
         }
+
         .setting-link {
             display: none;
         }
+
         .hamburger-btn {
             display: none;
             background: transparent;
@@ -107,21 +122,26 @@
             font-size: 24px;
             cursor: pointer;
         }
+
         .mobile-brand {
             display: none;
         }
+
         .user-email {
             display: none;
         }
+
         .main {
             flex: 1;
             padding: 30px;
             margin-left: 270px;
         }
+
         .admin {
             display: flex;
             gap: 700px;
         }
+
         .admin h1 {
             font-weight: 600;
             font-size: 32px;
@@ -129,11 +149,13 @@
             letter-spacing: 0px;
             margin-bottom: 30px;
         }
+
         .admin-info {
             display: flex;
             align-items: center;
             gap: 12px;
         }
+
         .admin-avatar {
             width: 40px;
             height: 40px;
@@ -141,16 +163,19 @@
             object-fit: cover;
             margin-left: 25px;
         }
+
         .admin-name {
             font-size: 14px;
             font-weight: 600;
             margin-bottom: -10px;
             margin-left: -2px;
         }
+
         .admin-role {
             font-size: 12px;
             color: var(--text-muted);
         }
+
         /* CONTENT AREA */
         .content {
             display: grid;
@@ -158,6 +183,7 @@
             gap: 25px;
             width: 66%;
         }
+
         /* LEFT SETTINGS */
         .settings-card {
             border: 1px solid #EDEDED;
@@ -167,22 +193,26 @@
             height: 650px;
             margin-top: 18px;
         }
+
         .settings-card h3 {
             font-size: 18px;
             margin-bottom: 8px;
             font-weight: 600;
             margin-top: -5px;
         }
+
         .settings-card .small-text {
             color: #616060;
             font-size: 12px;
             margin-bottom: 45px;
         }
+
         .settings-links {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
+
         .settings-links a {
             text-decoration: none;
             color: #BCBCBC;
@@ -192,14 +222,17 @@
             font-size: 14px;
             transition: 0.3s;
         }
+
         .settings-links a:hover {
             color: #06414F;
             font-weight: 600;
         }
+
         /* FORM */
         form {
             width: 44%;
         }
+
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -208,16 +241,19 @@
             margin-top: 22px;
             margin-left: -330px;
         }
+
         .form-group {
             display: flex;
             flex-direction: column;
         }
+
         .form-group label {
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 10px;
             color: #111;
         }
+
         .form-group input {
             height: 39px;
             width: 100%;
@@ -230,6 +266,7 @@
             box-sizing: border-box;
             transition: border-color 0.2s;
         }
+
         .form-select {
             padding: 9px 16px;
             border-radius: 10px;
@@ -239,40 +276,52 @@
             outline: none;
             transition: border-color 0.2s, color 0.2s;
         }
+
         .form-group input[type="date"] {
             color: #767676;
         }
+
         .form-group input[type="date"]:valid {
             color: #000000;
         }
+
         .form-group input[type="date"]::-webkit-calendar-picker-indicator {
             cursor: pointer;
             opacity: 0.6;
         }
+
         .form-group input[type="date"]:valid::-webkit-calendar-picker-indicator {
             opacity: 1;
         }
+
         .form-select:invalid {
             color: #767676;
         }
+
         .form-select option[value=""][disabled] {
             color: #767676;
         }
+
         .form-select:valid {
             color: #000;
         }
+
         .form-select option {
             color: #000;
         }
+
         .form-select option[value=""] {
             color: #9CA3AF;
         }
+
         .form-group input::placeholder {
             color: #767676;
         }
+
         .full-width {
             grid-column: span 2;
         }
+
         .btn {
             margin-top: 70px;
             width: 790px;
@@ -288,12 +337,14 @@
             transition: 0.3s;
             margin-left: -333px;
         }
+
         .both {
             display: flex;
             gap: 20px;
             width: 100%;
             align-items: flex-start;
         }
+
         .initials {
             width: 60px;
             height: 60px;
@@ -308,6 +359,7 @@
             text-transform: uppercase;
             border: 1px solid #C5DCF2;
         }
+
         .initials-pic {
             width: 50px;
             height: 50px;
@@ -322,23 +374,49 @@
             text-transform: uppercase;
             border: 1px solid #C5DCF2;
         }
+
         #setting-link {
             display: none;
         }
 
-        .mobile-tabs{
+        .mobile-tabs {
             display: none;
         }
 
-        .mobile-profile{
+        .mobile-profile {
             display: none;
         }
 
-        
+        .logout {
+            text-decoration: none;
+            padding: 12px 16px;
+            width: 200px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-left: -10px;
+            font-size: 18px;
+            background: transparent;
+            border: none;
+            color: #B7B7B7;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            /* transition: background 0.3s ease, color 0.3s ease */
+        }
 
-    
+        .logout:hover {
+            background: #fff;
+            color: #06414F;
+           
+        }
+
+
+
+
         /* ===== MOBILE STYLES ===== */
         @media (max-width: 768px) {
+
             html,
             body {
                 width: 100%;
@@ -363,6 +441,7 @@
                 border-top-right-radius: 40px;
                 border-bottom-right-radius: 40px;
             }
+
             .sidebar.active {
                 left: 0;
             }
@@ -393,13 +472,14 @@
                 -webkit-backdrop-filter: blur(3px);
                 z-index: 1500;
             }
+
             .sidebar-overlay.active {
                 display: block;
             }
 
-            
+
             .setting-links,
-            
+
             .settings-card,
             .admin-info,
             .admin h1,
@@ -407,20 +487,22 @@
                 display: none !important;
             }
 
-           
+
             .mobile-brand {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding: 16px 0 8px;   
+                padding: 16px 0 8px;
                 margin-bottom: 0;
                 width: 100%;
             }
+
             .mobile-brand img {
                 width: 60px;
                 height: 26px;
                 display: block;
             }
+
             .hamburger-btn {
                 display: flex !important;
                 align-items: center;
@@ -432,15 +514,16 @@
                 background: none;
                 flex-shrink: 0;
             }
+
             .hamburger-btn img {
                 width: 22px;
                 height: 22px;
             }
 
-          
+
             .main {
                 margin-left: 0 !important;
-                padding: 0 20px 40px !important;   
+                padding: 0 20px 40px !important;
                 width: 100%;
                 box-sizing: border-box;
                 overflow-x: hidden;
@@ -459,6 +542,7 @@
                 padding: 8px 0 16px;
                 width: 100%;
             }
+
             .mobile-profile .avatar {
                 width: 40px;
                 height: 40px;
@@ -474,22 +558,26 @@
                 overflow: hidden;
                 flex-shrink: 0;
             }
+
             .mobile-profile .avatar img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
             }
+
             .mobile-profile .info h2 {
                 font-size: 14px;
                 font-weight: 600;
                 margin: 0;
                 color: #111;
             }
+
             .mobile-profile .info p {
                 font-size: 12px;
                 color: #6B7280;
                 margin: 0;
             }
+
             .mobile-profile .notif {
                 margin-left: auto;
                 width: 36px;
@@ -500,35 +588,39 @@
                 flex-shrink: 0;
             }
 
-            
+
             .mobile-tabs {
                 display: flex;
-                gap: 2px;
+
                 margin-bottom: 24px;
                 /* overflow-x: auto; */
                 padding-bottom: 4px;
                 width: 100%;
                 background-color: #F9F9FB;
-                width: 360px;
-                height: 38px;
-                gap: 4px;
+                width: 355px;
+                /* height: 38px; */
+                gap: 11px;
                 opacity: 1;
                 border-radius: 100px;
                 border-width: 1px;
-                padding: 7px;
+                padding: 6px;
+                padding-bottom: 3px;
             }
 
             .mobile-tabs a {
                 flex-shrink: 0;
-                 padding: 10px 16px; 
+                padding: 10px 16px;
                 border-radius: 9999px;
-                font-size: 13px;
+                font-size: 10px;
                 font-weight: 500;
                 text-decoration: none;
                 color: black;
                 background: #FFFFFF;
                 white-space: nowrap;
+                margin-left: 8px;
+                margin-bottom: 5px;
             }
+
             .mobile-tabs a.active {
                 background: #06414F;
                 color: #fff;
@@ -540,6 +632,7 @@
                 margin: 0 !important;
                 box-sizing: border-box;
             }
+
             .form-grid {
                 display: flex !important;
                 flex-direction: column;
@@ -547,15 +640,18 @@
                 width: 100% !important;
                 margin: 0 !important;
             }
+
             .form-group {
                 width: 100%;
             }
+
             .form-group label {
                 font-size: 14px;
                 font-weight: 600;
                 margin-bottom: 8px;
                 color: #111;
             }
+
             .form-group input,
             .form-select {
                 height: 48px;
@@ -567,6 +663,7 @@
                 background: #fff;
                 box-sizing: border-box;
             }
+
             .form-group input::placeholder,
             .form-select:invalid {
                 color: #9CA3AF;
@@ -590,17 +687,19 @@
                 font-size: 18px;
                 margin-top: 10px;
             }
+
             .menu a {
                 margin-bottom: 10px;
                 width: auto;
                 font-size: 18px;
             }
+
             #setting-link {
                 display: flex;
                 align-items: center;
                 justify-content: flex-start;
                 padding: 12px;
-                gap: 5px;
+                gap: 9px;
                 width: 100%;
                 text-decoration: none;
                 font-size: 18px;
@@ -608,6 +707,7 @@
                 color: #b7b7b7;
                 border-radius: 8px;
             }
+
             #setting-link i {
                 display: flex;
                 align-items: center;
@@ -617,14 +717,17 @@
                 flex-shrink: 0;
                 margin: 0;
             }
+
             #setting-link i img {
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
             }
+
             #setting-link span {
                 line-height: 1;
             }
+
             .user-email {
                 display: flex;
                 align-items: center;
@@ -634,6 +737,7 @@
                 width: 100%;
                 margin-left: -14px;
             }
+
             .user-email .profile-pic {
                 width: 32px;
                 height: 32px;
@@ -647,6 +751,11 @@
                 font-size: 13px;
                 flex-shrink: 0;
                 overflow: hidden;
+            }
+
+            .logout{
+                margin-left: -14px;
+                margin-left: -10px;
             }
         }
     </style>
@@ -693,16 +802,19 @@
                         {{ $user->email ?? '' }}
                     </span>
                 </div>
-            
+
                 <a href="{{ route('admin-setting.index') }}" class="setting-links">
                     <i><img src="{{ asset('images/setting.svg') }}" alt="Settings"></i>
                     <span>Settings</span>
                 </a>
-            
-                <div style="margin-left: -10px">
-                    <x-adminlogout />
-                </div>
-            </div> 
+
+                <form method="POST" action="{{ route('admin.logout') }}">
+                    @csrf
+                    <button type="submit" class="logout" onclick="localStorage.clear();">
+                        <img src="{{ asset('images/logout.svg') }}">Logout</button>
+                </form>
+
+            </div>
             </div>
             <button class="sidebar-close" id="sidebarClose">×</button>
         </aside>
@@ -710,7 +822,7 @@
         <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
         <main class="main">
-            
+
             <div class="mobile-brand">
                 <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
                 <button class="hamburger-btn" id="openSidebar">
@@ -718,7 +830,7 @@
                 </button>
             </div>
 
-         
+
             <div class="admin">
                 <h1>Add New Admin</h1>
                 <div class="admin-info">
@@ -737,12 +849,12 @@
                 </div>
             </div>
 
-           
+
             <div class="mobile-profile">
                 @php
                     $firstInitial = strtoupper(substr($user->first_name, 0, 1));
-                    $lastInitial  = strtoupper(substr($user->last_name, 0, 1));
-                    $initials     = $firstInitial . $lastInitial;
+                    $lastInitial = strtoupper(substr($user->last_name, 0, 1));
+                    $initials = $firstInitial . $lastInitial;
                 @endphp
                 <div class="avatar">
                     @if($user->avatar)
@@ -755,7 +867,7 @@
                     <h2>{{ $user->first_name }} {{ $user->last_name }}</h2>
                     <p>Admin</p>
                 </div>
-                
+
             </div>
 
             <!-- Mobile tabs -->
@@ -795,7 +907,8 @@
                 <form action="{{ route('admin.store') }}" method="POST">
                     @csrf
                     @if ($errors->any())
-                        <div style="background: #FEE2E2; color: #991B1B; padding: 15px; border-radius: 6px; margin-bottom: 20px;">
+                        <div
+                            style="background: #FEE2E2; color: #991B1B; padding: 15px; border-radius: 6px; margin-bottom: 20px;">
                             <strong>Fix these errors to save:</strong>
                             <ul style="margin-top: 5px; padding-left: 20px;">
                                 @foreach ($errors->all() as $error)
@@ -808,23 +921,28 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label>First Name</label>
-                            <input type="text" name="first_name" placeholder="Enter first name" value="{{ old('first_name') }}" required>
+                            <input type="text" name="first_name" placeholder="Enter first name"
+                                value="{{ old('first_name') }}" required>
                         </div>
                         <div class="form-group">
                             <label>Last Name</label>
-                            <input type="text" name="last_name" placeholder="Enter last name" value="{{ old('last_name') }}" required>
+                            <input type="text" name="last_name" placeholder="Enter last name"
+                                value="{{ old('last_name') }}" required>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" name="email" placeholder="Enter email" value="{{ old('email') }}" required>
+                            <input type="email" name="email" placeholder="Enter email" value="{{ old('email') }}"
+                                required>
                         </div>
                         <div class="form-group">
                             <label>Phone Number</label>
-                            <input type="tel" name="phone" placeholder="Enter phone number" value="{{ old('phone') }}" required>
+                            <input type="tel" name="phone" placeholder="Enter phone number" value="{{ old('phone') }}"
+                                required>
                         </div>
                         <div class="form-group">
                             <label>Position</label>
-                            <input type="text" name="position" placeholder="Position" value="{{ old('position') }}" required>
+                            <input type="text" name="position" placeholder="Position" value="{{ old('position') }}"
+                                required>
                         </div>
                         <div class="form-group">
                             <label>Gender</label>
@@ -841,18 +959,23 @@
                         <div class="form-group">
                             <label>Country</label>
                             <select name="country" class="form-select" required>
-                                <option value="" disabled {{ !old('country') ? 'selected' : '' }}>Select country</option>
-                                <option value="Nigeria" {{ old('country') == 'Nigeria' ? 'selected' : '' }}>Nigeria</option>
+                                <option value="" disabled {{ !old('country') ? 'selected' : '' }}>Select country
+                                </option>
+                                <option value="Nigeria" {{ old('country') == 'Nigeria' ? 'selected' : '' }}>Nigeria
+                                </option>
                                 <option value="Ghana" {{ old('country') == 'Ghana' ? 'selected' : '' }}>Ghana</option>
-                                <option value="United Kingdom" {{ old('country') == 'United Kingdom' ? 'selected' : '' }}>United Kingdom</option>
-                                <option value="United States" {{ old('country') == 'United States' ? 'selected' : '' }}>United States</option>
+                                <option value="United Kingdom" {{ old('country') == 'United Kingdom' ? 'selected' : '' }}>
+                                    United Kingdom</option>
+                                <option value="United States" {{ old('country') == 'United States' ? 'selected' : '' }}>
+                                    United States</option>
                                 <option value="Kenya" {{ old('country') == 'Kenya' ? 'selected' : '' }}>Kenya</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>State</label>
                             <select class="form-select" name="state" required>
-                                <option value="" disabled {{ !old('state') ? 'selected' : '' }}>Select state of origin</option>
+                                <option value="" disabled {{ !old('state') ? 'selected' : '' }}>Select state of origin
+                                </option>
                                 <option value="abia">Abia</option>
                                 <option value="adamawa">Adamawa</option>
                                 <option value="akwa-ibom">Akwa Ibom</option>
@@ -894,7 +1017,8 @@
                         </div>
                         <div class="form-group">
                             <label>Address</label>
-                            <input type="text" name="address" placeholder="Address" value="{{ old('address') }}" required>
+                            <input type="text" name="address" placeholder="Address" value="{{ old('address') }}"
+                                required>
                         </div>
                     </div>
 

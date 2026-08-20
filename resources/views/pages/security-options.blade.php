@@ -476,12 +476,13 @@
             #setting-link {
                 display: flex;
                 align-items: center;
-                gap: 10px;
+                gap: 14px;
                 padding: 14px 12px;
                 color: #b7b7b7;
                 text-decoration: none;
-                font-size: 16px;
+                font-size: 18px;
                 border-radius: 8px;
+                margin-left: 3px;
             }
 
             .user-email {
@@ -710,16 +711,17 @@
 
             .profile-links {
                 display: flex;
-                gap: 2px;
+                gap: 15px;
                 /* overflow-x: auto; */
-                padding: 10px;
-                margin-bottom: 20px;
-                padding-top: 14px;
+                padding: 9px;
+                margin-bottom: 21px;
+                padding-top: 11px;
                 padding-bottom: 14px;
                 background-color: #F9F9FB;
                 border-radius: 22px;
-                width: 409px;
+                width: 380px;
                 list-style-type: none;
+                margin-left: 9px;
             }
 
             .profile-links li {
@@ -732,7 +734,7 @@
                 border-radius: 999px;
                 background: #FFFFFF;
                 color: black !important;
-                font-size: 13px;
+                font-size: 10px;
                 font-weight: 500;
                 gap: 2px;
                 white-space: nowrap;

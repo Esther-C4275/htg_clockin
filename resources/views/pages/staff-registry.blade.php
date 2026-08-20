@@ -16,20 +16,20 @@
             min-height: 100vh;
         }
 
-        /* sidebar */
+        /* ========== SIDEBAR ========== */
         .sidebar {
             width: 260px;
             background-color: #06414F;
             display: flex;
             flex-direction: column;
-            padding: 20px 20px;
+            padding: 20px;
             position: fixed;
             top: 0;
             left: 0;
             bottom: 0;
             height: 100vh;
-            overflow: visible;
             z-index: 1000;
+            overflow-y: auto;
         }
 
         .logo {
@@ -48,7 +48,7 @@
         }
 
         .nav-list {
-            list-style-type: none;
+            list-style: none;
             display: flex;
             flex-direction: column;
             gap: 8px;
@@ -57,7 +57,6 @@
         .nav-link {
             display: flex;
             align-items: center;
-            text-align: center;
             text-decoration: none;
             padding: 14px;
             color: #B7B7B7;
@@ -65,10 +64,6 @@
             font-size: 18px;
             font-weight: 500;
             border-radius: 8px;
-        }
-
-        .nav-link .icon {
-            margin-right: 12px;
         }
 
         .nav-link:hover {
@@ -76,33 +71,31 @@
             color: #06414F;
         }
 
-        .setting-link{
+        .setting-link {
             display: none;
         }
 
-        .sidebar-close{
+        .sidebar-close {
             display: none;
         }
 
-        .user-email{
+        .user-email {
             display: none;
         }
 
-        .setting-links{
+        .setting-links {
             display: flex;
             align-items: center;
-            text-align: center;
             text-decoration: none;
             padding: 14px;
             color: #B7B7B7;
             gap: 8px;
-            text-decoration: none;
             font-size: 18px;
             font-weight: 500;
             border-radius: 8px;
         }
 
-        .setting-links:hover{
+        .setting-links:hover {
             background-color: #ffffff;
             color: #06414F;
         }
@@ -112,14 +105,16 @@
             padding-top: 16px;
         }
 
-        /* Main */
+        /* ========== MAIN ========== */
         .main-content {
             flex: 1;
             padding: 25px;
             margin-left: 260px;
+            background: #fff;
+            min-height: 100vh;
         }
 
-        .mobile-brand{
+        .mobile-brand {
             display: none;
         }
 
@@ -134,8 +129,6 @@
             font-weight: 600;
             font-size: 18px;
             line-height: 100%;
-            letter-spacing: 0px;
-            text-align: center;
         }
 
         .user-actions {
@@ -147,7 +140,6 @@
         .user-actions span {
             font-weight: 400;
             font-size: 12px;
-            line-height: 100%;
         }
 
         .user-initials {
@@ -171,17 +163,9 @@
             gap: 12px;
         }
 
-        .profile img {
-            width: 50px;
-            height: 50px;
-            border-radius: 100px;
-            object-fit: cover;
-        }
-
         .profile h3 {
             font-weight: 600;
             font-size: 18px;
-            line-height: 100%;
             margin-bottom: 5px;
         }
 
@@ -189,7 +173,6 @@
             color: #7D7C7C;
             font-weight: 500;
             font-size: 12px;
-            line-height: 100%;
         }
 
         .month-select {
@@ -243,7 +226,6 @@
         .card h3 span {
             font-weight: 500;
             font-size: 14px;
-            
         }
 
         .card p {
@@ -289,27 +271,16 @@
             color: #111827;
         }
 
-        .filter-btn {
-            width: 36px;
-            height: 36px;
-            border: 1px solid #E5E7EB;
-            border-radius: 8px;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            padding: 0;
-        }
-
-        .filter-btn img,
-        .filter-btn svg {
-            width: 18px;
-            height: 18px;
+       
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         table {
             width: 100%;
+            min-width: 700px;          
             border-collapse: collapse;
         }
 
@@ -319,7 +290,7 @@
             background: #FBFBFD;
             font-weight: 600;
             font-size: 13px;
-           
+            white-space: nowrap;
         }
 
         td {
@@ -328,6 +299,7 @@
             font-weight: 500;
             font-size: 13px;
             color: #374151;
+            white-space: nowrap;
         }
 
         .status {
@@ -359,12 +331,12 @@
         }
 
         .initials {
-            width: 48px;
-            height: 48px;
+            width: 50px;
+            height: 50px;
             background-color: #E2EEF9;
             color: #06414F;
             font-weight: 700;
-            font-size: 18px;
+            font-size: 16px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -381,20 +353,10 @@
             object-fit: cover;
         }
 
-        /* Desktop pagination (hidden on mobile by default styles) */
-        .desktop-pagination {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            padding-top: 12px;
-        }
-
-        .mobile-pagination {
+        .pagination-wrapper{
             display: none;
         }
-
-        /* ========== RESPONSIVE ========== */
+       
         @media (max-width: 992px) {
             .stats {
                 grid-template-columns: repeat(2, 1fr);
@@ -409,14 +371,16 @@
             }
         }
 
+        /* ========== MOBILE ========== */
         @media (max-width: 768px) {
             body {
                 background: #ffffff;
             }
 
             .main-content {
-                margin-left: 0;
-                padding: 16px;
+                margin-left: 0 !important;
+                padding: 16px !important;
+                width: 100%;
             }
 
             /* Sidebar mobile */
@@ -501,7 +465,7 @@
                 height: 22px;
             }
 
-            /* Hide desktop header bits */
+            
             .top-bar h2,
             .user-actions {
                 display: none;
@@ -511,7 +475,7 @@
                 margin-bottom: 0;
             }
 
-            /* Profile row – match Figma */
+            
             .profile-row {
                 align-items: center;
                 margin-bottom: 20px;
@@ -528,7 +492,7 @@
             .initials {
                 width: 44px;
                 height: 44px;
-                font-size: 16px;
+                font-size: 14px;
             }
 
             .month-select {
@@ -538,7 +502,7 @@
                 padding-right: 28px;
             }
 
-            /* 2×2 cards – match Figma spacing */
+            /* 2×2 cards */
             .stats {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
@@ -578,7 +542,7 @@
                 font-size: 11px;
             }
 
-            /* Table – only Date / Day / Clock-In on mobile (like Figma) */
+           
             .table-box {
                 padding: 16px 12px;
                 border-radius: 12px;
@@ -592,170 +556,197 @@
                 font-size: 14px;
             }
 
-            /* Hide extra columns on mobile */
-            th:nth-child(4),
-            th:nth-child(5),
-            th:nth-child(6),
-            th:nth-child(7),
-            td:nth-child(4),
-            td:nth-child(5),
-            td:nth-child(6),
-            td:nth-child(7) {
-                display: none;
+            
+            .table-responsive {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                margin: 0 -4px;          
             }
 
-            th, td {
-                padding: 12px 8px;
+            table {
+                min-width: 720px;        
+                width: 100%;
+            }
+
+            th,
+            td {
+                padding: 12px 10px;
                 font-size: 12px;
             }
 
             th {
-                background: transparent;
+                background: #FBFBFD;
                 font-size: 12px;
-                color: #6B7280;
+                color: #374151;
+                font-weight: 600;
             }
 
-            /* Mobile pagination */
-            .desktop-pagination {
-                display: none;
+            td[colspan] {
+                white-space: normal !important;
             }
 
-            .mobile-pagination {
-                display: flex;
-                flex-direction: column;
-                gap: 14px;
-                margin-top: 16px;
-                padding-top: 8px;
-                font-size: 12px;
-                color: #555;
-            }
-
-            .per-page-selector {
+            .setting-link {
                 display: flex;
                 align-items: center;
-                gap: 8px;
+                justify-content: flex-start;
+                padding: 12px;
+                gap: 5px;
+                width: 100%;
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: 500;
+                color: #b7b7b7;
+                border-radius: 8px;
             }
 
-            .per-page-selector select {
-                padding: 4px 8px;
-                border-radius: 6px;
-                border: 1px solid #DDD;
-                font-size: 12px;
-            }
-
-            .pagination-nav {
-                display: flex;
-                align-items: center;
-                gap: 6px;
-            }
-
-            .page-btn {
-                width: 32px;
-                height: 32px;
-                border-radius: 50%;
+            .setting-link i {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                cursor: pointer;
-                font-weight: 500;
+                width: 30px;
+                height: 20px;
+                flex-shrink: 0;
+            }
+
+            .setting-link i img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
+            .setting-links {
+                display: none;
+            }
+
+            .nav-list {
+                margin-left: -15px;
+            }
+
+            .user-email {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 10px 12px;
+                width: 100%;
+            }
+
+            .user-email .profile-pic {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background-color: #ffffff;
+                color: #06414F;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
                 font-size: 13px;
-                border: none;
-                background: transparent;
-                color: #374151;
+                flex-shrink: 0;
+                overflow: hidden;
             }
 
-            .page-btn.active {
-                background: #06414F;
-                color: white;
+            .user-email .profile-pic img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
             }
 
-            .next-btn {
-                padding: 6px 14px;
-                border: 1px solid #E5E7EB;
-                border-radius: 8px;
-                background: white;
-                cursor: pointer;
-                font-size: 12px;
-                color: #555;
-                margin-left: 4px;
+            .pagination-wrapper .small,
+            .pagination-wrapper .text-muted,
+            .pagination-wrapper .small.text-muted {
+                display: none !important;
             }
 
-            .setting-link{
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            text-align: left;
-            padding: 12px;
-            gap: 5px;
-            margin-right: 0;
-            width: 100%;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 500;
-            color: #b7b7b7;
-            border-radius: 8px;
-        }
+           
+            .pagination-wrapper {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 12px !important;
+                margin-top: 20px !important;
+                width: 100% !important;
+            }
 
-        .setting-link i {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 20px;
-            flex-shrink: 0;
-            margin: 0;
-        }
+            .pagination-wrapper nav,
+            .pagination-wrapper .d-flex {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                align-items: center !important;
+                gap: 6px !important;
+                width: 100% !important;
+                justify-content: flex-start !important;
+            }
 
-        .setting-link i img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
+            .pagination-wrapper .d-none,
+            .pagination-wrapper .d-sm-none {
+                display: flex !important;
+            }
 
-        .setting-link span {
-            line-height: 1 ;
-        }
+            .pagination-wrapper .pagination {
+                display: flex !important;
+                align-items: center !important;
+                gap: 6px !important;
+                list-style: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
 
-        .setting-links{
-            display: none;
-        }
+            .pagination-wrapper .page-item {
+                display: inline-flex !important;
+                margin: 0 !important;
+            }
 
-        .nav-list{
-            margin-left: -15px;
-        }
+            .pagination-wrapper .page-link {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                min-width: 32px !important;
+                height: 32px !important;
+                padding: 0 8px !important;
+                border-radius: 50% !important;
+                font-size: 13px !important;
+                font-weight: 500 !important;
+                color: #374151 !important;
+                background: transparent !important;
+                border: none !important;
+                text-decoration: none !important;
+                line-height: 1 !important;
+                box-shadow: none !important;
+            }
 
-        .user-email {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 12px;
-            margin-bottom: -2px;
-            width: 100%;
-        }
+            .pagination-wrapper .page-item.active .page-link {
+                background: #06414F !important;
+                color: #fff !important;
+            }
 
-        .user-email .profile-pic {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-color: #ffffff;
-            color: #06414F;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 13px;
-            flex-shrink: 0;
-            overflow: hidden;
-        }
+            .pagination-wrapper .page-link:hover {
+                background: #F3F4F6 !important;
+                color: #06414F !important;
+            }
 
-        .user-profile-item .profile-pic img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
+            .pagination-wrapper .page-item.disabled .page-link {
+                color: #9CA3AF !important;
+                background: transparent !important;
+                pointer-events: none !important;
+            }
 
+           
+            .pagination-wrapper .page-item:first-child .page-link,
+            .pagination-wrapper .page-item:last-child .page-link {
+                border-radius: 8px !important;
+                min-width: auto !important;
+                padding: 0 14px !important;
+                border: 1px solid #E5E7EB !important;
+                background: #fff !important;
+                height: 32px !important;
+            }
 
+            .pagination-wrapper .page-item:first-child .page-link:hover,
+            .pagination-wrapper .page-item:last-child .page-link:hover {
+                background: #F9FAFB !important;
+                border-color: #D1D5DB !important;
+            }
         }
     </style>
 
@@ -799,22 +790,21 @@
                                 @php
                                     $firstInitial = strtoupper(substr($user->first_name, 0, 1));
                                 @endphp
-                    
+
                                 <div class="profile-pic">
                                     @if($user->avatar)
-                                        <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
-                                        style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
+                                        <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile">
                                     @else
                                         <span>{{ $firstInitial }}</span>
                                     @endif
                                 </div>
-                    
+
                                 <span class="user-email-text">
                                     {{ $user->email }}
                                 </span>
                             </div>
                         </li>
-                    
+
                         <li>
                             <a href="{{ route('staff-edit.index') }}" class="setting-links">
                                 <i><img src="{{ asset('images/setting.svg') }}" alt="Settings"></i>
@@ -830,10 +820,10 @@
             </aside>
             <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-            <!-- Main Content -->
+           
             <main class="main-content">
 
-                <!-- Header -->
+                
                 <div class="top-bar">
                     <div class="mobile-brand">
                         <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
@@ -846,9 +836,11 @@
 
                     <div class="user-actions">
                         <span>{{ $user->email }}</span>
-                        <div class="user-initials" style="overflow: hidden; width: 35px; height: 35px; background-color: #E2EEF9; color: #06414F; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; padding: 0;">
+                        <div class="user-initials"
+                            style="overflow: hidden; width: 35px; height: 35px; background-color: #E2EEF9; color: #06414F; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; padding: 0;">
                             @if($user->avatar)
-                                <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
+                                    style="width: 100%; height: 100%; object-fit: cover; display: block;">
                             @else
                                 {{ strtoupper(substr($user->first_name, 0, 1)) }}
                             @endif
@@ -856,7 +848,7 @@
                     </div>
                 </div>
 
-                <!-- User Info + Month selector (matches Figma) -->
+                
                 <div class="profile-row">
                     <div class="profile">
                         <div class="initials">
@@ -873,20 +865,15 @@
                     </div>
 
                     <select class="month-select" name="month" id="monthSelect"
-                    
                         onchange="window.location = '{{ route('index.registry') }}?month=' + this.value">
-                       
-                    @foreach($availableMonths as $month)
-                        <option value="{{ $month['value'] }}"
-                            {{ $selectedMonthRaw === $month['value'] ? 'selected' : '' }}>
-                            {{ $month['label'] }}
-            
-                        </option>
-                    @endforeach
-                </select>
+                        @foreach($availableMonths as $month)
+                            <option value="{{ $month['value'] }}" {{ $selectedMonthRaw === $month['value'] ? 'selected' : '' }}>
+                                {{ $month['label'] }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
 
-             
                 <div class="stats">
                     <div class="card">
                         <div class="icon"><img src="{{ asset('images/Group 91.png') }}" alt=""></div>
@@ -925,121 +912,98 @@
                     </div>
                 </div>
 
-                
                 <div class="table-box">
                     <div class="table-header">
                         <h3>Attendance Record</h3>
-                      
-                        {{-- <button class="filter-btn" type="button" aria-label="Filter">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="4" y1="6" x2="20" y2="6"></line>
-                                <line x1="8" y1="12" x2="16" y2="12"></line>
-                                <line x1="11" y1="18" x2="13" y2="18"></line>
-                            </svg>
-                        </button> --}}
                     </div>
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Day</th>
-                                <th>Clock-In</th>
-                                <th>Clock-Out</th>
-                                <th>Hours</th>
-                                <th>Status</th>
-                                <th>Remark</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($attendanceRecords as $record)
-                                @php
-                                    $recordDate = \Carbon\Carbon::parse($record->date);
-                                    $clockIn = $record->clock_in ? \Carbon\Carbon::parse($record->clock_in) : null;
-                                    $clockOut = $record->clock_out ? \Carbon\Carbon::parse($record->clock_out) : null;
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Day</th>
+                                    <th>Clock-In</th>
+                                    <th>Clock-Out</th>
+                                    <th>Hours</th>
+                                    <th>Status</th>
+                                    <th>Remark</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($attendanceRecords as $record)
+                                    @php
+                                        $recordDate = \Carbon\Carbon::parse($record->date);
+                                        $clockIn = $record->clock_in ? \Carbon\Carbon::parse($record->clock_in) : null;
+                                        $clockOut = $record->clock_out ? \Carbon\Carbon::parse($record->clock_out) : null;
 
-                                    $statusClass = 'absent';
-                                    $statusLabel = 'Absent';
-                                    $remark = '—';
-                                    $hoursText = '—';
+                                        $statusClass = 'absent';
+                                        $statusLabel = 'Absent';
+                                        $remark = '—';
+                                        $hoursText = '—';
 
-                                    if ($clockIn) {
-                                        $isLate = $clockIn->format('H:i:s') > '10:00:00';
-                                        if ($isLate) {
-                                            $statusClass = 'late';
-                                            $statusLabel = 'Late';
-                                            $cutoff = \Carbon\Carbon::parse($record->date . ' 10:00:00');
-                                            $diff = $clockIn->diff($cutoff);
-                                            $remark = 'Late by ';
-                                            if ($diff->h > 0) {
-                                                $remark .= $diff->h . 'h ';
+                                        if ($clockIn) {
+                                            $isLate = $clockIn->format('H:i:s') > '10:00:00';
+                                            if ($isLate) {
+                                                $statusClass = 'late';
+                                                $statusLabel = 'Late';
+                                                $cutoff = \Carbon\Carbon::parse($record->date . ' 10:00:00');
+                                                $diff = $clockIn->diff($cutoff);
+                                                $remark = 'Late by ';
+                                                if ($diff->h > 0) {
+                                                    $remark .= $diff->h . 'h ';
+                                                }
+                                                $remark .= $diff->i . 'm';
+                                            } else {
+                                                $statusClass = 'present';
+                                                $statusLabel = 'Present';
+                                                $remark = 'Early';
                                             }
-                                            $remark .= $diff->i . 'm';
-                                        } else {
-                                            $statusClass = 'present';
-                                            $statusLabel = 'Present';
-                                            $remark = 'Early';
                                         }
-                                    }
 
-                                    if ($clockIn && $clockOut) {
-                                        $diffHours = $clockOut->diff($clockIn);
-                                        $hoursText = "{$diffHours->h}h {$diffHours->i}m";
-                                    }
-                                @endphp
-                                <tr>
-                                    <td>{{ $recordDate->format('j F Y') }}</td>
-                                    <td>{{ $recordDate->format('l') }}</td>
-                                    <td class="{{ $statusClass === 'late' ? 'late-time' : '' }}">
-                                        {{ $clockIn ? $clockIn->format('h:i A') : '—' }}
-                                    </td>
-                                    <td>{{ $clockOut ? $clockOut->format('h:i A') : '—' }}</td>
-                                    <td>{{ $hoursText }}</td>
-                                    <td>
-                                        <span class="status {{ $statusClass }}">{{ $statusLabel }}</span>
-                                    </td>
-                                    <td>{{ $remark }}</td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="7" style="text-align: center; padding: 30px; color: #A0AEC0;">
-                                        No attendance activities tracked for this selected month.
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                                        if ($clockIn && $clockOut) {
+                                            $diffHours = $clockOut->diff($clockIn);
+                                            $hoursText = "{$diffHours->h}h {$diffHours->i}m";
+                                        }
+                                    @endphp
+                                    <tr>
+                                        <td>{{ $recordDate->format('j F Y') }}</td>
+                                        <td>{{ $recordDate->format('l') }}</td>
+                                        <td class="{{ $statusClass === 'late' ? 'late-time' : '' }}">
+                                            {{ $clockIn ? $clockIn->format('h:i A') : '—' }}
+                                        </td>
+                                        <td>{{ $clockOut ? $clockOut->format('h:i A') : '—' }}</td>
+                                        <td>{{ $hoursText }}</td>
+                                        <td>
+                                            <span class="status {{ $statusClass }}">{{ $statusLabel }}</span>
+                                        </td>
+                                        <td>{{ $remark }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="7" style="text-align: center; padding: 30px; color: #A0AEC0;">
+                                            No attendance activities tracked for this selected month.
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
 
-                    <!-- Mobile pagination (matches Figma) -->
-                    <div class="mobile-pagination">
-                        <div class="per-page-selector">
-                            <span>Show</span>
-                            <select id="rowsPerPage">
-                                <option value="5">5</option>
-                                <option value="10" selected>10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                            </select>
-                            <span id="paginationInfo">Per page of 30 results.</span>
-                        </div>
-
-                        <div class="pagination-nav">
-                            <div class="page-btn active" data-page="1">1</div>
-                            <div class="page-btn" data-page="2">2</div>
-                            <div class="page-btn" data-page="3">3</div>
-                            <span style="margin: 0 4px; color: #888;">......</span>
-                            <button class="next-btn" type="button" id="nextPageBtn">Next &raquo;</button>
+                        <div class="pagination-wrapper">
+                            {{ $attendanceRecords->links() }}
                         </div>
                     </div>
                 </div>
+
+                
             </main>
         </div>
 
         <script>
             // Sidebar toggle
-            const sidebar  = document.querySelector('.sidebar');
-            const overlay  = document.getElementById('sidebarOverlay');
-            const openBtn  = document.getElementById('openSidebar');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const openBtn = document.getElementById('openSidebar');
             const closeBtn = document.getElementById('sidebarClose');
 
             openBtn?.addEventListener('click', () => {
@@ -1057,7 +1021,7 @@
                 overlay?.classList.remove('active');
             });
 
-            // Simple client-side pagination (works with the static mobile controls)
+            // Client-side pagination
             const tableBody = document.querySelector('table tbody');
             const rows = Array.from(tableBody.querySelectorAll('tr')).filter(r => r.querySelectorAll('td').length > 1);
             const rowsPerPageSelect = document.getElementById('rowsPerPage');
@@ -1086,7 +1050,6 @@
                     paginationInfo.textContent = `Per page of ${totalRows} results.`;
                 }
 
-                // Update active page button
                 pageBtns.forEach(btn => {
                     const page = parseInt(btn.dataset.page, 10);
                     btn.classList.toggle('active', page === currentPage);

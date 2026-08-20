@@ -217,24 +217,8 @@
                 </table>
 
                
-                <div class="mobile-pagination">
-                    <div class="per-page-selector">
-                        <span>Show</span>
-                        <select>
-                            <option>5</option>
-                            <option selected>10</option>
-                            <option>20</option>
-                            <option>30</option>
-                        </select>
-                        <span>Per page of {{ $employees->count() }} results.</span>
-                    </div>
-                    <div class="pagination-nav">
-                        <div class="page-btn active">1</div>
-                        <div class="page-btn">2</div>
-                        <div class="page-btn">3</div>
-                        <span class="dots">......</span>
-                        <button class="next-btn" type="button">Next &raquo;</button>
-                    </div>
+                <div class="pagination-wrapper mt-4">
+                    {{ $employees->links() }}
                 </div>
             </div>
         </main>
@@ -279,29 +263,8 @@
         });
         initializeMenus();
 
-        // ---------- Search clear ----------
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                searchInput.addEventListener('input', function () {
-                    if (this.value.trim() === '') {
-                        const urlParams = new URLSearchParams(window.location.search);
-                        if (urlParams.has('first_name') || urlParams.has('last_name')) {
-                            window.location.href = "{{ route('admin-employee.index') }}";
-                        }
-                    }
-                });
-            }
-        });
-
-        // ---------- Select all ----------
-        const selectAllCheckbox = document.getElementById('select-all');
-        const employeeCheckboxes = document.querySelectorAll('.employee-checkbox');
-        if (selectAllCheckbox) {
-            selectAllCheckbox.addEventListener('change', function () {
-                employeeCheckboxes.forEach(cb => cb.checked = this.checked);
-            });
-        }
+       
+        
     </script>
 
     <style>
@@ -625,12 +588,22 @@
         }
         .menu-dropdown a:hover { background: #f5f5f5; }
 
-        /* Mobile elements – hidden on desktop */
-        .mobile-header { display: none; }
-        .mobile-pagination { display: none; }
-        .desktop-only { display: table-cell; }
+        
+        .mobile-header { 
+            display: none;
+         }
+        .mobile-pagination { 
+            display: none;
+         }
+        .desktop-only { 
+            display: table-cell; 
+        }
 
-        /* ========== MOBILE (max-width: 768px) – EXACT FIGMA ========== */
+        .pagination-wrapper{
+            display: none;
+        }
+
+       
         @media (max-width: 768px) {
             .main {
                 margin-left: 0 !important;
@@ -638,11 +611,13 @@
                 width: 100%;
             }
 
-            /* Hide desktop topbar */
-            .desktop-only { display: none !important; }
+            
+            .desktop-only {
+                 display: none !important; 
+                }
             .topbar.desktop-only { display: none !important; }
 
-            /* Sidebar mobile */
+           
             .sidebar {
                 position: fixed;
                 top: 0;
@@ -698,7 +673,7 @@
             .setting-link {
                 display: flex;
                 align-items: center;
-                gap: 13px;
+                gap: 14px;
                 padding: 12px;
                 color: #b7b7b7;
                 text-decoration: none;
@@ -901,60 +876,104 @@
                 white-space: nowrap;
             }
             
-            .mobile-pagination {
-                display: flex;
-                flex-direction: column;
-                gap: 14px;
-                margin-top: 20px;
-                padding-top: 8px;
-                font-size: 12px;
-                color: #555;
+            .pagination-wrapper .small,
+            .pagination-wrapper .text-muted,
+            .pagination-wrapper .small.text-muted {
+                display: none !important;
             }
-            .per-page-selector {
-                display: flex;
-                align-items: center;
-                gap: 8px;
+
+           
+            .pagination-wrapper {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 12px !important;
+                margin-top: 20px !important;
+                width: 100% !important;
             }
-            .per-page-selector select {
-                padding: 4px 8px;
-                border-radius: 6px;
-                border: 1px solid #DDD;
-                font-size: 12px;
+
+            .pagination-wrapper nav,
+            .pagination-wrapper .d-flex {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                align-items: center !important;
+                gap: 6px !important;
+                width: 100% !important;
+                justify-content: flex-start !important;
             }
-            .pagination-nav {
-                display: flex;
-                align-items: center;
-                gap: 6px;
+
+            .pagination-wrapper .d-none,
+            .pagination-wrapper .d-sm-none {
+                display: flex !important;
             }
-            .page-btn {
-                width: 32px;
-                height: 32px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-weight: 500;
-                font-size: 13px;
-                border: none;
-                background: transparent;
-                color: #374151;
-                cursor: pointer;
+
+            .pagination-wrapper .pagination {
+                display: flex !important;
+                align-items: center !important;
+                gap: 6px !important;
+                list-style: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
             }
-            .page-btn.active {
-                background: #06414F;
-                color: #fff;
+
+            .pagination-wrapper .page-item {
+                display: inline-flex !important;
+                margin: 0 !important;
             }
-            .dots { color: #888; margin: 0 2px; }
-            .next-btn {
-                padding: 6px 14px;
-                border: 1px solid #E5E7EB;
-                border-radius: 8px;
-                background: #fff;
-                font-size: 12px;
-                color: #555;
-                cursor: pointer;
-                margin-left: 4px;
+
+            .pagination-wrapper .page-link {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                min-width: 32px !important;
+                height: 32px !important;
+                padding: 0 8px !important;
+                border-radius: 50% !important;
+                font-size: 13px !important;
+                font-weight: 500 !important;
+                color: #374151 !important;
+                background: transparent !important;
+                border: none !important;
+                text-decoration: none !important;
+                line-height: 1 !important;
+                box-shadow: none !important;
+            }
+
+            .pagination-wrapper .page-item.active .page-link {
+                background: #06414F !important;
+                color: #fff !important;
+            }
+
+            .pagination-wrapper .page-link:hover {
+                background: #F3F4F6 !important;
+                color: #06414F !important;
+            }
+
+            .pagination-wrapper .page-item.disabled .page-link {
+                color: #9CA3AF !important;
+                background: transparent !important;
+                pointer-events: none !important;
+            }
+
+           
+            .pagination-wrapper .page-item:first-child .page-link,
+            .pagination-wrapper .page-item:last-child .page-link {
+                border-radius: 8px !important;
+                min-width: auto !important;
+                padding: 0 14px !important;
+                border: 1px solid #E5E7EB !important;
+                background: #fff !important;
+                height: 32px !important;
+            }
+
+            .pagination-wrapper .page-item:first-child .page-link:hover,
+            .pagination-wrapper .page-item:last-child .page-link:hover {
+                background: #F9FAFB !important;
+                border-color: #D1D5DB !important;
             }
         }
+
     </style>
+
+
 </x-layout>

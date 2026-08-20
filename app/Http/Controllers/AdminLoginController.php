@@ -36,7 +36,7 @@ class AdminLoginController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->intended(route('admin-employee.index'));
+            return redirect()->intended(route('admin-dashboard.index'));
         }
 
         return back()->withErrors([
@@ -47,9 +47,9 @@ class AdminLoginController extends Controller
     {
         Auth::logout();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
 
-        return redirect('admin-login');
+    return redirect('/admin-login');
     }
 }
