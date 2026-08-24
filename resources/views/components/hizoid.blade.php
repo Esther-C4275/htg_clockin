@@ -192,21 +192,42 @@
   }
 
   .profile-avatar-fallback {
-    width: 30px;
-    height: 30px;
-    background-color: #FAFAFA;
+    width: 35px;
+    height: 35px;
+    background-color: #E2EEF9;;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-weight: 400;
+    color: #06414F;
     font-style: Regular;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 100%;
     letter-spacing: 0px;
+    border: 1px solid #C5DCF2;
 
   }
+
+
+  .profile-avatar-fallbacks{
+    width: 100%;
+    height: 100%;
+    color: #43E292;
+    background-color: #0a292c;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 44px;
+
+
+  }
+
+
+
+
 
   /* ==========================================================================
    4. Display Matrix Content Grid
@@ -1106,8 +1127,16 @@
       object-fit: contain;
       display: block;
       pointer-events: none;
-      /* Ensures clicks pass through to the button element */
+     
     }
+
+    .user-email-text {
+    max-width: 157px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block; 
+}
   }
 </style>
 
@@ -1166,7 +1195,7 @@
                 @endif
               </div>
 
-              <span class="user-email-text">
+              <span class="user-email-text" title="{{ $user->email }}">
                 {{ $user->email }}
               </span>
             </div>
@@ -1216,8 +1245,8 @@
             <span class="profile-email">{{ $user->email }}</span>
             <div class="profile-avatar-fallback">
               <div class="profile-avatar-fallback" style="overflow: hidden; 
-                width: 35px; 
-                height: 35px; 
+                width: 100%; 
+                height: 100%; 
                 color: #06414F; 
                 border-radius: 50%; 
                 display: flex; 
@@ -1236,6 +1265,7 @@
                 @else
                   @php
                     $firstInitial = substr($user->first_name, 0, 1);
+  
                    @endphp
                   <div class="profile-avatar-fallback">{{ $firstInitial }}</div>
                 @endif
@@ -1270,6 +1300,8 @@
                   padding: 0;
                   border-left: 5px solid #3DDE93;">
 
+                  
+
                     @if($user->avatar)
 
                       <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
@@ -1277,8 +1309,11 @@
                     @else
                       @php
                         $firstInitial = substr($user->first_name, 0, 1);
+                        $lastInitial = substr($user->last_name, 0, 1);
+                        
+                        $initials = strtoupper($firstInitial . $lastInitial)
                        @endphp
-                      <div class="profile-avatar-fallback">{{ $firstInitial }}</div>
+                      <div class="profile-avatar-fallbacks">{{ $initials }}</div>
                     @endif
                   </div>
 

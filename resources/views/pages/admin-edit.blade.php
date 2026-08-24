@@ -41,7 +41,8 @@
                         <span>{{ $firstInitial }}</span>
                     @endif
                 </div>
-                <span class="user-email-text">{{ $user->email }}</span>
+                <span class="user-email-text" title="{{ $user->email }}">
+                    {{ $user->email }}</span>
             </div>
 
             <a href="{{ route('admin-setting.index') }}" class="setting-links">
@@ -893,6 +894,14 @@
 
             .save-btn {
                 background: #06414F;
+            }
+
+            .user-email-text {
+                max-width: 157px; 
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: block; 
             }
         }
     </style>

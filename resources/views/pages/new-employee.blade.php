@@ -1260,6 +1260,14 @@
                     object-fit: cover;
                     border-radius: 50%;
                 }
+
+                .user-email-text {
+                    max-width: 157px; 
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: block; 
+                }
             }
 
 
@@ -1388,7 +1396,7 @@
                                 @endif
                             </div>
 
-                            <span class="user-email-text">
+                            <span class="user-email-text" title="{{ $adminUser->email  }}">
                                 {{ $adminUser->email }}
                             </span>
                         </div>

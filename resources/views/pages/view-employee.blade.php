@@ -1112,6 +1112,14 @@
         margin-bottom: 9px;
     }
 
+    .user-email-text {
+                max-width: 157px; 
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: block; 
+            }
+
 }
 
         
@@ -1156,20 +1164,20 @@
 
                     <div class="user-email" style="color: #B7B7B7">
                         @php
-                            $firstInitial = strtoupper(substr($user->first_name, 0, 1));
+                            $firstInitial = strtoupper(substr($adminUser->first_name, 0, 1));
                         @endphp
             
                         <div class="profile-pic">
                             @if($user->avatar)
-                                <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
+                                <img src="{{ asset('storage/' . $adminUser->avatar) }}" alt="Profile"
                                 style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
                             @else
                                 <span>{{ $firstInitial }}</span>
                             @endif
                         </div>
             
-                        <span class="user-email-text">
-                            {{ $user->email }}
+                        <span class="user-email-text" title="{{ $adminUser->email }}">
+                            {{ $adminUser->email }}
                         </span>
                     </div>
                     <a href="{{ route('admin-setting.index') }}" class="setting-links">

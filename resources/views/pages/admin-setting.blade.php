@@ -42,7 +42,7 @@
                             <span>{{ $firstInitial }}</span>
                         @endif
                     </div>
-                    <span class="user-email-text">
+                    <span class="user-email-text" title="{{ $user->email }}">
                         {{ $user->email }}
                     </span>
                 </div>
@@ -849,6 +849,14 @@
 
                 .menu a{
                     font-size: 18px;
+                }
+
+                .user-email-text {
+                    max-width: 157px; 
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: block; 
                 }
             }
         </style>

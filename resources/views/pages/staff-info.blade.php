@@ -714,6 +714,14 @@
                 display: none;
             }
 
+            .user-email-text {
+                max-width: 157px; 
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: block; 
+            }
+
         }
     </style>
     </head>
@@ -769,7 +777,7 @@
                                     @endif
                                 </div>
                     
-                                <span class="user-email-text">
+                                <span class="user-email-text" title="{{ $user->email }}">
                                     {{ $user->email }}
                                 </span>
                             </div>

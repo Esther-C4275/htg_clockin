@@ -571,18 +571,26 @@
       margin-left: -20px;
     }
 
+    .user-email-text {
+    max-width: 157px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block; 
+}
+
     .pagination-wrapper .small,
-            .pagination-wrapper .text-muted,
-            .pagination-wrapper .small.text-muted {
-                display: none !important;
-            }
+    .pagination-wrapper .text-muted,
+    .pagination-wrapper .small.text-muted {
+       display: none !important;
+ }
 
            
-            .pagination-wrapper {
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: flex-start !important;
-                gap: 12px !important;
+      .pagination-wrapper {
+          display: flex !important;
+          flex-direction: column !important;
+           align-items: flex-start !important;
+            gap: 12px !important;
                 margin-top: 20px !important;
                 width: 100% !important;
             }
@@ -707,7 +715,8 @@
             <span>{{ $firstInitial }}</span>
           @endif
         </div>
-        <span class="user-email-text">{{ $user->email }}</span>
+        <span class="user-email-text" title="{{ $user->email }}">
+          {{ $user->email }}</span>
       </div>
 
       <a href="{{ route('admin-setting.index') }}" class="setting-links">

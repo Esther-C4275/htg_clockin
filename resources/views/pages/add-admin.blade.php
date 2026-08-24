@@ -432,7 +432,7 @@
                 top: 0;
                 left: -100%;
                 width: 78%;
-                max-width: 300px;
+                max-width: 270px;
                 height: 100vh;
                 background: #06414F;
                 padding: 24px 20px;
@@ -599,7 +599,7 @@
                 
                 width: 355px;
                 /* height: 38px; */
-                gap: 4px;
+                gap: 2px;
                 opacity: 1;
                 border-radius: 100px;
                 border-width: 1px;
@@ -617,7 +617,7 @@
                 color: black;
                 background-color: #F9F9FB;
                 white-space: nowrap;
-                margin-left: 8px;
+                margin-left: 1px;
                 margin-bottom: 5px;
             }
 
@@ -668,6 +668,14 @@
             .form-select:invalid {
                 color: #9CA3AF;
             }
+
+            input[type="date"] {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            -webkit-appearance: none; 
+            min-height: 48px; 
+        }
 
             /* Button */
             .btn {
@@ -757,6 +765,14 @@
                 margin-left: -14px;
                 margin-left: -10px;
             }
+
+            .user-email-text {
+                max-width: 157px; 
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: block; 
+            }
         }
     </style>
 
@@ -798,7 +814,7 @@
                             <span>{{ $firstInitial }}</span>
                         @endif
                     </div>
-                    <span class="user-email-text">
+                    <span class="user-email-text" title="{{ $user->email }}">
                         {{ $user->email ?? '' }}
                     </span>
                 </div>
@@ -872,9 +888,13 @@
 
             <!-- Mobile tabs -->
             <div class="mobile-tabs">
-                <a href="{{ route('admin-setting.index') }}">My Profile</a>
-                <a href="{{ route('security.index') }}">Security Options</a>
-                <a href="{{ route('index.add') }}" class="active">Add New Admin</a>
+                <a href="{{ route('admin-setting.index') }}">
+                    <i class="fa-solid fa-user"></i>
+                    My Profile</a>
+                <a href="{{ route('security.index') }}"><i class="fa-solid fa-lock"></i>
+                    Security Options</a>
+                <a href="{{ route('index.add') }}" class="active"><i class="fa-solid fa-file-circle-plus"></i>
+                    Add New Admin</a>
             </div>
 
             <div class="both">
