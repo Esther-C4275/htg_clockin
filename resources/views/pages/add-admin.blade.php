@@ -440,6 +440,8 @@
                 transition: left .3s ease;
                 border-top-right-radius: 40px;
                 border-bottom-right-radius: 40px;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
             }
 
             .sidebar.active {

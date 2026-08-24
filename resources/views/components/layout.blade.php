@@ -23,9 +23,51 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 
+
+<style>
+    #page-preloader {
+            position: fixed;
+            inset: 0; 
+            width: 100%;
+            height: 100vh;
+            background-color: #ffffff; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        
+        .spinner {
+            width: 42px;
+            height: 42px;
+            border: 4px solid #e5e7eb;
+            border-top: 4px solid #2563eb; 
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        
+        #page-preloader.loaded {
+            opacity: 0;
+            visibility: hidden;
+        }
+</style>
+
 </head>
 
+
 <body>
+
+    <div id="page-preloader">
+        <div class="spinner"></div>
+    </div>
 
     <main>
         @if(session('success'))
@@ -36,6 +78,16 @@
         @endif
         {{ $slot }}
     </main>
+
+
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('page-preloader');
+            if (preloader) {
+                preloader.classList.add('loaded');
+            }
+        });
+    </script>
 
 </body>
 
