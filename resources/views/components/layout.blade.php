@@ -26,38 +26,39 @@
 
 <style>
     #page-preloader {
-            position: fixed;
-            inset: 0; 
-            width: 100%;
-            height: 100vh;
-            background-color: #ffffff; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 99999;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
+    position: fixed;
+    inset: 0; 
+    width: 100%;
+    height: 100vh;
+    background-color: #ffffff; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
 
-        
-        .spinner {
-            width: 42px;
-            height: 42px;
-            border: 4px solid #e5e7eb;
-            border-top: 4px solid #2563eb; 
-            border-radius: 50%;
-            animation: spin 0.7s linear infinite;
-        }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+#page-preloader.active {
+    opacity: 1;
+    visibility: visible;
+}
 
-        
-        #page-preloader.loaded {
-            opacity: 0;
-            visibility: hidden;
-        }
+.spinner {
+    width: 42px;
+    height: 42px;
+    border: 4px solid #e5e7eb;
+    border-top: 4px solid #06414F; 
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 </style>
 
 </head>
@@ -81,12 +82,16 @@
 
 
     <script>
-        window.addEventListener('load', function() {
-            const preloader = document.getElementById('page-preloader');
-            if (preloader) {
-                preloader.classList.add('loaded');
-            }
-        });
+       const preloader = document.getElementById('page-preloader');
+
+
+document.addEventListener('click', e => {
+    if (e.target.closest('a[href]:not([href^="#"]):not([target="_blank"])')) preloader.classList.add('active');
+});
+document.addEventListener('submit', () => preloader.classList.add('active'));
+
+
+window.onpageshow = () => preloader.classList.remove('active');
     </script>
 
 </body>

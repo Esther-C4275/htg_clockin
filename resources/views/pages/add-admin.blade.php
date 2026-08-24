@@ -34,6 +34,8 @@
             z-index: 1000;
         }
 
+
+
         .logo {
             margin-bottom: 50px;
         }
@@ -408,7 +410,7 @@
         .logout:hover {
             background: #fff;
             color: #06414F;
-           
+
         }
 
 
@@ -434,14 +436,34 @@
                 width: 78%;
                 max-width: 270px;
                 height: 100vh;
+                height: 100dvh;
                 background: #06414F;
                 padding: 24px 20px;
                 z-index: 2000;
                 transition: left .3s ease;
                 border-top-right-radius: 40px;
                 border-bottom-right-radius: 40px;
+
+
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                /* ← reset the space-between */
                 overflow-y: auto;
                 -webkit-overflow-scrolling: touch;
+            }
+
+            .sidebar::-webkit-scrollbar {
+                width: 4px;
+            }
+
+            .sidebar::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            .sidebar::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 10px;
             }
 
             .sidebar.active {
@@ -477,6 +499,11 @@
 
             .sidebar-overlay.active {
                 display: block;
+            }
+
+            .bottom-menu {
+                margin-bottom: 20px;
+                margin-top: auto;
             }
 
 
@@ -521,6 +548,7 @@
                 width: 22px;
                 height: 22px;
             }
+
 
 
             .main {
@@ -598,7 +626,7 @@
                 /* overflow-x: auto; */
                 padding-bottom: 4px;
                 width: 100%;
-                
+
                 width: 355px;
                 /* height: 38px; */
                 gap: 2px;
@@ -672,12 +700,12 @@
             }
 
             input[type="date"] {
-            width: 100% !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
-            -webkit-appearance: none; 
-            min-height: 48px; 
-        }
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+                -webkit-appearance: none;
+                min-height: 48px;
+            }
 
             /* Button */
             .btn {
@@ -763,17 +791,17 @@
                 overflow: hidden;
             }
 
-            .logout{
+            .logout {
                 margin-left: -14px;
                 margin-left: -10px;
             }
 
             .user-email-text {
-                max-width: 157px; 
+                max-width: 157px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                display: block; 
+                display: block;
             }
         }
     </style>
@@ -833,7 +861,7 @@
                 </form>
 
             </div>
-            </div>
+
             <button class="sidebar-close" id="sidebarClose">×</button>
         </aside>
 
