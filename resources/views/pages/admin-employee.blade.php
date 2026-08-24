@@ -404,7 +404,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-left: 800px;
+            margin-left: 768px;
             margin-top: -31px
         }
         .user p {
