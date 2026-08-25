@@ -37,13 +37,13 @@
     display: none;
   }
 
-  .breadcrumb{
-        margin-right: 500px;
-    }
+  .breadcrumb {
+    margin-right: 500px;
+  }
 
-    .breadcrumbs{
-      display: none;
-    }
+  .breadcrumbs {
+    display: none;
+  }
 
   /* ==========================================================================
    2. Master Viewport Sidebar Panel Component
@@ -995,14 +995,14 @@
       margin-bottom: 20px;
     }
 
-    .breadcrumb{
+    .breadcrumb {
       display: none;
     }
 
-    .breadcrumbs{
+    .breadcrumbs {
       display: flex;
-            flex-direction: column;
-            gap: 2px;
+      flex-direction: column;
+      gap: 2px;
     }
 
     .hamburger {
@@ -1020,7 +1020,7 @@
       min-height: 48px;
       padding: 12px;
       margin-top: -56px;
-      margin-left: 360px;
+      margin-left: 355px;
       background: transparent;
       border: none;
       outline: none;

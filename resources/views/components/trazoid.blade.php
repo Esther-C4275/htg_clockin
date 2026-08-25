@@ -37,9 +37,7 @@
         display: none;
     }
 
-    .breadcrumb{
-        margin-right: 500px;
-    }
+
 
     /* ==========================================================================
      2. Master Viewport Sidebar Panel Component
@@ -90,9 +88,9 @@
     }
 
     .nav-link:hover,
-     {
-        background-color: #ffffff;
-        color: #06414f;
+    {
+    background-color: #ffffff;
+    color: #06414f;
     }
 
     .setting-links {
@@ -118,8 +116,8 @@
         display: none;
     }
 
-    .user-email{
-        display:none;
+    .user-email {
+        display: none;
     }
 
     .footer-nav {
@@ -653,59 +651,72 @@
             border-radius: 50%;
         }
 
-        .menu-links{
-            margin-left:-24px;
+        .menu-links {
+            margin-left: -24px;
         }
 
-        .logo{
-            margin-left:-14px;
+        .logo {
+            margin-left: -14px;
         }
+
         .main-viewport {
             width: 100% !important;
             padding: 16px !important;
         }
 
         .top-bar {
-            display: block;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
         }
 
+        .breadcrumb {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            width: 100%;
+            margin-top: 12px;
+        }
+
         .hamburger {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: auto;
-    }
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+        }
 
-    .hamburger-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 48px;
-      min-height: 48px;
-      padding: 12px;
-      margin-top: -96px;
-      margin-left: 360px;
-      background: transparent;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-    }
-
-
-    .hamburger-btn img {
-      width: 24px;
-      height: auto;
-      display: block;
-      pointer-events: none;
-    }
+        .hamburger-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 48px;
+            min-height: 48px;
+            padding: 12px;
+            margin-top: -96px;
+            margin-left: 345px;
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
 
 
-    .hamburger-btn:hover {
-      opacity: 0.8;
-    }
+        .hamburger-btn img {
+            width: 24px;
+            height: auto;
+            display: block;
+            pointer-events: none;
+        }
+
+
+        .hamburger-btn:hover {
+            opacity: 0.8;
+        }
+
 
         .mobile-brand {
             display: flex;
@@ -714,7 +725,7 @@
             margin-bottom: 12px;
         }
 
-        .mobile-brand img{
+        .mobile-brand img {
             width: 68px;
             height: 30px;
             margin-bottom: 20px;
@@ -764,12 +775,12 @@
         }
 
         .user-email-text {
-            max-width: 157px; 
+            max-width: 157px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            display: block; 
-}
+            display: block;
+        }
     }
 
     /* ==========================================================================

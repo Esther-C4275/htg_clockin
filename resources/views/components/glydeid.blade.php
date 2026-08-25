@@ -869,7 +869,7 @@
                 min-height: 48px;
                 padding: 12px;
                 margin-top: -78px;
-                margin-left: 360px;
+                margin-left: 358px;
                 background: transparent;
                 border: none;
                 outline: none;

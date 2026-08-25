@@ -843,7 +843,7 @@
                 width: 72px;
                 height: 72px;
                 margin-left: 17px;
-
+               font-size: 25px !important;
                 border-radius: 50%;
 
                 object-fit: cover;
@@ -919,7 +919,7 @@
                 gap: 10px;
                 border-radius: 100px;
                 padding: 5px;
-                margin-right: -7px;
+                margin-right: -24px;
 
             }
 
@@ -1307,7 +1307,7 @@
                             </div>
 
 
-                            <h4>{{ $user->last_name }} {{ $user->first_name }}</h4>
+                            <h4>{{ $user->first_name }} {{ $user->last_name }}</h4>
                             <p>{{ $user->position }}</p>
 
                             <div class="both-btns">

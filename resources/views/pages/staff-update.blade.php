@@ -761,8 +761,8 @@
             }
 
             .profile-image-img {
-                width: 62px;
-                height: 62px;
+                width: 90px;
+                height: 90px;
                 border-radius: 50%;
                 object-fit: cover;
             }
@@ -780,6 +780,8 @@
                 margin: 0 0 5px;
                 font-size: 12px;
                 line-height: 1.2;
+                margin-left: 29px;
+                margin-top: 33px;
             }
 
             .profile-card p {
@@ -787,6 +789,7 @@
                 font-size: 10px;
                 line-height: 1.2;
                 color: #616161;
+                margin-left: 30px;
             }
 
 
@@ -1300,7 +1303,7 @@
 
                     </div>
 
-                    <h4>{{ $user->last_name }} {{ $user->first_name }}</h4>
+                    <h4>{{ $user->first_name }} {{ $user->last_name }}</h4>
                     <p>{{ $user->position }}</p>
 
                     <a href="{{ route('staff-edit.index') }}" class="btn">

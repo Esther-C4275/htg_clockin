@@ -767,7 +767,7 @@
                 min-height: 48px;
                 padding: 12px;
                 margin-top: -79px;
-                margin-right: -368px;
+                margin-right: -360px;
                 background: transparent;
                 border: none;
                 outline: none;
