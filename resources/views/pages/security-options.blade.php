@@ -538,25 +538,46 @@
             }
 
             .mobile-brand img {
-                height: 28px;
-                width: auto;
+                height: 30px;
+                width: 68px;
+                margin-left: -8px;
             }
 
-            .hamburger-btn {
+            .hamburger {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 40px;
-                height: 40px;
-                background: none;
+                margin-left: auto; 
+                        }
+
+            .hamburger-btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 48px;
+                min-height: 48px;
+                padding: 12px;
+                margin-top: -2px;
+                margin-right: -18px;
+                background: transparent;
                 border: none;
-                padding: 0;
+                outline: none;
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
             }
 
+
             .hamburger-btn img {
-                width: 23px;
-                height: 23px;
-                margin-right: -22px;
+                width: 24px;
+                height: auto;
+                display: block;
+                pointer-events: none; 
+            }
+
+
+            .hamburger-btn:hover {
+                opacity: 0.8;
             }
 
            
@@ -595,7 +616,7 @@
                 background: #E2EEF9;
                 color: #06414F;
                 font-weight: 700;
-                font-size: 28px;
+                font-size: 22px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -766,7 +787,9 @@
         <div class="sidebar">
             <div>
                 <div class="logo">
-                    <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="HTG">
+                    <a href="{{ route('admin-dashboard.index') }}" class="logo-link">
+                        <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="Home">
+                    </a>
                 </div>
 
                 <div class="menu">
@@ -824,7 +847,11 @@
             <!-- TOPBAR -->
             <div class="topbar">
                 <div class="mobile-brand">
-                    <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+                    <a href="{{ route('admin-dashboard.index') }}" class="mobile-logo-link">
+                        <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+                    </a>
+                </div>
+                <div>
                     <button class="hamburger-btn" id="openSidebar">
                         <img src="{{ asset('images/breadcrumb.svg') }}" alt="Menu">
                     </button>

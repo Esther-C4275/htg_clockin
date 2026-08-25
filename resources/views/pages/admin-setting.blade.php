@@ -6,7 +6,9 @@
         <div class="sidebar">
             <div>
                 <div class="logo">
-                    <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="">
+                    <a href="{{ route('admin-dashboard.index') }}" class="logo-link">
+                        <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="Home">
+                    </a>
                 </div>
 
                 <div class="menu">
@@ -37,7 +39,7 @@
                     <div class="profile-pic">
                         @if($user->avatar)
                             <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
-                            style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
+                                style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
                         @else
                             <span>{{ $firstInitial }}</span>
                         @endif
@@ -66,7 +68,11 @@
             <!-- TOPBAR -->
             <div class="topbar">
                 <div class="mobile-brand">
-                    <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+                    <a href="{{ route('admin-dashboard.index') }}" class="mobile-logo-link">
+                        <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+                    </a>
+                </div>
+                <div class="hamburger">
                     <button class="hamburger-btn" id="openSidebar">
                         <img src="{{ asset('images/breadcrumb.svg') }}">
                     </button>
@@ -98,7 +104,7 @@
                 <!-- LEFT SETTINGS -->
                 <div class="settings-card">
 
-                    
+
                     <div class="mobile-profile-header">
                         @php
                             $firstInitial = substr($user->first_name, 0, 1);
@@ -117,17 +123,16 @@
 
                     <div class="settings-links">
                         <a href="{{ route('admin-setting.index') }}"
-                           class="{{ request()->is('admin-setting*') ? 'active' : '' }}">
+                            class="{{ request()->is('admin-setting*') ? 'active' : '' }}">
                             <i class="fa-solid fa-user"></i>
                             My Profile
                         </a>
                         <a href="{{ route('security.index') }}"
-                           class="{{ request()->is('security-options*') ? 'active' : '' }}">
+                            class="{{ request()->is('security-options*') ? 'active' : '' }}">
                             <i class="fa-solid fa-lock"></i>
                             Security Options
                         </a>
-                        <a href="{{ route('index.add') }}"
-                           class="{{ request()->is('add-admin*') ? 'active' : '' }}">
+                        <a href="{{ route('index.add') }}" class="{{ request()->is('add-admin*') ? 'active' : '' }}">
                             <i class="fa-solid fa-file-circle-plus"></i>
                             Add Admin
                         </a>
@@ -233,21 +238,21 @@
         </div>
 
         <script>
-            const sidebar  = document.querySelector('.sidebar');
-            const overlay  = document.getElementById('sidebarOverlay');
-            const openBtn  = document.getElementById('openSidebar');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const openBtn = document.getElementById('openSidebar');
             const closeBtn = document.getElementById("sidebarClose");
-            
+
             openBtn?.addEventListener('click', () => {
                 sidebar?.classList.add('active');
                 overlay?.classList.add('active');
             });
-            
+
             overlay?.addEventListener('click', () => {
                 sidebar?.classList.remove('active');
                 overlay?.classList.remove('active');
             });
-            
+
             closeBtn?.addEventListener('click', () => {
                 sidebar?.classList.remove('active');
                 overlay?.classList.remove('active');
@@ -282,9 +287,13 @@
                 justify-content: space-between;
             }
 
-            .sidebar-close { display: none; }
+            .sidebar-close {
+                display: none;
+            }
 
-            .logo img { width: 80px; }
+            .logo img {
+                width: 80px;
+            }
 
             .menu {
                 margin-top: 36px;
@@ -308,7 +317,7 @@
                 font-size: 16px;
             }
 
-            #setting-link{
+            #setting-link {
                 display: none;
             }
 
@@ -341,7 +350,9 @@
                 color: #06414F;
             }
 
-            .setting-link { display: none; }
+            .setting-link {
+                display: none;
+            }
 
             .hamburger-btn {
                 display: none;
@@ -351,8 +362,13 @@
                 cursor: pointer;
             }
 
-            .mobile-brand { display: none; }
-            .user-email { display: none; }
+            .mobile-brand {
+                display: none;
+            }
+
+            .user-email {
+                display: none;
+            }
 
             /* MAIN CONTENT */
             .main {
@@ -484,7 +500,9 @@
                 font-size: 14px;
             }
 
-            .edit-btn.primary { border: none; }
+            .edit-btn.primary {
+                border: none;
+            }
 
             .edit-btn:hover {
                 background-color: #06414F;
@@ -530,7 +548,9 @@
                 font-weight: 600;
             }
 
-            .full-width { grid-column: 1 / -1; }
+            .full-width {
+                grid-column: 1 / -1;
+            }
 
             .initials,
             .initials-pic {
@@ -554,14 +574,24 @@
             }
 
             /* Hidden on desktop */
-            .mobile-profile-header { display: none; }
-            .mobile-edit { display: none; }
-            .desktop-only { display: block; }
+            .mobile-profile-header {
+                display: none;
+            }
+
+            .mobile-edit {
+                display: none;
+            }
+
+            .desktop-only {
+                display: block;
+            }
 
             /* ========== MOBILE (matches Figma) ========== */
             @media (max-width: 768px) {
 
-                body { background: #ffffff; }
+                body {
+                    background: #ffffff;
+                }
 
                 /* Sidebar */
                 .sidebar {
@@ -579,7 +609,9 @@
                     border-bottom-right-radius: 40px;
                 }
 
-                .sidebar.active { left: 0; }
+                .sidebar.active {
+                    left: 0;
+                }
 
                 .sidebar-close {
                     display: flex;
@@ -613,7 +645,7 @@
                     margin-left: -20px
                 }
 
-                .bottom-menu{
+                .bottom-menu {
                     margin-left: -20px
                 }
 
@@ -621,7 +653,9 @@
                     display: none;
                 }
 
-                .sidebar-overlay.active { display: block; }
+                .sidebar-overlay.active {
+                    display: block;
+                }
 
                 /* .setting-links { display: none; } */
 
@@ -681,11 +715,11 @@
                 /* Main */
                 .main {
                     margin-left: 0;
-                    padding: 16px 16px 40px;
+                    padding: 16px;
                     width: 100%;
                 }
 
-               
+
                 .topbar {
                     margin-bottom: 20px;
                     padding: 0;
@@ -705,21 +739,49 @@
                 }
 
                 .mobile-brand img {
-                    width: 60px;
-                    height: 26px;
+                    width: 68px;
+                    height: 30px;
                     display: block;
+                    margin-left: -6px;
                 }
 
-                .hamburger-btn {
+                .hamburger {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: 36px;
-                    height: 36px;
-                    padding: 0;
-                    border: none;
-                    background: none;
+                    margin-left: auto;
                 }
+
+                .hamburger-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-width: 48px;
+                    min-height: 48px;
+                    padding: 12px;
+                    margin-top: -12px;
+                    margin-right: -18px;
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    -webkit-tap-highlight-color: transparent;
+                    touch-action: manipulation;
+                }
+
+
+                .hamburger-btn img {
+                    width: 24px;
+                    height: auto;
+                    display: block;
+                    pointer-events: none;
+                }
+
+
+                .hamburger-btn:hover {
+                    opacity: 0.8;
+                }
+
 
                 /* Content becomes single column */
                 .content {
@@ -780,7 +842,7 @@
                     font-size: 13px;
                 }
 
-                
+
                 .settings-links {
                     flex-direction: row;
                     gap: 9px;
@@ -790,7 +852,7 @@
                     /* background-color: #F9F9FB; */
                     border-radius: 22px;
                     width: 322px;
-                    
+
                 }
 
                 .settings-links a {
@@ -815,9 +877,9 @@
                     font-size: 12px;
                 }
 
-               
-                .desktop-only { 
-                    display: none !important; 
+
+                .desktop-only {
+                    display: none !important;
                 }
 
                 /* Cards */
@@ -830,7 +892,9 @@
                     margin-bottom: 20px;
                 }
 
-                .mobile-edit { display: block; }
+                .mobile-edit {
+                    display: block;
+                }
 
                 .details-grid {
                     grid-template-columns: 1fr 1fr;
@@ -847,16 +911,16 @@
                     font-size: 14px;
                 }
 
-                .menu a{
+                .menu a {
                     font-size: 18px;
                 }
 
                 .user-email-text {
-                    max-width: 157px; 
+                    max-width: 157px;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
-                    display: block; 
+                    display: block;
                 }
             }
         </style>

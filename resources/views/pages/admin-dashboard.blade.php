@@ -3,8 +3,11 @@
 
         <div>
 
-            <div class="logo"> <img src="{{ asset('images/Artboard 1 2.svg') }}" alt=""> </div>
-
+            <div class="logo">
+                <a href="{{ route('admin-dashboard.index') }}" class="logo-link">
+                    <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="Home">
+                </a>
+            </div>
             <div class="menu">
                 <a href="{{ route('admin-dashboard.index') }}">
                     <i><img src="{{ asset('images/dash.svg') }}" alt=""></i>
@@ -33,16 +36,16 @@
                 @php
                     $firstInitial = strtoupper(substr($adminUser->first_name, 0, 1));
                 @endphp
-    
+
                 <div class="profile-pic">
                     @if($adminUser->avatar)
                         <img src="{{ asset('storage/' . $adminUser->avatar) }}" alt="Profile"
-                        style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
+                            style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
                     @else
                         <span>{{ $firstInitial }}</span>
                     @endif
                 </div>
-    
+
                 <span class="user-email-text" title="{{ $adminUser->email }}">
                     {{ $adminUser->email }}
                 </span>
@@ -52,8 +55,8 @@
                 <span>Settings</span>
             </a>
             <div style="margin-left: -15px;">
-            <x-adminlogout />
-        </div>
+                <x-adminlogout />
+            </div>
         </div>
 
         <button class="sidebar-close" id="sidebarClose">
@@ -69,8 +72,11 @@
     <main class="main">
         <div class="topbar">
             <div class="mobile-brand">
-                <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
-        
+                <a href="{{ route('admin-dashboard.index') }}" class="mobile-logo-link">
+                    <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+                </a>
+            </div>
+            <div class="hamburger">
                 <button class="hamburger-btn" id="openSidebar">
                     <img src="{{ asset('images/breadcrumb.svg') }}">
                 </button>
@@ -87,7 +93,8 @@
                 <div class="avatar-initials">
                     <a href="{{ route('admin-setting.index') }}" style="text-decoration:none; color: #06414F">
                         @if($adminUser->avatar)
-                            <img src="{{ asset('storage/' . $adminUser->avatar) }}" alt="Profile" style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
+                            <img src="{{ asset('storage/' . $adminUser->avatar) }}" alt="Profile"
+                                style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
                         @else
                             {{ $initials }}
                         @endif
@@ -231,18 +238,18 @@
                                     @endphp
 
                                     <div class="initials" style="overflow: hidden; 
-                                                width: 35px; 
-                                                height: 35px; 
-                                                background-color: #E2EEF9; 
-                                                color: #06414F; 
-                                                border-radius: 50%; 
-                                                display: flex; 
-                                                align-items: center; 
-                                                justify-content: center; 
-                                                font-weight: 700; 
-                                                font-size: 13px;
-                                                flex-shrink: 0;
-                                                padding: 0;">
+                                                    width: 35px; 
+                                                    height: 35px; 
+                                                    background-color: #E2EEF9; 
+                                                    color: #06414F; 
+                                                    border-radius: 50%; 
+                                                    display: flex; 
+                                                    align-items: center; 
+                                                    justify-content: center; 
+                                                    font-weight: 700; 
+                                                    font-size: 13px;
+                                                    flex-shrink: 0;
+                                                    padding: 0;">
                                         @if ($user->avatar)
                                             <img src="{{ asset('storage/' . $user->avatar) }}" alt="Avatar"
                                                 style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
@@ -293,7 +300,7 @@
                             </td>
                         </tr>
                     @endforeach
-                    </tbody>
+                </tbody>
             </table>
         </div>
     </main>
@@ -390,21 +397,21 @@
             });
         });
 
-        const sidebar  = document.querySelector('.sidebar');
-        const overlay  = document.getElementById('sidebarOverlay');
-        const openBtn  = document.getElementById('openSidebar');
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const openBtn = document.getElementById('openSidebar');
         const closeBtn = document.getElementById("sidebarClose");
-        
+
         openBtn?.addEventListener('click', () => {
             sidebar?.classList.add('active');
             overlay?.classList.add('active');
         });
-        
+
         overlay?.addEventListener('click', () => {
             sidebar?.classList.remove('active');
             overlay?.classList.remove('active');
         });
-        
+
         closeBtn?.addEventListener('click', () => {
             sidebar?.classList.remove('active');
             overlay?.classList.remove('active');
@@ -441,7 +448,7 @@
             z-index: 1000;
         }
 
-        .sidebar-close{
+        .sidebar-close {
             display: none;
         }
 
@@ -476,7 +483,7 @@
             color: #06414F;
         }
 
-        .setting-links{
+        .setting-links {
             display: flex;
             align-items: center;
             text-align: center;
@@ -490,12 +497,12 @@
             border-radius: 8px;
         }
 
-        .setting-links:hover{
+        .setting-links:hover {
             background-color: #ffffff;
             color: #06414F;
         }
 
-        .menu a.setting-link{
+        .menu a.setting-link {
             display: none;
         }
 
@@ -525,18 +532,13 @@
             color: #06414F;
         }
 
-        .hamburger-btn {
-            display: none;
-            background: transparent;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-        }
+        
+
         .mobile-brand {
             display: none;
         }
 
-        .user-email{
+        .user-email {
             display: none;
         }
 
@@ -583,6 +585,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            margin-top: -22px;
         }
 
         .user img {
@@ -621,7 +624,8 @@
             align-items: center;
         }
 
-        .card:hover, .card.active-card {
+        .card:hover,
+        .card.active-card {
             background-color: #06414F;
             color: white;
         }
@@ -638,7 +642,8 @@
             color: #7a7a7a;
         }
 
-        .card:hover p, .card.active-card p {
+        .card:hover p,
+        .card.active-card p {
             color: #DFDEDE;
         }
 
@@ -656,16 +661,16 @@
         /* CHARTS CONTAINER */
         .charts-container {
             display: flex;
-            flex-direction: row-reverse; 
+            flex-direction: row-reverse;
             gap: 20px;
             align-items: stretch;
             margin-bottom: 25px;
         }
 
-        
+
         .chart-card.large {
             flex: 1.6;
-            min-width: 0; 
+            min-width: 0;
         }
 
         .chart-card.small {
@@ -769,12 +774,12 @@
         }
 
         .attendance-card {
-            order: 1; 
-            flex: 1.5; 
+            order: 1;
+            flex: 1.5;
         }
 
         .donut-card {
-            order: 2; 
+            order: 2;
             flex: 1;
         }
 
@@ -813,8 +818,9 @@
         }
 
         th {
-        position: static; /* Header stays in place relative to table content */
-    }
+            position: static;
+            /* Header stays in place relative to table content */
+        }
 
         .names {
             font-size: 14px;
@@ -855,6 +861,10 @@
             color: #333;
         }
 
+        .hamburger{
+            display: none;
+        }
+
         @media (max-width: 1024px) {
             .charts-container {
                 grid-template-columns: 1fr;
@@ -870,28 +880,28 @@
                 background: #FFFFFF;
             }
 
-            .main {
+            main {
                 margin-left: 0 !important;
-                padding: 16px !important;
+                padding: 7px !important;
             }
 
             .table-wrapper {
-                max-height: 380px; 
-                overflow-y: auto;  
-                overflow-x: auto;  
+                max-height: 380px;
+                overflow-y: auto;
+                overflow-x: auto;
             }
 
             table {
                 border-collapse: separate;
                 border-spacing: 0;
-                min-width: 580px; 
+                min-width: 580px;
             }
 
             th {
-              top: 0;
+                top: 0;
             }
 
-            
+
             .table-wrapper::-webkit-scrollbar {
                 width: 5px;
                 height: 5px;
@@ -902,7 +912,7 @@
                 border-radius: 6px;
             }
 
-            
+
             .topbar {
                 display: flex;
                 flex-direction: column;
@@ -919,23 +929,45 @@
             }
 
             .mobile-brand .mobile-logo {
-                width: 60px;
-                height: auto;
+                width: 68px;
+                height: 30px;
             }
 
-            .hamburger-btn {
-                display: flex !important;
+            .hamburger {
+                display: flex;
                 align-items: center;
                 justify-content: center;
-                background: none;
+                margin-left: auto; 
+                        }
+
+            .hamburger-btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 48px;
+                min-height: 48px;
+                padding: 12px;
+                margin-top: -65px;
+                margin-right: -18px;
+                background: transparent;
                 border: none;
-                padding: 0;
+                outline: none;
                 cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
             }
 
+
             .hamburger-btn img {
-                width: 20px;
-                height: 20px;
+                width: 24px;
+                height: auto;
+                display: block;
+                pointer-events: none; 
+            }
+
+
+            .hamburger-btn:hover {
+                opacity: 0.8;
             }
 
             .user {
@@ -959,7 +991,7 @@
                 margin-top: 6px;
             }
 
-            
+
             .stat-cards {
                 display: flex !important;
                 overflow-x: auto;
@@ -1000,7 +1032,7 @@
                 padding: 6px;
             }
 
-           
+
             .charts-container {
                 display: flex;
                 flex-direction: column;
@@ -1025,7 +1057,7 @@
                 height: 200px;
             }
 
-           
+
             .sidebar {
                 position: fixed;
                 top: 0;
@@ -1110,25 +1142,25 @@
                 overflow: hidden;
             }
 
-            .menu{
+            .menu {
                 margin-left: -15px;
-               
+
             }
 
-            .menu a{
+            .menu a {
                 font-size: 18px;
             }
 
-            .view-members-btn{
+            .view-members-btn {
                 display: none;
             }
 
             .user-email-text {
-                max-width: 157px; 
+                max-width: 157px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                display: block; 
+                display: block;
             }
 
         }

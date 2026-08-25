@@ -417,14 +417,10 @@
                 color: #111;
             }
 
-            main{
+            main {
                 width: 100%;
             }
 
-
-            /* =========================================
-   MAIN LAYOUT
-========================================= */
 
             .dashboard {
                 display: flex;
@@ -433,9 +429,6 @@
             }
 
 
-            /* =========================================
-   SIDEBAR
-========================================= */
 
             .sidebar {
 
@@ -478,7 +471,8 @@
             }
 
             .menu {
-                gap: 10px;
+                gap: 12px;
+                margin-left: -18px;
             }
 
             .bottom-menu {
@@ -542,11 +536,15 @@
             .main {
                 margin-left: 247px;
                 padding: 35px 50px;
-                width: 975px;
+
                 height: 694px;
                 opacity: 1;
                 gap: 61px;
                 top: 26px;
+            }
+
+            #setting-link {
+                display: none;
             }
 
 
@@ -663,6 +661,7 @@
                 font-size: 16px;
                 line-height: 100%;
                 letter-spacing: 0px;
+                margin-bottom: 5px;
 
             }
 
@@ -709,9 +708,7 @@
 
 
 
-            /* =========================================
-   BUTTON
-========================================= */
+
 
             .submit-button {
                 width: min(60vw, 850px);
@@ -777,9 +774,9 @@
                     background: #fff;
                 }
 
-                /* =====================================================
-       DASHBOARD
-    ===================================================== */
+                main {
+                    padding: 3px;
+                }
 
                 .dashboard {
                     display: block;
@@ -817,30 +814,26 @@
                 }
 
 
-                /* =====================================================
-       MOBILE LOGO
 
-       Uses your existing .logo class
-    ===================================================== */
 
                 .mobile-logo {
                     display: block;
                     width: 45px;
                     height: auto;
-                    margin: 0 0 12px 3px;
+                    margin: 3px;
 
                 }
 
                 .main .mobile-logo img {
                     display: block;
-                    width: 53px;
-                    height: 30.6px;
+                    width: 68px;
+                    height: 30px;
+                    margin-top: -18px;
+                    margin-left: -4px;
+                    margin-bottom: 16px;
                 }
 
 
-                /* =====================================================
-       HAMBURGER
-    ===================================================== */
 
                 .mobile-menu-btn {
                     display: flex;
@@ -863,10 +856,44 @@
                     margin-right: 10px;
                 }
 
+                .hamburger {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-left: auto;
+                }
 
-                /* =====================================================
-       PROFILE
-    ===================================================== */
+                .mobile-menu-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-width: 48px;
+                    min-height: 48px;
+                    padding: 12px;
+                    margin-top: -25px;
+                    margin-right: -2px;
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    -webkit-tap-highlight-color: transparent;
+                    touch-action: manipulation;
+                }
+
+
+                .mobile-menu-btn img {
+                    width: 24px;
+                    height: auto;
+                    display: block;
+                    pointer-events: none;
+                }
+
+
+                .hamburger-btn:hover {
+                    opacity: 0.8;
+                }
+
+
 
                 .admin-area {
                     width: 100%;
@@ -911,10 +938,6 @@
                 }
 
 
-                /* =====================================================
-       PAGE TITLE
-    ===================================================== */
-
                 .page-title {
                     font-size: 14px;
                     font-weight: 600;
@@ -924,9 +947,6 @@
                 }
 
 
-                /* =====================================================
-       FORM
-    ===================================================== */
 
                 .employee-form {
                     width: 100%;
@@ -944,9 +964,7 @@
                 }
 
 
-                /* =====================================================
-       FORM GROUP
-    ===================================================== */
+
 
                 .form-group {
                     width: 100%;
@@ -974,7 +992,7 @@
                     font-size: 12px;
                     line-height: 100%;
                     letter-spacing: 0px;
-                    width: 360px;
+                    width: 375px;
                     height: 40px;
                     opacity: 1;
                     gap: 10px;
@@ -999,20 +1017,12 @@
                 }
 
 
-                /* =====================================================
-       COMPANY
 
-       Keep company in normal flow on mobile
-    ===================================================== */
 
                 .company-field {
                     grid-column: auto;
                 }
 
-
-                /* =====================================================
-       DATE
-    ===================================================== */
 
                 .date-input {
                     color: #9B9B9B;
@@ -1029,9 +1039,7 @@
                 }
 
 
-                /* =====================================================
-       ADD EMPLOYEE BUTTON
-    ===================================================== */
+
 
                 .submit-button {
                     margin-top: 16px;
@@ -1042,7 +1050,7 @@
                     font-weight: 600;
                     cursor: pointer;
 
-                    width: 360px;
+                    width: 375px;
                     height: 49px;
                     opacity: 1;
                     gap: 10px;
@@ -1061,10 +1069,11 @@
 
                 .sidebar {
                     width: 300px;
-                    height: calc(100vh - 1px);
+                    height: 100vh;
+                    max-height: 100vh;
                     position: fixed;
-                    /* top: 10px; */
                     left: -100%;
+                    top: 0;
                     padding: 30px 16px;
                     background: #064A58;
                     border-top-right-radius: 40px;
@@ -1072,8 +1081,32 @@
                     z-index: 2000;
                     transition: left .3s ease;
                     box-sizing: border-box;
+
+                    /* SCROLLING */
+                    overflow-y: auto;
+                    overflow-x: hidden;
+
+                    /* Keeps scrolling smooth on phones */
+                    -webkit-overflow-scrolling: touch;
                 }
 
+                .sidebar>div,
+                .sidebar>.bottom-menu {
+                    flex-shrink: 0;
+                }
+
+                .sidebar::-webkit-scrollbar {
+                    width: 4px;
+                }
+
+                .sidebar::-webkit-scrollbar-thumb {
+                    background: rgba(255, 255, 255, 0.35);
+                    border-radius: 10px;
+                }
+
+                .sidebar::-webkit-scrollbar-track {
+                    background: transparent;
+                }
 
                 .sidebar.open {
                     left: 0;
@@ -1262,11 +1295,11 @@
                 }
 
                 .user-email-text {
-                    max-width: 157px; 
+                    max-width: 157px;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
-                    display: block; 
+                    display: block;
                 }
             }
 
@@ -1348,7 +1381,9 @@
 
                         <!-- Logo -->
                         <div class="logo">
-                            <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="">
+                            <a href="{{ route('admin-dashboard.index') }}" class="logo-link">
+                                <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="Home">
+                            </a>
                         </div>
 
 
@@ -1419,21 +1454,21 @@
 
                 <div class="mobile-overlay" id="mobileOverlay"></div>
 
-                <!-- =====================================
-             MAIN
-        ====================================== -->
+
 
                 <main class="main">
                     <div class="mobile-logo">
-                        <img src="{{ asset('images/Artboard 1-1 2.svg') }}" alt="">
+                        <a href="{{ route('admin-dashboard.index') }}" class="mobile-logo-link">
+                            <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+                        </a>
                     </div>
 
-                    <button class="mobile-menu-btn" id="mobileMenuBtn">
-                        <img src="{{ asset('images/breadcrumb.svg') }}">
-                    </button>
+                    <div class="hamburger">
+                        <button class="mobile-menu-btn" id="mobileMenuBtn">
+                            <img src="{{ asset('images/breadcrumb.svg') }}">
+                        </button>
+                    </div>
 
-
-                    <!-- TOP HEADER -->
 
                     <header class="top-header">
 
@@ -1444,7 +1479,7 @@
                         </h1>
 
 
-                        <!-- Admin -->
+
 
                         <div class="admin-area">
 

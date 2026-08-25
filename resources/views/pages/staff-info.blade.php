@@ -32,11 +32,11 @@
             z-index: 1000;
         }
 
-        .sidebar-close{
+        .sidebar-close {
             display: none;
-         }
+        }
 
-         .setting-link{
+        .setting-link {
             display: none;
         }
 
@@ -47,16 +47,17 @@
             font-size: 24px;
             cursor: pointer;
         }
+
         .mobile-brand {
             display: none;
         }
 
-        .user-email{
+        .user-email {
             display: none;
         }
 
 
-        .logo{
+        .logo {
             margin-left: -20px;
         }
 
@@ -104,7 +105,7 @@
             /* font-weight: 700; */
         }
 
-        .setting-links{
+        .setting-links {
             display: flex;
             align-items: center;
             text-align: center;
@@ -118,12 +119,12 @@
             border-radius: 8px;
         }
 
-        .setting-links:hover{
+        .setting-links:hover {
             background-color: #ffffff;
             color: #06414F;
         }
 
-        .setting-link{
+        .setting-link {
             display: none;
         }
 
@@ -356,7 +357,7 @@
             height: 400px;
         }
 
-        .card-address-card{
+        .card-address-card {
             background: #fff;
             border: 1px solid #e8e8e8;
             border-radius: 10px;
@@ -364,7 +365,7 @@
             height: 250px;
         }
 
-        .card-address-card h3{
+        .card-address-card h3 {
             margin-top: -10px;
             font-weight: 600;
         }
@@ -443,189 +444,212 @@
             grid-column: 1 / -1;
         }
 
-        .both-btns{
+        .both-btns {
             display: none;
         }
 
         /* Responsive */
         @media(max-width:768px) {
 
-            body{
-            background: #ffffff;
-        }
+            body {
+                background: #ffffff;
+            }
 
-        .dashboard-container{
-            display: block;
-            width: 100%;
-            height: auto;
-            position: relative;
-        }
+            .dashboard-container {
+                display: block;
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
 
             /* ===== Sidebar ===== */
-        .sidebar{
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 78%;
-            max-width: 300px;
-            height: 100vh;
-            background: #06414F;
-            padding: 24px 20px;
-            z-index: 2000;
-            transition: left .3s ease;
-            border-top-right-radius: 40px;
-            border-bottom-right-radius: 40px;
-        }
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 78%;
+                max-width: 300px;
+                height: 100vh;
+                background: #06414F;
+                padding: 24px 20px;
+                z-index: 2000;
+                transition: left .3s ease;
+                border-top-right-radius: 40px;
+                border-bottom-right-radius: 40px;
+            }
 
-        .sidebar.active{
-            left: 0;
-        }
+            .sidebar.active {
+                left: 0;
+            }
 
-        .sidebar-close {
-        display: flex;
-        position: absolute;
-        top: 25px;
-        right: 14px;
-        width: 24px;
-        height: 24px;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-        border: none;
-        background: transparent;
-        color: #fff;
-        font-size: 18px;
-        cursor: pointer;
-       
-    }
+            .sidebar-close {
+                display: flex;
+                position: absolute;
+                top: 25px;
+                right: 14px;
+                width: 24px;
+                height: 24px;
+                align-items: center;
+                justify-content: center;
+                padding: 0;
+                border: none;
+                background: transparent;
+                color: #fff;
+                font-size: 18px;
+                cursor: pointer;
 
-    .sidebar-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background:#06414F80;
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(3px);
-        z-index: 1500;
-    }
+            }
+
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: #06414F80;
+                backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(3px);
+                z-index: 1500;
+            }
 
 
-    .sidebar-overlay.active {
-        display: block;
-    }
+            .sidebar-overlay.active {
+                display: block;
+            }
 
-    .user-email {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 10px 12px;
-        margin-bottom: -2px;
-        width: 100%;
-    }
+            .user-email {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 10px 12px;
+                margin-bottom: -2px;
+                width: 100%;
+            }
 
-    .user-email .profile-pic {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background-color: #ffffff;
-        color: #06414F;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        font-size: 13px;
-        flex-shrink: 0;
-        overflow: hidden;
-    }
+            .user-email .profile-pic {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background-color: #ffffff;
+                color: #06414F;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                font-size: 13px;
+                flex-shrink: 0;
+                overflow: hidden;
+            }
 
-    .user-profile-item .profile-pic img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-    }
+            .user-profile-item .profile-pic img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+            }
 
-    .setting-links{
-        display: none;
-    }
+            .setting-links {
+                display: none;
+            }
 
-    .setting-link{
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        text-align: left;
-        padding: 12px;
-        gap: 5px;
-        margin-right: 0;
-        width: 100%;
-        text-decoration: none;
-        font-size: 18px;
-        font-weight: 500;
-        color: #b7b7b7;
-        border-radius: 8px;
-        margin-left: -3px;
-    }
+            .setting-link {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                text-align: left;
+                padding: 12px;
+                gap: 5px;
+                margin-right: 0;
+                width: 100%;
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: 500;
+                color: #b7b7b7;
+                border-radius: 8px;
+                margin-left: -3px;
+            }
 
-    .setting-link i {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 30px;
-        height: 20px;
-        flex-shrink: 0;
-        margin: 0;
-    }
+            .setting-link i {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 30px;
+                height: 20px;
+                flex-shrink: 0;
+                margin: 0;
+            }
 
-    .setting-link i img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
+            .setting-link i img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
 
-    .setting-link span {
-        line-height: 1 ;
-    }
+            .setting-link span {
+                line-height: 1;
+            }
 
-    .mobile-brand{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            margin-bottom:8px;
-        }
+            .mobile-brand {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+            }
 
- 
-        .mobile-brand img{
-            width:60px;
-            height:26px;
-            display:block;
-        }
 
-        .hamburger-btn{
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            width:36px;
-            height:36px;
-            padding:0;
-            border:none;
-            background:none;
-        }
+            .mobile-brand img {
+                width: 68px;
+                height: 30px;
+                display: block;
+            }
 
-        .hamburger-btn i{
-            font-size: 22px;
-            color: #111827;
-        }
-        .profile-top{
-            display: none;
-        }
+            .hamburger {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: auto;
+            }
 
-        .main-content {
+            .hamburger-btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 48px;
+                min-height: 48px;
+                padding: 12px;
+                margin-top: -50px;
+                margin-right: -355px;
+                background: transparent;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
+
+
+            .hamburger-btn img {
+                width: 24px;
+                height: auto;
+                display: block;
+                pointer-events: none;
+            }
+
+
+            .hamburger-btn:hover {
+                opacity: 0.8;
+            }
+
+            .profile-top {
+                display: none;
+            }
+
+            .main-content {
                 margin-left: 0;
-                padding: 15px;
+                padding: 16px;
             }
 
             .topbar {
-                display: none; /* Hide Desktop Header on Mobile */
+                display: none;
+                /* Hide Desktop Header on Mobile */
             }
 
             .content-wrapper {
@@ -647,7 +671,7 @@
                 margin-left: 17px;
             }
 
-           
+
             .profile-card .btn {
                 width: 48%;
                 height: 38px;
@@ -660,26 +684,28 @@
             }
 
             .profile-card .btn i {
-                display: none; 
+                display: none;
             }
 
             .profile-card .btn:first-of-type {
-               
-                color:  #8C8C8C !important;
+
+                color: #8C8C8C !important;
             }
 
-            .profile-card .btn:first-of-type:hover{
+            .profile-card .btn:first-of-type:hover {
                 background-color: #06414F;
                 color: #ffffff;
             }
 
-          
-            .card, .card-address-card {
+
+            .card,
+            .card-address-card {
                 height: auto;
                 padding: 20px;
             }
 
-            .details-grid, .address-grid {
+            .details-grid,
+            .address-grid {
                 gap: 18px;
             }
 
@@ -710,16 +736,16 @@
                 color: inherit;
             }
 
-            .btn{
+            .btn {
                 display: none;
             }
 
             .user-email-text {
-                max-width: 157px; 
+                max-width: 157px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                display: block; 
+                display: block;
             }
 
         }
@@ -732,7 +758,9 @@
             <aside class="sidebar">
                 <div class="brand-section">
                     <div class="logo">
-                        <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="">
+                        <a href="{{ route('index.staff') }}" class="logo-link">
+                            <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="Home">
+                        </a>
                     </div>
                 </div>
 
@@ -767,16 +795,16 @@
                                 @php
                                     $firstInitial = strtoupper(substr($user->first_name, 0, 1));
                                 @endphp
-                    
+
                                 <div class="profile-pic">
                                     @if($user->avatar)
                                         <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
-                                        style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
+                                            style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
                                     @else
                                         <span>{{ $firstInitial }}</span>
                                     @endif
                                 </div>
-                    
+
                                 <span class="user-email-text" title="{{ $user->email }}">
                                     {{ $user->email }}
                                 </span>
@@ -803,8 +831,12 @@
             <!-- Main Content -->
             <main class="main-content">
                 <div class="mobile-brand">
-                    <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
-            
+                    <a href="{{ route('index.staff') }}" class="mobile-logo-link">
+                        <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+                    </a>
+                </div>
+                <div class="hamburger">
+
                     <button class="hamburger-btn" id="openSidebar">
                         <img src="{{ asset('images/breadcrumb.svg') }}">
                         {{-- <i class="fa-solid fa-align-right"></i> --}}
@@ -887,7 +919,7 @@
                         <h4>{{ $user->first_name }} {{ $user->last_name }}</h4>
                         <p>{{ $user->position }}</p>
 
-                       
+
                         <a href="{{ route('staff-edit.index') }}" class="btn"
                             style="text-decoration: none;color: #06414F">
                             <i class="fa-solid fa-user"></i>
@@ -904,7 +936,7 @@
                             <a href="{{ route('staff-edit.index') }}" class="active">
                                 <span>Personal Information</span>
                             </a>
-                        
+
                             <a href="{{ route('staff-setting.index') }}">
                                 <span>Login & Password</span>
                             </a>
@@ -912,7 +944,7 @@
 
                     </div>
 
-                    
+
 
                     <!-- Right Section -->
                     <div class="details-section">
@@ -1001,25 +1033,25 @@
 
     </body>
 
-  <script>
-                         const sidebar  = document.querySelector('.sidebar');
-                         const overlay  = document.getElementById('sidebarOverlay');
-                         const openBtn  = document.getElementById('openSidebar');
-                         const closeBtn = document.getElementById("sidebarClose");
-                        
-                        openBtn?.addEventListener('click', () => {
-                            sidebar?.classList.add('active');
-                            overlay?.classList.add('active');
-                        });
-                        
-                        overlay?.addEventListener('click', () => {
-                            sidebar?.classList.remove('active');
-                            overlay?.classList.remove('active');
-                        });
-                        
-                        closeBtn?.addEventListener('click', () => {
-                            sidebar?.classList.remove('active');
-                            overlay?.classList.remove('active');
-                        });
-  </script>
+    <script>
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const openBtn = document.getElementById('openSidebar');
+        const closeBtn = document.getElementById("sidebarClose");
+
+        openBtn?.addEventListener('click', () => {
+            sidebar?.classList.add('active');
+            overlay?.classList.add('active');
+        });
+
+        overlay?.addEventListener('click', () => {
+            sidebar?.classList.remove('active');
+            overlay?.classList.remove('active');
+        });
+
+        closeBtn?.addEventListener('click', () => {
+            sidebar?.classList.remove('active');
+            overlay?.classList.remove('active');
+        });
+    </script>
 </x-layout>

@@ -153,6 +153,14 @@
             margin-bottom: 32px;
         }
 
+        .breadcrumb {
+            display: none; 
+       }
+
+       .breadcrumbs{
+           margin-right: 500px;
+       }
+
         .parent-route {
             font-size: 24px;
             font-weight: 700;
@@ -1055,14 +1063,14 @@
            
         }
 
-        /* ===== Main ===== */
+        
         .main-viewport{
             width: 100%;
-            padding: 27px 16px 28px;
+            padding: 16px;
             overflow: visible;
         }
 
-        /* ===== Top bar with hamburger ===== */
+       
         .top-bar{
             display:block;
             margin-bottom:20px;
@@ -1078,26 +1086,47 @@
        
  
         .mobile-brand img{
-            width:60px;
-            height:26px;
+            width:68px;
+            height:30px;
             display:block;
         }
 
-        .hamburger-btn{
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            width:36px;
-            height:36px;
-            padding:0;
-            border:none;
-            background:none;
-        }
+        .hamburger {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: auto; 
+                        }
 
-        .hamburger-btn i{
-            font-size: 22px;
-            color: #111827;
-        }
+            .hamburger-btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 48px;
+                min-height: 48px;
+                padding: 12px;
+                margin-top: -49px;
+                margin-left: 358px;
+                background: transparent;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
+
+
+            .hamburger-btn img {
+                width: 24px;
+                height: auto;
+                display: block;
+                pointer-events: none; 
+            }
+
+
+            .hamburger-btn:hover {
+                opacity: 0.8;
+            }
 
         /* hide desktop profile */
         .user-profile-widget{
@@ -1108,6 +1137,10 @@
             display: flex;
             flex-direction: column;
             gap: 2px;
+    }
+
+    .breadcrumbs{
+        display: none; 
     }
 
         .parent-route{
@@ -1351,7 +1384,9 @@
             <aside class="sidebar">
                 <div class="brand-section">
                     <div class="logo">
-                        <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="">
+                        <a href="{{ route('index.staff') }}" class="logo-link">
+                            <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="Home">
+                        </a>
                     </div>
                 </div>
 
@@ -1433,7 +1468,12 @@
 
                 <header class="top-bar">
                     <div class="mobile-brand">
-                        <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+                        <a href="{{ route('index.staff') }}" class="mobile-logo-link">
+                            <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+                        </a>
+                    </div>
+
+                    <div class="hamburger">
                 
                         <button class="hamburger-btn" id="openSidebar">
                             <img src="{{ asset('images/breadcrumb.svg') }}">
@@ -1442,6 +1482,14 @@
                     </div>
                 
                     <div class="breadcrumb">
+                        <span class="parent-route">Dashboard</span>
+                        <h1 class="page-title">Welcome back, {{ $user->first_name }}</h1>
+                        <p class="live-date-string">
+                          Today is {{ now()->format('l, F jS Y - h:i A') }}
+                        </p>
+                    </div>
+
+                    <div class="breadcrumbs">
                         <span class="parent-route">Dashboard</span>
                         <h1 class="page-title">Welcome back, {{ $user->first_name }}</h1>
                         <p class="live-date-string">

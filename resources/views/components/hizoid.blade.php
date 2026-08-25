@@ -37,6 +37,14 @@
     display: none;
   }
 
+  .breadcrumb{
+        margin-right: 500px;
+    }
+
+    .breadcrumbs{
+      display: none;
+    }
+
   /* ==========================================================================
    2. Master Viewport Sidebar Panel Component
    ========================================================================== */
@@ -194,7 +202,8 @@
   .profile-avatar-fallback {
     width: 35px;
     height: 35px;
-    background-color: #E2EEF9;;
+    background-color: #E2EEF9;
+    ;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -210,7 +219,7 @@
   }
 
 
-  .profile-avatar-fallbacks{
+  .profile-avatar-fallbacks {
     width: 100%;
     height: 100%;
     color: #43E292;
@@ -986,15 +995,51 @@
       margin-bottom: 20px;
     }
 
-    .hamburger-btn {
+    .breadcrumb{
+      display: none;
+    }
+
+    .breadcrumbs{
+      display: flex;
+            flex-direction: column;
+            gap: 2px;
+    }
+
+    .hamburger {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 36px;
-      height: 36px;
-      padding: 0;
+      margin-left: auto;
+    }
+
+    .hamburger-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 48px;
+      min-height: 48px;
+      padding: 12px;
+      margin-top: -56px;
+      margin-left: 360px;
+      background: transparent;
       border: none;
-      background: none;
+      outline: none;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+
+    .hamburger-btn img {
+      width: 24px;
+      height: auto;
+      display: block;
+      pointer-events: none;
+    }
+
+
+    .hamburger-btn:hover {
+      opacity: 0.8;
     }
 
     .mobile-brand {
@@ -1002,6 +1047,11 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 8px;
+    }
+
+    .mobile-brand img {
+      width: 68px;
+      height: 30px;
     }
 
     .user-profile-widget,
@@ -1121,22 +1171,15 @@
       border-radius: 8px;
     }
 
-    .hamburger-btn img {
-      width: 24px;
-      height: 24px;
-      object-fit: contain;
-      display: block;
-      pointer-events: none;
-     
-    }
+
 
     .user-email-text {
-    max-width: 157px; 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block; 
-}
+      max-width: 157px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+    }
   }
 </style>
 
@@ -1150,7 +1193,9 @@
     <aside class="sidebar">
       <div class="brand-section">
         <div class="logo">
-          <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="">
+          <a href="{{ route('index.staff') }}" class="logo-link">
+            <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="Home">
+          </a>
         </div>
       </div>
 
@@ -1225,7 +1270,11 @@
 
       <header class="top-bar">
         <div class="mobile-brand">
-          <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+          <a href="{{ route('index.staff') }}" class="mobile-logo-link">
+            <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+          </a>
+        </div>
+        <div class="hamburger">
 
           <button class="hamburger-btn" id="openSidebar">
             <img src="{{ asset('images/breadcrumb.svg') }}">
@@ -1233,6 +1282,11 @@
           </button>
         </div>
         <div class="breadcrumb">
+          <span class="parent-route">ID Card</span>
+          <h1 class="page-title">Employee Identity Card</h1>
+        </div>
+
+        <div class="breadcrumbs">
           <span class="parent-route">ID Card</span>
           <h1 class="page-title">Employee Identity Card</h1>
         </div>
@@ -1265,7 +1319,7 @@
                 @else
                   @php
                     $firstInitial = substr($user->first_name, 0, 1);
-  
+
                    @endphp
                   <div class="profile-avatar-fallback">{{ $firstInitial }}</div>
                 @endif
@@ -1300,7 +1354,7 @@
                   padding: 0;
                   border-left: 5px solid #3DDE93;">
 
-                  
+
 
                     @if($user->avatar)
 
@@ -1310,7 +1364,7 @@
                       @php
                         $firstInitial = substr($user->first_name, 0, 1);
                         $lastInitial = substr($user->last_name, 0, 1);
-                        
+
                         $initials = strtoupper($firstInitial . $lastInitial)
                        @endphp
                       <div class="profile-avatar-fallbacks">{{ $initials }}</div>

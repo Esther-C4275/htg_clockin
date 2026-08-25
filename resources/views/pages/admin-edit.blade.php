@@ -1,7 +1,9 @@
 <x-layout>
     <aside class="sidebar">
         <div class="logo">
-            <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="">
+            <a href="{{ route('admin-dashboard.index') }}" class="logo-link">
+                <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="Home">
+            </a>
         </div>
 
         <ul class="menu">
@@ -36,7 +38,7 @@
                 <div class="profile-pic">
                     @if($user->avatar)
                         <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
-                             style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
+                            style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
                     @else
                         <span>{{ $firstInitial }}</span>
                     @endif
@@ -63,7 +65,11 @@
         <!-- TOPBAR -->
         <div class="topbar">
             <div class="mobile-brand">
-                <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+                <a href="{{ route('admin-dashboard.index') }}" class="mobile-logo-link">
+                    <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+                </a>
+            </div>
+            <div class="hamburger">
                 <button class="hamburger-btn" id="openSidebar">
                     <img src="{{ asset('images/breadcrumb.svg') }}">
                 </button>
@@ -92,7 +98,7 @@
 
             <!-- SETTINGS PANEL -->
             <div class="settings">
-              
+
                 <div class="mobile-profile-header">
                     @php
                         $firstInitial = substr($user->first_name, 0, 1);
@@ -150,7 +156,8 @@
                     @method('PUT')
 
                     @if ($errors->any())
-                        <div style="background: #FEE2E2; color: #991B1B; padding: 15px; border-radius: 6px; margin-bottom: 20px;">
+                        <div
+                            style="background: #FEE2E2; color: #991B1B; padding: 15px; border-radius: 6px; margin-bottom: 20px;">
                             <strong>Fix these errors to save:</strong>
                             <ul style="margin-top: 5px; padding-left: 20px;">
                                 @foreach ($errors->all() as $error)
@@ -186,13 +193,16 @@
                         <div>
                             <label>Gender</label>
                             <select name="gender">
-                                <option value="Female" {{ old('gender', $user->gender) == 'Female' ? 'selected' : '' }}>Female</option>
-                                <option value="Male" {{ old('gender', $user->gender) == 'Male' ? 'selected' : '' }}>Male</option>
+                                <option value="Female" {{ old('gender', $user->gender) == 'Female' ? 'selected' : '' }}>
+                                    Female</option>
+                                <option value="Male" {{ old('gender', $user->gender) == 'Male' ? 'selected' : '' }}>Male
+                                </option>
                             </select>
                         </div>
                         <div>
                             <label>Date of Birth</label>
-                            <input type="date" name="date_of_birth" value="{{ old('date_of_birth', $user->date_of_birth) }}">
+                            <input type="date" name="date_of_birth"
+                                value="{{ old('date_of_birth', $user->date_of_birth) }}">
                         </div>
                     </div>
 
@@ -202,20 +212,26 @@
                         <div>
                             <label>Country</label>
                             <select name="country">
-                                <option value="" disabled {{ !old('country', $user->country) ? 'selected' : '' }}>Select country</option>
+                                <option value="" disabled {{ !old('country', $user->country) ? 'selected' : '' }}>Select
+                                    country</option>
                                 <option value="Nigeria" {{ old('country', $user->country) == 'Nigeria' ? 'selected' : '' }}>Nigeria</option>
-                                <option value="Ghana" {{ old('country', $user->country) == 'Ghana' ? 'selected' : '' }}>Ghana</option>
+                                <option value="Ghana" {{ old('country', $user->country) == 'Ghana' ? 'selected' : '' }}>
+                                    Ghana</option>
                                 <option value="United Kingdom" {{ old('country', $user->country) == 'United Kingdom' ? 'selected' : '' }}>United Kingdom</option>
                                 <option value="United States" {{ old('country', $user->country) == 'United States' ? 'selected' : '' }}>United States</option>
-                                <option value="Kenya" {{ old('country', $user->country) == 'Kenya' ? 'selected' : '' }}>Kenya</option>
+                                <option value="Kenya" {{ old('country', $user->country) == 'Kenya' ? 'selected' : '' }}>
+                                    Kenya</option>
                             </select>
                         </div>
                         <div>
                             <label>City/State</label>
                             <select name="state">
-                                <option value="" disabled {{ !old('state', $user->state) ? 'selected' : '' }}>Select state</option>
-                                <option value="Delta" {{ old('state', $user->state) == 'Delta' ? 'selected' : '' }}>Delta</option>
-                                <option value="Lagos" {{ old('state', $user->state) == 'Lagos' ? 'selected' : '' }}>Lagos</option>
+                                <option value="" disabled {{ !old('state', $user->state) ? 'selected' : '' }}>Select
+                                    state</option>
+                                <option value="Delta" {{ old('state', $user->state) == 'Delta' ? 'selected' : '' }}>Delta
+                                </option>
+                                <option value="Lagos" {{ old('state', $user->state) == 'Lagos' ? 'selected' : '' }}>Lagos
+                                </option>
                                 <!-- keep the rest of your state options -->
                                 <option>Abia</option>
                                 <option>Adamawa</option>
@@ -270,9 +286,9 @@
     </main>
 
     <script>
-        const sidebar  = document.querySelector('.sidebar');
-        const overlay  = document.getElementById('sidebarOverlay');
-        const openBtn  = document.getElementById('openSidebar');
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const openBtn = document.getElementById('openSidebar');
         const closeBtn = document.getElementById("sidebarClose");
 
         openBtn?.addEventListener('click', () => {
@@ -299,9 +315,9 @@
             font-family: 'Inter', sans-serif;
         }
 
-        body {
+        /* body {
             background: #f4f6f8;
-        }
+        } */
 
         /* SIDEBAR */
         .sidebar {
@@ -320,12 +336,12 @@
             z-index: 1000;
         }
 
-        .sidebar-close { 
-            display: none; 
+        .sidebar-close {
+            display: none;
         }
 
-        .logo img { 
-            width: 80px; 
+        .logo img {
+            width: 80px;
         }
 
         .menu {
@@ -374,24 +390,24 @@
             color: #06414F;
         }
 
-        #setting-link { 
+        #setting-link {
             display: none;
-         }
-
-        .hamburger-btn { 
-            display: none; 
-            background: transparent; 
-            border: none; 
-            cursor: pointer; 
         }
 
-        .mobile-brand { 
+        .hamburger-btn {
             display: none;
-         }
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
 
-        .user-email { 
+        .mobile-brand {
             display: none;
-         }
+        }
+
+        .user-email {
+            display: none;
+        }
 
         .bottom {
             margin-top: auto;
@@ -467,12 +483,32 @@
             margin: 12px 0 30px;
         }
 
+
+
         .profile-links {
+            margin-top: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
             list-style: none;
         }
 
-        .profile-links li {
-            margin-bottom: 8px;
+        .profile-links a {
+            text-decoration: none;
+            color: #BCBCBC;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+
+        }
+
+        .profile-links a.active {
+            color: #03343b;
+
+
         }
 
 
@@ -532,7 +568,9 @@
             gap: 15px;
         }
 
-        .full { grid-column: span 2; }
+        .full {
+            grid-column: span 2;
+        }
 
         label {
             font-size: 13px;
@@ -541,7 +579,8 @@
             margin-bottom: 5px;
         }
 
-        input, select {
+        input,
+        select {
             width: 100%;
             padding: 10px 12px;
             border-radius: 8px;
@@ -550,7 +589,8 @@
             background: #fff;
         }
 
-        input:focus, select:focus {
+        input:focus,
+        select:focus {
             outline: none;
             border-color: #06414F;
         }
@@ -562,7 +602,8 @@
             margin-top: 30px;
         }
 
-        .cancel-btn, .save-btn {
+        .cancel-btn,
+        .save-btn {
             padding: 10px 20px;
             border-radius: 8px;
             font-size: 14px;
@@ -609,14 +650,25 @@
         }
 
         /* Hidden helpers */
-        .mobile-profile-header { display: none; }
-        .desktop-only { display: block; }
-        .desktop-title { display: block; }
+        .mobile-profile-header {
+            display: none;
+        }
+
+        .desktop-only {
+            display: block;
+        }
+
+        .desktop-title {
+            display: block;
+            margin-right: 700px;
+        }
 
         /* ========== MOBILE – matches Figma ========== */
         @media (max-width: 768px) {
 
-            body { background: #ffffff; }
+            body {
+                background: #ffffff;
+            }
 
             /* Sidebar */
             .sidebar {
@@ -634,7 +686,9 @@
                 border-bottom-right-radius: 40px;
             }
 
-            .sidebar.active { left: 0; }
+            .sidebar.active {
+                left: 0;
+            }
 
             .sidebar-close {
                 display: flex;
@@ -661,10 +715,12 @@
                 z-index: 1500;
             }
 
-            .sidebar-overlay.active { display: block; }
+            .sidebar-overlay.active {
+                display: block;
+            }
 
-            .setting-links { 
-                display: none; 
+            .setting-links {
+                display: none;
             }
 
             #setting-link {
@@ -691,7 +747,7 @@
                 width: 100%;
             }
 
-            .bottom{
+            .bottom {
                 margin-left: -20px;
             }
 
@@ -699,7 +755,7 @@
                 margin-left: -20px;
             }
 
-            .menu li{
+            .menu li {
                 margin-bottom: 19px;
             }
 
@@ -741,17 +797,49 @@
             }
 
             .mobile-brand img {
-                width: 60px;
-                height: 26px;
+                width: 68px;
+                height: 30px;
+                margin-left: -6px;
             }
 
-            .hamburger-btn {
+
+            .hamburger {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 36px;
-                height: 36px;
+                margin-left: auto;
             }
+
+            .hamburger-btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 48px;
+                min-height: 48px;
+                padding: 12px;
+                margin-top: -12px;
+                margin-right: -18px;
+                background: transparent;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
+
+
+            .hamburger-btn img {
+                width: 24px;
+                height: auto;
+                display: block;
+                pointer-events: none;
+            }
+
+
+            .hamburger-btn:hover {
+                opacity: 0.8;
+            }
+
 
             /* Content single column */
             .content {
@@ -817,6 +905,7 @@
             /* Horizontal pills – My Profile active */
             .profile-links {
                 display: flex;
+                flex-direction: row !important;
                 gap: 9px;
                 /* overflow-x: auto; */
                 padding: 6px;
@@ -833,7 +922,7 @@
             .profile-links a {
                 padding: 10px 16px;
                 border-radius: 999px;
-                background:#F9F9FB;
+                background: #F9F9FB;
                 color: black !important;
                 font-size: 10px;
                 font-weight: 500;
@@ -858,7 +947,9 @@
                 border: none;
             }
 
-            .desktop-only { display: none !important; }
+            .desktop-only {
+                display: none !important;
+            }
 
             h4 {
                 font-size: 15px;
@@ -870,9 +961,12 @@
                 gap: 16px;
             }
 
-            .full { grid-column: span 1; }
+            .full {
+                grid-column: span 1;
+            }
 
-            input, select {
+            input,
+            select {
                 padding: 12px 14px;
                 font-size: 15px;
                 border-radius: 10px;
@@ -885,7 +979,8 @@
                 gap: 12px;
             }
 
-            .cancel-btn, .save-btn {
+            .cancel-btn,
+            .save-btn {
                 flex: 1;
                 padding: 14px;
                 font-size: 15px;
@@ -897,11 +992,11 @@
             }
 
             .user-email-text {
-                max-width: 157px; 
+                max-width: 157px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                display: block; 
+                display: block;
             }
         }
     </style>

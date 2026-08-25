@@ -109,8 +109,9 @@
         }
 
         .topbar h2 {
-            font-size: 30px;
-            margin-left: 40px
+            font-size: 22px;
+            margin-left: -700px;
+            font-weight: 700;
         }
 
         .top-profile {
@@ -661,26 +662,48 @@
 
 
             .mobile-brand img {
-                width: 60px;
-                height: 26px;
+                width: 68px;
+                height: 30px;
                 display: block;
             }
 
-            .hamburger-btn {
+            .hamburger {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 36px;
-                height: 36px;
-                padding: 0;
+                margin-left: auto; 
+                        }
+
+            .hamburger-btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 48px;
+                min-height: 48px;
+                padding: 12px;
+                margin-top: -52px;
+                margin-left: 356px;
+                background: transparent;
                 border: none;
-                background: none;
+                outline: none;
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
             }
 
-            .hamburger-btn i {
-                font-size: 22px;
-                color: #111827;
+
+            .hamburger-btn img {
+                width: 24px;
+                height: auto;
+                display: block;
+                pointer-events: none; 
             }
+
+
+            .hamburger-btn:hover {
+                opacity: 0.8;
+            }
+
 
             /* =========================
        MAIN
@@ -689,6 +712,7 @@
             .main {
                 width: 100%;
                 margin-left: 0;
+                padding: 16px;
 
             }
 
@@ -1112,7 +1136,9 @@
             <div>
 
                 <div class="logo">
-                    <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="">
+                    <a href="{{ route('index.staff') }}" class="logo-link">
+                        <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="Home">
+                    </a>
                 </div>
 
                 <div class="menu">
@@ -1186,7 +1212,11 @@
 
             <div class="topbar">
                 <div class="mobile-brand">
-                    <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+                    <a href="{{ route('index.staff') }}" class="mobile-logo-link">
+                        <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+                    </a>
+                </div>
+                <div class="hamburger">
 
                     <button class="hamburger-btn" id="openSidebar">
                         <img src="{{ asset('images/breadcrumb.svg') }}">

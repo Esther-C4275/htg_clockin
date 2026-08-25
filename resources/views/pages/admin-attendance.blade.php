@@ -17,7 +17,7 @@
       height: 100vh;
     }
 
-    
+
     .sidebar {
       width: 260px;
       height: 100vh;
@@ -120,7 +120,7 @@
     }
 
     #setting-link {
-      display: none; 
+      display: none;
     }
 
     .hamburger-btn {
@@ -139,7 +139,7 @@
       display: none;
     }
 
-   
+
     .main {
       flex: 1;
       padding: 28px;
@@ -180,7 +180,7 @@
       height: 42px;
     }
 
-   
+
     .dots {
       display: flex;
       gap: 17px;
@@ -197,7 +197,7 @@
       gap: 6px;
     }
 
-   
+
     .cards {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -237,7 +237,7 @@
       font-weight: 700;
     }
 
-    
+
     .table-container {
       background: #FFFFFF;
       border-radius: 12px;
@@ -317,24 +317,28 @@
       cursor: pointer;
     }
 
-    .pagination-wrapper{
+    .pagination-wrapper {
       display: none;
     }
 
-   
+
     @media (max-width: 1100px) {
       .cards {
         grid-template-columns: repeat(2, 1fr);
       }
     }
 
-  
+
     @media (max-width: 768px) {
       body {
         background: #ffffff;
       }
 
-      
+      /* main{
+        padding: 3px;
+      } */
+
+
       .sidebar {
         position: fixed;
         top: 0;
@@ -389,7 +393,7 @@
         display: none !important;
       }
 
-      #setting-link{
+      #setting-link {
         display: flex;
         align-items: center;
         justify-content: flex-start;
@@ -402,9 +406,9 @@
         font-size: 18px;
         color: #b7b7b7;
         border-radius: 8px;
-    }
+      }
 
-    /* .setting-link i {
+      /* .setting-link i {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -448,14 +452,14 @@
         overflow: hidden;
       }
 
-     
+
       .main {
         margin-left: 0 !important;
         padding: 16px;
         width: 100%;
 
       }
-     
+
       .topbar {
         display: flex;
         flex-wrap: wrap;
@@ -464,7 +468,7 @@
         margin-bottom: 16px;
       }
 
-      
+
       .mobile-brand {
         width: 100%;
         display: flex;
@@ -473,20 +477,49 @@
       }
 
       .mobile-brand img {
-        width: 60px;
-        height: 26px;
+        width: 68px;
+        height: 30px;
+        margin-left: -6px;
+      }
+
+      .hamburger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
       }
 
       .hamburger-btn {
-        display: flex;
-        width: 36px;
-        height: 36px;
-        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 48px;
+        min-height: 48px;
+        padding: 12px;
+        margin-top: -12px;
+        margin-right: -18px;
+        background: transparent;
         border: none;
-        background: none;
+        outline: none;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
       }
 
-     
+
+      .hamburger-btn img {
+        width: 24px;
+        height: auto;
+        display: block;
+        pointer-events: none;
+      }
+
+
+      .hamburger-btn:hover {
+        opacity: 0.8;
+      }
+
+
       .topbar h2 {
         margin: 0;
         font-size: 20px;
@@ -494,7 +527,7 @@
         flex: 1;
       }
 
-      
+
       .top-actions {
         margin: 0 !important;
         width: auto;
@@ -506,175 +539,176 @@
         font-size: 14px;
       }
 
-      
-    .dots {
-      margin-left: 0;
-      margin-bottom: 39px;
-      margin-top: 38px;
-      gap: 14px;
-      font-size: 13px;
-      flex-wrap: wrap;
-    }
 
-      
-    .cards {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-left: 0;
-      margin-bottom: 16px;
-    }
+      .dots {
+        margin-left: 0;
+        margin-bottom: 39px;
+        margin-top: 38px;
+        gap: 14px;
+        font-size: 13px;
+        flex-wrap: wrap;
+      }
 
-    .card {
-      padding: 14px;
-    }
 
-    .card h3 {
-      font-size: 24px;
-    }
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-left: 0;
+        margin-bottom: 16px;
+      }
 
-    .card-top p {
-      font-size: 13px;
-    }
+      .card {
+        padding: 14px;
+      }
 
-      
-    .table-container {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      border-radius: 12px;
-      border: 1px solid #E4E4E4;
-    }
+      .card h3 {
+        font-size: 24px;
+      }
 
-    table {
-      min-width: 720px; 
-    }
+      .card-top p {
+        font-size: 13px;
+      }
 
-    th, td {
-      padding: 14px 12px;
-      font-size: 13px;
-    }
 
-    .avatar-initials {
-      width: 32px;
-      height: 32px;
-      font-size: 12px;
-    }
+      .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 12px;
+        border: 1px solid #E4E4E4;
+      }
 
-    .menu{
-      margin-left: -20px;
-    }
+      table {
+        min-width: 720px;
+      }
 
-    .menu a{
-      font-size:18px;
-    }
+      th,
+      td {
+        padding: 14px 12px;
+        font-size: 13px;
+      }
 
-    .bottom-menu{
-      margin-left: -20px;
-    }
+      .avatar-initials {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+      }
 
-    .user-email-text {
-    max-width: 157px; 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block; 
-}
+      .menu {
+        margin-left: -20px;
+      }
 
-    .pagination-wrapper .small,
-    .pagination-wrapper .text-muted,
-    .pagination-wrapper .small.text-muted {
-       display: none !important;
- }
+      .menu a {
+        font-size: 18px;
+      }
 
-           
+      .bottom-menu {
+        margin-left: -20px;
+      }
+
+      .user-email-text {
+        max-width: 157px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+      }
+
+      .pagination-wrapper .small,
+      .pagination-wrapper .text-muted,
+      .pagination-wrapper .small.text-muted {
+        display: none !important;
+      }
+
+
       .pagination-wrapper {
-          display: flex !important;
-          flex-direction: column !important;
-           align-items: flex-start !important;
-            gap: 12px !important;
-                margin-top: 20px !important;
-                width: 100% !important;
-            }
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+        margin-top: 20px !important;
+        width: 100% !important;
+      }
 
-            .pagination-wrapper nav,
-            .pagination-wrapper .d-flex {
-                display: flex !important;
-                flex-wrap: wrap !important;
-                align-items: center !important;
-                gap: 6px !important;
-                width: 100% !important;
-                justify-content: flex-start !important;
-            }
+      .pagination-wrapper nav,
+      .pagination-wrapper .d-flex {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        gap: 6px !important;
+        width: 100% !important;
+        justify-content: flex-start !important;
+      }
 
-            .pagination-wrapper .d-none,
-            .pagination-wrapper .d-sm-none {
-                display: flex !important;
-            }
+      .pagination-wrapper .d-none,
+      .pagination-wrapper .d-sm-none {
+        display: flex !important;
+      }
 
-            .pagination-wrapper .pagination {
-                display: flex !important;
-                align-items: center !important;
-                gap: 6px !important;
-                list-style: none !important;
-                padding: 0 !important;
-                margin: 0 !important;
-            }
+      .pagination-wrapper .pagination {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
 
-            .pagination-wrapper .page-item {
-                display: inline-flex !important;
-                margin: 0 !important;
-            }
+      .pagination-wrapper .page-item {
+        display: inline-flex !important;
+        margin: 0 !important;
+      }
 
-            .pagination-wrapper .page-link {
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                min-width: 32px !important;
-                height: 32px !important;
-                padding: 0 8px !important;
-                border-radius: 50% !important;
-                font-size: 13px !important;
-                font-weight: 500 !important;
-                color: #374151 !important;
-                background: transparent !important;
-                border: none !important;
-                text-decoration: none !important;
-                line-height: 1 !important;
-                box-shadow: none !important;
-            }
+      .pagination-wrapper .page-link {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-width: 32px !important;
+        height: 32px !important;
+        padding: 0 8px !important;
+        border-radius: 50% !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        color: #374151 !important;
+        background: transparent !important;
+        border: none !important;
+        text-decoration: none !important;
+        line-height: 1 !important;
+        box-shadow: none !important;
+      }
 
-            .pagination-wrapper .page-item.active .page-link {
-                background: #06414F !important;
-                color: #fff !important;
-            }
+      .pagination-wrapper .page-item.active .page-link {
+        background: #06414F !important;
+        color: #fff !important;
+      }
 
-            .pagination-wrapper .page-link:hover {
-                background: #F3F4F6 !important;
-                color: #06414F !important;
-            }
+      .pagination-wrapper .page-link:hover {
+        background: #F3F4F6 !important;
+        color: #06414F !important;
+      }
 
-            .pagination-wrapper .page-item.disabled .page-link {
-                color: #9CA3AF !important;
-                background: transparent !important;
-                pointer-events: none !important;
-            }
+      .pagination-wrapper .page-item.disabled .page-link {
+        color: #9CA3AF !important;
+        background: transparent !important;
+        pointer-events: none !important;
+      }
 
-           
-            .pagination-wrapper .page-item:first-child .page-link,
-            .pagination-wrapper .page-item:last-child .page-link {
-                border-radius: 8px !important;
-                min-width: auto !important;
-                padding: 0 14px !important;
-                border: 1px solid #E5E7EB !important;
-                background: #fff !important;
-                height: 32px !important;
-            }
 
-            .pagination-wrapper .page-item:first-child .page-link:hover,
-            .pagination-wrapper .page-item:last-child .page-link:hover {
-                background: #F9FAFB !important;
-                border-color: #D1D5DB !important;
-            }
-        
+      .pagination-wrapper .page-item:first-child .page-link,
+      .pagination-wrapper .page-item:last-child .page-link {
+        border-radius: 8px !important;
+        min-width: auto !important;
+        padding: 0 14px !important;
+        border: 1px solid #E5E7EB !important;
+        background: #fff !important;
+        height: 32px !important;
+      }
+
+      .pagination-wrapper .page-item:first-child .page-link:hover,
+      .pagination-wrapper .page-item:last-child .page-link:hover {
+        background: #F9FAFB !important;
+        border-color: #D1D5DB !important;
+      }
+
     }
   </style>
 
@@ -682,7 +716,9 @@
   <div class="sidebar">
     <div>
       <div class="logo">
-        <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="">
+        <a href="{{ route('admin-dashboard.index') }}" class="logo-link">
+          <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="Home">
+        </a>
       </div>
 
       <div class="menu">
@@ -710,7 +746,7 @@
         <div class="profile-pic">
           @if($user->avatar)
             <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile"
-                 style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+              style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
           @else
             <span>{{ $firstInitial }}</span>
           @endif
@@ -731,23 +767,28 @@
 
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
- 
+
   <div class="main">
     <div class="topbar">
       <div class="mobile-brand">
-        <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
-        <button class="hamburger-btn" id="openSidebar">
-          <img src="{{ asset('images/breadcrumb.svg') }}" alt="Menu">
-        </button>
+          <a href="{{ route('admin-dashboard.index') }}">
+              <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+          </a>
+          
+        
+          <div class="hamburger">
+              <button class="hamburger-btn" id="openSidebar">
+                  <img src="{{ asset('images/breadcrumb.svg') }}" alt="Menu">
+              </button>
+          </div>
       </div>
 
       <h2>Attendance List</h2>
 
       <div class="top-actions">
         <form action="{{ url()->current() }}" method="GET" id="attendanceRangeForm">
-          <select name="filter_range"
-                  onchange="document.getElementById('attendanceRangeForm').submit();"
-                  class="dropdown-select">
+          <select name="filter_range" onchange="document.getElementById('attendanceRangeForm').submit();"
+            class="dropdown-select">
             <option value="today" {{ $filter === 'today' ? 'selected' : '' }}>Today</option>
             <option value="yesterday" {{ $filter === 'yesterday' ? 'selected' : '' }}>Yesterday</option>
             <option value="this_week" {{ $filter === 'this_week' ? 'selected' : '' }}>This Week</option>
@@ -756,7 +797,7 @@
       </div>
     </div>
 
-    
+
     <div class="dots">
       <div>
         <img src="{{ asset('images/red.png') }}" alt="">
@@ -768,7 +809,7 @@
       </div>
     </div>
 
-   
+
     <div class="cards">
       <div class="card">
         <div class="card-top">
@@ -811,7 +852,7 @@
       </div>
     </div>
 
-   
+
     <div class="table-container">
       <table>
         <thead>
@@ -834,12 +875,12 @@
                   <div class="avatar-initials">
                     @php
                       $firstInitial = substr($employee->first_name, 0, 1);
-                      $lastInitial  = substr($employee->last_name, 0, 1);
-                      $initials     = strtoupper($firstInitial . $lastInitial);
+                      $lastInitial = substr($employee->last_name, 0, 1);
+                      $initials = strtoupper($firstInitial . $lastInitial);
                     @endphp
                     @if ($employee->avatar)
                       <img src="{{ asset('storage/' . $employee->avatar) }}" alt="Avatar"
-                           style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+                        style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
                     @else
                       {{ $initials }}
                     @endif
@@ -866,14 +907,14 @@
 
       <div class="pagination-wrapper mt-4">
         {{ $employees->links() }}
-    </div>
+      </div>
     </div>
   </div>
 
   <script>
-    const sidebar  = document.querySelector('.sidebar');
-    const overlay  = document.getElementById('sidebarOverlay');
-    const openBtn  = document.getElementById('openSidebar');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const openBtn = document.getElementById('openSidebar');
     const closeBtn = document.getElementById('sidebarClose');
 
     openBtn?.addEventListener('click', () => {

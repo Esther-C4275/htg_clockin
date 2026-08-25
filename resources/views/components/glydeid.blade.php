@@ -38,6 +38,16 @@
         display: none;
     }
 
+    
+    .breadcrumb{
+        margin-right: 500px;
+    }
+
+    .user-email{
+        display: none;
+    }
+
+
     /* ==========================================================================
      2. Master Viewport Sidebar Panel Component
      ========================================================================== */
@@ -844,22 +854,54 @@
             margin-bottom: 20px;
         }
 
-        .hamburger-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            padding: 0;
-            border: none;
-            background: none;
-        }
+        .hamburger {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: auto; 
+                        }
+
+            .hamburger-btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 48px;
+                min-height: 48px;
+                padding: 12px;
+                margin-top: -78px;
+                margin-left: 360px;
+                background: transparent;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
+
+
+            .hamburger-btn img {
+                width: 24px;
+                height: auto;
+                display: block;
+                pointer-events: none; 
+            }
+
+
+            .hamburger-btn:hover {
+                opacity: 0.8;
+            }
 
         .mobile-brand {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 8px;
+        }
+
+        .mobile-logo{
+            height: 30px;
+            width: 68px;
+            margin-bottom: 16px;
         }
 
         .user-profile-widget,
@@ -936,7 +978,9 @@
         <aside class="sidebar">
             <div class="brand-section">
                 <div class="logo">
-                    <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="HTG Logo" />
+                    <a href="{{ route('index.staff') }}" class="logo-link">
+                        <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="Home">
+                    </a>
                 </div>
             </div>
 
@@ -1009,7 +1053,11 @@
         <main class="main-viewport">
             <header class="top-bar">
                 <div class="mobile-brand">
-                    <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+                    <a href="{{ route('index.staff') }}" class="mobile-logo-link">
+                        <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+                    </a>
+                </div>
+                <div class="hamburger">
 
                     <button class="hamburger-btn" id="openSidebar">
                         <img src="{{ asset('images/breadcrumb.svg') }}">

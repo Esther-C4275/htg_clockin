@@ -3,7 +3,11 @@
 
         <!-- Sidebar -->
         <aside class="sidebar">
-            <img class="logo" src="{{ asset('images/Artboard 1 2.svg') }}" alt="">
+            <div class="logo">
+                <a href="{{ route('admin-dashboard.index') }}" class="logo-link">
+                    <img src="{{ asset('images/Artboard 1 2.svg') }}" alt="Home">
+                </a>
+            </div>
 
             <nav style="margin-top: 40px">
                 <ul>
@@ -75,7 +79,11 @@
             
             <div class="mobile-header">
                 <div class="mobile-brand">
-                    <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+                    <a href="{{ route('admin-dashboard.index') }}" class="mobile-logo-link">
+                        <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+                    </a>
+                </div>
+                <div class="hamburger">
                     <button class="hamburger-btn" id="openSidebar">
                         <img src="{{ asset('images/breadcrumb.svg') }}" alt="Menu">
                     </button>
@@ -319,7 +327,7 @@
             align-items: center;
             gap: 14px;
             width: 100%;
-            padding: 20px;
+            padding: 18px;
             border-radius: 6px;
             font-size: 16px;
             transition: all 0.2s ease;
@@ -374,7 +382,7 @@
         /* ========== MAIN ========== */
         .main {
             flex: 1;
-            padding: 20px;
+            padding: 10px;
             background: #fff;
             margin-left: 240px;
             overflow-y: auto;
@@ -394,7 +402,7 @@
             font-size: 24px;
             font-weight: 600;
             color: #000;
-            margin: 0;
+            margin-left: 10px;
         }
 
         .page-title{
@@ -484,7 +492,10 @@
         }
 
         /* Add button */
-        .filters { margin-bottom: 20px; }
+        .filters { 
+            margin-bottom: 20px; 
+            margin-left: 10px;
+        }
         .add-employee-btn {
             padding: 10px 18px;
             border: 1px solid #E0E0E0;
@@ -503,16 +514,29 @@
         }
 
         /* Table */
-        .table-wrapper { width: 100%; overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; }
-        thead { background: #F8F9FB; }
+        .table-wrapper { 
+            width: 100%; 
+            overflow-x: auto; 
+            margin-left: 10px;
+        }
+        table { 
+            width: 100%;
+             border-collapse: collapse;
+             }
+        thead { 
+            background: #F8F9FB; 
+        }
         th, td {
             padding: 12px 10px;
             border-bottom: 1px solid #eee;
             text-align: left;
             font-size: 14px;
         }
-        th { font-weight: 600; color: #6B7280; font-size: 13px; }
+        th { 
+            font-weight: 600; 
+            color: #6B7280; 
+            font-size: 13px; 
+        }
         .both-td {
             display: flex;
             align-items: center;
@@ -551,11 +575,18 @@
             color: #fff;
             font-weight: 500;
         }
-        .status.active { background: #2ecc71; }
-        .status.absent { background: #e74c3c; }
+        .status.active { 
+            background: #2ecc71;
+         }
+        .status.absent { 
+            background: #e74c3c; 
+        }
 
         /* Menu */
-        .menu-container { position: relative; display: inline-block; }
+        .menu-container {
+             position: relative;
+              display: inline-block; 
+            }
         .menu-btn {
             background: none;
             border: none;
@@ -605,9 +636,9 @@
 
        
         @media (max-width: 768px) {
-            .main {
+            main {
                 margin-left: 0 !important;
-                padding: 16px;
+                padding: 3px;
                 width: 100%;
             }
 
@@ -615,7 +646,9 @@
             .desktop-only {
                  display: none !important; 
                 }
-            .topbar.desktop-only { display: none !important; }
+            .topbar.desktop-only { 
+                display: none !important; 
+            }
 
            
             .sidebar {
@@ -716,20 +749,45 @@
                 margin-bottom: 20px;
             }
             .mobile-logo {
-                width: 60px;
-                height: auto;
+                width: 68px;
+                height: 30px;
             }
-            .hamburger-btn {
-                width: 36px;
-                height: 36px;
-                border: none;
-                background: none;
+            .hamburger {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                margin-left: auto; 
+                        }
+
+            .hamburger-btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 48px;
+                min-height: 48px;
+                padding: 12px;
+                margin-top: -79px;
+                margin-right: -368px;
+                background: transparent;
+                border: none;
+                outline: none;
                 cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
             }
-            .hamburger-btn img { width: 22px; height: 22px; }
+
+
+            .hamburger-btn img {
+                width: 24px;
+                height: auto;
+                display: block;
+                pointer-events: none; 
+            }
+
+
+            .hamburger-btn:hover {
+                opacity: 0.8;
+            }
 
             .mobile-profile-row {
                 display: flex;
@@ -742,13 +800,13 @@
                 gap: 12px;
             }
             .mobile-avatar {
-                width: 48px;
-                height: 48px;
+                width: 50px;
+                height: 50px;
                 border-radius: 50%;
                 background: #E2EEF9;
                 color: #06414F;
                 font-weight: 700;
-                font-size: 16px;
+                font-size: 13px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
