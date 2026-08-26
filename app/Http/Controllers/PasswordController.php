@@ -36,7 +36,7 @@ class PasswordController extends Controller
     }
 
 
-    public function resetForm($token)
+    public function resetForm(Request $request,$token)
     {
         return view('auth.reset-password', [
             'token' => $token,
@@ -67,7 +67,7 @@ class PasswordController extends Controller
         });
 
         return $status === Password::PASSWORD_RESET
-            ? redirect()->route('login')->with('status', __($status))
+            ? redirect()->route('user-login')->with('status', __($status))
             : back()->withErrors(['email' => [__($status)]]);
     }
 

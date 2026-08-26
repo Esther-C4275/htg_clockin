@@ -18,8 +18,8 @@
                 @csrf
 
                 <input type="hidden" name="token" value="{{ $token }}">
-                <input type="hidden" name="email" value="{{ $email ?? request()->email ?? old('email') }}">
-
+                <input type="hidden" name="email" value="{{ $email }}">
+                
                 <div class="form-group">
                     <label for="new-password">New Password</label>
                     <div class="input-box">
