@@ -4,24 +4,33 @@
             <h1>Set new password</h1>
             <p class="subtitle">Your new password must be different from previous used passwords.</p>
 
+            @if ($errors->any())
+                <div class="error-alert">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form method="POST" action="{{ route('password.update') }}">
                 @csrf
 
                 <input type="hidden" name="token" value="{{ $token }}">
-                <input type="hidden" name="email" value="{{ request()->email }}">
+                <input type="hidden" name="email" value="{{ $email ?? request()->email ?? old('email') }}">
 
                 <div class="form-group">
                     <label for="new-password">New Password</label>
                     <div class="input-box">
-                        <input id="new-password" name="password" type="password" placeholder="Enter new password" />
+                        <input id="new-password" name="password" type="password" placeholder="Enter new password" required />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="confirm-password">Confirm New Password</label>
                     <div class="input-box">
-                        <input id="confirm-password" name="password_confirmation" type="password"
-                            placeholder="Repeat new password" />
+                        <input id="confirm-password" name="password_confirmation" type="password" placeholder="Repeat new password" required />
                     </div>
                 </div>
 
@@ -150,6 +159,20 @@
             font-size: 15px;
             color: #06414F;
             text-decoration: none;
+        }
+
+        .error-alert {
+            background-color: #fef2f2;
+            border: 1px solid #fca5a5;
+            color: #991b1b;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .error-alert ul {
+            margin: 0;
+            padding-left: 18px;
         }
     </style>
 </x-layout>
