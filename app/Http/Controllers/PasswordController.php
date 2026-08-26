@@ -51,7 +51,11 @@ class PasswordController extends Controller
         ]);
 
 
-        $status = Password::reset($request->all(), function ($user, $password) {
+        $credentials = $request->only(
+            'email', 'password', 'password_confirmation', 'token'
+        );
+
+        $status = Password::reset($credentials, function ($user, $password) {
             $user->forceFill([
                 'password' => Hash::make($password)
             ])->setRememberToken(Str::random(60));

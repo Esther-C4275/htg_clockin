@@ -420,7 +420,7 @@
                 max-width: 100% !important;
                 box-sizing: border-box !important;
                 -webkit-appearance: none;
-                min-height: 48px;
+                min-height: 46px;
             }
 }
     </style>
