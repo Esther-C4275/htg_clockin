@@ -1886,59 +1886,77 @@
                                     return;
                                 }
                         
-                                navigator.geolocation.getCurrentPosition(
-                                    (position) => {
-                                        const accuracy = position.coords.accuracy;
+                                const processPosition = (position) => {
+                                    const accuracy = position.coords.accuracy;
                         
-                                        // 1. Relaxed GPS Accuracy filter from 25m to 60m
-                                        if (accuracy > 60) {
-                                            alert("❌ GPS signal is too weak (" + Math.round(accuracy) + "m accuracy). Please go closer to the office.");
-                                            stopCameraAndCloseModal();
-                                            return;
-                                        }
+                                    
+                                    const MAX_ACCURACY_THRESHOLD = 150;
                         
-                                        html5QrcodeScanner.stop().then(() => {
-                                            html5QrcodeScanner.clear();
-                                            if (scannerWrapper) scannerWrapper.style.display = "none";
-                        
-                                            // 2. Extracted path relative to current domain to fix CORS on local environment
-                                            let parsedScannedUrl = new URL(decodedText, window.location.origin);
-                                            let verificationUrl = new URL(parsedScannedUrl.pathname, window.location.origin);
-                        
-                                            verificationUrl.searchParams.append('action', activeAction);
-                                            verificationUrl.searchParams.append('latitude', position.coords.latitude);
-                                            verificationUrl.searchParams.append('longitude', position.coords.longitude);
-                        
-                                            fetch(verificationUrl.toString(), {
-                                                method: 'GET',
-                                                headers: {
-                                                    'X-Requested-With': 'XMLHttpRequest',
-                                                    'Accept': 'application/json'
-                                                }
-                                            })
-                                            .then(res => res.json())
-                                            .then(data => {
-                                                if (data.success || data.status) {
-                                                    alert("🎉 " + data.message);
-                                                    location.reload(); 
-                                                } else {
-                                                    alert("❌ Error: " + data.message);
-                                                }
-                                            })
-                                            .catch(() => alert("Network communication error executing verification request."));
-                                        }).catch(err => {
-                                            console.error("Scanner tracking error:", err);
-                                        });
-                                    },
-                                    (error) => {
+                                    if (accuracy > MAX_ACCURACY_THRESHOLD) {
+                                        alert("❌ GPS signal is weak (" + Math.round(accuracy) + "m accuracy). Please turn on Wi-Fi or move closer to a window.");
                                         stopCameraAndCloseModal();
-                                        alert("❌ Location access denied or timed out. Please allow high-accuracy location permissions.");
-                                    },
-                                    {
-                                        enableHighAccuracy: true,
-                                        timeout: 8000,
-                                        maximumAge: 0
+                                        return;
                                     }
+                        
+                                    html5QrcodeScanner.stop().then(() => {
+                                        html5QrcodeScanner.clear();
+                                        if (scannerWrapper) scannerWrapper.style.display = "none";
+                        
+                                        let parsedScannedUrl = new URL(decodedText, window.location.origin);
+                                        let verificationUrl = new URL(parsedScannedUrl.pathname, window.location.origin);
+                        
+                                        verificationUrl.searchParams.append('action', activeAction);
+                                        verificationUrl.searchParams.append('latitude', position.coords.latitude);
+                                        verificationUrl.searchParams.append('longitude', position.coords.longitude);
+                        
+                                        fetch(verificationUrl.toString(), {
+                                            method: 'GET',
+                                            headers: {
+                                                'X-Requested-With': 'XMLHttpRequest',
+                                                'Accept': 'application/json'
+                                            }
+                                        })
+                                        .then(res => res.json())
+                                        .then(data => {
+                                            if (data.success || data.status) {
+                                                alert("🎉 " + data.message);
+                                                location.reload(); 
+                                            } else {
+                                                alert("❌ Error: " + data.message);
+                                            }
+                                        })
+                                        .catch(() => alert("Network communication error executing verification request."));
+                                    }).catch(err => {
+                                        console.error("Scanner tracking error:", err);
+                                    });
+                                };
+                        
+                                const highAccuracyOptions = {
+                                    enableHighAccuracy: true,
+                                    timeout: 15000, 
+                                    maximumAge: 0
+                                };
+                        
+                               
+                                navigator.geolocation.getCurrentPosition(
+                                    processPosition,
+                                    (error) => {
+                                        if (error.code === 3) {
+                                            console.warn("High accuracy GPS timed out. Retrying with low accuracy fallback...");
+                                            navigator.geolocation.getCurrentPosition(
+                                                processPosition,
+                                                (fallbackError) => {
+                                                    stopCameraAndCloseModal();
+                                                    alert("❌ Location access denied or timed out. Please allow high-accuracy location permissions and ensure Wi-Fi is ON.");
+                                                },
+                                                { enableHighAccuracy: false, timeout: 10000, maximumAge: 0 }
+                                            );
+                                        } else {
+                                            stopCameraAndCloseModal();
+                                            alert("❌ Location access denied or timed out. Please allow high-accuracy location permissions.");
+                                        }
+                                    },
+                                    highAccuracyOptions
                                 );
                             }
                         

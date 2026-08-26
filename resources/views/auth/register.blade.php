@@ -340,5 +340,88 @@
                 margin-bottom: 20px;
             }
         }
+
+       
+@media (max-width: 768px) {
+    .registration-wrapper {
+        padding: 9px;
+        align-items: flex-start; 
+    }
+
+    .container {
+        flex-direction: column;
+        min-height: auto;
+        box-shadow: none;
+        border-radius: 12px;
+    }
+
+    form {
+        flex: none;
+        width: 100%;
+    }
+
+    .form-section {
+        padding: 28px 20px;
+    }
+
+    .form-section h1 {
+        font-size: 24px;
+        margin-bottom: 6px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+        margin-bottom: 22px;
+    }
+
+   
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .section-title {
+        font-size: 15px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+    .security-title {
+        margin-top: 20px;
+    }
+
+    
+    label {
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+
+    input,
+    select {
+        padding: 11px 13px;
+        margin-bottom: 14px;
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 13px;
+        font-size: 15px;
+        margin-top: 8px;
+    }
+
+   
+    .image-section,
+    .divider-line {
+        display: none !important;
+    }
+
+    input[type="date"] {
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+                -webkit-appearance: none;
+                min-height: 48px;
+            }
+}
     </style>
 </x-layout>
