@@ -493,6 +493,14 @@
         height: 50px;
     }
 
+    #breadcrumbs{
+        display: none;
+    }
+
+    .breadcrumb{
+        margin-right: 600px;
+    }
+
     /* ==========================================================================
      7. Mobile Responsiveness Breakpoints
      ========================================================================== */
@@ -672,7 +680,19 @@
             margin-bottom: 20px;
         }
 
-        .breadcrumb {
+        /* .breadcrumb {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            width: 100%;
+            margin-top: 12px;
+        } */
+
+        .breadcrumb{
+            display: none;
+        }
+
+        #breadcrumbs{
             display: flex;
             flex-direction: column;
             gap: 2px;
@@ -695,7 +715,7 @@
             min-height: 48px;
             padding: 12px;
             margin-top: -96px;
-            margin-left: 345px;
+            margin-left: 269px;
             background: transparent;
             border: none;
             outline: none;
@@ -907,6 +927,10 @@
                     </button>
                 </div>
                 <div class="breadcrumb">
+                    <span class="parent-route">ID Card</span>
+                    <h1 class="page-title">Employee Identity Card</h1>
+                </div>
+                <div id="breadcrumbs">
                     <span class="parent-route">ID Card</span>
                     <h1 class="page-title">Employee Identity Card</h1>
                 </div>

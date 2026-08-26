@@ -38,10 +38,10 @@
   }
 
   .breadcrumb {
-    margin-right: 500px;
+    margin-right: 400px;
   }
 
-  .breadcrumbs {
+  #breadcrumbs {
     display: none;
   }
 
@@ -999,7 +999,7 @@
       display: none;
     }
 
-    .breadcrumbs {
+    #breadcrumbs {
       display: flex;
       flex-direction: column;
       gap: 2px;
@@ -1020,8 +1020,7 @@
       min-height: 48px;
       padding: 12px;
       margin-top: -56px;
-      margin-left: 355px;
-      background: transparent;
+x      background: transparent;
       border: none;
       outline: none;
       cursor: pointer;
@@ -1286,7 +1285,7 @@
           <h1 class="page-title">Employee Identity Card</h1>
         </div>
 
-        <div class="breadcrumbs">
+        <div id="breadcrumbs">
           <span class="parent-route">ID Card</span>
           <h1 class="page-title">Employee Identity Card</h1>
         </div>

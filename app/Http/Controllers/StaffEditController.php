@@ -89,7 +89,7 @@ class StaffEditController extends Controller
     public function updateAvatar(Request $request){
         $request->validate([
             
-          'avatar'=> 'nullable|image|mimes:jpeg,jpg,png,gif|max:2048'
+          'avatar'=> 'nullable|image|mimes:jpeg,jpg,png,gif|max:5120'
         ]);
         $user = Auth::user();
 

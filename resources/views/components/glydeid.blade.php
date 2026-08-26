@@ -43,6 +43,10 @@
         margin-right: 500px;
     }
 
+    #breadcrumbs{
+        display: none;
+    }
+
     .user-email{
         display: none;
     }
@@ -854,6 +858,18 @@
             margin-bottom: 20px;
         }
 
+        .breadcrumb{
+            display: none;
+        }
+
+        #breadcrumbs{
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            width: 100%;
+            margin-top: 12px;
+        }
+
         .hamburger {
                 display: flex;
                 align-items: center;
@@ -869,7 +885,7 @@
                 min-height: 48px;
                 padding: 12px;
                 margin-top: -78px;
-                margin-left: 358px;
+                margin-left: 338px;
                 background: transparent;
                 border: none;
                 outline: none;
@@ -1065,6 +1081,10 @@
                     </button>
                 </div>
                 <div class="breadcrumb">
+                    <span class="parent-route">ID Card</span>
+                    <h1 class="page-title">Employee Identity Card</h1>
+                </div>
+                <div id="breadcrumbs">
                     <span class="parent-route">ID Card</span>
                     <h1 class="page-title">Employee Identity Card</h1>
                 </div>
