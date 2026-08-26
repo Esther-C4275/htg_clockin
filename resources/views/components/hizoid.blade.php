@@ -1020,7 +1020,8 @@
       min-height: 48px;
       padding: 12px;
       margin-top: -56px;
-x      background: transparent;
+      margin-left: 346px;
+      background: transparent;
       border: none;
       outline: none;
       cursor: pointer;

@@ -885,7 +885,7 @@
                 min-height: 48px;
                 padding: 12px;
                 margin-top: -78px;
-                margin-left: 338px;
+                margin-left: 344px;
                 background: transparent;
                 border: none;
                 outline: none;
