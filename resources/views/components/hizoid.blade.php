@@ -849,26 +849,21 @@
       flex-direction: column;
     }
 
-    /* Fixed & Locked Mobile Sidebar Container */
+    
     .sidebar {
       position: fixed;
       top: 0;
       left: -100%;
       width: 78%;
       max-width: 300px;
-      
-      /* Locks layout precisely to visible mobile viewport height */
       height: 100vh;
       height: 100dvh; 
-
       background: #06414F;
       padding: 24px 20px 16px 20px;
       z-index: 2000;
       transition: left .3s ease;
       border-top-right-radius: 40px;
       border-bottom-right-radius: 40px;
-
-      /* Flex layout forces structure inside viewport */
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -879,13 +874,13 @@
       left: 0;
     }
 
-    /* Top Brand Section */
+    
     .brand-section {
       padding: 0 12px 16px 12px;
       flex-shrink: 0;
     }
 
-    /* Scrollable Middle Navigation Area */
+    
     .menu-links {
       flex: 1;
       overflow-y: auto;
@@ -901,10 +896,10 @@
       flex-direction: column;
       gap: 8px;
       padding: 0 8px;
-      margin-left: 0; /* Reset inline displacement */
+      margin-left: -23px; 
     }
 
-    /* Bottom User Profile / Logout Section */
+    
     .footer-nav {
       flex-shrink: 0;
       margin-top: auto;
@@ -1204,20 +1199,7 @@
       margin-right: 0;
     }
 
-    .brand-section {
-      padding: 0 12px 32px 12px;
-    }
-
-
-    .nav-list {
-      list-style-type: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      padding: 0 8px;
-      margin-left: -28px
-    }
-
+    
 
     .nav-link {
       display: flex;
