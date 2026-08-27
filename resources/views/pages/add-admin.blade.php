@@ -434,23 +434,20 @@
                 top: 0;
                 left: -100%;
                 width: 78%;
-                max-width: 270px;
+                max-width: 300px;
                 height: 100vh;
                 height: 100dvh;
                 background: #06414F;
-                padding: 24px 20px;
+                padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px)) 20px;
                 z-index: 2000;
                 transition: left .3s ease;
                 border-top-right-radius: 40px;
                 border-bottom-right-radius: 40px;
-
-
                 display: flex;
                 flex-direction: column;
-                justify-content: flex-start;
-                /* ← reset the space-between */
-                overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
+                justify-content: space-between;
+                box-sizing: border-box;
+                overflow: hidden;
             }
 
             .sidebar::-webkit-scrollbar {
