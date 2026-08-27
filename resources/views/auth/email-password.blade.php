@@ -70,9 +70,10 @@
 
         /* Card */
         .forgot-card {
-            width: 360px;
-            padding: 40px 30px;
-            border-radius: 10px;
+            width: 480px;
+            height: 395px;
+            padding: 32px;
+            border-radius: 12px;
             text-align: center;
             border: 1px solid #EDEDED;
         }
@@ -96,10 +97,9 @@
 
         .forgot-card p {
             color: #7A7979;
-            line-height: 1.5;
+            margin-top:10px;
             margin-bottom: 25px;
-            font-weight: 400;
-            font-size: 15px;
+            font-size: 20px;
             line-height: 100%;
             letter-spacing: 0px;
             text-align: center;
@@ -115,7 +115,9 @@
 
         /* Button */
         button {
-            width: 100%;
+            width: 414px;
+            height:48px;
+            margin-left:7px;
             padding: 12px;
             background: #0b4b57;
             color: white;
@@ -188,7 +190,7 @@
             gap: 12px;
             align-items: flex-start;
             margin-top: 10px;
-            margin-left: 37px;
+            margin-left: 5px;
         }
 
         .tip-icon {
@@ -226,6 +228,29 @@
             font-size: 11px;
             color: #111827;
             line-height: 1.5;
+        }
+
+
+        @media(max-width:768px){
+
+            .forgot-container {
+                margin-left:7px;
+            }
+            .forgot-card {
+                border:none;
+            }
+
+         h2{
+            font-size:16px;
+         }
+
+         .forget-container p{
+            font-size:14px;
+         }
+
+         .tip-box{
+            margin-left:55px;
+         }
         }
     </style>
 

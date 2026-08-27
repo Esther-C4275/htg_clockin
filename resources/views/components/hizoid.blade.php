@@ -849,24 +849,84 @@
       flex-direction: column;
     }
 
-    /* Sidebar Drawer Reset */
+    /* Fixed & Locked Mobile Sidebar Container */
     .sidebar {
       position: fixed;
       top: 0;
       left: -100%;
       width: 78%;
       max-width: 300px;
+      
+      /* Locks layout precisely to visible mobile viewport height */
       height: 100vh;
+      height: 100dvh; 
+
       background: #06414F;
-      padding: 24px 20px;
+      padding: 24px 20px 16px 20px;
       z-index: 2000;
       transition: left .3s ease;
       border-top-right-radius: 40px;
       border-bottom-right-radius: 40px;
+
+      /* Flex layout forces structure inside viewport */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
     }
 
     .sidebar.active {
       left: 0;
+    }
+
+    /* Top Brand Section */
+    .brand-section {
+      padding: 0 12px 16px 12px;
+      flex-shrink: 0;
+    }
+
+    /* Scrollable Middle Navigation Area */
+    .menu-links {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .nav-list {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 0 8px;
+      margin-left: 0; /* Reset inline displacement */
+    }
+
+    /* Bottom User Profile / Logout Section */
+    .footer-nav {
+      flex-shrink: 0;
+      margin-top: auto;
+      padding-top: 12px;
+    }
+
+    .user-email {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      margin-bottom: 0;
+      width: 100%;
+    }
+
+    .user-email-text {
+      max-width: 157px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      color: #ffffff;
     }
 
     .sidebar-close {
@@ -884,7 +944,7 @@
       color: #fff;
       font-size: 18px;
       cursor: pointer;
-
+      z-index: 10;
     }
 
     .sidebar-overlay {

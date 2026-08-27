@@ -19,7 +19,7 @@
 
                 <input type="hidden" name="token" value="{{ $token }}">
                 <input type="hidden" name="email" value="{{ $email }}">
-                
+
                 <div class="form-group">
                     <label for="new-password">New Password</label>
                     <div class="input-box">
@@ -60,7 +60,7 @@
         .page-wrap {
             width: 100%;
             max-width: 420px;
-            padding: 20px;
+            /* padding: 20px; */
         }
 
         .reset-card {
@@ -173,6 +173,28 @@
         .error-alert ul {
             margin: 0;
             padding-left: 18px;
+        }
+
+        @media (max-width: 768px) {
+  
+        .reset-card{
+            border: 0px;
+            width: 100%;
+        }
+
+        .reset-card h1{
+            font-size: 16px;
+        }
+
+        .subtitle{
+            font-size: 12px;
+        }
+
+        .back-link{
+            font-size: 14px;
+        }
+
+        
         }
     </style>
 </x-layout>

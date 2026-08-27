@@ -189,8 +189,29 @@
             gap: 6px;
         }
 
-        /* .back-link:hover {
-  color: #0b4b57;
-} */
+        @media (max-width: 768px) {
+
+            
+            .forgot-card{
+            border: 0px;
+            width: 100%;
+            }
+
+            .forgot-card h2{
+            font-size: 18px;
+            }
+
+            .forgot-card p{
+            font-size: 12px;
+            }
+
+            .input-box input{
+            font-size: 12px;
+            }
+
+            .back-link{
+            font-size: 12px;
+            }
+    }
     </style>
 </x-layout>

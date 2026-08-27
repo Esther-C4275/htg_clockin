@@ -398,9 +398,28 @@
 
     input,
     select {
-        padding: 11px 13px;
+        display: block;
+        width: 100%;
+        height: 48px;
+        min-height: 48px;
+        padding: 0 13px;
         margin-bottom: 14px;
-        font-size: 14px;
+        font-size: 16px; 
+        box-sizing: border-box;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 8px;
+        background-color: #ffffff;
+    }
+
+   
+    select {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%20374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 13px center;
+        background-size: 16px;
+        padding-right: 36px;
     }
 
     .btn {
