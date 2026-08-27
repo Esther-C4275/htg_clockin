@@ -494,8 +494,8 @@
                 left: -100%;
                 width: 78%;
                 max-width: 300px;
-                height: 100vh;
-                height: 100dvh;
+                height: 100%;
+                
                 background: #06414F;
                 padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px)) 20px;
                 z-index: 2000;
@@ -851,7 +851,7 @@
                 margin-left: 17px;
                font-size: 25px !important;
                 border-radius: 50%;
-
+               margin-left: 0;
                 object-fit: cover;
 
                 display: block;
@@ -925,7 +925,7 @@
                 gap: 10px;
                 border-radius: 100px;
                 padding: 5px;
-                margin-right: -24px;
+                margin-right: -6px;
 
             }
 
@@ -1291,7 +1291,7 @@
                                      font-size: 40px; 
                                      font-weight: 700; 
                                      letter-spacing: 1px;
-                                     margin-left:17px;
+                                     
                                      overflow: hidden">
 
                                     @if($user->avatar)

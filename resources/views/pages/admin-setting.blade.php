@@ -389,6 +389,7 @@
                 font-weight: 600;
                 font-size: 24px;
                 line-height: 100%;
+                margin-right: 830px;
             }
 
             .profile-top {
