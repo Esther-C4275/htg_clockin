@@ -600,8 +600,8 @@
                 left: -100%;
                 width: 78%;
                 max-width: 300px;
-                height: 100vh;
-                height: 100dvh;
+                height: 100%;
+               
                 background: #06414F;
                 padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px)) 20px;
                 z-index: 2000;
@@ -863,7 +863,7 @@
 
                 .settings-links a {
                     flex-shrink: 0;
-                    padding: 10px;
+                    padding: 9px;
                     border-radius: 999px;
                     background: #F9F9FB;
                     color: black !important;
@@ -871,7 +871,7 @@
                     font-weight: 500;
                     gap: 6px;
                     white-space: nowrap;
-                    width: 113px;
+                    width: 105px;
                 }
 
                 .settings-links a.active {

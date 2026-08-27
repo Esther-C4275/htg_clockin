@@ -1001,7 +1001,7 @@
                 box-sizing: border-box;
 
                 order: 2;
-                margin-top: -410px;
+                margin-top: -380px;
             }
 
 
