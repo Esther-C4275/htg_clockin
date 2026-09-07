@@ -1130,7 +1130,7 @@
                 .menu {
                     display: flex;
                     flex-direction: column;
-                    gap: 18px;
+                    gap: 24px;
                     margin-left: -10px;
                 }
 
