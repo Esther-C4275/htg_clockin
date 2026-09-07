@@ -638,7 +638,7 @@
             align-items: center;
             gap: 12px;
             padding: 10px 12px;
-            margin-bottom: 8px;
+            margin-bottom: 2px;
             width: 100%;
         }
 

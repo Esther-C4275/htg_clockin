@@ -701,7 +701,7 @@
             .sidebar-link{
                margin-left: -15px;
                font-size: 18px;
-               font-weight: 500;
+             
             }
 
             .sidebar ul {
@@ -722,7 +722,7 @@
                 color: #b7b7b7;
                 text-decoration: none;
                 font-size: 18px;
-                font-weight: 500;
+               
                 border-radius: 8px;
                 margin-left: -8px;
             }
@@ -731,7 +731,7 @@
                 align-items: center;
                 gap: 12px;
                 padding: 10px 12px;
-                margin-bottom: 8px;
+                margin-bottom: 6px;
                 margin-left: -15px;
             }
             .user-email .profile-pic {

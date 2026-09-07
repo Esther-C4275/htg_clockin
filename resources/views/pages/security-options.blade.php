@@ -730,6 +730,7 @@
 
             .menu{
                 margin-left: -20px;
+                gap: 12px;
                 
             }
 

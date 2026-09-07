@@ -438,7 +438,7 @@
         align-items: center;
         gap: 12px;
         padding: 10px 12px;
-        margin-bottom: 8px;
+        margin-bottom: 5px;
         width: 100%;
         color: #B7B7B7;
       }

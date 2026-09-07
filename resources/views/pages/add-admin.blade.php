@@ -789,7 +789,7 @@
                 align-items: center;
                 gap: 12px;
                 padding: 10px 12px;
-                margin-bottom: 18px;
+                margin-bottom: 7px;
                 width: 100%;
                 margin-left: -14px;
             }
