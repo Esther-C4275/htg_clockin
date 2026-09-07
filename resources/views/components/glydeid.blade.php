@@ -785,6 +785,7 @@ body {
 
 .nav-list{
   margin-left: -30px;
+  margin-top: 30px;
 }
 
 /* Middle Links Scroll Container */

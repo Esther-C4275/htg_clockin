@@ -1143,9 +1143,13 @@
                 align-items: center;
                 justify-content: center;
                 font-weight: 700;
-                font-size: 18px;
+                font-size: 13px;
                 flex-shrink: 0;
                 overflow: hidden;
+            }
+
+            .bottom-menu{
+                margin-bottom:20px !important;
             }
 
             .menu {

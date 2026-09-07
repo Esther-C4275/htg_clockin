@@ -704,6 +704,11 @@
                font-weight: 500;
             }
 
+            .sidebar ul {
+                margin-left: -9px;
+            }
+
+
 
 
             .setting-links { 
@@ -743,6 +748,8 @@
                 overflow: hidden;
             }
 
+            
+
            
             .mobile-header {
                 display: block;
@@ -773,7 +780,7 @@
                 min-height: 48px;
                 padding: 12px;
                 margin-top: -79px;
-                margin-right: -360px;
+                margin-right: -352px;
                 background: transparent;
                 border: none;
                 outline: none;

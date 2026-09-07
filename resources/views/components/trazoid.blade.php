@@ -664,6 +664,10 @@
             border-radius: 50%;
         }
 
+        .nav-link {
+            font-size: 18px;
+        }
+
         .menu-links {
             margin-left: -24px;
         }

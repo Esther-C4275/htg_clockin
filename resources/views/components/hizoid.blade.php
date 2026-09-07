@@ -1159,9 +1159,10 @@
       list-style-type: none;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 12px;
       padding: 0 8px;
-      margin-left: -28px
+      margin-left: -28px;
+      margin-top: 22px;
     }
 
 
