@@ -769,6 +769,7 @@
 
             .setting-link span {
                 line-height: 1;
+                font-weight: 400;
             }
 
             .user-email {
@@ -776,7 +777,7 @@
                 align-items: center;
                 gap: 12px;
                 padding: 10px 12px;
-                margin-bottom: 8px;
+                margin-bottom: -4px;
                 width: 100%;
                 margin-left: -34px;
             }
@@ -817,10 +818,12 @@
 
             .nav-links {
                 margin-left: 1px;
+                gap: 18px;
             }
 
             .nav-item a {
                 font-size: 18px;
+                font-weight: 400;
             }
 
             .metrics-column {
@@ -881,29 +884,22 @@
 
             .tabs-container {
                 display: flex;
-                width: 352px;
+                width: 100%;
+                gap: 0 !important;         
+                max-width: 360px;     
                 background-color: #ffffff;
-                border: 1px solid #06414F;
                 border-radius: 8px;
-                padding: 0px;
-                margin-left: 9px;
-                margin-bottom: 24px;
+                padding: 3px;         
                 box-sizing: border-box;
             }
 
             .tabs-container a {
-                flex: 1;
+                flex: 1;              
                 text-align: center;
-                padding: 10px 0;
-                font-size: 13px;
-                font-weight: 600;
-                border: none;
-                border-radius: 6px;
-                margin-left: 0;
-                color: #06414F;
+                padding: 8px 12px;    
                 text-decoration: none;
-                display: block;
-                width: 50%;
+                box-sizing: border-box;
+                white-space: nowrap;
             }
 
 
@@ -911,6 +907,7 @@
             .tabs-container a:hover {
                 background-color: #06414F;
                 color: #ffffff;
+                
             }
 
             /* --- Profile Details Card --- */
@@ -1176,7 +1173,7 @@
                         @endphp
 
                         <div class="profile-pic">
-                            @if($user->avatar)
+                            @if($adminUser->avatar)
                                 <img src="{{ asset('storage/' . $adminUser->avatar) }}" alt="Profile"
                                     style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;">
                             @else
