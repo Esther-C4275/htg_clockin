@@ -92,6 +92,16 @@ document.addEventListener('submit', () => preloader.classList.add('active'));
 
 
 window.onpageshow = () => preloader.classList.remove('active');
+
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('HTG Service Worker Registered:', reg.scope))
+                .catch(err => console.error('HTG Service Worker Registration Failed:', err));
+        });
+    }
+
     </script>
 
 </body>
