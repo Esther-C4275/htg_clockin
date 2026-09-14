@@ -13,11 +13,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="HTG PORTAL">
 
-    <link rel="apple-touch-icon" href="{{ asset('images/icon-192.png') }}?v=2">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/icon-192.png') }}?v=2">
-    <link rel="icon" type="image/png" sizes="512x512" href="{{ asset('images/icon-512.png') }}?v=2">
+    <link rel="apple-touch-icon" href="{{ asset('images/icon-192.png') }}?v=3">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/icon-192.png') }}?v=3">
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ asset('images/icon-512.png') }}?v=3">
 
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
