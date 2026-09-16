@@ -13,9 +13,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="HTG PORTAL">
 
-    <link rel="apple-touch-icon" href="{{ asset('images/icon-192.png') }}?v=3">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/icon-192.png') }}?v=3">
-    <link rel="icon" type="image/png" sizes="512x512" href="{{ asset('images/icon-512.png') }}?v=3">
+    <link rel="apple-touch-icon" href="{{ asset('images/icon-192.png') }}?v=4">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/icon-192.png') }}?v=4">
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ asset('images/icon-512.png') }}?v=4">
 
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
