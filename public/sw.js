@@ -1,10 +1,9 @@
-const CACHE_NAME = 'htg-portal-v5';
+const CACHE_NAME = 'htg-portal-v6';
 
 
 const urlsToCache = [
     '/',
-    '/images/icon-192.png',
-    '/images/icon-512.png'
+    '/images/master-logo.png?v=6'
 ];
 
 
