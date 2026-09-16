@@ -1,4 +1,4 @@
-const CACHE_NAME = 'htg-portal-v4';
+const CACHE_NAME = 'htg-portal-v5';
 
 
 const urlsToCache = [
