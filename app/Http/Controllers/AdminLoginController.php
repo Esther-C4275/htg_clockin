@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
-
+use Illuminate\Support\Facades\Cookie;
 class AdminLoginController extends Controller
 {
     public function login()
@@ -35,6 +35,8 @@ class AdminLoginController extends Controller
             }
 
             $request->session()->regenerate();
+
+            Cookie::queue('htg_user_role', 'admin', 2628000);
 
             return redirect()->intended(route('admin-dashboard.index'));
         }
