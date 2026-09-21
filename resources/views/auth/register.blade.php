@@ -65,7 +65,12 @@
                             <h3 class="section-title">Work Information</h3>
 
                             <label for="company">Company</label>
-                            <input type="text" id="company" name="company" placeholder="Hizo/Glyde/Trazo" required>
+                            <select id="company" name="company" required>
+                                <option value="" disabled selected>Select Company</option>
+                                <option value="Hizo">Hizo</option>
+                                <option value="Glyde">Glyde</option>
+                                <option value="Trazo">Trazo</option>
+                            </select>
 
                             <label for="position">Position</label>
                             <input type="text" id="position" name="position" placeholder="e.g Developer" required>

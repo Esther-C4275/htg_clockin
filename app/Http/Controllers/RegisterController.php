@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -18,20 +19,25 @@ class RegisterController extends Controller
     {
 
         $validatedData = $request->validate([
-            'first_name' => 'required|string|max:100',
-            'last_name' => 'required|string|max:100',
-            'email' => 'required|string|email|max:100|unique:users',
-            'date_of_birth' => 'required|date',
-            'phone' => 'required|string|max:20',
-            'company' => 'nullable|string|max:20',
-            'position' => 'nullable|string|max:50',
-            'address' => 'required|string|max:255',
-            'state' => 'required|string|max:100',
-            'password' => 'required|string|min:8|confirmed',
-            'gender' => 'nullable|string|max:20',
-            'department' => 'nullable|string|max:50',
-            'country' => 'nullable|string|max:20'
-
+           'first_name' => 'required|string|max:100',
+        'last_name' => 'required|string|max:100',
+        'email' => 'required|string|email|max:100|unique:users',
+        'date_of_birth' => 'required|date',
+        'phone' => 'required|string|max:20',
+        'company' => [
+            'required',
+            'string',
+            Rule::in(['Hizo', 'Glyde', 'Trazo']),
+        ],
+        'position' => 'nullable|string|max:50',
+        'address' => 'required|string|max:255',
+        'state' => 'required|string|max:100',
+        'password' => 'required|string|min:8|confirmed',
+        'gender' => 'nullable|string|max:20',
+        'department' => 'nullable|string|max:50',
+        'country' => 'nullable|string|max:20'
+    ], [
+        'company.in' => 'Please select a valid company: Hizo, Glyde, or Trazo.',
         ]);
 
         $validatedData['password'] = Hash::make($validatedData['password']);
