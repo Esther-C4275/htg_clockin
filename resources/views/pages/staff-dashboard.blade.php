@@ -1892,7 +1892,7 @@
                                     const accuracy = position.coords.accuracy;
                         
                                     
-                                    const MAX_ACCURACY_THRESHOLD = 150;
+                                    const MAX_ACCURACY_THRESHOLD = 50;
                         
                                     if (accuracy > MAX_ACCURACY_THRESHOLD) {
                                         alert("❌ GPS signal is weak (" + Math.round(accuracy) + "m accuracy). Please turn on Wi-Fi or move closer to a window.");

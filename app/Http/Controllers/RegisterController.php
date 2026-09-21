@@ -23,13 +23,13 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:100|unique:users',
             'date_of_birth' => 'required|date',
             'phone' => 'required|string|max:20',
-            'company' => 'nullable|string|max:150',
-            'position' => 'nullable|string|max:100',
+            'company' => 'nullable|string|max:20',
+            'position' => 'nullable|string|max:50',
             'address' => 'required|string|max:255',
             'state' => 'required|string|max:100',
             'password' => 'required|string|min:8|confirmed',
             'gender' => 'nullable|string|max:20',
-            'department' => 'nullable|string|max:20',
+            'department' => 'nullable|string|max:50',
             'country' => 'nullable|string|max:20'
 
         ]);
