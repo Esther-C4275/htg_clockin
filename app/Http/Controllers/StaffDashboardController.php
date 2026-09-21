@@ -12,7 +12,7 @@ class StaffDashboardController extends Controller
    
     private $officeLat = 6.2135273;   
     private $officeLng = 6.7022536;  
-    private $maxDistanceMeters = 30; 
+    private $maxDistanceMeters = 50; 
 
     public function index()
     {
