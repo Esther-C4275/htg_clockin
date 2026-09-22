@@ -581,105 +581,124 @@
     /* ==========================================================================
      8. Strict Production Print Engine Isolator (Glyde Single-Page Side-by-Side)
      ========================================================================== */
-    @media print {
+     @media print {
 
-        .sidebar,
-        .top-bar,
-        .info-panel,
-        .protocol-banner,
-        .actions-wrapper,
-        .brand-section,
-        header,
-        nav {
-            display: none !important;
-        }
+/* Hide everything except the ID card */
+.sidebar,
+.sidebar-overlay,
+.top-bar,
+.info-panel,
+.protocol-banner,
+.actions-wrapper,
+.brand-section,
+header,
+nav,
+.hamburger,
+.mobile-brand,
+.user-profile-widget,
+.breadcrumb,
+#breadcrumbs {
+  display: none !important;
+}
 
+html,
+body {
+  background: #ffffff !important;
+  color: #000000 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: auto !important;
+}
 
-        html,
-        body {
-            background: #ffffff !important;
-            color: #000000 !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            width: auto !important;
-            height: auto !important;
-        }
+.dashboard-container,
+.main-viewport,
+.content-grid,
+.badge-preview-column {
+  display: block !important;
+  position: static !important;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+}
 
+/* Force both sides side-by-side */
+.id-card-container {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  gap: 24px !important;
+  width: 100% !important;
+  height: auto !important;
+  margin: 30px auto !important;
+  perspective: none !important;
+  transform: none !important;          
+}
 
-        .dashboard-container,
-        .main-viewport,
-        .content-grid,
-        .badge-preview-column {
-            display: block !important;
-            position: static !important;
-            width: 100% !important;
-            height: auto !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            transform: none !important;
-        }
-
-
-        .id-card-container {
-            display: flex !important;
-            flex-direction: row !important;
-            gap: 20px !important;
-            width: 100% !important;
-            height: auto !important;
-            justify-content: center !important;
-            margin: 40px auto !important;
-            perspective: none !important;
-            left: 0 !important;
-            margin-left: 0 !important;
-
-
-            transform: scale(0.85) !important;
-            transform-origin: top center !important;
-        }
-
-
-        .id-card {
-            display: flex !important;
-            flex-direction: row !important;
-            gap: 20px !important;
-            width: auto !important;
-            height: auto !important;
-            transform: none !important;
-            transform-style: flat !important;
-        }
-
-
-        .id-card-front,
-        .id-card-back {
-            position: relative !important;
-            width: 312px !important;
-            height: 504px !important;
-            backface-visibility: visible !important;
-            transform: none !important;
-            top: 0 !important;
-            left: 0 !important;
-        }
+.id-card {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 24px !important;
+  width: auto !important;
+  height: auto !important;
+  position: static !important;
+  transform: none !important;
+  transform-style: flat !important;
+  transition: none !important;
+}
 
 
-        .Glyde-card {
-            position: relative !important;
-            width: 312px !important;
-            height: 504px !important;
-            box-shadow: none !important;
-        }
+.id-card-front,
+.id-card-back {
+  position: relative !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 312px !important;
+  height: 504px !important;
+  backface-visibility: visible !important;
+  -webkit-backface-visibility: visible !important;
+  transform: none !important;
+  top: auto !important;
+  left: auto !important;
+}
 
 
-        .badge-footer i,
-        .badge-footer2 i {
-            display: none !important;
-        }
+.id-card.flip .id-card-front,
+.id-card:not(.flip) .id-card-back,
+.id-card.flip .id-card-back {
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.badge-card-front,
+.badge-card,
+.Glyde-card {
+  margin: 0 !important;
+  position: relative !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 312px !important;
+  height: 504px !important;
+  box-shadow: none !important;
+}
 
 
-        * {
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-    }
+.badge-footer i,
+.badge-footer2 i {
+  display: none !important;
+}
+
+
+* {
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+}
 
     /* ==========================================================================
      7. Responsive Adaptability Configuration

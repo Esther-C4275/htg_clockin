@@ -815,35 +815,123 @@
     /* ==========================================================================
      8. Print Styling Overrides
      ========================================================================== */
-    @media print {
+            @media print {
 
+        
         .sidebar,
+        .sidebar-overlay,
         .top-bar,
         .info-panel,
         .protocol-banner,
         .actions-wrapper,
-        nav {
-            display: none !important;
+        .brand-section,
+        header,
+        nav,
+        .hamburger,
+        .mobile-brand,
+        .user-profile-widget,
+        .breadcrumb,
+        #breadcrumbs {
+        display: none !important;
         }
 
+        html,
         body {
-            background: #ffffff !important;
+        background: #ffffff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        height: auto !important;
         }
 
         .dashboard-container,
         .main-viewport,
         .content-grid,
         .badge-preview-column {
-            display: block !important;
-            width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
+        display: block !important;
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: none !important;
         }
 
+       
         .id-card-container {
-            margin: 20px auto !important;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+        gap: 24px !important;
+        width: 100% !important;
+        height: auto !important;
+        margin: 30px auto !important;
+        perspective: none !important;
+        transform: none !important;
         }
-    }
+
+        .id-card {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 24px !important;
+        width: auto !important;
+        height: auto !important;
+        position: static !important;
+        transform: none !important;
+        transform-style: flat !important;
+        transition: none !important;
+        }
+
+        
+        .id-card-front,
+        .id-card-back {
+        position: relative !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 312px !important;
+        height: 504px !important;
+        backface-visibility: visible !important;
+        -webkit-backface-visibility: visible !important;
+        transform: none !important;
+        top: auto !important;
+        left: auto !important;
+        }
+
+       
+        .id-card.flip .id-card-front,
+        .id-card:not(.flip) .id-card-back,
+        .id-card.flip .id-card-back {
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        }
+
+       
+        .trazo-card,
+        .trazo-cardback {
+        margin: 0 !important;
+        position: relative !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 312px !important;
+        height: 504px !important;
+        box-shadow: none !important;
+        }
+
+        
+        .badge-footer i,
+        .badge-footer2 i {
+        display: none !important;
+        }
+
+       
+        * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        }
+        }
 </style>
 
 <body>

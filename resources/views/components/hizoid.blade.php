@@ -749,7 +749,7 @@
     transform: none !important;
   }
 
-  /* Force the card container to show BOTH sides side-by-side */
+  
   .id-card-container {
     display: flex !important;
     flex-direction: row !important;
@@ -775,7 +775,7 @@
     transition: none !important;
   }
 
-  /* CRITICAL – make both sides fully visible and side-by-side */
+  
   .id-card-front,
   .id-card-back {
     position: relative !important;
@@ -791,7 +791,7 @@
     left: auto !important;
   }
 
-  /* Kill any remaining flip / visibility rules */
+ 
   .id-card.flip .id-card-front,
   .id-card:not(.flip) .id-card-back,
   .id-card.flip .id-card-back {
@@ -810,19 +810,18 @@
     height: 504px !important;
   }
 
-  /* Optional: hide the little rotate icons on print */
+  
   .badge-footer i,
   .badge-footer2 i {
     display: none !important;
   }
 
-  /* Keep colours */
+  
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 }
-
   /* 
 .btn-print:hover {
   background-color: #04313b;
@@ -1080,7 +1079,6 @@
     }
 
 
-    /* Fix for layout shift on card flip */
     .badge-preview-column {
       display: flex;
       justify-content: center;
@@ -1091,48 +1089,27 @@
 
     .id-card-container {
       perspective: 1000px;
-      -webkit-perspective: 1000px;
-      width: 100%;
-      max-width: 393px; /* Set your explicit card width */
-      height: 480px;    /* CRITICAL: Must match the height of your ID card */
-      position: relative;
-    }
-
-    .id-card {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      -webkit-transform-style: preserve-3d;
-      transition: transform 0.6s ease;
-    }
-
-    .id-card.flip {
-      transform: rotateY(180deg);
     }
 
     .id-card-front,
     .id-card-back {
-      position: absolute; /* CRITICAL: Prevents document reflow */
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
       backface-visibility: hidden !important;
       -webkit-backface-visibility: hidden !important;
       transform-style: preserve-3d;
       -webkit-transform-style: preserve-3d;
     }
 
-    .id-card-back {
-      transform: rotateY(180deg);
-    }
 
-    /* Remove the visibility:hidden overrides that cause instantaneous layout recalculations */
-    .id-card.flip .id-card-front,
-    .id-card:not(.flip) .id-card-back {
+    .id-card.flip .id-card-front {
+      visibility: hidden !important;
       pointer-events: none;
     }
+
+    .id-card:not(.flip) .id-card-back {
+      visibility: hidden !important;
+      pointer-events: none;
+    }
+
 
     .badge-card-front,
     .badge-card,
