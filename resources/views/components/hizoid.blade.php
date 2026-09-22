@@ -376,7 +376,7 @@
 
   }
 
-  */
+  
 
   /* ==========================================================================
    6. Data Specifications Table & Alert Layout
@@ -711,107 +711,117 @@
   /* ==========================================================================
    8. Strict Production Print Engine Isolator (Hizo Single-Page Side-by-Side)
    ========================================================================== */
-  @media print {
-
-    .sidebar,
-    .top-bar,
-    .info-panel,
-    .protocol-banner,
-    .actions-wrapper,
-    .brand-section,
-    header,
-    nav {
-      display: none !important;
-    }
-
-
-    html,
-    body {
-      background: #ffffff !important;
-      color: #000000 !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      width: auto !important;
-      height: auto !important;
-    }
-
-
-    .dashboard-container,
-    .main-viewport,
-    .content-grid,
-    .badge-preview-column {
-      display: block !important;
-      position: static !important;
-      width: 100% !important;
-      height: auto !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      transform: none !important;
-    }
-
-
-    .id-card-container {
-      display: flex !important;
-      flex-direction: row !important;
-      gap: 20px !important;
-      width: 100% !important;
-      height: auto !important;
-      justify-content: center !important;
-      margin: 40px auto !important;
-      perspective: none !important;
-      left: 0 !important;
-
-
-      transform: scale(0.85) !important;
-      transform-origin: top center !important;
-    }
-
-
-    .id-card {
-      display: flex !important;
-      flex-direction: row !important;
-      gap: 20px !important;
-      width: auto !important;
-      height: auto !important;
-      transform: none !important;
-      transform-style: flat !important;
-    }
-
-
-    .id-card-front,
-    .id-card-back {
-      position: relative !important;
-      width: 312px !important;
-      height: 504px !important;
-      backface-visibility: visible !important;
-      transform: none !important;
-      top: 0 !important;
-      left: 0 !important;
-    }
-
-
-    .badge-card-front,
-    .badge-card {
-      margin-left: 0 !important;
-      position: relative !important;
-      left: 0 !important;
-      top: 0 !important;
-      width: 312px !important;
-      height: 504px !important;
-    }
-
-
-    .badge-footer i,
-    .badge-footer2 i {
-      display: none !important;
-    }
-
-
-    * {
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
-    }
+   @media print {
+  /* Hide everything that is not the ID card */
+  .sidebar,
+  .sidebar-overlay,
+  .top-bar,
+  .info-panel,
+  .protocol-banner,
+  .actions-wrapper,
+  .brand-section,
+  header,
+  nav,
+  .hamburger,
+  .mobile-brand,
+  .user-profile-widget {
+    display: none !important;
   }
+
+  html, body {
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .dashboard-container,
+  .main-viewport,
+  .content-grid,
+  .badge-preview-column {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: static !important;
+    transform: none !important;
+  }
+
+  /* Force the card container to show BOTH sides side-by-side */
+  .id-card-container {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: 24px !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 30px auto !important;
+    perspective: none !important;
+    transform: none !important;
+  }
+
+  .id-card {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 24px !important;
+    width: auto !important;
+    height: auto !important;
+    position: static !important;
+    transform: none !important;
+    transform-style: flat !important;
+    transition: none !important;
+  }
+
+  /* CRITICAL – make both sides fully visible and side-by-side */
+  .id-card-front,
+  .id-card-back {
+    position: relative !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 312px !important;
+    height: 504px !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    transform: none !important;
+    top: auto !important;
+    left: auto !important;
+  }
+
+  /* Kill any remaining flip / visibility rules */
+  .id-card.flip .id-card-front,
+  .id-card:not(.flip) .id-card-back,
+  .id-card.flip .id-card-back {
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .badge-card-front,
+  .badge-card {
+    margin: 0 !important;
+    position: relative !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 312px !important;
+    height: 504px !important;
+  }
+
+  /* Optional: hide the little rotate icons on print */
+  .badge-footer i,
+  .badge-footer2 i {
+    display: none !important;
+  }
+
+  /* Keep colours */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
 
   /* 
 .btn-print:hover {
@@ -1070,6 +1080,7 @@
     }
 
 
+    /* Fix for layout shift on card flip */
     .badge-preview-column {
       display: flex;
       justify-content: center;
@@ -1080,27 +1091,48 @@
 
     .id-card-container {
       perspective: 1000px;
+      -webkit-perspective: 1000px;
+      width: 100%;
+      max-width: 393px; /* Set your explicit card width */
+      height: 480px;    /* CRITICAL: Must match the height of your ID card */
+      position: relative;
+    }
+
+    .id-card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      transition: transform 0.6s ease;
+    }
+
+    .id-card.flip {
+      transform: rotateY(180deg);
     }
 
     .id-card-front,
     .id-card-back {
+      position: absolute; /* CRITICAL: Prevents document reflow */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       backface-visibility: hidden !important;
       -webkit-backface-visibility: hidden !important;
       transform-style: preserve-3d;
       -webkit-transform-style: preserve-3d;
     }
 
-
-    .id-card.flip .id-card-front {
-      visibility: hidden !important;
-      pointer-events: none;
+    .id-card-back {
+      transform: rotateY(180deg);
     }
 
+    /* Remove the visibility:hidden overrides that cause instantaneous layout recalculations */
+    .id-card.flip .id-card-front,
     .id-card:not(.flip) .id-card-back {
-      visibility: hidden !important;
       pointer-events: none;
     }
-
 
     .badge-card-front,
     .badge-card,

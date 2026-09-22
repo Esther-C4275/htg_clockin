@@ -6,18 +6,17 @@
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
     }
-
+  
     main {
       width: 100%;
       display: flex;
     }
-
+  
     .container {
       display: flex;
       height: 100vh;
     }
-
-
+  
     .sidebar {
       width: 260px;
       height: 100vh;
@@ -31,36 +30,36 @@
       left: 0;
       z-index: 100;
     }
-
+  
     .sidebar-close {
       display: none;
     }
-
+  
     .logo {
       margin-bottom: 40px;
       margin-top: -3px;
       margin-left: 2px;
     }
-
+  
     .logo h1 {
       font-size: 42px;
       font-weight: 700;
       line-height: 1;
     }
-
+  
     .logo p {
       font-size: 14px;
       letter-spacing: 1px;
       margin-top: -5px;
     }
-
+  
     .menu {
       display: flex;
       flex-direction: column;
       gap: 10px;
       margin-left: -18px;
     }
-
+  
     .menu a {
       text-decoration: none;
       color: #B7B7B7;
@@ -72,18 +71,18 @@
       font-size: 16px;
       transition: 0.3s;
     }
-
+  
     .menu a:hover {
       background: #FFFFFF;
       color: #06414F;
     }
-
+  
     .bottom-menu {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-
+  
     .bottom-menu a {
       text-decoration: none;
       color: #B7B7B7;
@@ -95,12 +94,12 @@
       font-size: 16px;
       transition: 0.3s;
     }
-
+  
     .bottom-menu a:hover {
       background: #FFFFFF;
       color: #06414F;
     }
-
+  
     .setting-links {
       display: flex;
       align-items: center;
@@ -113,16 +112,16 @@
       font-weight: 500;
       border-radius: 8px;
     }
-
+  
     .setting-links:hover {
       background-color: #ffffff;
       color: #06414F;
     }
-
+  
     #setting-link {
       display: none;
     }
-
+  
     .hamburger-btn {
       display: none;
       background: transparent;
@@ -130,30 +129,29 @@
       font-size: 24px;
       cursor: pointer;
     }
-
+  
     .mobile-brand {
       display: none;
     }
-
+  
     .user-email {
       display: none;
     }
-
-
+  
     .main {
       flex: 1;
       padding: 28px;
       margin-left: 260px;
       min-height: 100vh;
     }
-
+  
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 25px;
     }
-
+  
     .topbar h2 {
       font-size: 24px;
       font-weight: 600;
@@ -161,13 +159,63 @@
       line-height: 100%;
       margin-top: 10px;
     }
-
+  
+    /* ===== DESKTOP FILTERS ===== */
     .top-actions {
       display: flex;
+      justify-content: flex-end;
       align-items: center;
-      gap: 12px;
     }
-
+  
+    .attendance-filters {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .dropdown-select {
+      appearance: none;
+      -webkit-appearance: none;
+      background: #fff;
+      border: 1px solid #BAB7B7;
+      border-radius: 8px;
+      padding: 0 36px 0 14px;
+      font-size: 14px;
+      color: #1e293b;
+      cursor: pointer;
+      height: 42px;
+      width: 152px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+    }
+  
+    .dropdown-select:hover,
+    .dropdown-select:focus {
+      border-color: #94a3b8;
+      outline: none;
+    }
+  
+    .date-input {
+      width: 150px;
+      height: 42px;
+      padding: 0 14px;
+      border: 1px solid #BAB7B7;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #1e293b;
+      background: #fff;
+      outline: none;
+    }
+  
+    .date-input.hidden {
+      display: none !important;
+    }
+  
+    .date-input:focus {
+      border-color: #94a3b8;
+    }
+  
     select {
       padding: 10px 16px;
       border: 1px solid #BAB7B7;
@@ -179,8 +227,7 @@
       width: 152px;
       height: 42px;
     }
-
-
+  
     .dots {
       display: flex;
       gap: 17px;
@@ -190,14 +237,13 @@
       font-size: 14px;
       margin-left: 10px;
     }
-
+  
     .dots div {
       display: flex;
       align-items: center;
       gap: 6px;
     }
-
-
+  
     .cards {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -205,21 +251,21 @@
       margin-bottom: 20px;
       margin-left: 10px;
     }
-
+  
     .card {
       background: #FFFFFF;
       border-radius: 12px;
       padding: 18px;
       border: 1px solid #E4E4E4;
     }
-
+  
     .card-top {
       display: flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 12px;
     }
-
+  
     .icon {
       width: 36px;
       height: 36px;
@@ -230,30 +276,29 @@
       color: #fff;
       font-size: 14px;
     }
-
+  
     .card h3 {
       margin-top: 6px;
       font-size: 30px;
       font-weight: 700;
     }
-
-
+  
     .table-container {
       background: #FFFFFF;
       border-radius: 12px;
       overflow: hidden;
       border: 1px solid #E4E4E4;
     }
-
+  
     table {
       width: 100%;
       border-collapse: collapse;
     }
-
+  
     thead {
       background: #F8F9FB;
     }
-
+  
     th {
       text-align: left;
       padding: 16px;
@@ -262,7 +307,7 @@
       font-weight: 600;
       white-space: nowrap;
     }
-
+  
     td {
       padding: 16px;
       border-top: 1px solid #eee;
@@ -270,13 +315,13 @@
       color: #222;
       white-space: nowrap;
     }
-
+  
     .user {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-
+  
     .status {
       padding: 8px 20px;
       border-radius: 30px;
@@ -286,15 +331,15 @@
       min-width: 90px;
       text-align: center;
     }
-
+  
     .active {
       background: #20c933;
     }
-
+  
     .absent {
       background: red;
     }
-
+  
     .avatar-initials {
       width: 35px;
       height: 35px;
@@ -311,132 +356,144 @@
       flex-shrink: 0;
       overflow: hidden;
     }
-
+  
     .menu-icon {
       color: #777;
       cursor: pointer;
     }
-
-    .pagination-wrapper {
-      display: none;
+  
+    /* Pagination styles */
+    .pagination-wrapper .small,
+    .pagination-wrapper .text-muted,
+    .pagination-wrapper .small.text-muted {
+      display: none !important;
     }
-
-    /* Container that holds the two date inputs */
-.date-range-group {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #fff;
-  border: 1px solid #e5e7eb;          /* same light border as the cards & dropdown */
-  border-radius: 0.5rem;               /* matches your card radius */
-  padding: 0.25rem 0.5rem;
-  height: 38px;                        /* matches typical select height */
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-}
-
-/* The actual date inputs */
-.date-input {
-  border: none;
-  background: transparent;
-  width: 24px;                  /* sized strictly to fit the icon */
-  min-width: 24px;
-  padding: 0;
-  outline: none;
-  cursor: pointer;
-  color: transparent;
-}
-
-/* Remove the default calendar icon styling differences across browsers */
-.date-input::-webkit-calendar-picker-indicator {
-  opacity: 1;
-}
-
-.date-input::-webkit-calendar-picker-indicator:hover {
-  opacity: 1;
-  background-color: #f3f4f6;
-}
-
-/* The "to" text */
-.date-separator {
-  color: #6b7280;
-  font-size: 0.875rem;
-  font-weight: 500;
-  user-select: none;
-  padding: 0 0.25rem;
-}
-
-/* Optional: make the whole group feel interactive on hover */
-.date-range-group:hover {
-  border-color: #d1d5db;
-}
-
-/* Focus state – soft indigo ring that matches modern admin UIs */
-.date-range-group:focus-within {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-}
-
-.top-actions form {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.dropdown-select {
-  height: 38px;               /* same height as the date group */
-  border-radius: 0.5rem;
-  border: 1px solid #e5e7eb;
-  padding: 0 0.75rem;
-  font-size: 0.875rem;
-  background: #fff;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-  cursor: pointer;
-}
-
-
+  
+    .pagination-wrapper {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 12px !important;
+      margin-top: 20px !important;
+      width: 100% !important;
+    }
+  
+    .pagination-wrapper nav,
+    .pagination-wrapper .d-flex {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      align-items: center !important;
+      gap: 6px !important;
+      width: 100% !important;
+      justify-content: flex-start !important;
+    }
+  
+    .pagination-wrapper .d-none,
+    .pagination-wrapper .d-sm-none {
+      display: flex !important;
+    }
+  
+    .pagination-wrapper .pagination {
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+  
+    .pagination-wrapper .page-item {
+      display: inline-flex !important;
+      margin: 0 !important;
+    }
+  
+    .pagination-wrapper .page-link {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      min-width: 32px !important;
+      height: 32px !important;
+      padding: 0 8px !important;
+      border-radius: 50% !important;
+      font-size: 13px !important;
+      font-weight: 500 !important;
+      color: #374151 !important;
+      background: transparent !important;
+      border: none !important;
+      text-decoration: none !important;
+      line-height: 1 !important;
+      box-shadow: none !important;
+    }
+  
+    .pagination-wrapper .page-item.active .page-link {
+      background: #06414F !important;
+      color: #fff !important;
+    }
+  
+    .pagination-wrapper .page-link:hover {
+      background: #F3F4F6 !important;
+      color: #06414F !important;
+    }
+  
+    .pagination-wrapper .page-item.disabled .page-link {
+      color: #9CA3AF !important;
+      background: transparent !important;
+      pointer-events: none !important;
+    }
+  
+    .pagination-wrapper .page-item:first-child .page-link,
+    .pagination-wrapper .page-item:last-child .page-link {
+      border-radius: 8px !important;
+      min-width: auto !important;
+      padding: 0 14px !important;
+      border: 1px solid #E5E7EB !important;
+      background: #fff !important;
+      height: 32px !important;
+    }
+  
+    .pagination-wrapper .page-item:first-child .page-link:hover,
+    .pagination-wrapper .page-item:last-child .page-link:hover {
+      background: #F9FAFB !important;
+      border-color: #D1D5DB !important;
+    }
+  
+    /* ===== TABLET ===== */
     @media (max-width: 1100px) {
       .cards {
         grid-template-columns: repeat(2, 1fr);
       }
     }
-
-
+  
+    /* ===== MOBILE ===== */
     @media (max-width: 768px) {
       body {
         background: #ffffff;
       }
-
-      /* main{
-        padding: 3px;
-      } */
-
-
+  
       .sidebar {
         position: fixed;
-                top: 0;
-                left: -100%;
-                width: 78%;
-                max-width: 300px;
-                height: 100%;
-                
-                background: #06414F;
-                padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px)) 20px;
-                z-index: 2000;
-                transition: left .3s ease;
-                border-top-right-radius: 40px;
-                border-bottom-right-radius: 40px;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                box-sizing: border-box;
-                overflow: hidden;
+        top: 0;
+        left: -100%;
+        width: 78%;
+        max-width: 300px;
+        height: 100%;
+        background: #06414F;
+        padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px)) 20px;
+        z-index: 2000;
+        transition: left .3s ease;
+        border-top-right-radius: 40px;
+        border-bottom-right-radius: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-sizing: border-box;
+        overflow: hidden;
       }
-
+  
       .sidebar.active {
         left: 0;
       }
-
+  
       .sidebar-close {
         display: flex;
         position: absolute;
@@ -453,7 +510,7 @@
         font-size: 22px;
         cursor: pointer;
       }
-
+  
       .sidebar-overlay {
         display: none;
         position: fixed;
@@ -463,15 +520,15 @@
         -webkit-backdrop-filter: blur(3px);
         z-index: 1500;
       }
-
+  
       .sidebar-overlay.active {
         display: block;
       }
-
+  
       .setting-links {
         display: none !important;
       }
-
+  
       #setting-link {
         display: flex;
         align-items: center;
@@ -486,26 +543,7 @@
         color: #b7b7b7;
         border-radius: 8px;
       }
-
-      /* .setting-link i {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 30px;
-        height: 20px;
-        flex-shrink: 0;
-        margin: 0;
-    }
-
-    .setting-link i img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-
-    .setting-link span {
-        line-height: 1 ;
-    } */
+  
       .user-email {
         display: flex;
         align-items: center;
@@ -515,7 +553,7 @@
         width: 100%;
         color: #B7B7B7;
       }
-
+  
       .user-email .profile-pic {
         width: 32px;
         height: 32px;
@@ -530,15 +568,13 @@
         flex-shrink: 0;
         overflow: hidden;
       }
-
-
+  
       .main {
         margin-left: 0 !important;
         padding: 16px;
         width: 100%;
-
       }
-
+  
       .topbar {
         display: flex;
         flex-wrap: wrap;
@@ -546,28 +582,27 @@
         gap: 12px;
         margin-bottom: 16px;
       }
-
-
+  
       .mobile-brand {
         width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
       }
-
+  
       .mobile-brand img {
         width: 68px;
         height: 30px;
         margin-left: -6px;
       }
-
+  
       .hamburger {
         display: flex;
         align-items: center;
         justify-content: center;
         margin-left: auto;
       }
-
+  
       .hamburger-btn {
         display: inline-flex;
         align-items: center;
@@ -584,41 +619,51 @@
         -webkit-tap-highlight-color: transparent;
         touch-action: manipulation;
       }
-
-
+  
       .hamburger-btn img {
         width: 24px;
         height: auto;
         display: block;
         pointer-events: none;
       }
-
-
+  
       .hamburger-btn:hover {
         opacity: 0.8;
       }
-
-
+  
       .topbar h2 {
         margin: 0;
         font-size: 20px;
         font-weight: 600;
         flex: 1;
       }
-
-
+  
+      /* Mobile filters */
       .top-actions {
-        margin: 0 !important;
-        width: auto;
+        width: 100%;
+        margin-top: 8px;
       }
-
-      .top-actions select {
-        width: 130px;
-        height: 40px;
-        font-size: 14px;
+  
+      .attendance-filters {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        width: 100%;
       }
-
-
+  
+      .dropdown-select,
+      .date-input {
+        width: 100% !important;
+        max-width: 220px;
+        height: 42px !important;
+        font-size: 14px !important;
+      }
+  
+      .date-input.hidden {
+        display: none !important;
+      }
+  
       .dots {
         margin-left: 0;
         margin-bottom: 39px;
@@ -627,63 +672,61 @@
         font-size: 13px;
         flex-wrap: wrap;
       }
-
-
+  
       .cards {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
         margin-left: 0;
         margin-bottom: 16px;
       }
-
+  
       .card {
         padding: 14px;
       }
-
+  
       .card h3 {
         font-size: 24px;
       }
-
+  
       .card-top p {
         font-size: 13px;
       }
-
-
+  
       .table-container {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         border-radius: 12px;
         border: 1px solid #E4E4E4;
       }
-
+  
       table {
         min-width: 720px;
       }
-
+  
       th,
       td {
         padding: 14px 12px;
         font-size: 13px;
       }
-
+  
       .avatar-initials {
         width: 32px;
         height: 32px;
         font-size: 12px;
       }
-
+  
       .menu {
         margin-left: -20px;
       }
-
+  
       .menu a {
         font-size: 18px;
       }
-
+  
       .bottom-menu {
         margin-left: -20px;
       }
-
+  
       .user-email-text {
         max-width: 157px;
         white-space: nowrap;
@@ -691,103 +734,6 @@
         text-overflow: ellipsis;
         display: block;
       }
-
-      .pagination-wrapper .small,
-      .pagination-wrapper .text-muted,
-      .pagination-wrapper .small.text-muted {
-        display: none !important;
-      }
-
-
-      .pagination-wrapper {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 12px !important;
-        margin-top: 20px !important;
-        width: 100% !important;
-      }
-
-      .pagination-wrapper nav,
-      .pagination-wrapper .d-flex {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        align-items: center !important;
-        gap: 6px !important;
-        width: 100% !important;
-        justify-content: flex-start !important;
-      }
-
-      .pagination-wrapper .d-none,
-      .pagination-wrapper .d-sm-none {
-        display: flex !important;
-      }
-
-      .pagination-wrapper .pagination {
-        display: flex !important;
-        align-items: center !important;
-        gap: 6px !important;
-        list-style: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-      }
-
-      .pagination-wrapper .page-item {
-        display: inline-flex !important;
-        margin: 0 !important;
-      }
-
-      .pagination-wrapper .page-link {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        min-width: 32px !important;
-        height: 32px !important;
-        padding: 0 8px !important;
-        border-radius: 50% !important;
-        font-size: 13px !important;
-        font-weight: 500 !important;
-        color: #374151 !important;
-        background: transparent !important;
-        border: none !important;
-        text-decoration: none !important;
-        line-height: 1 !important;
-        box-shadow: none !important;
-      }
-
-      .pagination-wrapper .page-item.active .page-link {
-        background: #06414F !important;
-        color: #fff !important;
-      }
-
-      .pagination-wrapper .page-link:hover {
-        background: #F3F4F6 !important;
-        color: #06414F !important;
-      }
-
-      .pagination-wrapper .page-item.disabled .page-link {
-        color: #9CA3AF !important;
-        background: transparent !important;
-        pointer-events: none !important;
-      }
-
-
-      .pagination-wrapper .page-item:first-child .page-link,
-      .pagination-wrapper .page-item:last-child .page-link {
-        border-radius: 8px !important;
-        min-width: auto !important;
-        padding: 0 14px !important;
-        border: 1px solid #E5E7EB !important;
-        background: #fff !important;
-        height: 32px !important;
-      }
-
-      .pagination-wrapper .page-item:first-child .page-link:hover,
-      .pagination-wrapper .page-item:last-child .page-link:hover {
-        background: #F9FAFB !important;
-        border-color: #D1D5DB !important;
-      }
-
     }
   </style>
 
@@ -850,48 +796,39 @@
   <div class="main">
     <div class="topbar">
       <div class="mobile-brand">
-          <a href="{{ route('admin-dashboard.index') }}">
-              <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
-          </a>
-          
-        
-          <div class="hamburger">
-              <button class="hamburger-btn" id="openSidebar">
-                  <img src="{{ asset('images/breadcrumb.svg') }}" alt="Menu">
-              </button>
-          </div>
+        <a href="{{ route('admin-dashboard.index') }}">
+          <img src="{{ asset('images/Artboard 1-1 2.svg') }}" class="mobile-logo" alt="HTG">
+        </a>
+
+
+        <div class="hamburger">
+          <button class="hamburger-btn" id="openSidebar">
+            <img src="{{ asset('images/breadcrumb.svg') }}" alt="Menu">
+          </button>
+        </div>
       </div>
 
       <h2>Attendance List</h2>
 
       <div class="top-actions">
-        <form action="{{ url()->current() }}" method="GET" id="attendanceRangeForm">
-          <select name="filter_range" onchange="document.getElementById('attendanceRangeForm').submit();"
-            class="dropdown-select">
+        <form action="{{ url()->current() }}" method="GET" id="attendanceRangeForm" class="attendance-filters">
+
+          <select name="filter_range" id="filter_range" onchange="handleRangeChange(this)" class="dropdown-select">
             <option value="today" {{ $filter === 'today' ? 'selected' : '' }}>Today</option>
             <option value="yesterday" {{ $filter === 'yesterday' ? 'selected' : '' }}>Yesterday</option>
             <option value="this_week" {{ $filter === 'this_week' ? 'selected' : '' }}>This Week</option>
+            <option value="custom" {{ $filter === 'custom' ? 'selected' : '' }}>Custom Date</option>
           </select>
 
-          @if($filter === 'custom')
-  <div class="date-range-group">
-    <input 
-      type="date" 
-      name="start_date" 
-      value="{{ request('start_date', $startDate) }}" 
-      onchange="document.getElementById('attendanceRangeForm').submit();"
-      class="date-input"
-    />
-    <span class="date-separator">to</span>
-    <input 
-      type="date" 
-      name="end_date" 
-      value="{{ request('end_date', $endDate) }}" 
-      onchange="document.getElementById('attendanceRangeForm').submit();"
-      class="date-input"
-    />
-  </div>
-@endif
+
+          <input type="text" id="date_display" class="date-input {{ $filter === 'custom' ? '' : 'hidden' }}"
+            placeholder="dd/mm/yyyy"
+            value="{{ $filter === 'custom' && !empty($startDate) ? \Carbon\Carbon::parse($startDate)->format('d/m/Y') : '' }}"
+            autocomplete="off">
+
+
+          <input type="hidden" name="start_date" id="start_date"
+            value="{{ $filter === 'custom' ? ($startDate ?? '') : '' }}">
         </form>
       </div>
     </div>
@@ -970,7 +907,7 @@
             <tr>
               <td>
                 <div class="user">
-                 
+
                   <div class="avatar-initials">
                     @php
                       $firstInitial = substr($employee->first_name, 0, 1);
@@ -998,7 +935,7 @@
                   <span class="status absent">Absent</span>
                 @endif
               </td>
-              <td><i class="fa-solid fa-ellipsis-vertical menu-icon"></i></td>
+
             </tr>
           @endforeach
         </tbody>
@@ -1029,6 +966,64 @@
     closeBtn?.addEventListener('click', () => {
       sidebar?.classList.remove('active');
       overlay?.classList.remove('active');
+    });
+
+    function handleRangeChange(select) {
+      const form = document.getElementById('attendanceRangeForm');
+      const dateDisplay = document.getElementById('date_display');
+      const startDate = document.getElementById('start_date');
+
+      if (select.value === 'custom') {
+      
+        dateDisplay.classList.remove('hidden');
+        dateDisplay.focus();
+      } else {
+        
+        dateDisplay.classList.add('hidden');
+        dateDisplay.value = '';
+        startDate.value = '';
+        form.submit();
+      }
+    }
+
+   
+    document.getElementById('date_display')?.addEventListener('change', function () {
+      const value = this.value.trim();
+      const hidden = document.getElementById('start_date');
+      const form = document.getElementById('attendanceRangeForm');
+
+      if (!value) return;
+
+     
+      const parts = value.split('/');
+      if (parts.length !== 3) {
+        alert('Please enter date in format: dd/mm/yyyy');
+        this.value = '';
+        return;
+      }
+
+      let [day, month, year] = parts;
+      day = day.padStart(2, '0');
+      month = month.padStart(2, '0');
+
+      
+      if (year.length !== 4 || month < 1 || month > 12 || day < 1 || day > 31) {
+        alert('Invalid date. Use format: dd/mm/yyyy');
+        this.value = '';
+        return;
+      }
+
+      
+      hidden.value = `${year}-${month}-${day}`;
+      form.submit();
+    });
+
+   
+    document.getElementById('date_display')?.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        this.dispatchEvent(new Event('change'));
+      }
     });
   </script>
 </x-layout>

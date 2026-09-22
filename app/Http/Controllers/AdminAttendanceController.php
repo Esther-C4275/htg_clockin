@@ -32,10 +32,16 @@ class AdminAttendanceController extends Controller
         $startDate = Carbon::now()->startOfWeek()->format('Y-m-d');
         $endDate = Carbon::now()->endOfWeek()->format('Y-m-d');
     } elseif ($filter === 'custom') {
-        $startDate = $request->input('start_date', Carbon::today()->format('Y-m-d'));
-        $endDate = $request->input('end_date', Carbon::today()->format('Y-m-d'));
+        $date = $request->input('start_date');
+    
+        // Extra safety
+        if (!$date || !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
+            $date = Carbon::today()->format('Y-m-d');
+        }
+    
+        $startDate = $date;
+        $endDate   = $date;
     }
-
 
  
     $employees = User::query()
