@@ -321,6 +321,79 @@
       display: none;
     }
 
+    /* Container that holds the two date inputs */
+.date-range-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;          /* same light border as the cards & dropdown */
+  border-radius: 0.5rem;               /* matches your card radius */
+  padding: 0.25rem 0.5rem;
+  height: 38px;                        /* matches typical select height */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* The actual date inputs */
+.date-input {
+  border: none;
+  background: transparent;
+  width: 24px;                  /* sized strictly to fit the icon */
+  min-width: 24px;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+  color: transparent;
+}
+
+/* Remove the default calendar icon styling differences across browsers */
+.date-input::-webkit-calendar-picker-indicator {
+  opacity: 1;
+}
+
+.date-input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  background-color: #f3f4f6;
+}
+
+/* The "to" text */
+.date-separator {
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-weight: 500;
+  user-select: none;
+  padding: 0 0.25rem;
+}
+
+/* Optional: make the whole group feel interactive on hover */
+.date-range-group:hover {
+  border-color: #d1d5db;
+}
+
+/* Focus state – soft indigo ring that matches modern admin UIs */
+.date-range-group:focus-within {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.top-actions form {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.dropdown-select {
+  height: 38px;               /* same height as the date group */
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  padding: 0 0.75rem;
+  font-size: 0.875rem;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+}
+
 
     @media (max-width: 1100px) {
       .cards {
@@ -799,6 +872,26 @@
             <option value="yesterday" {{ $filter === 'yesterday' ? 'selected' : '' }}>Yesterday</option>
             <option value="this_week" {{ $filter === 'this_week' ? 'selected' : '' }}>This Week</option>
           </select>
+
+          @if($filter === 'custom')
+  <div class="date-range-group">
+    <input 
+      type="date" 
+      name="start_date" 
+      value="{{ request('start_date', $startDate) }}" 
+      onchange="document.getElementById('attendanceRangeForm').submit();"
+      class="date-input"
+    />
+    <span class="date-separator">to</span>
+    <input 
+      type="date" 
+      name="end_date" 
+      value="{{ request('end_date', $endDate) }}" 
+      onchange="document.getElementById('attendanceRangeForm').submit();"
+      class="date-input"
+    />
+  </div>
+@endif
         </form>
       </div>
     </div>
@@ -877,7 +970,7 @@
             <tr>
               <td>
                 <div class="user">
-                  <input type="checkbox">
+                 
                   <div class="avatar-initials">
                     @php
                       $firstInitial = substr($employee->first_name, 0, 1);

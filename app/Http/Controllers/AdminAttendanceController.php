@@ -19,7 +19,7 @@ class AdminAttendanceController extends Controller
     $user = Auth::user();
     $totalEmployees = User::query()->where('is_admin', false)->count();
 
-  //for the dropdown
+ 
     $filter = $request->input('filter_range', 'today');
     
     if ($filter === 'today') {
@@ -31,7 +31,11 @@ class AdminAttendanceController extends Controller
     } elseif ($filter === 'this_week') {
         $startDate = Carbon::now()->startOfWeek()->format('Y-m-d');
         $endDate = Carbon::now()->endOfWeek()->format('Y-m-d');
+    } elseif ($filter === 'custom') {
+        $startDate = $request->input('start_date', Carbon::today()->format('Y-m-d'));
+        $endDate = $request->input('end_date', Carbon::today()->format('Y-m-d'));
     }
+
 
  
     $employees = User::query()
@@ -101,6 +105,8 @@ class AdminAttendanceController extends Controller
         'lateCount',
         'onTimeCount',
         'filter',
+        'startDate',
+        'endDate',
         'user'
     ));
 }
