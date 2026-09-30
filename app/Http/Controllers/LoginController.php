@@ -23,9 +23,19 @@ class LoginController extends Controller
 
         ]);
         if (Auth::attempt($credentials)) {
+
+            if (Auth::user()->is_admin) {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+    
+                return back()->withErrors([
+                    'email' => 'Admins are not allowed to log in through the staff portal. Please use the admin login.'
+                ])->onlyInput('email');
+            }
             $request->session()->regenerate();
 
-            Cookie::queue('htg_user_role', 'employee', 2628000);
+            Cookie::queue('htg_user_role', 'employee', 2628000);  //for the web app on home screen
             // if(DefaultPassword::tryFrom($request->input('password'))){
                 
             // }
