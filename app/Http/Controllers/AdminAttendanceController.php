@@ -34,7 +34,7 @@ class AdminAttendanceController extends Controller
     } elseif ($filter === 'custom') {
         $date = $request->input('start_date');
     
-        // Extra safety
+        
         if (!$date || !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
             $date = Carbon::today()->format('Y-m-d');
         }
@@ -45,13 +45,20 @@ class AdminAttendanceController extends Controller
 
  
     $employees = User::query()
-        ->where('is_admin', false)
-        ->whereHas('Htg', function ($query) use ($startDate, $endDate) {
-            $query->whereBetween('date', [$startDate, $endDate]);
-        })
-        ->latest()
-        ->paginate(10)
-        ->appends($request->query());
+    ->where('is_admin', false)
+    ->whereHas('Htg', function ($query) use ($startDate, $endDate) {
+        $query->whereBetween('date', [$startDate, $endDate]);
+    })
+    
+    ->addSelect(['latest_clock_in' => HtgModel::select('clock_in')
+        ->whereColumn('htg_clock_in.user_id', 'users.id') 
+        ->whereBetween('date', [$startDate, $endDate])
+        ->latest('clock_in')
+        ->limit(1)
+    ])
+    ->orderByDesc('latest_clock_in') 
+    ->paginate(10)
+    ->appends($request->query());
 
    
     $filteredRecords = HtgModel::query()
