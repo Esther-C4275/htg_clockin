@@ -52,24 +52,30 @@ class PasswordController extends Controller
             'email' => 'required|email',
             'password' => 'required|confirmed|min:8',
         ]);
-
-
+    
         $credentials = $request->only(
             'email', 'password', 'password_confirmation', 'token'
         );
-
-        $status = Password::reset($credentials, function ($user, $password) {
+    
+        $resetUser = null;
+    
+        $status = Password::reset($credentials, function ($user, $password) use (&$resetUser) {
             $user->forceFill([
                 'password' => Hash::make($password)
             ])->setRememberToken(Str::random(60));
-
+    
             $user->save();
+            $resetUser = $user;
         });
-
-        return $status === Password::PASSWORD_RESET
-            ? redirect()->route('user-login')->with('status', __($status))
-            : back()->withErrors(['email' => [__($status)]]);
-    }
+    
+        if ($status === Password::PASSWORD_RESET) {
+           
+            $loginRoute = ($resetUser && $resetUser->is_admin) ? 'login' : 'user-login';
+    
+            return redirect()->route($loginRoute)->with('status', __($status));
+        }
+    
+        return back()->withErrors(['email' => [__($status)]]);    }
 
     public function email()
     {
