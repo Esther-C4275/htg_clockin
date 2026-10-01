@@ -64,22 +64,25 @@ class StaffDashboardController extends Controller
 
         
         $request->validate([
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
+            'latitude'  => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
         ]);
 
-        $distance = $this->calculateDistance(
-            $request->latitude, 
-            $request->longitude, 
-            $this->officeLat, 
-            $this->officeLng
-        );
+    
+        if ($request->filled('latitude') && $request->filled('longitude')) {
+            $distance = $this->calculateDistance(
+                $request->latitude, 
+                $request->longitude, 
+                $this->officeLat, 
+                $this->officeLng
+            );
 
-        if ($distance > $this->maxDistanceMeters) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Geofence Error: You are ' . round($distance) . 'm away from the office. You must be within ' . $this->maxDistanceMeters . 'm to Clock In.',
-            ], 422);
+            if ($distance > $this->maxDistanceMeters) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Geofence Error: You are ' . round($distance) . 'm away from the office. You must be within ' . $this->maxDistanceMeters . 'm to Clock In.',
+                ], 422);
+            }
         }
 
         $record = HtgModel::where('user_id', $user->id)
@@ -116,26 +119,7 @@ class StaffDashboardController extends Controller
         $user = Auth::user();
         $todayDate = now()->toDateString(); 
 
-        // Validate incoming GPS coordinates from scanner request
-        $request->validate([
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
-        ]);
-
-        $distance = $this->calculateDistance(
-            $request->latitude, 
-            $request->longitude, 
-            $this->officeLat, 
-            $this->officeLng
-        );
-
-        if ($distance > $this->maxDistanceMeters) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Geofence Error: You are ' . round($distance) . 'm away from the office. You must be within ' . $this->maxDistanceMeters . 'm to Clock Out.',
-            ], 422);
-        }
-
+        
         $record = HtgModel::where('user_id', $user->id)
             ->where(function ($query) use ($todayDate) {
                 $query->whereDate('date', $todayDate)
@@ -173,14 +157,10 @@ class StaffDashboardController extends Controller
             'status' => true,
             'message' => 'Clocked out successfully',
         ]);
-    }
-
-    /**
-     * Calculate distance between two points in meters using Haversine formula
-     */
+    
     private function calculateDistance($lat1, $lon1, $lat2, $lon2)
     {
-        $earthRadius = 6371000; // Earth radius in meters
+        $earthRadius = 6371000; 
 
         $latFrom = deg2rad($lat1);
         $lonFrom = deg2rad($lon1);

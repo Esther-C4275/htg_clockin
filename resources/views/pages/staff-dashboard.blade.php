@@ -1879,27 +1879,10 @@
                                     statusMsg.style.display = "block";
                                     statusMsg.style.backgroundColor = "#e0f2fe";
                                     statusMsg.style.color = "#0369a1";
-                                    statusMsg.innerText = "📍 Verifying building coordinates...";
+                                    statusMsg.innerText = "📍 Verifying scan...";
                                 }
                         
-                                if (!navigator.geolocation) {
-                                    alert("❌ Geolocation is not supported by your browser.");
-                                    stopCameraAndCloseModal();
-                                    return;
-                                }
-                        
-                                const processPosition = (position) => {
-                                    const accuracy = position.coords.accuracy;
-                        
-                                    
-                                    const MAX_ACCURACY_THRESHOLD = 50;
-                        
-                                    if (accuracy > MAX_ACCURACY_THRESHOLD) {
-                                        alert("❌ GPS signal is weak (" + Math.round(accuracy) + "m accuracy). Please turn on Wi-Fi or move closer to a window.");
-                                        stopCameraAndCloseModal();
-                                        return;
-                                    }
-                        
+                                const executeVerification = (lat = null, lng = null) => {
                                     html5QrcodeScanner.stop().then(() => {
                                         html5QrcodeScanner.clear();
                                         if (scannerWrapper) scannerWrapper.style.display = "none";
@@ -1908,8 +1891,10 @@
                                         let verificationUrl = new URL(parsedScannedUrl.pathname, window.location.origin);
                         
                                         verificationUrl.searchParams.append('action', activeAction);
-                                        verificationUrl.searchParams.append('latitude', position.coords.latitude);
-                                        verificationUrl.searchParams.append('longitude', position.coords.longitude);
+                                        if (lat && lng) {
+                                            verificationUrl.searchParams.append('latitude', lat);
+                                            verificationUrl.searchParams.append('longitude', lng);
+                                        }
                         
                                         fetch(verificationUrl.toString(), {
                                             method: 'GET',
@@ -1933,33 +1918,37 @@
                                     });
                                 };
                         
-                                const highAccuracyOptions = {
-                                    enableHighAccuracy: true,
-                                    timeout: 15000, 
-                                    maximumAge: 0
-                                };
+                              
+                                if (activeAction === 'clock-out') {
+                                    executeVerification();
+                                    return;
+                                }
                         
-                               
-                                navigator.geolocation.getCurrentPosition(
-                                    processPosition,
-                                    (error) => {
-                                        if (error.code === 3) {
-                                            console.warn("High accuracy GPS timed out. Retrying with low accuracy fallback...");
-                                            navigator.geolocation.getCurrentPosition(
-                                                processPosition,
-                                                (fallbackError) => {
-                                                    stopCameraAndCloseModal();
-                                                    alert("❌ Location access denied or timed out. Please allow high-accuracy location permissions and ensure Wi-Fi is ON.");
-                                                },
-                                                { enableHighAccuracy: false, timeout: 10000, maximumAge: 0 }
-                                            );
-                                        } else {
-                                            stopCameraAndCloseModal();
-                                            alert("❌ Location access denied or timed out. Please allow high-accuracy location permissions.");
-                                        }
-                                    },
-                                    highAccuracyOptions
-                                );
+                              
+                                if (navigator.geolocation) {
+                                    navigator.geolocation.getCurrentPosition(
+                                        (position) => {
+                                            const accuracy = position.coords.accuracy;
+                                            const MAX_ACCURACY_THRESHOLD = 150; 
+                        
+                                            if (accuracy > MAX_ACCURACY_THRESHOLD) {
+                                                alert("❌ GPS signal is too weak (" + Math.round(accuracy) + "m accuracy). Please turn on Wi-Fi or move closer to a window.");
+                                                stopCameraAndCloseModal();
+                                                return;
+                                            }
+                        
+                                            executeVerification(position.coords.latitude, position.coords.longitude);
+                                        },
+                                        (error) => {
+                                          
+                                            console.warn("GPS timeout or error, proceeding with QR verification.");
+                                            executeVerification();
+                                        },
+                                        { enableHighAccuracy: false, timeout: 5000, maximumAge: 60000 }
+                                    );
+                                } else {
+                                    executeVerification();
+                                }
                             }
                         
                             function onScanFailure(error) {}
@@ -1985,5 +1974,4 @@
                             overlay?.classList.remove('active');
                         });
                         </script>
-
 </x-layout>

@@ -44,28 +44,9 @@ class QrCodeController extends Controller
             return redirect()->route('user-login')->with('error', 'Please log in or register your account first to clock in.');
         }
 
-        $latitude  = $request->query('latitude');
-        $longitude = $request->query('longitude');
-
-        if (!$latitude || !$longitude) {
-            return $this->buildResponse(
-                $request, 
-                false, 
-                'GPS coordinates were not provided. Please use the Clock In button on your dashboard to scan.', 
-                422
-            );
-        }
-
-       
-        $distance = $this->calculateDistance((float)$latitude, (float)$longitude, (float)$this->officeLat, (float)$this->officeLng);
-
-        if ($distance > $this->maxDistanceMeters) {
-            $msg = 'Geofence Error: You are ' . round($distance) . 'm away from the office. You must be within ' . $this->maxDistanceMeters . 'm.';
-            return $this->buildResponse($request, false, $msg, 422);
-        }
-
         $user      = Auth::user();
         $todayDate = now()->format('Y-m-d');
+        $action    = $request->query('action', 'clock-in');
 
         $record = HtgModel::where('user_id', $user->id)
             ->where(function ($query) use ($todayDate) {
@@ -75,8 +56,8 @@ class QrCodeController extends Controller
             ->latest('id')
             ->first();
 
-       
-        if ($request->query('action') === 'clock-out') {
+        
+        if ($action === 'clock-out') {
             if (!$record || !$record->clock_in) {
                 return $this->buildResponse($request, false, 'You cannot clock out because you haven\'t clocked in today.', 400);
             }
@@ -92,9 +73,22 @@ class QrCodeController extends Controller
             return $this->buildResponse($request, true, 'Clocked out successfully! Rest well.', 200);
         }
 
-        // --- Handle Clock-In ---
+        
         if ($record && $record->clock_in) {
             return $this->buildResponse($request, false, 'You have already recorded a clock-in timestamp for today.', 400);
+        }
+
+        $latitude  = $request->query('latitude');
+        $longitude = $request->query('longitude');
+
+       
+        if ($latitude && $longitude) {
+            $distance = $this->calculateDistance((float)$latitude, (float)$longitude, (float)$this->officeLat, (float)$this->officeLng);
+
+            if ($distance > $this->maxDistanceMeters) {
+                $msg = 'Geofence Error: You are ' . round($distance) . 'm away from the office. You must be within ' . $this->maxDistanceMeters . 'm.';
+                return $this->buildResponse($request, false, $msg, 422);
+            }
         }
 
         HtgModel::create([
@@ -106,7 +100,6 @@ class QrCodeController extends Controller
         return $this->buildResponse($request, true, 'Clock-in successfully synchronized! Have a wonderful day.', 200);
     }
 
-  
     private function buildResponse(Request $request, bool $success, string $message, int $statusCode = 200)
     {
         if ($request->wantsJson() || $request->ajax()) {
@@ -120,7 +113,6 @@ class QrCodeController extends Controller
         return redirect()->route('index.staff')->with($flashKey, $message);
     }
 
-    
     private function calculateDistance(float $lat1, float $lon1, float $lat2, float $lon2): float
     {
         $earthRadius = 6371000; 
