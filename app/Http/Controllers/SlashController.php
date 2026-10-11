@@ -19,7 +19,7 @@ class SlashController extends Controller
      $knownRole = $request->cookie('htg_user_role'); 
 
         if ($knownRole === 'admin') {
-            return redirect('login');
+         return redirect('/admin-login');
         }
 
         if ($knownRole === 'employee') {
