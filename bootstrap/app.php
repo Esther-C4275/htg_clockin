@@ -21,7 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 $request->is('view-employee*') ||
                 $request->is('security-options*')
             ) {
-                return route('login');
+                return url('/admin-login');
             }
 
             return route('user-login'); 

@@ -1545,7 +1545,7 @@
                                         <h3 id="scanner-title" class="scanner-modal-title">Scanning to Clock In</h3>
                                         <p class="scanner-modal-subtitle">Align the printed QR code inside the frame to scan automatically.</p>
                                         
-                                        <!-- Status indicator for GPS acquisition & verification errors -->
+                                        
                                         <div id="scanner-status-msg" style="display: none; margin: 10px 0; padding: 8px 12px; border-radius: 6px; font-size: 13px; font-weight: 500; text-align: center;"></div>
                                 
                                         <div class="scanner-viewport-wrapper">
