@@ -25,6 +25,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SlashController::class, 'index'])->name('home');
 
+
+Route::get('/login', function () {
+    return redirect()->route('user-login');
+});
+
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
