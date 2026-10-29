@@ -31,6 +31,9 @@ class AdminAttendanceController extends Controller
     } elseif ($filter === 'this_week') {
         $startDate = Carbon::now()->startOfWeek()->format('Y-m-d');
         $endDate = Carbon::now()->endOfWeek()->format('Y-m-d');
+    } elseif ($filter === 'this_month') {
+        $startDate = Carbon::now()->startOfMonth()->format('Y-m-d');
+        $endDate = Carbon::now()->endOfMonth()->format('Y-m-d');
     } elseif ($filter === 'custom') {
         $date = $request->input('start_date');
     

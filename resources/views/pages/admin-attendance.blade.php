@@ -817,6 +817,7 @@
             <option value="today" {{ $filter === 'today' ? 'selected' : '' }}>Today</option>
             <option value="yesterday" {{ $filter === 'yesterday' ? 'selected' : '' }}>Yesterday</option>
             <option value="this_week" {{ $filter === 'this_week' ? 'selected' : '' }}>This Week</option>
+            <option value="this_month" {{ $filter === 'this_month' ? 'selected' : '' }}>This Month</option>
             <option value="custom" {{ $filter === 'custom' ? 'selected' : '' }}>Custom Date</option>
           </select>
 
@@ -862,7 +863,19 @@
           <div class="icon green">
             <i><img src="{{ asset('images/Frame 70 (1).png') }}" alt=""></i>
           </div>
-          <p>Active Today</p>
+          <p>
+            @if($filter === 'today')
+            Active Today
+          @elseif($filter === 'yesterday')
+            Active Yesterday
+          @elseif($filter === 'this_week')
+            Active This Week
+          @elseif($filter === 'this_month')
+            Active This Month
+          @else
+            Active Range
+          @endif
+        </p>
         </div>
         <h3>{{ $presentCount }}</h3>
       </div>
