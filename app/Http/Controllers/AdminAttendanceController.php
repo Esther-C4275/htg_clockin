@@ -14,118 +14,111 @@ class AdminAttendanceController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-{ 
-
-    $user = Auth::user();
-    $totalEmployees = User::query()->where('is_admin', false)->count();
-
- 
-    $filter = $request->input('filter_range', 'today');
+    { 
+        $user = Auth::user();
+        $totalEmployees = User::query()->where('is_admin', false)->count();
     
-    if ($filter === 'today') {
-        $startDate = Carbon::today()->format('Y-m-d');
-        $endDate = Carbon::today()->format('Y-m-d');
-    } elseif ($filter === 'yesterday') {
-        $startDate = Carbon::yesterday()->format('Y-m-d');
-        $endDate = Carbon::yesterday()->format('Y-m-d');
-    } elseif ($filter === 'this_week') {
-        $startDate = Carbon::now()->startOfWeek()->format('Y-m-d');
-        $endDate = Carbon::now()->endOfWeek()->format('Y-m-d');
-    } elseif ($filter === 'this_month') {
-        $startDate = Carbon::now()->startOfMonth()->format('Y-m-d');
-        $endDate = Carbon::now()->endOfMonth()->format('Y-m-d');
-    } elseif ($filter === 'custom') {
-        $date = $request->input('start_date');
-    
+        $filter = $request->input('filter_range', 'today');
         
-        if (!$date || !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
-            $date = Carbon::today()->format('Y-m-d');
+        if ($filter === 'today') {
+            $startDate = Carbon::today()->format('Y-m-d');
+            $endDate = Carbon::today()->format('Y-m-d');
+        } elseif ($filter === 'yesterday') {
+            $startDate = Carbon::yesterday()->format('Y-m-d');
+            $endDate = Carbon::yesterday()->format('Y-m-d');
+        } elseif ($filter === 'this_week') {
+            $startDate = Carbon::now()->startOfWeek()->format('Y-m-d');
+            $endDate = Carbon::now()->endOfWeek()->format('Y-m-d');
+        } elseif ($filter === 'this_month') {
+            $startDate = Carbon::now()->startOfMonth()->format('Y-m-d');
+            $endDate = Carbon::now()->endOfMonth()->format('Y-m-d');
+        } elseif ($filter === 'custom') {
+            $date = $request->input('start_date');
+        
+            if (!$date || !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
+                $date = Carbon::today()->format('Y-m-d');
+            }
+        
+            $startDate = $date;
+            $endDate   = $date;
         }
     
-        $startDate = $date;
-        $endDate   = $date;
-    }
-
- 
-    $employees = User::query()
-    ->where('is_admin', false)
-    ->whereHas('Htg', function ($query) use ($startDate, $endDate) {
-        $query->whereBetween('date', [$startDate, $endDate]);
-    })
+        $employees = User::query()
+        ->where('is_admin', false)
+        ->whereHas('Htg', function ($query) use ($startDate, $endDate) {
+            $query->whereBetween('date', [$startDate, $endDate]);
+        })
+        ->addSelect(['latest_clock_in' => HtgModel::select('clock_in')
+            ->whereColumn('htg_clock_in.user_id', 'users.id') 
+            ->whereBetween('date', [$startDate, $endDate])
+            ->latest('clock_in')
+            ->limit(1)
+        ])
+        ->orderByDesc('latest_clock_in') 
+        ->paginate(10)
+        ->appends($request->query());
     
-    ->addSelect(['latest_clock_in' => HtgModel::select('clock_in')
-        ->whereColumn('htg_clock_in.user_id', 'users.id') 
-        ->whereBetween('date', [$startDate, $endDate])
-        ->latest('clock_in')
-        ->limit(1)
-    ])
-    ->orderByDesc('latest_clock_in') 
-    ->paginate(10)
-    ->appends($request->query());
-
-   
-    $filteredRecords = HtgModel::query()
-        ->whereBetween('date', [$startDate, $endDate])
-        ->get();
+        $filteredRecords = HtgModel::query()
+            ->whereBetween('date', [$startDate, $endDate])
+            ->get();
+        
+        $presentCount = $filteredRecords->whereNotNull('clock_in')->unique('user_id')->count();
+        $absentCount  = max(0, $totalEmployees - $presentCount);
+        
+        $onTimeCount = 0;
+        $lateUserIds = [];
     
-    $presentCount = $filteredRecords->whereNotNull('clock_in')->unique('user_id')->count();
-    $absentCount  = max(0, $totalEmployees - $presentCount);
-    
-    $onTimeCount = 0;
-    $lateCount = 0;
-
-    foreach ($filteredRecords as $record) {
-        if ($record->clock_in) {
-            $clockTime = Carbon::parse($record->clock_in)->format('H:i:s');
-          
-            if ($record->clock_out && Carbon::parse($record->clock_out)->format('H:i:s') < '18:00:00') {
-                $lateCount++;
-            } elseif ($clockTime > '10:00:00') {
-                $lateCount++;
-            } else {
-                $onTimeCount++;
+        foreach ($filteredRecords as $record) {
+            if ($record->clock_in) {
+                $clockTime = Carbon::parse($record->clock_in)->format('H:i:s');
+              
+                if (($record->clock_out && Carbon::parse($record->clock_out)->format('H:i:s') < '18:00:00') || ($clockTime > '10:00:00')) {
+                    $lateUserIds[] = $record->user_id;
+                } else {
+                    $onTimeCount++;
+                }
             }
         }
-    }
-
-   
-    foreach ($employees as $employee) {
-        $attendance = $filteredRecords->where('user_id', $employee->id)->first();
-        
-        if ($attendance) {
-            $clockInStr = Carbon::parse($attendance->clock_in)->format('g:i A');
+    
+        $lateCount = collect($lateUserIds)->unique()->count();
+    
+        foreach ($employees as $employee) {
+            $attendance = $filteredRecords->where('user_id', $employee->id)->first();
             
-            if ($attendance->clock_out) {
-                $clockOutStr = Carbon::parse($attendance->clock_out)->format('g:i A');
-                $employee->time_string = $clockInStr . " - " . $clockOutStr;
-                $employee->row_status = 'Active'; 
+            if ($attendance) {
+                $clockInStr = Carbon::parse($attendance->clock_in)->format('g:i A');
                 
-                $start = Carbon::parse($attendance->clock_in);
-                $end = Carbon::parse($attendance->clock_out);
-                
-                $fractionalHours = $start->diffInMinutes($end) / 60;
-                $employee->total_hours = round($fractionalHours, 1) . " hrs";
-            } else {
-                $employee->time_string = $filter === 'today' ? $clockInStr . " - Present" : $clockInStr . " - Done";
-                $employee->row_status = 'Active';
-                $employee->total_hours = $filter === 'today' ? "Counting..." : "—";
+                if ($attendance->clock_out) {
+                    $clockOutStr = Carbon::parse($attendance->clock_out)->format('g:i A');
+                    $employee->time_string = $clockInStr . " - " . $clockOutStr;
+                    $employee->row_status = 'Active'; 
+                    
+                    $start = Carbon::parse($attendance->clock_in);
+                    $end = Carbon::parse($attendance->clock_out);
+                    
+                    $fractionalHours = $start->diffInMinutes($end) / 60;
+                    $employee->total_hours = round($fractionalHours, 1) . " hrs";
+                } else {
+                    $employee->time_string = $filter === 'today' ? $clockInStr . " - Present" : $clockInStr . " - Done";
+                    $employee->row_status = 'Active';
+                    $employee->total_hours = $filter === 'today' ? "Counting..." : "—";
+                }
             }
         }
+    
+        return view('pages.admin-attendance', compact(
+            'totalEmployees',
+            'employees', 
+            'presentCount',
+            'absentCount',
+            'lateCount',
+            'onTimeCount',
+            'filter',
+            'startDate',
+            'endDate',
+            'user'
+        ));
     }
-
-    return view('pages.admin-attendance', compact(
-        'totalEmployees',
-        'employees', 
-        'presentCount',
-        'absentCount',
-        'lateCount',
-        'onTimeCount',
-        'filter',
-        'startDate',
-        'endDate',
-        'user'
-    ));
-}
     /**
      * Show the form for creating a new resource.
      */
